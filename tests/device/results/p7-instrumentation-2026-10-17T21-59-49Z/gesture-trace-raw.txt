@@ -1,0 +1,233 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainNativeGestureInputTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.MainNativeGestureInputTest:
+INSTRUMENTATION_STATUS: test=secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"1b5ccd77-451d-4418-b413-dbd084fe9493"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"1b5ccd77-451d-4418-b413-dbd084fe9493","elapsedMs":227,"jsElapsedMs":0.20000000018626451,"responseId":"1b5ccd77-451d-4418-b413-dbd084fe9493","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"fd1e1b42-69d3-41aa-a18e-0a21955b1ef2"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"fd1e1b42-69d3-41aa-a18e-0a21955b1ef2","elapsedMs":347,"jsElapsedMs":0.20000000018626451,"responseId":"fd1e1b42-69d3-41aa-a18e-0a21955b1ef2","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"5cdc2183-b0d2-44d4-be73-38e90b0913c8"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"5cdc2183-b0d2-44d4-be73-38e90b0913c8","elapsedMs":234,"jsElapsedMs":0.19999999925494194,"responseId":"5cdc2183-b0d2-44d4-be73-38e90b0913c8","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"1154ffa8-f13c-478a-8b6f-f15964915892"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"1154ffa8-f13c-478a-8b6f-f15964915892","elapsedMs":79,"jsElapsedMs":0.5,"responseId":"1154ffa8-f13c-478a-8b6f-f15964915892","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"993708cc-372d-4575-80fd-cfb177f5c889"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"993708cc-372d-4575-80fd-cfb177f5c889","elapsedMs":213,"jsElapsedMs":0.20000000018626451,"responseId":"993708cc-372d-4575-80fd-cfb177f5c889","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"f36563c1-cddc-4e18-938b-061ada1755c2"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"f36563c1-cddc-4e18-938b-061ada1755c2","elapsedMs":234,"jsElapsedMs":0.09999999962747097,"responseId":"f36563c1-cddc-4e18-938b-061ada1755c2","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"c9dce917-fcdd-4ec9-b896-785dd7f82c06"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"c9dce917-fcdd-4ec9-b896-785dd7f82c06","elapsedMs":144,"jsElapsedMs":0.2999999998137355,"responseId":"c9dce917-fcdd-4ec9-b896-785dd7f82c06","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"73dae03e-6abf-445b-8bfe-4ae69b6a8444"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"73dae03e-6abf-445b-8bfe-4ae69b6a8444","elapsedMs":217,"jsElapsedMs":0.20000000018626451,"responseId":"73dae03e-6abf-445b-8bfe-4ae69b6a8444","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"b3b4f49f-c2e4-4ebe-9d36-12f7bc882bf9"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"b3b4f49f-c2e4-4ebe-9d36-12f7bc882bf9","elapsedMs":137,"jsElapsedMs":0.2999999998137355,"responseId":"b3b4f49f-c2e4-4ebe-9d36-12f7bc882bf9","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"a8eb22ce-4575-49f3-b8d0-13f01a6644a6"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"a8eb22ce-4575-49f3-b8d0-13f01a6644a6","elapsedMs":248,"jsElapsedMs":0.2999999998137355,"responseId":"a8eb22ce-4575-49f3-b8d0-13f01a6644a6","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-first-down","label":"First DOWN after ACTION_CANCEL must start a gesture","changed":false,"x":540.0,"y":1170.0}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":0,"type":"pointerdown","phase":"capture","pointerId":2.0,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":8441.0,"revision":0.0,"m00":0.9906044602394104,"m02":-0.13647527992725372,"m20":0.13664118945598602,"m22":0.990368127822876}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":1,"type":"pointerdown","phase":"bubble","pointerId":2.0,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":8470.799999999814,"revision":1.0,"m00":0.9906044602394104,"m02":-0.13647527992725372,"m20":0.13664118945598602,"m22":0.990368127822876}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":2,"type":"touchstart","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":8504.799999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":3,"type":"touchstart","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":8504.799999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":4,"type":"pointerdown","phase":"capture","pointerId":3.0,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":9217.0,"revision":1.0,"m00":0.9906044602394104,"m02":-0.13647527992725372,"m20":0.13664118945598602,"m22":0.990368127822876}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":5,"type":"pointerdown","phase":"bubble","pointerId":3.0,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":9233.299999999814,"revision":1.0,"m00":0.9906044602394104,"m02":-0.13647527992725372,"m20":0.13664118945598602,"m22":0.990368127822876}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":6,"type":"touchstart","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9235.399999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":7,"type":"touchstart","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9235.399999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":8,"type":"pointermove","phase":"capture","pointerId":3.0,"trusted":true,"x":98.18182373046875,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":9285.099999999627,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":9,"type":"pointermove","phase":"bubble","pointerId":3.0,"trusted":true,"x":98.18182373046875,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":9285.399999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":10,"type":"touchmove","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9285.799999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":11,"type":"touchmove","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9285.899999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":12,"type":"pointerup","phase":"capture","pointerId":3.0,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":9560.299999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":13,"type":"pointerup","phase":"bubble","pointerId":3.0,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":9560.599999999627,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":14,"type":"lostpointercapture","phase":"capture","pointerId":3.0,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":false,"time":9560.599999999627,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":15,"type":"lostpointercapture","phase":"bubble","pointerId":3.0,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":false,"time":9561.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":16,"type":"touchend","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9561.899999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":17,"type":"touchend","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9561.899999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":18,"type":"touchcancel","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9594.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":19,"type":"touchcancel","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":9594.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":20,"type":"pointerdown","phase":"capture","pointerId":2.0,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":10366.599999999627,"revision":1.0,"m00":0.9906044602394104,"m02":-0.13647527992725372,"m20":0.13664118945598602,"m22":0.990368127822876}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":21,"type":"pointerdown","phase":"bubble","pointerId":2.0,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":10392.0,"revision":1.0,"m00":0.9906044602394104,"m02":-0.13647527992725372,"m20":0.13664118945598602,"m22":0.990368127822876}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":22,"type":"touchstart","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":10399.599999999627,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":23,"type":"touchstart","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":10399.700000000186,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":24,"type":"touchcancel","phase":"capture","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":10906.899999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":25,"type":"touchcancel","phase":"bubble","pointerId":null,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":10906.899999999441,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"858dcb36-88ff-440d-9a1c-09fad7a3fe17"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"858dcb36-88ff-440d-9a1c-09fad7a3fe17","elapsedMs":185,"jsElapsedMs":0.09999999962747097,"responseId":"858dcb36-88ff-440d-9a1c-09fad7a3fe17","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainNativeGestureInputTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: First DOWN after ACTION_CANCEL must start a gesture
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.invokeSuspend$firstDownAfterFinish(MainNativeGestureInputTest.kt:97)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.access$invokeSuspend$firstDownAfterFinish(Unknown Source:0)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1$firstDownAfterFinish$1.invokeSuspend(Unknown Source:18)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainNativeGestureInputTest.secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(MainNativeGestureInputTest.kt:38)
+
+INSTRUMENTATION_STATUS: stream=
+Error in secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(musicorbs.platform.audio.MainNativeGestureInputTest):
+java.lang.AssertionError: First DOWN after ACTION_CANCEL must start a gesture
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.invokeSuspend$firstDownAfterFinish(MainNativeGestureInputTest.kt:97)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.access$invokeSuspend$firstDownAfterFinish(Unknown Source:0)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1$firstDownAfterFinish$1.invokeSuspend(Unknown Source:18)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainNativeGestureInputTest.secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(MainNativeGestureInputTest.kt:38)
+
+INSTRUMENTATION_STATUS: test=secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 18.032
+There was 1 failure:
+1) secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(musicorbs.platform.audio.MainNativeGestureInputTest)
+java.lang.AssertionError: First DOWN after ACTION_CANCEL must start a gesture
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.invokeSuspend$firstDownAfterFinish(MainNativeGestureInputTest.kt:97)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.access$invokeSuspend$firstDownAfterFinish(Unknown Source:0)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1$firstDownAfterFinish$1.invokeSuspend(Unknown Source:18)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainNativeGestureInputTest.secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(MainNativeGestureInputTest.kt:38)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

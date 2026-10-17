@@ -1,0 +1,15 @@
+{
+  "startedAt": "2026-10-17T22:00:06.985Z",
+  "avd": "MusicOrbs_API35",
+  "serial": "emulator-5554",
+  "android": "15",
+  "api": "35",
+  "rendererMode": "host AMD, headless, WHPX, audio enabled, no snapshots, memory2048",
+  "installedApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "localApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "sessionSha256": "70aeb26471c7efeb4e5b46518fc07b86efbf4ff3fd1c3fe75cec84566623f37a",
+  "sessionBytes": 1114,
+  "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+  "instrumentationMode": "Direct am instrument; test APK only; no UTP/uninstall/clearData",
+  "classes": []
+}

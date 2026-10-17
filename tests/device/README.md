@@ -126,3 +126,74 @@ Android window framestats. Бюджеты и ограничения измере
 настройка экрана временно увеличивается, чтобы AVD не уснул во время измерения.
 Нативная панель после служебного профиля согласуется перезапуском приложения.
 Во время длительного прогона не запускаются параллельные browser/Gradle тесты.
+
+## Дополнительная приёмка P7
+
+```powershell
+node scripts/android-visual-acceptance.mjs --serial emulator-5554
+node scripts/android-context-probe.mjs --serial emulator-5554
+node scripts/android-motion-transitions.mjs --self-check
+node scripts/android-motion-transitions.mjs --serial emulator-5554
+```
+
+[Visual runner](../../scripts/android-visual-acceptance.mjs) требует валидный
+сохранённый snapshot v2 и отсутствие активного аудио. Он проверяет одинаковые
+tap/drag при sensitivity 0.5 и 2, второй pointer/cancel/выход за view через trusted
+CDP input настоящего WebView, затухание shader impulse и 75 секунд движения с
+неизменным object-space полем. Вращение проверяется по фактической modelViewMatrix;
+native WebGL context теряется и восстанавливается через расширение драйвера.
+Плавность палитры проверяется по промежуточным texture uploads; после отдельных
+перезапусков пять палитр сверяются с GPU texture readback. Native Reset проверяется
+после restart с сохранностью settings и всех неактивных форм.
+В finally восстанавливается исходная смысловая сцена; глобальная save revision
+может увеличиться. Это машинные проверки, а не оценка эстетики или удобства человеком.
+
+[Context probe](../../scripts/android-context-probe.mjs) отдельно записывает
+loss/restore, первые GL errors после восстановления и консоль WebView. Статус
+`diagnostic-complete` означает завершение сбора; приёмку определяют фактические
+ошибки и сохранность сцены. Visual runner и probe записывают SHA установленного APK.
+
+[Motion runner](../../scripts/android-motion-transitions.mjs) создаёт собственный
+WAV104с: 90→120 BPM, тишина и нерегулярный ритм. Системный picker запускает
+настоящие decoder/AudioTrack/PCM/DSP; локальный CDP пассивно читает MotionSignal.
+Проверяются ±2BPM, ±0.3с периода после сходимости, slope≤0.02 cycles/s²,
+непрерывность фазы и автономия после тишины/нерегулярного ритма/EOF.
+Исходная сцена и native store проверяются до подготовительных изменений сцены и восстанавливаются
+в finally; собственные TEMP/Downloads WAV удаляются после закрытия reader.
+`--self-check` проверяет только синтетический WAV и проверяющие функции без
+устройства и не считается прохождением native сценария.
+
+Дополнительные instrumentation-классы запускаются последовательно после
+окончания профиля. Аудит файлов — первым, до создания Main/WebView:
+
+```powershell
+.\gradlew.bat :app:assembleDebugAndroidTest
+$musicOrbsAdb = Join-Path $env:ANDROID_HOME 'platform-tools/adb.exe'
+& $musicOrbsAdb -s emulator-5554 install -r -t android/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+& $musicOrbsAdb -s emulator-5554 shell am instrument -w -r -e class musicorbs.platform.audio.P7AudioPolicyStorageTest musicorbs.app.test/androidx.test.runner.AndroidJUnitRunner
+& $musicOrbsAdb -s emulator-5554 shell am instrument -w -r -e class musicorbs.platform.audio.MainCaptureLifecycleTest,musicorbs.platform.audio.MainNativeGestureInputTest musicorbs.app.test/androidx.test.runner.AndroidJUnitRunner
+& $musicOrbsAdb -s emulator-5554 shell am instrument -w -r -e class musicorbs.platform.experience.AtomicSessionStoreAndroidTest musicorbs.app.test/androidx.test.runner.AndroidJUnitRunner
+```
+
+[Policy/storage test](../../android/platform/src/androidTest/kotlin/musicorbs/platform/audio/P7AudioPolicyStorageTest.kt)
+проверяет запрещающий собственный AudioTrack между двумя разрешающими контролями
+и отсутствие записи файлов во время local/mic/capture. Это ограниченный runtime
+аудит доступных каталогов приложения, без сетевого packet capture.
+[Main lifecycle](../../android/platform/src/androidTest/kotlin/musicorbs/platform/audio/MainCaptureLifecycleTest.kt)
+проверяет настоящие native capture/mic→HOME→возврат без скрытого restart.
+[Native gestures](../../android/platform/src/androidTest/kotlin/musicorbs/platform/audio/MainNativeGestureInputTest.kt)
+дополняет CDP проверку настоящими Android MotionEvent multi-pointer/CANCEL/outside-UP.
+Тестовые helpers сохраняют исходный session.json и восстанавливают его после
+закрытия Main. Прямой `am instrument` использован в инструкции, чтобы не запускать
+UTP uninstall target APK. Перед запуском сохраняются исходные APK SHA-256 и
+session.json; после проверяются сохранность данных и новый CDP forward.
+При выборе `connectedDebugAndroidTest` UTP может удалить target APK; тогда
+требуются повторная установка того же debug APK и восстановление тестовой сессии.
+
+[Atomic store](../../android/platform/src/androidTest/kotlin/musicorbs/platform/experience/AtomicSessionStoreAndroidTest.kt)
+проверяется на отдельном временном файле Android: исключение после `force()` до
+atomic replace сохраняет подтверждённый snapshot, stale/equal revision отклоняются.
+Это детерминированное прерывание IO, а не отключение питания или kill процесса.
+
+Фактическое прохождение дополнительных тестов подтверждается
+только отчётом конкретного запуска и итоговой [матрицей FT/CT](../functional/results.md).

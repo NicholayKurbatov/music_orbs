@@ -1,0 +1,502 @@
+{
+  "status": "PASS",
+  "tests": 8,
+  "passed": 8,
+  "failed": 0,
+  "environment": {
+    "at": "2026-10-17T22:33:11.803Z",
+    "avd": "MusicOrbs_API35",
+    "serial": "emulator-5554",
+    "android": "15",
+    "api": 35,
+    "webView": "124.0.6367.219",
+    "rendererMode": "host AMD, headless, WHPX, audio enabled, no snapshots, memory2048",
+    "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+    "testApkSha256": "c1b0000a4e9fc2ebe72a71d092617a4f60a9ee25025438facd4dc039e1a4641d",
+    "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+    "sessionBytes": 1115,
+    "settingsMatchOriginal": true,
+    "shapesMatchOriginal": true,
+    "sessionRevision": 102,
+    "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "instrumentationMode": "Direct am instrument; test APK install only; no UTP/uninstall/clearData"
+  },
+  "finishedAt": "2026-10-17T22:35:18.838Z",
+  "runs": [
+    {
+      "name": "policy",
+      "class": "musicorbs.platform.audio.P7AudioPolicyStorageTest",
+      "raw": "policy-raw.txt",
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "seconds": 14.808,
+      "after": {
+        "at": "2026-10-17T22:33:43.451Z",
+        "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+        "sessionMatchesBefore": true,
+        "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+        "apkMatchesBefore": true
+      },
+      "storage": [
+        {
+          "stage": "capture-allowed-active",
+          "filesBefore": 52,
+          "filesNow": 52,
+          "changed": [],
+          "writeEvents": []
+        },
+        {
+          "stage": "capture-forbidden-active",
+          "filesBefore": 52,
+          "filesNow": 52,
+          "changed": [],
+          "writeEvents": []
+        },
+        {
+          "stage": "capture-after-close",
+          "filesBefore": 52,
+          "filesNow": 52,
+          "changed": [],
+          "writeEvents": []
+        },
+        {
+          "stage": "local-active",
+          "filesBefore": 53,
+          "filesNow": 53,
+          "changed": [],
+          "writeEvents": []
+        },
+        {
+          "stage": "local-after-close",
+          "filesBefore": 53,
+          "filesNow": 53,
+          "changed": [],
+          "writeEvents": []
+        },
+        {
+          "stage": "microphone-active",
+          "filesBefore": 52,
+          "filesNow": 52,
+          "changed": [],
+          "writeEvents": []
+        },
+        {
+          "stage": "microphone-after-close",
+          "filesBefore": 52,
+          "filesNow": 52,
+          "changed": [],
+          "writeEvents": []
+        }
+      ]
+    },
+    {
+      "name": "main",
+      "class": "musicorbs.platform.audio.MainCaptureLifecycleTest",
+      "raw": "main-raw.txt",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "seconds": 54.114,
+      "after": {
+        "at": "2026-10-17T22:34:41.450Z",
+        "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+        "sessionMatchesBefore": true,
+        "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+        "apkMatchesBefore": true
+      },
+      "storage": []
+    },
+    {
+      "name": "gesture",
+      "class": "musicorbs.platform.audio.MainNativeGestureInputTest",
+      "raw": "gesture-raw.txt",
+      "tests": 1,
+      "passed": 1,
+      "failed": 0,
+      "seconds": 20.914,
+      "after": {
+        "at": "2026-10-17T22:35:07.327Z",
+        "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+        "sessionMatchesBefore": true,
+        "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+        "apkMatchesBefore": true
+      },
+      "storage": []
+    },
+    {
+      "name": "atomic",
+      "class": "musicorbs.platform.experience.AtomicSessionStoreAndroidTest",
+      "raw": "atomic-raw.txt",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "seconds": 0.508,
+      "after": {
+        "at": "2026-10-17T22:35:18.838Z",
+        "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+        "sessionMatchesBefore": true,
+        "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+        "apkMatchesBefore": true,
+        "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+        "recordAudioPermissionRestoredToOriginal": true
+      },
+      "storage": []
+    }
+  ],
+  "measured": {
+    "policy": {
+      "allowedFirst": {
+        "stage": "capture-policy-allowed-first",
+        "sourceId": "60c86033-6778-4687-8f95-c9450701cf22",
+        "peak": 0.36621094
+      },
+      "forbidden": {
+        "stage": "capture-policy-forbidden",
+        "sourceId": "60c86033-6778-4687-8f95-c9450701cf22",
+        "allowedFirstPeak": 0.36621094,
+        "deniedPeak": 0,
+        "samples": 98304,
+        "headBefore": 64192,
+        "headAfter": 162112,
+        "playState": 3,
+        "capturePolicy": 3
+      },
+      "allowedSecond": {
+        "stage": "capture-policy-allowed-second",
+        "sourceId": "60c86033-6778-4687-8f95-c9450701cf22",
+        "peak": 0.36621094,
+        "allowedFirstPeak": 0.36621094,
+        "deniedPeak": 0,
+        "deniedSamples": 98304
+      }
+    },
+    "main": {
+      "micActive": {
+        "stage": "main-microphone-active",
+        "sourceId": "bd856f54-6913-4faf-831e-ace6ad6c4e1e",
+        "motionTimestampSeconds": 11.8320736,
+        "recorders": 1,
+        "recordingSource": 1,
+        "recordingSessionId": 353,
+        "indicator": true,
+        "captureService": false
+      },
+      "micHome": {
+        "stage": "main-microphone-home-observed",
+        "elapsedMs": 1049,
+        "scenarioState": "CREATED",
+        "topPackage": "com.android.launcher3",
+        "recorders": 0,
+        "recordingSources": "",
+        "recordingSessions": "",
+        "captureService": false
+      },
+      "micReturned": {
+        "stage": "main-microphone-returned",
+        "previousSourceId": "bd856f54-6913-4faf-831e-ace6ad6c4e1e",
+        "sourceId": "none",
+        "mode": "autonomous",
+        "observations": 20,
+        "observedMs": 6011,
+        "recorders": 0,
+        "indicator": false,
+        "captureService": false
+      },
+      "captureActive": {
+        "stage": "main-capture-active",
+        "sourceId": "a5af263e-15e0-4738-b0b7-5bdc133b9d7c",
+        "timestampSeconds": 12.1304824,
+        "mode": "autonomous",
+        "energy": 0.2513866323086084,
+        "intensity": 0.0002616836608058895,
+        "phase": 0.3854248666666584,
+        "bpm": null,
+        "slowCycleSeconds": 24,
+        "confidence": 0,
+        "recorders": 0,
+        "captureService": true
+      },
+      "captureBackground": {
+        "stage": "main-capture-background",
+        "previousSourceId": "a5af263e-15e0-4738-b0b7-5bdc133b9d7c",
+        "recorders": 0,
+        "captureService": false
+      },
+      "captureReturned": {
+        "stage": "main-capture-returned",
+        "previousSourceId": "a5af263e-15e0-4738-b0b7-5bdc133b9d7c",
+        "sourceId": "none",
+        "mode": "autonomous",
+        "observations": 20,
+        "observedMs": 4878,
+        "recorders": 0,
+        "microphoneIndicator": false,
+        "captureService": false
+      }
+    },
+    "gesture": {
+      "firstDownChecks": [
+        {
+          "stage": "native-first-down",
+          "label": "First DOWN after ACTION_CANCEL must start a gesture",
+          "changed": true,
+          "x": 540,
+          "y": 1170
+        },
+        {
+          "stage": "native-first-down",
+          "label": "First DOWN after outside ACTION_UP must start a gesture",
+          "changed": true,
+          "x": 540,
+          "y": 1170
+        }
+      ],
+      "cancel": [
+        {
+          "stage": "native-dom-event",
+          "index": 18,
+          "type": "touchcancel",
+          "phase": "capture",
+          "pointerId": null,
+          "pointerType": null,
+          "touchCount": 0,
+          "changedTouchIds": 0,
+          "trusted": true,
+          "x": null,
+          "y": null,
+          "target": "CANVAS",
+          "captured": null,
+          "time": 12704.299999999814,
+          "revision": null,
+          "m00": null,
+          "m02": null,
+          "m20": null,
+          "m22": null
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 19,
+          "type": "touchcancel",
+          "phase": "bubble",
+          "pointerId": null,
+          "pointerType": null,
+          "touchCount": 0,
+          "changedTouchIds": 0,
+          "trusted": true,
+          "x": null,
+          "y": null,
+          "target": "CANVAS",
+          "captured": null,
+          "time": 12706.799999999814,
+          "revision": null,
+          "m00": null,
+          "m02": null,
+          "m20": null,
+          "m22": null
+        }
+      ],
+      "downs": [
+        {
+          "stage": "native-dom-event",
+          "index": 0,
+          "type": "pointerdown",
+          "phase": "capture",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": 196.3636474609375,
+          "y": 425.4545593261719,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 11429.100000000559,
+          "revision": 0,
+          "m00": 0.9848743081092834,
+          "m02": -0.17284049093723297,
+          "m20": 0.1731233298778534,
+          "m22": 0.9844965934753418
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 1,
+          "type": "pointerdown",
+          "phase": "bubble",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": 196.3636474609375,
+          "y": 425.4545593261719,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 11442.400000000373,
+          "revision": 1,
+          "m00": 0.9848743081092834,
+          "m02": -0.17284049093723297,
+          "m20": 0.1731233298778534,
+          "m22": 0.9844965934753418
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 20,
+          "type": "pointerdown",
+          "phase": "capture",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": 196.3636474609375,
+          "y": 425.4545593261719,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 13446,
+          "revision": 1,
+          "m00": 0.9848743081092834,
+          "m02": -0.17284049093723297,
+          "m20": 0.1731233298778534,
+          "m22": 0.9844965934753418
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 21,
+          "type": "pointerdown",
+          "phase": "bubble",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": 196.3636474609375,
+          "y": 425.4545593261719,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 13470.100000000559,
+          "revision": 2,
+          "m00": 0.9848743081092834,
+          "m02": -0.17284049093723297,
+          "m20": 0.1731233298778534,
+          "m22": 0.9844965934753418
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 34,
+          "type": "pointerdown",
+          "phase": "capture",
+          "pointerId": 5,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": 196.3636474609375,
+          "y": 425.4545593261719,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 14993.200000000186,
+          "revision": 3,
+          "m00": 0.9848743081092834,
+          "m02": -0.17284049093723297,
+          "m20": 0.1731233298778534,
+          "m22": 0.9844965934753418
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 35,
+          "type": "pointerdown",
+          "phase": "bubble",
+          "pointerId": 5,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": 196.3636474609375,
+          "y": 425.4545593261719,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 15013.900000000373,
+          "revision": 4,
+          "m00": 0.9848743081092834,
+          "m02": -0.17284049093723297,
+          "m20": 0.1731233298778534,
+          "m22": 0.9844965934753418
+        }
+      ],
+      "outsideUp": [
+        {
+          "stage": "native-dom-event",
+          "index": 28,
+          "type": "pointerup",
+          "phase": "capture",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": -7.2727274894714355,
+          "y": -7.2727274894714355,
+          "target": "CANVAS",
+          "captured": true,
+          "time": 14240.700000000186,
+          "revision": null,
+          "m00": null,
+          "m02": null,
+          "m20": null,
+          "m22": null
+        },
+        {
+          "stage": "native-dom-event",
+          "index": 29,
+          "type": "pointerup",
+          "phase": "bubble",
+          "pointerId": 2,
+          "pointerType": "touch",
+          "touchCount": null,
+          "changedTouchIds": null,
+          "trusted": true,
+          "x": -7.2727274894714355,
+          "y": -7.2727274894714355,
+          "target": "CANVAS",
+          "captured": false,
+          "time": 14243.100000000559,
+          "revision": null,
+          "m00": null,
+          "m02": null,
+          "m20": null,
+          "m22": null
+        }
+      ]
+    },
+    "atomic": {
+      "preservedRevision": 7,
+      "recoveredRevision": 8,
+      "committedRevision": 9,
+      "rejectedRevisions": [
+        7,
+        9
+      ],
+      "temporaryFiles": 0,
+      "isolatedCacheCleanup": "complete",
+      "log": "atomic-logcat.txt"
+    }
+  },
+  "cleanup": {
+    "at": "2026-10-17T22:35:18.838Z",
+    "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+    "sessionMatchesBefore": true,
+    "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+    "apkMatchesBefore": true,
+    "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "recordAudioPermissionRestoredToOriginal": true
+  },
+  "previousFailures": "../p7-instrumentation-2026-10-17T21-59-49Z/report.json",
+  "limitations": [
+    "API35 emulator with synthetic AudioTrack; no third-party player compatibility claim",
+    "Mic recording configuration/indicator/lifecycle verified; physical microphone amplitude not asserted",
+    "Storage audit covers adapter activity and close; not a network traffic audit",
+    "FT26 injection occurs after force and before replace; not process-kill or power-failure simulation",
+    "Functional checks do not change earlier frame-budget failure"
+  ]
+}

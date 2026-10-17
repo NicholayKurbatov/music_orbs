@@ -1,0 +1,109 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.MainCaptureLifecycleTest:
+INSTRUMENTATION_STATUS: test=explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Explicit microphone indicator missing
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainCaptureLifecycleTest$explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn$1.invokeSuspend(MainCaptureLifecycleTest.kt:48)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainCaptureLifecycleTest.explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn(MainCaptureLifecycleTest.kt:28)
+
+INSTRUMENTATION_STATUS: stream=
+Error in explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn(musicorbs.platform.audio.MainCaptureLifecycleTest):
+java.lang.AssertionError: Explicit microphone indicator missing
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainCaptureLifecycleTest$explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn$1.invokeSuspend(MainCaptureLifecycleTest.kt:48)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainCaptureLifecycleTest.explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn(MainCaptureLifecycleTest.kt:28)
+
+INSTRUMENTATION_STATUS: test=explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=realMainCaptureStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-active","sourceId":"1855ea59-89a4-4d12-ac72-207888e3ee18","timestampSeconds":22.4285903,"mode":"autonomous","energy":0.25954571877967453,"intensity":3.410239257706478E-4,"phase":0.80908889583334,"bpm":null,"slowCycleSeconds":24.0,"confidence":0.0,"recorders":0,"captureService":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-background","previousSourceId":"1855ea59-89a4-4d12-ac72-207888e3ee18","recorders":0,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-returned","previousSourceId":"1855ea59-89a4-4d12-ac72-207888e3ee18","sourceId":"none","mode":"autonomous","observations":20,"observedMs":30790,"recorders":0,"microphoneIndicator":false,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realMainCaptureStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 97.591
+There was 1 failure:
+1) explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn(musicorbs.platform.audio.MainCaptureLifecycleTest)
+java.lang.AssertionError: Explicit microphone indicator missing
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainCaptureLifecycleTest$explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn$1.invokeSuspend(MainCaptureLifecycleTest.kt:48)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainCaptureLifecycleTest.explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn(MainCaptureLifecycleTest.kt:28)
+
+FAILURES!!!
+Tests run: 2,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

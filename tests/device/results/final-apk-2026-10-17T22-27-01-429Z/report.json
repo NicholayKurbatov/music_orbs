@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "builtAt": "2026-10-17T22:27:01.432Z",
+  "buildCommand": "gradlew.bat :app:assembleDebug --console=plain",
+  "result": "build-install-and-targeted-functional-checks-pass-performance-not-accepted",
+  "apkPath": "android/build/outputs/apk/debug/app-debug.apk",
+  "apkBytes": 27420108,
+  "apkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+  "assets": [
+    {
+      "name": "assets/assets/index-BBqcT9Hu.css",
+      "size": 2131,
+      "sha256": "0bb28fabb16342097bd703b798b4008df8c79ad8bb0fbac036a817878ab3027f"
+    },
+    {
+      "name": "assets/assets/index-hWR3IcJ5.js",
+      "size": 558218,
+      "sha256": "2aa73b8c16996599d7c333d5525bbe2ea9c1f4a854e1bffeb90d1b370520fd63"
+    }
+  ],
+  "notices": [
+    "assets/third_party/Commons-Math-LICENSE.txt",
+    "assets/third_party/Commons-Math-NOTICE.txt",
+    "assets/third_party/Coroutines-LICENSE.txt",
+    "assets/third_party/Kotlin-LICENSE.txt",
+    "assets/third_party/Serialization-LICENSE.txt",
+    "assets/third_party/Thinking-Orbs-LICENSE",
+    "assets/third_party/Three-LICENSE",
+    "assets/third_party/runtime.md"
+  ],
+  "previousProfileApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "install": {
+    "at": "2026-10-17T22:29:12.698Z",
+    "result": "pass",
+    "previousApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+    "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+    "sessionBeforeSha256": "f8703c18fd27c4854ce94a9749bf0a9a8ccad0db94239b2d74055547da5e9d66",
+    "sessionAfterSha256": "f8703c18fd27c4854ce94a9749bf0a9a8ccad0db94239b2d74055547da5e9d66",
+    "sessionExactBytesPreserved": true,
+    "recordAudioPermissionBefore": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "recordAudioPermissionAfter": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "permissionPreserved": true
+  },
+  "verification": {
+    "visual": "../visual-acceptance-2026-10-17T22-29-42-555Z/report.json",
+    "android": "../p7-final-2026-10-17T22-33-11Z/report.json",
+    "finalState": "../final-state-2026-10-17T22-38-31-040Z/report.json",
+    "performanceRepeatOnThisApk": false,
+    "previousAcceptedFrameBudgets": "fail"
+  }
+}

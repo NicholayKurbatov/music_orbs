@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T22:12:35.785Z",
+  "serial": "emulator-5554",
+  "result": "fail",
+  "steps": [
+    {
+      "id": "short-touch-sensitivity",
+      "result": "pass",
+      "details": "Trusted WebView tap: magnitudes 0.0125, 0.05, ratio 4. FT-04."
+    },
+    {
+      "id": "drag-sensitivity",
+      "result": "pass",
+      "details": "Identical 3px/-2px WebView drag: magnitude ratio 4. FT-04."
+    },
+    {
+      "id": "webview-second-pointer-cancel-outside",
+      "result": "pass",
+      "details": "Second pointer ignored; cancel and release outside the view allow the next gesture. FT-25; CDP input, not Android MotionEvent."
+    },
+    {
+      "id": "decay-rotation-persistence",
+      "result": "pass",
+      "details": "75s: 3.43 phase cycles; rotation 2.118 rad by 8s; impulse decayed and object-space field unchanged. FT-05/06. Human motion comfort separate."
+    },
+    {
+      "id": "cleanup-baseline",
+      "result": "pass",
+      "details": "Original scene restored and confirmed after restart."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются.",
+    "Жесты CDP проходят через WebView input/PointerController; Android MotionEvent и физическое удобство проверяются отдельно.",
+    "Цвет проверяется по фактическим загрузкам palette texture; GPU/display FPS этим runner не измеряется.",
+    "Required valid v2 store matched the opening scene. Cleanup preserves semantic scene; global save revision may increase."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "hit": {
+    "x": 196.5,
+    "y": 408.47999999999996
+  },
+  "failure": "Expected values to be strictly equal:\n\n1282 !== 0\n",
+  "finishedAt": "2026-10-17T22:14:28.470Z"
+}

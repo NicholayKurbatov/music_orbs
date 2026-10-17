@@ -1,0 +1,84 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.P7AudioPolicyStorageTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.P7AudioPolicyStorageTest:
+INSTRUMENTATION_STATUS: test=forbiddenTrackIsSilentBetweenTwoAllowedControlsAndCaptureCreatesNoFiles
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"profile-installer-before-audit","waitMs":3664,"markerBytes":24}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"capture-policy-allowed-first","sourceId":"b93d3b9a-a932-4a45-a448-68e6508f7e7b","peak":0.36621094}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"capture-allowed-active","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"capture-policy-forbidden","sourceId":"b93d3b9a-a932-4a45-a448-68e6508f7e7b","allowedFirstPeak":0.36621094,"deniedPeak":0.0,"samples":98304,"headBefore":65280,"headAfter":164288,"playState":3,"capturePolicy":3}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"capture-forbidden-active","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"capture-policy-allowed-second","sourceId":"b93d3b9a-a932-4a45-a448-68e6508f7e7b","peak":0.36621094,"allowedFirstPeak":0.36621094,"deniedPeak":0.0,"deniedSamples":98304}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"capture-after-close","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.P7AudioPolicyStorageTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=forbiddenTrackIsSilentBetweenTwoAllowedControlsAndCaptureCreatesNoFiles
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.P7AudioPolicyStorageTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=localDecodeAndPlaybackCreateNoFilesBesidesPreexistingSyntheticInput
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"local-active","filesBefore":53,"filesNow":53,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"local-after-close","filesBefore":53,"filesNow":53,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.P7AudioPolicyStorageTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=localDecodeAndPlaybackCreateNoFilesBesidesPreexistingSyntheticInput
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.P7AudioPolicyStorageTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=explicitMicrophoneCreatesNoFilesDuringReadOrClose
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"microphone-active","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"microphone-after-close","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.P7AudioPolicyStorageTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=explicitMicrophoneCreatesNoFilesDuringReadOrClose
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.8
+
+OK (3 tests)
+
+
+INSTRUMENTATION_CODE: -1

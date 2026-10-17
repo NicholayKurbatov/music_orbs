@@ -1,0 +1,17 @@
+{
+  "startedAt": "2026-10-17T22:20:55.905Z",
+  "command": [
+    "adb",
+    "-s",
+    "emulator-5554",
+    "shell",
+    "am",
+    "instrument",
+    "-w",
+    "-r",
+    "-e",
+    "class",
+    "musicorbs.platform.audio.MainNativeGestureInputTest",
+    "musicorbs.app.test/androidx.test.runner.AndroidJUnitRunner"
+  ]
+}

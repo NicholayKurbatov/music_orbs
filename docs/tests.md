@@ -310,3 +310,69 @@ WebGL surface/composition в выбранном AVD, но не устанавл�
 Снижение числа частиц и отказ от повторных palette uploads её не подтвердили.
 Методы GL, clear color, RAF, settings и поля восстановлены; production renderer
 ради этой диагностики не менялся. Короткие сравнения не заменяют длительный отчёт.
+
+## 14. Дополнительная приёмка P7 и исправления
+
+[Native музыкальный прогон](../tests/device/results/motion-transitions-2026-10-17T22-25-48-714Z/README.md)
+прошёл 6/6 шагов на прежнем APK `8cb87a…f61`: синтетический WAV104с через
+настоящий picker/decoder/AudioTrack/PCM/DSP дал 90.023→120.010 BPM,
+периоды21.343→16.010с. Тишина и нерегулярный ритм вернули автономию, EOF
+инвалидировал источник без остановки фазы. В2128 наблюдениях фаза непрерывна,
+max frequency slope0.006865cycles/s²≤0.02. Допуски±2BPM/±0.3с не менялись;
+исходная сцена восстановлена, собственный WAV удалён. Это не прослушивание
+плейлистов человеком и не повтор на следующем APK.
+
+Дополнительные проверки обнаружили два настоящих дефекта. После WebGL restore
+Three.js сохранял dispose listeners прежних GPU-кэшей: следующий geometry.dispose
+вызывал GL1282. Android CANCEL на WebView124 доставлял touchcancel без
+pointercancel, оставляя активный жест. Исправлены освобождение ресурсов в lost
+listener и ограниченный fallback отмены всех touch-касаний. CPU-состояние сцены
+сохраняется, второй pointer/mouse/pen не затрагиваются.
+[Browser после исправлений](../tests/device/results/browser-touchcancel-context-2026-10-17T22-26-23-317Z/README.md):
+79 JS-тестов, typecheck/build и smoke прошли; два реальных context restore
+без GL errors, обращений к ресурсам прежнего поколения или изменения clearColor.
+
+[Новый APK](../tests/device/results/final-apk-2026-10-17T22-27-01-429Z/README.md)
+`9b59177…eae3e`, bundle `index-hWR3IcJ5.js`, собран и установлен с сохранением
+точных байтов session.json и исходного разрешения микрофона.
+[Native context probe](../tests/device/results/context-probe-2026-10-17T22-29-18-301Z/README.md)
+после restore не нашёл GL errors или прежних предупреждений.
+[Полный visual-повтор](../tests/device/results/visual-acceptance-2026-10-17T22-29-42-555Z/README.md)
+прошёл все восемь функциональных шагов и cleanup: sensitivity tap/drag ровно один
+раз, CDP second/cancel/outside, затухание,75с/3.43цикла и поворот2.104рад без
+изменения поля, настоящий context restore, smoothing texture, пять палитр с
+отдельными restart/GPU readback и native Reset→restart.
+Исходная сцена подтверждена после заключительного restart. CDP-жесты не заменяют
+Android MotionEvent, машинные assertions не принимают комфорт движения за человека.
+70-минутный профиль нового APK не выполнялся; кадровое отклонение §13 остаётся.
+
+[Финальный instrumentation](../tests/device/results/p7-final-2026-10-17T22-33-11Z/README.md)
+на новом APK прошёл **8/8 уникальных методов**: policy/storage3, Main capture/mic
+HOME2, native gestures1, atomic store2. Разрешённый синтетический AudioTrack
+дал peak0.36621094, запрещённый —0 на98304 samples с растущим playback head;
+аудит файлов во всех трёх источниках не обнаружил изменений или событий записи.
+Main capture/mic после HOME остановлены; после возврата по20 наблюдений
+без источника, индикатора и скрытого рестарта. Настоящий touchcancel с touches0
+позволил первый следующий DOWN; отпускание за пределами view тоже не оставило
+жест зависшим. Дополнительный pointer не менял поле.
+
+Atomic store проверен на отдельном Android cache path: injected IOException
+после `force()` до atomic replace сохранил подтверждённую revision7 и убрал temp;
+следующая save8 прошла. После save9 устаревшая7 и равная9 отклонены без изменения
+файла. Это детерминированное IO-прерывание, не process kill/отключение питания.
+После каждого класса совпали точные байты исходной сессии и hash target APK;
+RECORD_AUDIO восстановлено в исходное false с прежними flags. Предыдущие FAIL
+сохранены отдельными отчётами; повторения не складываются как уникальные тесты.
+
+Все FT-01–29/CT-01–08 имеют фактическую запись в
+[матрице](../tests/functional/results.md), включая частичные результаты и границы.
+Выполнение пунктов плана не означает прохождения каждого требования: кадровые
+бюджеты выбранного AVD **FAIL**, app PSS **PASS**. Общая приёмка MVP не закрыта;
+динамический комфорт требует человека, физические источники/выходы, API29,
+нагрев и батарея этой эмуляторной проверкой не подтверждены. Remote CI не запускался.
+
+Для отдельного просмотра подготовлено [немое видео четырёх форм](../tests/device/results/motion-preview-2026-10-17T22-36-01-416Z/README.md).
+Оно не измеряет FPS и не принимает движение за человека. После видео
+[заключительная read-only сверка](../tests/device/results/final-state-2026-10-17T22-38-31-040Z/README.md)
+подтвердила исходные live/native settings и все shapes, source none/autonomous,
+GL0, hash финального APK и исходный отказ микрофона.

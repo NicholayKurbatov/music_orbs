@@ -1,0 +1,70 @@
+{
+  "browser": "155.0.8059.82",
+  "viewport": "720x1000; portrait 393x851",
+  "renderer": "SwiftShader (headless)",
+  "checks": [
+    "four shapes",
+    "GLSL compilation",
+    "pointer drag",
+    "quality/FPS field invariant",
+    "browser persistence/reload",
+    "two context loss/recovery cycles, GPU generations/GL errors/clear color/quality switch/dispose",
+    "idempotent dispose",
+    "native handshake/snapshot",
+    "stale source rejection",
+    "delayed motion/source phase continuity",
+    "native sync-off smoothed-period integration",
+    "zero-dvh canvas CSS viewport regression",
+    "profiling opt-in/actual submissions/CPU/context loss/pause"
+  ],
+  "errors": [],
+  "contextRecovery": [
+    {
+      "cycle": 1,
+      "firstPostRestoreError": 0,
+      "clearColor": [
+        0.019607843831181526,
+        0.019607843831181526,
+        0.04314098507165909,
+        1
+      ],
+      "lifecycle": {
+        "created": {
+          "Texture": 10,
+          "Framebuffer": 6,
+          "Buffer": 4,
+          "Program": 2,
+          "Shader": 4,
+          "VertexArray": 2
+        },
+        "violations": [],
+        "losses": 1,
+        "restores": 1
+      }
+    },
+    {
+      "cycle": 2,
+      "firstPostRestoreError": 0,
+      "clearColor": [
+        0.019607843831181526,
+        0.019607843831181526,
+        0.04314098507165909,
+        1
+      ],
+      "lifecycle": {
+        "created": {
+          "Texture": 15,
+          "Framebuffer": 9,
+          "Buffer": 8,
+          "Program": 3,
+          "Shader": 6,
+          "VertexArray": 4
+        },
+        "violations": [],
+        "losses": 2,
+        "restores": 2
+      }
+    }
+  ],
+  "glValidationWarnings": []
+}

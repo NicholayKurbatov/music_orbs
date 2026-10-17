@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-17T22:01:41.528Z",
+  "sessionSha256": "70aeb26471c7efeb4e5b46518fc07b86efbf4ff3fd1c3fe75cec84566623f37a",
+  "sessionMatchesBefore": true,
+  "installedApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "profileInstalled": {
+    "bytes": 24,
+    "hex": "0000000100050000000001a14b9263860000000000002382",
+    "sha256": "5c157e90749797232216f8765e43a4a96a4a21b69f048edd0a8fb0570e3eb83b"
+  }
+}

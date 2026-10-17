@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "scope": "old-APK native PCM motion checkpoint, not new context/touchcancel APK acceptance",
+  "recordedAt": "2026-10-17T22:28:34.578Z",
+  "serial": "emulator-5554",
+  "installedPackage": "musicorbs.app",
+  "installedApkPath": "/data/app/~~wAnJ1dI-dKBhNswwh62Nvw==/musicorbs.app-S_JU_id9b879tkH2yx-zbg==/base.apk",
+  "installedApkSha256Before": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "installedApkSha256After": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "apkUnchanged": true,
+  "beforeObservation": "Actual pm path + sha256sum verified immediately before runner launch",
+  "webviewInitialObservation": "Read during runner startup before first stage checkpoint; not before process launch",
+  "webview": {
+    "package": "com.android.webview",
+    "version": "124.0.6367.219"
+  },
+  "assetsForIdenticalApkSha256": {
+    "javascript": "index-D4yFGS0Q.js",
+    "css": "index-BBqcT9Hu.css",
+    "source": "../profile-2026-10-17T20-45-59-606Z/report.json"
+  },
+  "runtimeOrTargetReinstallDuringTest": false
+}

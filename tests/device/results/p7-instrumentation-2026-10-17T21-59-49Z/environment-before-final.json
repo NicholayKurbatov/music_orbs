@@ -1,0 +1,12 @@
+{
+  "at": "2026-10-17T22:17:38.909Z",
+  "installedApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "sessionSha256": "969907c216cd3d8bd7771309f50f80cc4ab573b4af23d2f0bcdad63f2675d397",
+  "sessionBytes": 1114,
+  "settingsMatchInitial": true,
+  "shapesMatchInitial": true,
+  "initialRevision": 68,
+  "currentRevision": 78,
+  "testApkSha256": "6b4fdbe65789e3dfc155bdce2a358a169cf4ebd24a2307955b9f494094b0b877",
+  "mode": "Direct instrumentation, existing test APK only; target APK untouched"
+}

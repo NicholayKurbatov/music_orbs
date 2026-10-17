@@ -1,0 +1,5 @@
+--------- beginning of main
+10-17 22:35:07.420  7379  7393 I MusicOrbsFT26: interruption=after-force-before-replace preservedRevision=7 recoveredRevision=8 temporaryFiles=0
+10-17 22:35:07.423  7379  7393 I MusicOrbsFT26: isolatedCacheCleanup=complete
+10-17 22:35:07.479  7379  7393 I MusicOrbsFT26: committedRevision=9 rejectedRevisions=7,9 temporaryFiles=0
+10-17 22:35:07.479  7379  7393 I MusicOrbsFT26: isolatedCacheCleanup=complete

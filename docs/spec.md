@@ -89,6 +89,22 @@ renderer владеет только GPU и временным движение�
 адаптер object-space picking, не расширение RendererPort. Функция deformationAt
 вычисляет ограниченное локальное поле независимо от particle count.
 
+При `webglcontextlost` адаптер прекращает GPU submissions, сохраняет CPU arrays,
+settings, seed и поле. Geometry/material/texture освобождаются в обработчике
+потери, пока GL context уже lost: удаления старых handles безопасно игнорируются
+GL, а dispose listeners прежнего поколения снимаются до восстановления.
+После `webglcontextrestored` GPU-ресурсы создаются и загружаются заново;
+старые buffers/VAO/texture handles не удаляются через новый context.
+Это не сбрасывает форму, источник аудио или визуальную фазу. Окончательный
+`dispose()` по-прежнему идемпотентен и снимает listeners адаптера.
+
+Pointer adapter принимает один pointer. `pointercancel` и потеря capture
+завершают активный жест без отката уже принятых смещений. Для WebView, который
+при Android CANCEL доставляет только `touchcancel`, отмена всех касаний
+(`touches.length === 0`) также завершает активный touch pointer. Отмена второго
+касания при оставшемся первом не завершает первый жест. Повторные события
+отмены не повторяют завершение или сохранение; следующее касание начинает новый жест.
+
 ## 5. AudioSession и источники
 
 Файлы: android/audio/domain, application, application/ports.

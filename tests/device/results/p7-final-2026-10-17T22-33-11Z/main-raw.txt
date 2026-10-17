@@ -1,0 +1,157 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.MainCaptureLifecycleTest:
+INSTRUMENTATION_STATUS: test=explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"26dfa117-0b10-4eac-8036-f09d7a69a26c"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"26dfa117-0b10-4eac-8036-f09d7a69a26c","elapsedMs":121,"jsElapsedMs":0.6000000005587935,"responseId":"26dfa117-0b10-4eac-8036-f09d7a69a26c","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"microphone-baseline","probeId":"dd7c3065-68ce-4c14-8043-fe01684eae94"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"microphone-baseline","probeId":"dd7c3065-68ce-4c14-8043-fe01684eae94","elapsedMs":177,"jsElapsedMs":0.09999999962747097,"responseId":"dd7c3065-68ce-4c14-8043-fe01684eae94","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Выбрать микрофон","left":361,"top":2082,"width":358,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-microphone-active","sourceId":"bd856f54-6913-4faf-831e-ace6ad6c4e1e","motionTimestampSeconds":11.8320736,"recorders":1,"recordingSource":1,"recordingSessionId":353,"indicator":true,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"microphone-active-invariants","probeId":"6d92ce7f-2cab-4235-a25d-dfcd36494c08"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"microphone-active-invariants","probeId":"6d92ce7f-2cab-4235-a25d-dfcd36494c08","elapsedMs":123,"jsElapsedMs":0.10000000055879354,"responseId":"6d92ce7f-2cab-4235-a25d-dfcd36494c08","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-microphone-home-injected","homeAccepted":true,"scenarioState":"STARTED","topPackage":"com.android.launcher3","recorders":0}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-microphone-home-observed","elapsedMs":1049,"scenarioState":"CREATED","topPackage":"com.android.launcher3","recorders":0,"recordingSources":"","recordingSessions":"","captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-microphone-background","previousSourceId":"bd856f54-6913-4faf-831e-ace6ad6c4e1e","recorders":0,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"f9053ab9-1772-4507-8bdf-dd0e284b5b55"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"f9053ab9-1772-4507-8bdf-dd0e284b5b55","elapsedMs":265,"jsElapsedMs":0.40000000037252903,"responseId":"f9053ab9-1772-4507-8bdf-dd0e284b5b55","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-microphone-returned","previousSourceId":"bd856f54-6913-4faf-831e-ace6ad6c4e1e","sourceId":"none","mode":"autonomous","observations":20,"observedMs":6011,"recorders":0,"indicator":false,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"microphone-returned-invariants","probeId":"ac5939c4-8811-4323-a26d-d845ae80006f"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"microphone-returned-invariants","probeId":"ac5939c4-8811-4323-a26d-d845ae80006f","elapsedMs":196,"jsElapsedMs":0.5,"responseId":"ac5939c4-8811-4323-a26d-d845ae80006f","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"812a2a0d-3709-4da4-801f-a55b20993121"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"812a2a0d-3709-4da4-801f-a55b20993121","elapsedMs":30,"jsElapsedMs":0.10000000055879354,"responseId":"812a2a0d-3709-4da4-801f-a55b20993121","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=explicitMainMicrophoneStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=realMainCaptureStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"9578690f-b0b1-460b-9ae2-91d639831d18"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"9578690f-b0b1-460b-9ae2-91d639831d18","elapsedMs":48,"jsElapsedMs":1.5,"responseId":"9578690f-b0b1-460b-9ae2-91d639831d18","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"capture-baseline","probeId":"9f10e34c-e705-448b-9e53-2a59cc3c7781"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"capture-baseline","probeId":"9f10e34c-e705-448b-9e53-2a59cc3c7781","elapsedMs":201,"jsElapsedMs":0.20000000018626451,"responseId":"9f10e34c-e705-448b-9e53-2a59cc3c7781","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Захват внешнего воспроизведения","left":218,"top":1774,"width":645,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-active","sourceId":"a5af263e-15e0-4738-b0b7-5bdc133b9d7c","timestampSeconds":12.1304824,"mode":"autonomous","energy":0.2513866323086084,"intensity":2.616836608058895E-4,"phase":0.3854248666666584,"bpm":null,"slowCycleSeconds":24.0,"confidence":0.0,"recorders":0,"captureService":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"capture-active-invariants","probeId":"951f5098-439f-48a3-8c9e-0283eec9bb18"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"capture-active-invariants","probeId":"951f5098-439f-48a3-8c9e-0283eec9bb18","elapsedMs":190,"jsElapsedMs":0.20000000018626451,"responseId":"951f5098-439f-48a3-8c9e-0283eec9bb18","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-background","previousSourceId":"a5af263e-15e0-4738-b0b7-5bdc133b9d7c","recorders":0,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"0979f58e-50ab-4533-8f2f-5464ffe0a281"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"0979f58e-50ab-4533-8f2f-5464ffe0a281","elapsedMs":245,"jsElapsedMs":0.30000000074505806,"responseId":"0979f58e-50ab-4533-8f2f-5464ffe0a281","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-returned","previousSourceId":"a5af263e-15e0-4738-b0b7-5bdc133b9d7c","sourceId":"none","mode":"autonomous","observations":20,"observedMs":4878,"recorders":0,"microphoneIndicator":false,"captureService":false}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"capture-returned-invariants","probeId":"5c183377-e33f-4ba6-b60b-8f0966e305b8"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"capture-returned-invariants","probeId":"5c183377-e33f-4ba6-b60b-8f0966e305b8","elapsedMs":150,"jsElapsedMs":0.10000000055879354,"responseId":"5c183377-e33f-4ba6-b60b-8f0966e305b8","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"8264e212-534f-424c-ae38-e13ca0bf1ad6"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"8264e212-534f-424c-ae38-e13ca0bf1ad6","elapsedMs":147,"jsElapsedMs":0.20000000018626451,"responseId":"8264e212-534f-424c-ae38-e13ca0bf1ad6","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureLifecycleTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=2
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realMainCaptureStopsOnHomeAndDoesNotRestartOnReturn
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 54.114
+
+OK (2 tests)
+
+
+INSTRUMENTATION_CODE: -1

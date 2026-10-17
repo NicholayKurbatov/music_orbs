@@ -48,8 +48,17 @@ export class ThreeRenderer implements RendererPort {
   private disposed = false;
   private contextLost = false;
   private firstPalette = true;
-  private readonly lost = (event: Event) => { event.preventDefault(); this.contextLost = true; };
-  private readonly restored = () => { this.contextLost = false; this.key = ''; this.texture.needsUpdate = true; this.material.needsUpdate = true; };
+  private readonly lost = (event: Event) => {
+    event.preventDefault(); this.contextLost = true;
+    // Three заменяет GL caches при restore. Удаляем их dispose listeners сейчас:
+    // GL deletions в потерянном контексте — no-op; CPU arrays/uniforms остаются.
+    this.points.geometry.dispose(); this.material.dispose(); this.texture.dispose();
+  };
+  private readonly restored = () => {
+    this.contextLost = false; this.key = '';
+    this.texture.needsUpdate = true; this.material.needsUpdate = true;
+    this.renderer.setClearColor(0x05050b);
+  };
   constructor(private readonly canvas: HTMLCanvasElement) {
     try { this.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, alpha: false, powerPreference: 'high-performance' }); }
     catch { throw new Error('RENDERER_UNAVAILABLE: WebGL2'); }

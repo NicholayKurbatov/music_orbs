@@ -1,0 +1,152 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainNativeGestureInputTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.MainNativeGestureInputTest:
+INSTRUMENTATION_STATUS: test=secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"95b7da89-b02a-461b-a22d-ed7dca218749"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"95b7da89-b02a-461b-a22d-ed7dca218749","elapsedMs":287,"jsElapsedMs":0.5,"responseId":"95b7da89-b02a-461b-a22d-ed7dca218749","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"8cd60f5e-392e-4e5f-9f0f-322844e0e135"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"8cd60f5e-392e-4e5f-9f0f-322844e0e135","elapsedMs":247,"jsElapsedMs":0.19999999925494194,"responseId":"8cd60f5e-392e-4e5f-9f0f-322844e0e135","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"462625e7-3122-46d2-a2ed-51fca0753782"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"462625e7-3122-46d2-a2ed-51fca0753782","elapsedMs":265,"jsElapsedMs":0.19999999925494194,"responseId":"462625e7-3122-46d2-a2ed-51fca0753782","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"40e95632-ba04-4937-a99d-a08d22529c57"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"40e95632-ba04-4937-a99d-a08d22529c57","elapsedMs":233,"jsElapsedMs":0.20000000018626451,"responseId":"40e95632-ba04-4937-a99d-a08d22529c57","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"752452f5-65ef-4a70-87be-af596dedc4f8"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"752452f5-65ef-4a70-87be-af596dedc4f8","elapsedMs":336,"jsElapsedMs":0.6999999992549419,"responseId":"752452f5-65ef-4a70-87be-af596dedc4f8","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"81d232b4-cd8e-4f10-908d-99c9dce651ae"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"81d232b4-cd8e-4f10-908d-99c9dce651ae","elapsedMs":137,"jsElapsedMs":0.09999999962747097,"responseId":"81d232b4-cd8e-4f10-908d-99c9dce651ae","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"f98a92a4-5254-400a-b360-346b41f2fcef"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"f98a92a4-5254-400a-b360-346b41f2fcef","elapsedMs":272,"jsElapsedMs":0.20000000018626451,"responseId":"f98a92a4-5254-400a-b360-346b41f2fcef","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"f34085ce-fab4-4e45-bcfb-210efa6592de"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"f34085ce-fab4-4e45-bcfb-210efa6592de","elapsedMs":283,"jsElapsedMs":0.19999999925494194,"responseId":"f34085ce-fab4-4e45-bcfb-210efa6592de","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"17c377d1-a5c6-4523-b318-db48f2a6e6cd"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"17c377d1-a5c6-4523-b318-db48f2a6e6cd","elapsedMs":257,"jsElapsedMs":0.40000000037252903,"responseId":"17c377d1-a5c6-4523-b318-db48f2a6e6cd","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"b9becef7-d134-4d35-ad3f-13dd332f6e96"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"b9becef7-d134-4d35-ad3f-13dd332f6e96","elapsedMs":277,"jsElapsedMs":0.09999999962747097,"responseId":"b9becef7-d134-4d35-ad3f-13dd332f6e96","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"722732d5-2f92-4e53-bcf6-50eb4596baca"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"722732d5-2f92-4e53-bcf6-50eb4596baca","elapsedMs":200,"jsElapsedMs":0.20000000018626451,"responseId":"722732d5-2f92-4e53-bcf6-50eb4596baca","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainNativeGestureInputTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: First DOWN after ACTION_CANCEL must start a gesture
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.invokeSuspend$firstDownAfterFinish(MainNativeGestureInputTest.kt:92)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.access$invokeSuspend$firstDownAfterFinish(Unknown Source:0)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1$firstDownAfterFinish$1.invokeSuspend(Unknown Source:18)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainNativeGestureInputTest.secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(MainNativeGestureInputTest.kt:38)
+
+INSTRUMENTATION_STATUS: stream=
+Error in secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(musicorbs.platform.audio.MainNativeGestureInputTest):
+java.lang.AssertionError: First DOWN after ACTION_CANCEL must start a gesture
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.invokeSuspend$firstDownAfterFinish(MainNativeGestureInputTest.kt:92)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.access$invokeSuspend$firstDownAfterFinish(Unknown Source:0)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1$firstDownAfterFinish$1.invokeSuspend(Unknown Source:18)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainNativeGestureInputTest.secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(MainNativeGestureInputTest.kt:38)
+
+INSTRUMENTATION_STATUS: test=secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 17.769
+There was 1 failure:
+1) secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(musicorbs.platform.audio.MainNativeGestureInputTest)
+java.lang.AssertionError: First DOWN after ACTION_CANCEL must start a gesture
+	at org.junit.Assert.fail(Assert.java:89)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.invokeSuspend$firstDownAfterFinish(MainNativeGestureInputTest.kt:92)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1.access$invokeSuspend$firstDownAfterFinish(Unknown Source:0)
+	at musicorbs.platform.audio.MainNativeGestureInputTest$secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture$1$firstDownAfterFinish$1.invokeSuspend(Unknown Source:18)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.MainNativeGestureInputTest.secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture(MainNativeGestureInputTest.kt:38)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

@@ -1,0 +1,221 @@
+{
+  "events": [
+    {
+      "type": "webglcontextlost",
+      "now": 11690.700000000186,
+      "prevented": true
+    },
+    {
+      "type": "webglcontextrestored",
+      "now": 12435.700000000186
+    }
+  ],
+  "stages": [
+    {
+      "stage": "before",
+      "now": 11622.599999999627,
+      "lost": false,
+      "errors": []
+    },
+    {
+      "stage": "lost-event",
+      "now": 11690.799999999814,
+      "lost": true,
+      "errors": [
+        37442
+      ]
+    },
+    {
+      "stage": "before-restore-call",
+      "now": 12394.799999999814,
+      "lost": true,
+      "errors": []
+    },
+    {
+      "stage": "after-restore-call",
+      "now": 12394.899999999441,
+      "lost": true,
+      "errors": []
+    },
+    {
+      "stage": "restored-event",
+      "now": 12435.700000000186,
+      "lost": false,
+      "errors": []
+    },
+    {
+      "stage": "after-700ms",
+      "now": 13121.299999999814,
+      "lost": false,
+      "errors": []
+    },
+    {
+      "stage": "after-2200ms",
+      "now": 14692.5,
+      "lost": false,
+      "errors": []
+    }
+  ],
+  "notice": "Коснитесь и потяните форму",
+  "noticeError": null,
+  "messages": [
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.WebGLRenderer: Context Lost."
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1792276164401.108,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "lt",
+              "scriptId": "3",
+              "url": "https://appassets.androidplatform.net/assets/index-hWR3IcJ5.js",
+              "lineNumber": 0,
+              "columnNumber": 9698
+            },
+            {
+              "functionName": "et",
+              "scriptId": "3",
+              "url": "https://appassets.androidplatform.net/assets/index-hWR3IcJ5.js",
+              "lineNumber": 4219,
+              "columnNumber": 28724
+            }
+          ]
+        }
+      }
+    },
+    {
+      "method": "Runtime.consoleAPICalled",
+      "params": {
+        "type": "log",
+        "args": [
+          {
+            "type": "string",
+            "value": "THREE.WebGLRenderer: Context Restored."
+          }
+        ],
+        "executionContextId": 1,
+        "timestamp": 1792276165126.614,
+        "stackTrace": {
+          "callFrames": [
+            {
+              "functionName": "lt",
+              "scriptId": "3",
+              "url": "https://appassets.androidplatform.net/assets/index-hWR3IcJ5.js",
+              "lineNumber": 0,
+              "columnNumber": 9698
+            },
+            {
+              "functionName": "tt",
+              "scriptId": "3",
+              "url": "https://appassets.androidplatform.net/assets/index-hWR3IcJ5.js",
+              "lineNumber": 4219,
+              "columnNumber": 28778
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "snapshot": {
+    "settings": {
+      "shapeId": "orb",
+      "materialId": "dots",
+      "colorHex": "#FFFFFF",
+      "speed": 0.5,
+      "amplitude": 0.3,
+      "touchSensitivity": 1,
+      "musicSync": true,
+      "quality": "medium",
+      "targetFps": 60,
+      "paletteId": "white",
+      "paletteStops": [
+        {
+          "offset": 0,
+          "colorHex": "#FFFFFF"
+        },
+        {
+          "offset": 1,
+          "colorHex": "#FFFFFF"
+        }
+      ]
+    },
+    "shapes": [
+      {
+        "shapeId": "orb",
+        "seed": 157,
+        "generatorVersion": 1,
+        "revision": 49,
+        "controls": [
+          {
+            "center": [
+              0.27969675157544094,
+              0.2148671133710054,
+              -0.8979217951334634
+            ],
+            "delta": [
+              -0.16877146310582863,
+              0.19514325346922134,
+              -0.014666335705620835
+            ],
+            "radius": 0.5
+          },
+          {
+            "center": [
+              -0.8381225285874779,
+              0.36756559219422463,
+              -0.07269965855335579
+            ],
+            "delta": [
+              0.027125878508172607,
+              0.1820692693307941,
+              0.22161511528106742
+            ],
+            "radius": 0.5
+          },
+          {
+            "center": [
+              -0.7326150284646502,
+              0.285401316520403,
+              0.6170053895275851
+            ],
+            "delta": [
+              0.14950013559478859,
+              0.18924187058389397,
+              0.16503794585187756
+            ],
+            "radius": 0.5
+          }
+        ]
+      },
+      {
+        "shapeId": "ribbon",
+        "seed": 254,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "cloud",
+        "seed": 351,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "pixel-cloud",
+        "seed": 448,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      }
+    ]
+  }
+}

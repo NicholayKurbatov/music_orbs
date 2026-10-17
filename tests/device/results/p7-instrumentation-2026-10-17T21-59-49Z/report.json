@@ -1,0 +1,132 @@
+{
+  "status": "5/6 PASS; native ACTION_CANCEL blocks next gesture on tested APK",
+  "installedApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+  "baseline": {
+    "at": "2026-10-17T22:17:38.909Z",
+    "installedApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+    "sessionSha256": "969907c216cd3d8bd7771309f50f80cc4ab573b4af23d2f0bcdad63f2675d397",
+    "sessionBytes": 1114,
+    "settingsMatchInitial": true,
+    "shapesMatchInitial": true,
+    "initialRevision": 68,
+    "currentRevision": 78,
+    "testApkSha256": "6b4fdbe65789e3dfc155bdce2a358a169cf4ebd24a2307955b9f494094b0b877",
+    "mode": "Direct instrumentation, existing test APK only; target APK untouched"
+  },
+  "finalRuns": [
+    {
+      "class": "P7AudioPolicyStorageTest",
+      "raw": "final-policy-raw.txt",
+      "tests": 3,
+      "passed": 3,
+      "failed": 0,
+      "seconds": 14.441
+    },
+    {
+      "class": "MainCaptureLifecycleTest",
+      "raw": "final-main-raw.txt",
+      "tests": 2,
+      "passed": 2,
+      "failed": 0,
+      "seconds": 55.569
+    },
+    {
+      "class": "MainNativeGestureInputTest",
+      "raw": "final-gesture-raw.txt",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "seconds": 17.769,
+      "failure": "First DOWN after ACTION_CANCEL must start a gesture"
+    }
+  ],
+  "allFinalReadbacksMatch": true,
+  "permissionRestorePending": false,
+  "finishedAt": "2026-10-17T22:21:36.863Z",
+  "cleanup": {
+    "at": "2026-10-17T22:21:36.863Z",
+    "sessionSha256": "969907c216cd3d8bd7771309f50f80cc4ab573b4af23d2f0bcdad63f2675d397",
+    "sessionMatchesBeforeFinal": true,
+    "installedApkSha256": "8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61",
+    "apkMatchesBefore": true,
+    "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "recordAudioPermissionRestoredToOriginal": true
+  },
+  "diagnosticRuns": [
+    {
+      "class": "MainNativeGestureInputTest",
+      "raw": "gesture-trace-raw.txt",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "seconds": 18.032,
+      "failure": "First DOWN after ACTION_CANCEL must start a gesture",
+      "observation": "Trusted touchcancel reached canvas; no primary pointercancel/lostpointercapture. Next trusted pointerdown reached canvas without shape revision change. Outside-UP assertions not reached."
+    }
+  ],
+  "previousAttempts": [
+    {
+      "raw": "policy-raw.txt",
+      "tests": 3,
+      "passed": 2,
+      "failed": 1,
+      "reason": "Audit detected AndroidX files/profileInstalled creation before warmup fix"
+    },
+    {
+      "raw": "policy-retry-raw.txt",
+      "tests": 3,
+      "passed": 3,
+      "failed": 0
+    },
+    {
+      "raw": "main-raw.txt",
+      "tests": 2,
+      "passed": 1,
+      "failed": 1,
+      "reason": "Mic indicator absent due scrolled panel detection fixture"
+    },
+    {
+      "raw": "main-retry-raw.txt",
+      "tests": 2,
+      "passed": 0,
+      "failed": 2,
+      "reason": "Mic generic snapshot timeout; capture consent button missing"
+    },
+    {
+      "raw": "main-mic-diagnostic-raw.txt",
+      "tests": 1,
+      "passed": 0,
+      "failed": 1,
+      "reason": "Mic HOME stopped recording; subsequent snapshot timeout before fixture Main dispatcher fix"
+    }
+  ],
+  "measured": {
+    "allowedFirstPeak": 0.36621094,
+    "deniedPeak": 0,
+    "deniedSamples": 98304,
+    "deniedHeadBefore": 65280,
+    "deniedHeadAfter": 164288,
+    "allowedSecondPeak": 0.36621094,
+    "filesCaptureMicBeforeAfter": [
+      47,
+      47
+    ],
+    "filesLocalBeforeAfter": [
+      48,
+      48
+    ],
+    "fileChanges": 0,
+    "fileWriteEvents": 0,
+    "micSource": 1,
+    "micRecordingSessionId": 273,
+    "micReturnObservationMs": 6270,
+    "captureEnergy": 0.2581007438895314,
+    "captureReturnObservationMs": 5011
+  },
+  "limits": [
+    "Synthetic emulator AudioTrack only; no player compatibility claim",
+    "No physical microphone amplitude or actual output audibility assertion",
+    "Storage audit spans adapter read/close and all files under app data/external files/cache; not a network traffic audit",
+    "Outside-UP not reached because preceding CANCEL case failed"
+  ]
+}

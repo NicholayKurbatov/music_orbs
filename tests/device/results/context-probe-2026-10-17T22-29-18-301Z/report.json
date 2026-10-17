@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T22:29:18.378Z",
+  "serial": "emulator-5554",
+  "result": "diagnostic-complete",
+  "steps": [
+    {
+      "id": "context-diagnostic",
+      "result": "pass",
+      "details": "[{\"stage\":\"before\",\"now\":11622.599999999627,\"lost\":false,\"errors\":[]},{\"stage\":\"lost-event\",\"now\":11690.799999999814,\"lost\":true,\"errors\":[37442]},{\"stage\":\"before-restore-call\",\"now\":12394.799999999814,\"lost\":true,\"errors\":[]},{\"stage\":\"after-restore-call\",\"now\":12394.899999999441,\"lost\":true,\"errors\":[]},{\"stage\":\"restored-event\",\"now\":12435.700000000186,\"lost\":false,\"errors\":[]},{\"stage\":\"after-700ms\",\"now\":13121.299999999814,\"lost\":false,\"errors\":[]},{\"stage\":\"after-2200ms\",\"now\":14692.5,\"lost\":false,\"errors\":[]}]"
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "scope": "context-error-diagnostic-not-recovery-acceptance",
+  "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+  "webView": "Current WebView package (name, version): (com.android.webview, 124.0.6367.219)",
+  "contextRecovery": "no-errors-observed",
+  "finishedAt": "2026-10-17T22:29:39.281Z"
+}

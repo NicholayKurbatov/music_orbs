@@ -1,0 +1,9 @@
+{
+  "scope": "browser-before-context-fix",
+  "result": "failed-as-expected",
+  "firstPostRestoreError": 1282,
+  "expectedError": 0,
+  "command": "npm --prefix graphics run test:browser",
+  "errorReadsDuringLoss": 0,
+  "resourceDeleteCallsSuppressed": 0
+}

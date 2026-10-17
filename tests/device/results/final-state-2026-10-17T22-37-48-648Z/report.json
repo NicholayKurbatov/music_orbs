@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T22:37:48.735Z",
+  "serial": "emulator-5554",
+  "result": "fail",
+  "steps": [],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "failure": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n+ undefined\n- {\n-   amplitude: 0.3,\n-   colorHex: '#FFFFFF',\n-   materialId: 'dots',\n-   musicSync: true,\n-   paletteId: 'white',\n-   paletteStops: [\n-     {\n-       colorHex: '#FFFFFF',\n-       offset: 0\n-     },\n-     {\n-       colorHex: '#FFFFFF',\n-       offset: 1\n-     }\n-   ],\n-   quality: 'medium',\n-   shapeId: 'orb',\n-   speed: 0.5,\n-   targetFps: 60,\n-   touchSensitivity: 1\n- }\n",
+  "finishedAt": "2026-10-17T22:37:59.013Z"
+}

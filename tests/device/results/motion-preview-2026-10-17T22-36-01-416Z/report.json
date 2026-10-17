@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T22:36:01.488Z",
+  "serial": "emulator-5554",
+  "result": "pass",
+  "steps": [
+    {
+      "id": "silent-four-presets",
+      "result": "pass",
+      "details": "Four preset motion preview recorded, no audio track requested; screenrecord is not a frame-time measurement."
+    },
+    {
+      "id": "cleanup-baseline",
+      "result": "pass",
+      "details": "Original scene restored and confirmed after Main restart; save revision may increase."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "scope": "silent-human-review-preview-not-performance-acceptance",
+  "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+  "preview": {
+    "audio": false,
+    "encodedSize": "540x1170",
+    "bitrate": 1500000,
+    "timeLimitSeconds": 35,
+    "segments": [
+      {
+        "nominalStartSeconds": 1,
+        "durationSeconds": 8,
+        "settings": {
+          "shapeId": "orb",
+          "materialId": "dots",
+          "colorHex": "#FFFFFF",
+          "speed": 1,
+          "amplitude": 0.3,
+          "touchSensitivity": 1,
+          "musicSync": false,
+          "quality": "medium",
+          "targetFps": 60,
+          "paletteId": "white",
+          "paletteStops": [
+            {
+              "offset": 0,
+              "colorHex": "#FFFFFF"
+            },
+            {
+              "offset": 1,
+              "colorHex": "#FFFFFF"
+            }
+          ]
+        }
+      },
+      {
+        "nominalStartSeconds": 9,
+        "durationSeconds": 8,
+        "settings": {
+          "shapeId": "ribbon",
+          "materialId": "dots",
+          "colorHex": "#FFFFFF",
+          "speed": 1,
+          "amplitude": 0.3,
+          "touchSensitivity": 1,
+          "musicSync": false,
+          "quality": "medium",
+          "targetFps": 60,
+          "paletteId": "pink",
+          "paletteStops": [
+            {
+              "offset": 0,
+              "colorHex": "#FF7BBF"
+            },
+            {
+              "offset": 1,
+              "colorHex": "#FFD6EC"
+            }
+          ]
+        }
+      },
+      {
+        "nominalStartSeconds": 17,
+        "durationSeconds": 8,
+        "settings": {
+          "shapeId": "cloud",
+          "materialId": "soft",
+          "colorHex": "#FFFFFF",
+          "speed": 1,
+          "amplitude": 0.3,
+          "touchSensitivity": 1,
+          "musicSync": false,
+          "quality": "medium",
+          "targetFps": 60,
+          "paletteId": "lilac",
+          "paletteStops": [
+            {
+              "offset": 0,
+              "colorHex": "#9875FF"
+            },
+            {
+              "offset": 1,
+              "colorHex": "#E1C7FF"
+            }
+          ]
+        }
+      },
+      {
+        "nominalStartSeconds": 25,
+        "durationSeconds": 8,
+        "settings": {
+          "shapeId": "pixel-cloud",
+          "materialId": "pixels",
+          "colorHex": "#FFFFFF",
+          "speed": 1,
+          "amplitude": 0.3,
+          "touchSensitivity": 1,
+          "musicSync": false,
+          "quality": "medium",
+          "targetFps": 60,
+          "paletteId": "spectrum",
+          "paletteStops": [
+            {
+              "offset": 0,
+              "colorHex": "#FF306E"
+            },
+            {
+              "offset": 0.25,
+              "colorHex": "#FFBE32"
+            },
+            {
+              "offset": 0.5,
+              "colorHex": "#33E8CA"
+            },
+            {
+              "offset": 0.75,
+              "colorHex": "#6585FF"
+            },
+            {
+              "offset": 1,
+              "colorHex": "#D855FF"
+            }
+          ]
+        }
+      }
+    ],
+    "limitation": "Screenrecord pacing and encoder load do not measure GPU/display FPS or prove motion/touch comfort.",
+    "bytes": 3004275,
+    "containerDurationSeconds": 35.0058,
+    "audioTrackCount": 0,
+    "metadataTrackCount": 2
+  },
+  "previewRemoteRemoved": true,
+  "finishedAt": "2026-10-17T22:36:59.138Z"
+}

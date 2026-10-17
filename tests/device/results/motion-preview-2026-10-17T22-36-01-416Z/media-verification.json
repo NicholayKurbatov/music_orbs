@@ -1,0 +1,13 @@
+{
+  "scope": "container-validation-not-performance",
+  "bytes": 3004275,
+  "sha256": "9e18d5419ffb949ab7b581e4d5fcdc3d1cd004e933a564ec4b29fe53228bf43b",
+  "durationSeconds": 35.0058,
+  "trackHandlers": [
+    "vide",
+    "meta",
+    "meta"
+  ],
+  "audioTrackCount": 0,
+  "metadataTrackCount": 2
+}

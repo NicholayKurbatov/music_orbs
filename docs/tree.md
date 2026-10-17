@@ -129,15 +129,17 @@ MusicOrbs/
 |           |   \-- kotlin/
 |           |       \-- musicorbs/
 |           |           \-- platform/
-|           |               \-- audio/
-|           |                   |-- LocalFilePlaybackTest.kt
-|           |                   |-- MainCaptureLifecycleTest.kt
-|           |                   |-- MainNativeGestureInputTest.kt
-|           |                   |-- MicrophoneAudioSourceTest.kt
-|           |                   |-- P7AudioPolicyStorageTest.kt
-|           |                   |-- P7AudioTestSupport.kt
-|           |                   |-- P7MainUiProbe.kt
-|           |                   \-- PlaybackCaptureTest.kt
+|           |               |-- audio/
+|           |               |   |-- LocalFilePlaybackTest.kt
+|           |               |   |-- MainCaptureLifecycleTest.kt
+|           |               |   |-- MainNativeGestureInputTest.kt
+|           |               |   |-- MicrophoneAudioSourceTest.kt
+|           |               |   |-- P7AudioPolicyStorageTest.kt
+|           |               |   |-- P7AudioTestSupport.kt
+|           |               |   |-- P7MainUiProbe.kt
+|           |               |   \-- PlaybackCaptureTest.kt
+|           |               \-- experience/
+|           |                   \-- AtomicSessionStoreAndroidTest.kt
 |           \-- debug/
 |               |-- AndroidManifest.xml
 |               \-- kotlin/
@@ -360,7 +362,20 @@ MusicOrbs/
 |   |       |   |-- result.json
 |   |       |   |-- ribbon.png
 |   |       |   \-- sculpted-restored.png
+|   |       |-- browser-touchcancel-context-2026-10-17T22-26-23-317Z/
+|   |       |   |-- README.md
+|   |       |   |-- cloud.png
+|   |       |   |-- orb.png
+|   |       |   |-- pixel-cloud.png
+|   |       |   |-- result.json
+|   |       |   |-- ribbon.png
+|   |       |   \-- sculpted-restored.png
 |   |       |-- context-probe-2026-10-17T22-15-48-374Z/
+|   |       |   |-- README.md
+|   |       |   |-- after-context.png
+|   |       |   |-- context.json
+|   |       |   \-- report.json
+|   |       |-- context-probe-2026-10-17T22-29-18-301Z/
 |   |       |   |-- README.md
 |   |       |   |-- after-context.png
 |   |       |   |-- context.json
@@ -368,6 +383,22 @@ MusicOrbs/
 |   |       |-- dpr-probe-2026-10-17T20-41-53-202Z/
 |   |       |   |-- README.md
 |   |       |   \-- report.json
+|   |       |-- final-apk-2026-10-17T22-27-01-429Z/
+|   |       |   |-- README.md
+|   |       |   |-- report.json
+|   |       |   |-- session-after-install.json
+|   |       |   \-- session-before-install.json
+|   |       |-- final-state-2026-10-17T22-37-48-648Z/
+|   |       |   |-- README.md
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   \-- report.json
+|   |       |-- final-state-2026-10-17T22-38-31-040Z/
+|   |       |   |-- README.md
+|   |       |   |-- final-orb.png
+|   |       |   |-- native-session.json
+|   |       |   |-- report.json
+|   |       |   \-- state.json
 |   |       |-- g2-2026-10-17T19-29-03-309Z/
 |   |       |   |-- baseline.json
 |   |       |   |-- failure.png
@@ -478,6 +509,36 @@ MusicOrbs/
 |   |       |   \-- scene.png
 |   |       |-- local-playback-2026-10-17/
 |   |       |   \-- results.xml
+|   |       |-- motion-preview-2026-10-17T22-36-01-416Z/
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- four-presets.mp4
+|   |       |   |-- media-verification.json
+|   |       |   |-- report.json
+|   |       |   \-- restored-baseline.json
+|   |       |-- motion-transitions-2026-10-17T22-25-48-714Z/
+|   |       |   |-- README.md
+|   |       |   |-- after-eof.json
+|   |       |   |-- irregular.json
+|   |       |   |-- irregular.png
+|   |       |   |-- motion-invariants.json
+|   |       |   |-- motion-samples.json
+|   |       |   |-- original-persisted.json
+|   |       |   |-- original-scene.json
+|   |       |   |-- prepared-baseline.json
+|   |       |   |-- prepared-persisted-after.json
+|   |       |   |-- prepared-persisted-before.json
+|   |       |   |-- provenance.json
+|   |       |   |-- report.json
+|   |       |   |-- restored-original-before-restart.json
+|   |       |   |-- restored-original-persisted.json
+|   |       |   |-- restored-original-scene.json
+|   |       |   |-- silence.json
+|   |       |   |-- silence.png
+|   |       |   |-- tempo-120.json
+|   |       |   |-- tempo-120.png
+|   |       |   |-- tempo-90.json
+|   |       |   \-- tempo-90.png
 |   |       |-- native-integration-build/
 |   |       |   \-- environment.json
 |   |       |-- native-integration-dsp-build/
@@ -567,6 +628,32 @@ MusicOrbs/
 |   |       |-- native-settings-hex-debug-2026-10-17T20-26-41-287Z/
 |   |       |   |-- README.md
 |   |       |   \-- baseline.json
+|   |       |-- p7-final-2026-10-17T22-33-11Z/
+|   |       |   |-- README.md
+|   |       |   |-- after-atomic.json
+|   |       |   |-- after-gesture.json
+|   |       |   |-- after-main.json
+|   |       |   |-- after-policy.json
+|   |       |   |-- atomic-command.json
+|   |       |   |-- atomic-logcat.txt
+|   |       |   |-- atomic-raw.txt
+|   |       |   |-- atomic-stderr.txt
+|   |       |   |-- environment-before.json
+|   |       |   |-- gesture-command.json
+|   |       |   |-- gesture-raw.txt
+|   |       |   |-- gesture-stderr.txt
+|   |       |   |-- main-command.json
+|   |       |   |-- main-raw.txt
+|   |       |   |-- main-stderr.txt
+|   |       |   |-- policy-command.json
+|   |       |   |-- policy-raw.txt
+|   |       |   |-- policy-stderr.txt
+|   |       |   |-- report.json
+|   |       |   |-- session-after-atomic.json
+|   |       |   |-- session-after-gesture.json
+|   |       |   |-- session-after-main.json
+|   |       |   |-- session-after-policy.json
+|   |       |   \-- session-before.json
 |   |       |-- p7-instrumentation-2026-10-17T21-59-49Z/
 |   |       |   |-- README.md
 |   |       |   |-- after-final-gesture.json
@@ -861,16 +948,40 @@ MusicOrbs/
 |   |       |-- render-probe-2026-10-17T21-58-55-422Z/
 |   |       |   |-- README.md
 |   |       |   \-- report.json
-|   |       \-- visual-acceptance-2026-10-17T22-12-35-713Z/
+|   |       |-- visual-acceptance-2026-10-17T22-12-35-713Z/
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- drag-sensitivity-0.5.json
+|   |       |   |-- drag-sensitivity-2.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- impulse-decay.json
+|   |       |   |-- original-store.json
+|   |       |   |-- pointer-cancel-outside.json
+|   |       |   |-- report.json
+|   |       |   |-- restored-baseline.json
+|   |       |   |-- rotated-deformed-orb.png
+|   |       |   |-- rotation-cycles.json
+|   |       |   |-- tap-sensitivity-0.5.json
+|   |       |   \-- tap-sensitivity-2.json
+|   |       \-- visual-acceptance-2026-10-17T22-29-42-555Z/
+|   |           |-- README.md
 |   |           |-- baseline.json
+|   |           |-- context-restored.png
 |   |           |-- drag-sensitivity-0.5.json
 |   |           |-- drag-sensitivity-2.json
-|   |           |-- failure.png
-|   |           |-- failure.xml
 |   |           |-- impulse-decay.json
+|   |           |-- native-context-recovery.json
 |   |           |-- original-store.json
+|   |           |-- palette-restored-custom.json
+|   |           |-- palette-restored-lilac.json
+|   |           |-- palette-restored-pink.json
+|   |           |-- palette-restored-spectrum.json
+|   |           |-- palette-restored-white.json
+|   |           |-- palette-transition.json
 |   |           |-- pointer-cancel-outside.json
 |   |           |-- report.json
+|   |           |-- reset-after-restart.json
 |   |           |-- restored-baseline.json
 |   |           |-- rotated-deformed-orb.png
 |   |           |-- rotation-cycles.json

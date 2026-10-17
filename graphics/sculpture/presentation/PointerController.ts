@@ -4,13 +4,13 @@ import type { Vec3 } from '../domain/Models';
 interface PickingSurface { pick(x: number, y: number, anchor?: Vec3): Vec3 | null; }
 /** Pointer capture гарантирует завершение drag вне view; второй палец игнорируется. */
 export class PointerController {
-  private active: { id: number; anchor: Vec3; previous: Vec3 } | null = null;
+  private active: { id: number; pointerType: string; anchor: Vec3; previous: Vec3 } | null = null;
   private readonly down = (event: PointerEvent) => {
     if (this.active || event.button !== 0) return;
     const anchor = this.surface.pick(event.clientX, event.clientY);
     if (!anchor) return;
     event.preventDefault(); this.canvas.setPointerCapture(event.pointerId);
-    this.active = { id: event.pointerId, anchor, previous: anchor };
+    this.active = { id: event.pointerId, pointerType: event.pointerType, anchor, previous: anchor };
     this.send('begin', [0, 0, 0.025]);
   };
   private readonly move = (event: PointerEvent) => {
@@ -21,23 +21,31 @@ export class PointerController {
     const delta = next.map((x, i) => x - this.active!.previous[i]) as unknown as Vec3;
     this.active.previous = next; this.send('move', delta);
   };
-  private readonly up = (event: PointerEvent) => this.finish(event, 'end');
-  private readonly cancel = (event: PointerEvent) => this.finish(event, 'cancel');
+  private readonly up = (event: PointerEvent) => this.finish(event.pointerId, 'end');
+  private readonly cancel = (event: PointerEvent) => this.finish(event.pointerId, 'cancel');
+  private readonly touchCancel = (event: TouchEvent) => {
+    // Android WebView can emit touchcancel without pointercancel or lostpointercapture.
+    // Remaining touches may include the accepted primary, so only an empty list is decisive.
+    if (this.active?.pointerType === 'touch' && event.touches.length === 0) this.finish(this.active.id, 'cancel');
+  };
   constructor(private readonly canvas: HTMLCanvasElement, private readonly surface: PickingSurface, private readonly application: SceneApplication, private readonly onChange: () => void, private readonly onError: (error: unknown) => void) {
     canvas.addEventListener('pointerdown', this.down); canvas.addEventListener('pointermove', this.move);
     canvas.addEventListener('pointerup', this.up); canvas.addEventListener('pointercancel', this.cancel); canvas.addEventListener('lostpointercapture', this.cancel);
+    canvas.addEventListener('touchcancel', this.touchCancel);
   }
   dispose(): void {
     if (this.active) this.send('cancel', [0, 0, 0]);
     this.active = null;
     this.canvas.removeEventListener('pointerdown', this.down); this.canvas.removeEventListener('pointermove', this.move);
     this.canvas.removeEventListener('pointerup', this.up); this.canvas.removeEventListener('pointercancel', this.cancel); this.canvas.removeEventListener('lostpointercapture', this.cancel);
+    this.canvas.removeEventListener('touchcancel', this.touchCancel);
   }
-  private finish(event: PointerEvent, phase: 'end' | 'cancel'): void {
-    if (!this.active || this.active.id !== event.pointerId) return;
+  private finish(pointerId: number, phase: 'end' | 'cancel'): void {
+    if (!this.active || this.active.id !== pointerId) return;
     this.send(phase, [0, 0, 0]); this.active = null;
-    if (this.canvas.hasPointerCapture(event.pointerId)) this.canvas.releasePointerCapture(event.pointerId);
-    this.onChange();
+    try {
+      if (this.canvas.hasPointerCapture(pointerId)) this.canvas.releasePointerCapture(pointerId);
+    } finally { this.onChange(); }
   }
   private send(phase: 'begin' | 'move' | 'end' | 'cancel', delta: Vec3): void {
     if (!this.active) return;

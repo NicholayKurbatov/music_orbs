@@ -1,0 +1,9 @@
+{
+  "at": "2026-10-17T22:35:18.838Z",
+  "sessionSha256": "1d04f781114cfbae2a241003eb7934dc11f0c3d43a81a094cad8741629f0394b",
+  "sessionMatchesBefore": true,
+  "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+  "apkMatchesBefore": true,
+  "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+  "recordAudioPermissionRestoredToOriginal": true
+}

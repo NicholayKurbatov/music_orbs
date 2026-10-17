@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T22:38:31.133Z",
+  "serial": "emulator-5554",
+  "result": "pass",
+  "steps": [
+    {
+      "id": "final-state",
+      "result": "pass",
+      "details": "Live/native settings and all shapes equal original pre-install scene; source none/autonomous, GL0, no error, microphone denial, final APK hash unchanged."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "installedApkSha256": "9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e",
+  "recordAudioPermission": "android.permission.RECORD_AUDIO: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+  "scope": "final-functional-state-not-performance-repeat",
+  "finishedAt": "2026-10-17T22:38:38.706Z"
+}

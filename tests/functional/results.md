@@ -1,6 +1,6 @@
 # Фактические результаты FT/CT
 
-Дата журнала: 2026-10-17. Это матрица выполненных проверок и оставшихся частей
+Дата журнала: 2026-10-18 по Москве; имена отчётов содержат UTC. Это матрица выполненных проверок и оставшихся частей
 приёмки из [docs/tests.md](../../docs/tests.md). «Частично» означает, что выполнены
 только перечисленные действия; успешный unit-тест не считается проверкой Android UI,
 физического устройства или решением человека по внешнему виду.
@@ -21,7 +21,9 @@
   сочетания синтетического WAV с тихой подложкой (32 смещения×начальный старт/разрыв,
   блоки4096). Первое окно FFT задаёт предыдущие spectrum/RMS без ложного удара;
   допуск остаётся±2BPM.
-- **U-JS**: `npm --prefix graphics test` — 72/72, подтверждено финальным прогоном интегратора.
+- **U-JS**: `npm --prefix graphics test` — 79/79 после исправлений context/touchcancel,
+  [host evidence](../device/results/browser-touchcancel-context-2026-10-17T22-26-23-317Z/README.md).
+  Прежний результат до этих исправлений —72/72.
   Основные проверки: [генерация](../../graphics/sculpture/infrastructure/upstream/ProceduralShapeFactory.test.ts),
   [поле](../../graphics/sculpture/domain/LocalDeformationField.test.ts),
   [сцена](../../graphics/sculpture/application/SculptureScene.test.ts),
@@ -79,6 +81,23 @@
   выявил ложный startup onset после resume на WAV+carrier; это неуспешный прогон.
   Исправлены FFT warmup и закрепление первого BPM в clock; [сборка и SHA нового APK](../device/results/native-integration-dsp-build/environment.json),
   полный U-K, финальный G3 и E-F после исправлений успешны.
+- **E-M**: `node scripts/android-motion-transitions.mjs --serial emulator-5554`
+  — **6/6 PASS**: [описание](../device/results/motion-transitions-2026-10-17T22-25-48-714Z/README.md),
+  [отчёт](../device/results/motion-transitions-2026-10-17T22-25-48-714Z/report.json),
+  [provenance](../device/results/motion-transitions-2026-10-17T22-25-48-714Z/provenance.json).
+  Actual installed SHA до/после `8cb87a…f61` совпал; это checkpoint прежнего APK
+  с D4yFGS0Q, не проверка следующего APK с context/touchcancel исправлениями.
+  Системный picker → synthetic mono WAV104с/48кГц → native PCM/DSP/bridge/renderer:
+  90.023232→120.010323BPM, periods21.343285→16.010081с, прежние±2BPM/±0.3с.
+  На тишине energy1.50e-15/confidence0, на нерегулярном ритме energy0.119354/
+  confidence0; оба autonomous/null BPM с продолжающейся фазой. Настоящий EOF
+  дал source none и продолжение автономии. [2128 наблюдений](../device/results/motion-transitions-2026-10-17T22-25-48-714Z/motion-invariants.json):
+  max gap0.0765с, max frequency slope0.00686498cycles/s²<0.02,
+  max phase residual0.00246122<0.015цикла. Окна приблизительно привязаны к первому
+  source UUID, не к PlaybackPosition, с запасом на границах.
+  Неверный краткий FeatureFrame не внедрялся: этот подслучай FT-16 остаётся U-K.
+  Settings/shapes/native store сохранены; finally восстановил исходную сцену,
+  подтвердил restart Main/source none и удалил собственные fixture/temp files.
 - **E-R**: `node scripts/android-permission-smoke.mjs --serial emulator-5554` — 5/5.
   [Полный отчёт](../device/results/permissions-2026-10-17T20-02-24-253Z/report.json),
   [активный mic](../device/results/permissions-2026-10-17T20-02-24-253Z/microphone-active.json),
@@ -146,6 +165,121 @@
   Это короткая диагностика отправки кадров JS, не GPU/display FPS;
   `budgetComparison=not-evaluated-short-smoke`. Принятые длительные бюджеты
   и 30-минутный PSS этим прогоном не оценены; физические нагрев/батарея не измерены.
+- **D-L**: [завершённый 70-минутный профиль](../device/results/profile-2026-10-17T20-45-59-606Z/README.md),
+  [полный JSON](../device/results/profile-2026-10-17T20-45-59-606Z/report.json).
+  UTC 2026-10-17 20:45:59–21:56:15: четыре формы по600с и отдельный Orb1800с,
+  medium/10 000 частиц, target60, source none, API35/host AMD/ANGLE,
+  WebView124, DPR2.75/cap2, backing786×1702.
+  Измерен прежний APK SHA-256
+  `8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61`,
+  assets `index-D4yFGS0Q.js` / `index-BBqcT9Hu.css`.
+  Принятые бюджеты p95≤20мс и доля интервалов>25мс<5% **FAIL во всех пяти сегментах**:
+
+  | Сегмент | Активное время, с | JS submissions/с | p95 интервала, мс | Доля >25мс | Кадровые бюджеты |
+  |---|---:|---:|---:|---:|---|
+  | Orb | 600.286 | 36.053 | 31.75 | 89.464% | FAIL / FAIL |
+  | Ribbon | 600.264 | 36.384 | 31.75 | 87.907% | FAIL / FAIL |
+  | Cloud | 600.226 | 35.570 | 32.25 | 90.702% | FAIL / FAIL |
+  | Pixel Cloud | 600.260 | 35.458 | 32.25 | 92.069% | FAIL / FAIL |
+  | Orb memory | 1800.282 | 35.055 | 32.75 | 92.304% | FAIL / FAIL |
+
+  Отдельный бюджет памяти **PASS**: Orb1800с, app PSS initial124275,
+  peak127074, final123681КиБ; peak−initial=2.7334MiB≤32MiB.
+  Поминутная выборка одного app-процесса не охватывает все isolated WebView/GPU
+  allocation и пики между измерениями. p95 CPU present0.75мс не равен полному
+  времени кадра/GPU/display FPS. JS errors=[], render errors0, context losses0,
+  паузы0. [Независимый cleanup](../device/results/profile-2026-10-17T20-45-59-606Z/cleanup-verification.json)
+  подтвердил исходные settings/shapes, DPR, screen timeout и выключенную диагностику.
+  `measurement-complete` означает завершение измерения, не общий performance pass.
+- **D-X**: короткие диагностики на том же прежнем APK после D-L:
+  [palette A/B/A](../device/results/palette-probe-2026-10-17T21-57-27-877Z/README.md)
+  подавил102/102 uploads по1КиБ без улучшения (~33.98submissions/с);
+  [clear/count](../device/results/render-probe-2026-10-17T21-58-16-207Z/README.md)
+  дал34.81/с при подавленных draw calls, normal10k34.20, low4k33.86, high20k34.26;
+  [raw WebGL clear](../device/results/render-probe-2026-10-17T21-58-55-422Z/README.md)
+  без app.frame/DOM дал mean RAF27.523мс/p9533.4мс, тогда как pause без GL — около60Гц.
+  Это указывает на ограничение наблюдаемого WebGL surface/composition пути AVD,
+  не устанавливает единственную причину и **не отменяет FAIL D-L**.
+  [Post-diagnostics verification](../device/results/profile-2026-10-17T20-45-59-606Z/post-diagnostics-verification.json)
+  подтвердил восстановление сцены, методов GL, DPR/flags/timeout и продвижение фазы.
+- **E-P7**: [прямой native instrumentation](../device/results/p7-instrumentation-2026-10-17T21-59-49Z/README.md),
+  [сводка](../device/results/p7-instrumentation-2026-10-17T21-59-49Z/report.json),
+  тот же прежний APK `8cb87a…f61`: **5/6 PASS, 1 FAIL**.
+  Policy/storage3/3: собственный AudioTrack ALLOW_CAPTURE_BY_NONE дал peak0 на98304samples
+  при растущем playback head, положительные контроли до/после дали peak0.36621094;
+  local/mic/capture чтение и close не создали/изменили файлов в проверенных app data,
+  external files/cache. Это не packet capture сети и не совместимость сторонних плееров.
+  Main lifecycle2/2: явные mic/capture → HOME → возврат без recorder/FGS/индикатора
+  и скрытого источника; настройки/формы сохранены. Наблюдение после возврата:
+  mic6270мс, capture5011мс. Gesture0/1: второй настоящий pointer не изменил controls,
+  но первый DOWN после Android ACTION_CANCEL не начал жест; outside-UP не достигнут.
+  Диагностический повтор подтвердил trusted touchcancel без primary pointercancel/
+  lostpointercapture; это воспроизведённый дефект, не только ошибка локатора.
+  Exact session bytes и исходное RECORD_AUDIO=false восстановлены.
+  Исторический FAIL сохранён; исправление genuine cancel подтверждено E-P8.
+- **E-P8**: [финальные восемь native instrumentation проверок](../device/results/p7-final-2026-10-17T22-33-11Z/README.md),
+  [машиночитаемый итог](../device/results/p7-final-2026-10-17T22-33-11Z/report.json)
+  — **8/8 PASS** на новом APK
+  `9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e`.
+  Policy/storage3, Main mic/capture HOME2, genuine gesture1, Android atomic store2;
+  это8 уникальных методов этой серии, не сумма с предыдущими повторными прогонами.
+  ALLOW_CAPTURE_BY_NONE peak0/98304samples между двумя peak0.36621094 controls,
+  playback head64192→162112. Аудит local/mic/capture не выявил созданных/изменённых
+  файлов/write events. Main mic после HOME не имел recorder через1049мс;
+  возврат mic6011мс/capture4878мс без скрытого source/FGS/индикатора, поле сохранено.
+  Настоящий Android ACTION_CANCEL → trusted touchcancel/touches0 без pointercancel;
+  **первый** следующий DOWN revision1→2. После outside-UP **первый** DOWN3→4;
+  второй pointer не меняет controls. Искусственного перебора повторных DOWN нет.
+  На отдельном cache-пути IOException после force/до replace сохранила подтверждённую
+  revision7, temp-файлов0; следующая save8 успешна. При текущей revision9 stale7/equal9
+  отклонены. Это настоящий Android store с injected IO failure, **не process kill**.
+  [Финальная сверка](../device/results/p7-final-2026-10-17T22-33-11Z/after-atomic.json):
+  exact session bytes/SHA, target APK и RECORD_AUDIO=false/flags восстановлены.
+  Результат не оценивает frame budgets, физический звук, плееры или сетевой трафик.
+- **E-V**: [native visual runner на прежнем APK](../device/results/visual-acceptance-2026-10-17T22-12-35-713Z/report.json)
+  в целом **FAIL**. До падения прошли tap/drag sensitivity ratio4 при0.5→2,
+  CDP second pointer/cancel/outside, затухание impulse и75с/3.43цикла с неизменным
+  object-space полем; modelView rotation2.118rad за8с.
+  CDP touch не заменяет Android ACTION_CANCEL из E-P7.
+  Context restored дал GL1282; [отдельная диагностика](../device/results/context-probe-2026-10-17T22-15-48-374Z/README.md)
+  связала предупреждения с GPU-объектами прежнего контекста.
+  Последующее getError=0 после чтения1282 не считается исправлением.
+  Палитры/restart и Reset/restart в этом прогоне не достигнуты; cleanup исходной
+  сцены после restart успешен. Это исторический FAIL; новый полный PASS — E-V2.
+- **E-V2**: [полный native visual runner](../device/results/visual-acceptance-2026-10-17T22-29-42-555Z/README.md),
+  [отчёт](../device/results/visual-acceptance-2026-10-17T22-29-42-555Z/report.json)
+  — **PASS9/9**, включая служебный cleanup. Новый установленный APK SHA-256
+  `9b59177fcc0257c4e28e74f65fea7cc94e126f308c5235143f49a992adaeae3e`,
+  assets `index-hWR3IcJ5.js` / `index-BBqcT9Hu.css`,
+  [сборка/установка](../device/results/final-apk-2026-10-17T22-27-01-429Z/report.json).
+  Native data/RECORD_AUDIO сохранены при install-r; это не продолжение прогона старого APK.
+  Tap/drag sensitivity ratio4, CDP second pointer/cancel/outside;75с/3.43цикла,
+  rotation2.104rad за8с и затухание impulse с неизменным object-space полем.
+  [Native context1 loss/1 restore](../device/results/visual-acceptance-2026-10-17T22-29-42-555Z/native-context-recovery.json)
+  завершился GL0/notice null, сцена сохранена; дополнительный
+  [context probe](../device/results/context-probe-2026-10-17T22-29-18-301Z/report.json)
+  после restore не выявил GL errors/предупреждений старых ресурсов.
+  Actual palette texture имеет промежуточные цвета с ограниченным smoothing;
+  после пяти отдельных restart штатные white/pink/lilac/spectrum и custom совпали
+  с ожидаемыми linear-sRGB GPU bytes —45каналов с допуском2/255.
+  Native Reset→restart сохранил остальные поля/settings/seed, исходная семантическая
+  сцена восстановлена и подтверждена после cleanup restart. Это emulator technical
+  acceptance, без человеческой оценки динамики, phone и кадровых бюджетов.
+- **B-C**: [browser regression context recovery](../device/results/browser-context-recovery-2026-10-17T22-21-31-181Z/README.md),
+  [результат](../device/results/browser-context-recovery-2026-10-17T22-21-31-181Z/result.json):
+  два loss/restore, quality после каждого и final dispose, первые GL errors0/0,
+  validation warnings=[], нарушений поколений GPU-объектов нет, clearColor/снимки сохранены.
+  Это desktop Chrome/SwiftShader с исправлением и assets `index-DjUvQ1gz.js`,
+  не повтор Android. Последующий native recovery нового APK подтверждён E-V2;
+  genuine Android ACTION_CANCEL проверяется отдельно instrumentation.
+- **B-T**: [финальный browser smoke после context/touchcancel исправлений](../device/results/browser-touchcancel-context-2026-10-17T22-26-23-317Z/README.md),
+  [результат](../device/results/browser-touchcancel-context-2026-10-17T22-26-23-317Z/result.json):
+  79 JS unit-тестов, typecheck/build и13 browser groups успешны, assets
+  `index-hWR3IcJ5.js` / `index-BBqcT9Hu.css`. Два context restore прошли без GL
+  errors/old-generation deletes/warnings. Семь новых pointer регрессий проверяют
+  fallback touchcancel, оба порядка cancel, secondary/primary, синхронный capture
+  release, mouse/pen и dispose. Browser drag использует PointerEvent; настоящий
+  Android ACTION_CANCEL этим browser прогоном не проверяется; отдельный native повтор — E-P8.
 - **A**: `node scripts/check-project.mjs` и `git diff --check` выполнялись успешно.
   Проверка импортов статическая; лицензии зарегистрированы в [third_party](../../third_party/runtime.md).
 
@@ -161,32 +295,32 @@
 | FT-01 | U-K: local assets policy | B: открытие WebGL | E-G2: без RECORD_AUDIO, native UI, видимая сцена и реальные жесты | Успешно в указанном эмуляторе; физический Android 10+ не проверен. |
 | FT-02 | U-JS: четыре детерминированные формы | B: четыре пресета и screenshots | E-S: все четыре пресета выбраны через native UI, параметры и кадры сохранены | G4: внешний вид четырёх форм принят пользователем по статическим native PNG; динамическая оценка остаётся отдельной. |
 | FT-03 | U-JS/U-K: валидация settings, enum и атомарность configure | B: четыре стандартных пресета | E-S: четыре пресета, три материала, штатные/custom палитры; settings/native store и поля проверены после каждого действия | Проверенные сочетания успешны в совокупности двух прогонов; полная матрица произвольных комбинаций и UI отказов не пройдена. |
-| FT-04 | U-JS: falloff, sensitivity один раз, pointer mapping | B: настоящий drag → controls | E-G2: реальные свайпы Orb/Ribbon; E-S: slider sensitivity изменяет/сохраняет параметр в границах без деформации за панелью | Сопоставление реакции жеста при разных sensitivity и удобство касаний на телефоне не проверены. |
-| FT-05 | U-JS: поле неизменно за 24 с анимации, pause/resume | B: деформация сохраняется после смены quality и reload | E-G2: сохранение деформаций | Затухание и несколько видимых циклов человеком не оценены. |
-| FT-06 | U-JS: поле в object space, стабильные координаты | B: picking реальным renderer | Отдельный поворот с сопоставлением области не выполнен | Геометрическая модель проверена; визуальная приёмка вращения остаётся. |
+| FT-04 | U-JS: falloff, sensitivity один раз, pointer mapping | B: настоящий drag → controls | E-G2: свайпы Orb/Ribbon; E-S: slider/store/изоляция панели; E-V2: tap и drag при sensitivity0.5/2 дали ratio4 | Реакция WebView input подтверждена в полном PASS нового APK; физическое удобство не измерялось. |
+| FT-05 | U-JS: поле неизменно за 24 с анимации, pause/resume | B: деформация сохраняется после смены quality и reload | E-V2: impulse затух,75с/3.43цикла с неизменными controls | Технические decay/cycle assertions прошли; человеческая оценка движения отдельно не выполнена. |
+| FT-06 | U-JS: поле в object space, стабильные координаты | B: picking реальным renderer | E-V2: matrix rotation2.104rad за8с, snapshot/object-space поле неизменны | Проверены матрица и поле; прямое визуальное сопровождение деформированной области/динамический комфорт человеком не подтверждены. |
 | FT-07 | U-JS: отдельные поля/seed всех форм | B: snapshot сохраняет поля | E-G2: деформации Orb/Ribbon пережили переключение и restart | Проверенная последовательность успешна на эмуляторе. |
-| FT-08 | U-K: service/store save/load | B: localStorage reload | E-G2: force-stop → restart → новая команда → тот же snapshot | Успешно в проверенной последовательности; аварийное завершение в момент IO отдельно не проверено. |
+| FT-08 | U-K: service/store save/load | B: localStorage reload | E-G2: force-stop→restart→новая команда→тот же snapshot; E-P8: Android injected IO interruption сохраняет последнюю revision и допускает следующую save | Проверенные последовательности успешны; process kill/отключение питания непосредственно внутри IO не выполнялись. |
 | FT-09 | U-K/U-JS: invalid schema/generator/JSON, без частичного применения | B: модельная валидация снимка | E-G2: unsupported schema → сообщение/fallback; повреждённый файл не перезаписан автоматически | Проверенный corruption case успешен; не все виды повреждения пройдены через UI. |
-| FT-10 | U-JS: Reset только активной формы | B: инварианты снимка | E-G2: Orb очищен, seed/settings/Ribbon сохранены | Отдельный restart после последнего Reset не был самостоятельным assert; восстановление файла после optional corruption выполнено. |
-| FT-11 | U-JS/U-K: settings validation/ack | B: управление пресетами/quality | E-S: 21 уникальное native действие в двух прогонах, HEX, три sliders, sync, FPS/quality; store подтверждён, поля всех форм неизменны | Функциональные UI-действия подтверждены aggregate evidence, единого полного pass нет; физическое удобство и визуальная приёмка остаются. |
+| FT-10 | U-JS: Reset только активной формы | B: инварианты снимка | E-G2: Orb очищен, seed/settings/Ribbon сохранены; E-V2: native Reset→отдельный restart, Orb empty, остальные формы/settings/seed сохранены | Проверенная native последовательность успешна на новом APK. |
+| FT-11 | U-JS/U-K: settings validation/ack | B: управление пресетами/quality | E-S: 21 уникальное native действие в двух прогонах, HEX, три sliders, sync, FPS/quality; store подтверждён, поля всех форм неизменны | Функциональные UI-действия подтверждены aggregate evidence, единого полного pass21/21 нет; физическое удобство и динамический комфорт человеком не оценивались. |
 | FT-12 | U-K: playback timeline, session pause/resume | Не относится к источнику Android | E-P: decoder/AudioTrack gate; E-G3: настоящий picker→PCM→DSP→bridge→renderer, pause/resume без seek | Успешно для синтетического WAV на эмуляторе; звук хоста и физический выход не подтверждены. |
 | FT-13 | U-K: request validation, ошибка не публикует session | Нет отдельного picker | E-G3: отмена настоящего picker и неверный WAV дали сообщения без потери поля | Успешно для проверенных UI веток, не полная матрица кодеков. |
-| FT-14 | U-K: silence, sine, irregular/click fixtures40–240BPM±2, rates8–192кГц,64 старта/разрыва WAV+carrier | B: synthetic MotionSignal | E-G3: native PCM после picker дал89.952BPM на synthetic90; pause/resume после warmup fix успешен | Синтетическая DSP-проверка успешна; реальная музыка не измерялась. |
-| FT-15 | U-K:90BPM,4/8/16bars; для8bars период21.333с±0.001 после сходимости | B: медленные synthetic циклы | E-G3: native89.952BPM и период21.627с при8bars, допуск±0.3с | Успешно для синтетического WAV; темп реальной песни не измерялся. |
-| FT-16 | U-K: 90→120, короткий 240 BPM outlier; slope/phase bounds | B: delayed motion/source и sync-off сохраняют фазу | Смена BPM реального native источника отдельно не пройдена | Визуальная плавность человеком не принята. |
-| FT-17 | U-K: sync off, silence, low confidence, null, EOF fallback | B: автономия и native synthetic source switch | E-G3: native sync off/on, Stop и HOME переводят источник в автономию без потери поля | Проверенные native переходы успешны; реальные тишина/неуверенный темп физического источника не измерялись. |
+| FT-14 | U-K: silence, sine, irregular/click fixtures40–240BPM±2, rates8–192кГц,64 старта/разрыва WAV+carrier | B: synthetic MotionSignal | E-G3: native89.952BPM/pause-resume; E-M: actual PCM90→120, silence/irregular, уверенные оценки в±2BPM | Синтетическая DSP-проверка успешна на указанном APK; реальная музыка не измерялась. |
+| FT-15 | U-K:90BPM,4/8/16bars; для8bars период21.333с±0.001 после сходимости | B: медленные synthetic циклы | E-G3: period21.627с в начале сходимости; E-M:21.343285с при90.023BPM и16.010081с при120.010BPM,8bars/±0.3с | Успешно для synthetic WAV; темп реальной песни не измерялся. |
+| FT-16 | U-K:90→120, короткий240BPM outlier; slope/phase bounds | B: delayed motion/source и sync-off сохраняют фазу | E-M: picker→native PCM90.023→120.010BPM,2128наблюдений, max slope0.006865<0.02, max phase residual0.002462<0.015 | Native смена темпа прошла на прежнем APK8cb. Краткий ложный FeatureFrame проверен только U-K, не внедрялся в Android; человеческая плавность не принята. |
+| FT-17 | U-K: sync off, silence, low confidence, null, EOF fallback | B: автономия и native synthetic source switch | E-G3: sync off/on/Stop/HOME; E-M: actual PCM silence/irregular→autonomous/null BPM, фаза продолжается; EOF→none, поле/store сохранены | Перечисленные synthetic native переходы прошли на APK8cb; физический источник/реальная музыка и человеческий комфорт не измерялись. |
 | FT-18 | U-K: cancellation/close и pending open | Не относится к разрешениям Android | E-P: системный grant/PCM/revoke, Cancel и pending close/late binder; E-R: Main RECORD Deny и MediaProjection Cancel без mic fallback/FGS/индикатора | Проверенные grant/deny/revoke ветки успешны; физическое устройство и сторонние источники не проверены. |
-| FT-19 | Нет доказательства совместимости через unit | Не относится | E-P: собственный AudioTrack ALLOW_CAPTURE_BY_ALL, ненулевой PCM | Запрещающий источник, Spotify, Яндекс Музыка и другие реальные плееры не проверены. |
+| FT-19 | Нет доказательства совместимости через unit | Не относится | E-P: свой разрешающий AudioTrack; E-P7/P8: ALLOW_CAPTURE_BY_NONE peak0 между двумя ненулевыми разрешающими контролями, playback head растёт | Разрешающий/запрещающий synthetic источник проверены на AVD, включая новый APK. Spotify, Яндекс Музыка и другие реальные плееры/физический телефон не проверены и не подменяются этими тестами. |
 | FT-20 | U-K: явный SourceKind, отсутствие автозамены в orchestration | Не относится | E-P: конечный mono PCM48k; E-R: явный Mic grant, видимый индикатор/UUID, active revoke→PID killed→restart без mic, отдельный Mic Deny | Проверенные UI ветки успешны; сигнал физического микрофона и его амплитуда не подтверждены. |
-| FT-21 | U-K/U-JS: capped delta, pause/resume, pending cancellation | B: context loss/recovery | E-G2: HOME/Configure, force-stop/restart; E-G3: local HOME без autoresume; E-R: active mic revoke убил процесс, restart без скрытого source | Принудительная потеря native WebView renderer и capture HOME отдельно не проверены; общий Main onPause stop подкреплён чтением кода и core tests. |
-| FT-22 | U-JS: particle count меняется, поле/seed неизменны | B: high/30 FPS configuration сохраняет поле | E-G2: medium→low сохраняет деформации; E-S: native medium/high и 60/30 FPS подтверждены settings/store без изменения полей; D-P: короткие JS submission metrics | Управление quality/FPS подтверждено; длительные frame-time/PSS бюджеты не оценены. D-P не является измерением GPU/display FPS или физического телефона. |
+| FT-21 | U-K/U-JS: capped delta, pause/resume, pending cancellation | B-C/B-T: исправленный desktop context recovery прошёл | E-G2/G3: local HOME/process restart; E-R: mic revoke/restart; E-P7/P8: Main mic/capture HOME без скрытого restart; E-V2: реальный WebView GL context loss/restore1/1, GL0/сцена сохранена | Исторический E-V FAIL сохранён, исправление и Main lifecycle прошли на новом APK. Отдельный in-process Activity.recreate не выполнялся; новый Activity/WebView при process restart проверен E-G2. |
+| FT-22 | U-JS: particle count меняется, поле/seed неизменны | B: high/30 FPS configuration сохраняет поле | E-G2/E-S: quality/FPS и поля; D-L:4×600с+Orb1800с, все5 p95/slow budgets **FAIL**, отдельный30min app PSS **PASS** | Принятые medium/60 кадровые бюджеты не выполнены на измеренном APK8cb. D-X не отменяет FAIL; GPU/display FPS, физические температура/батарея не измерены. |
 | FT-23 | U-K/U-JS: stale source/bridge/time, skip stale PCM, read cancellation | B: stale source и delayed motion | E-G3: stop инвалидировал первый UUID; второй выбор того же WAV получил новый UUID без потери поля | Разные физические источники и искусственная доставка stale callback в Android UI отдельно не проверялись. |
 | FT-24 | U-K: focus lost → local pause/другие stop; pending-open cleanup | Не относится | E-F: настоящий LOSS_TRANSIENT→local pause, same UUID/поле, без autoresume; явный resume→90.144BPM | Audio focus integration успешна. Физическое отключение гарнитуры не проверено; shell noisy запрещён системой и отмечен skipped. |
-| FT-25 | U-JS: второй pointer, cancel, outside-view up, release/listeners | B: реальный однопальцевый drag | E-G2: однопальцевые жесты | Настоящие multitouch/cancel события Android отдельно не выполнены. |
-| FT-26 | U-K: injected IO failure до replace, concurrent saves, stale revision, lost acknowledgement retry | Не относится | E-G2: revision не уменьшается после restart | Прерывание Android-процесса непосредственно внутри записи не измерялось. |
-| FT-27 | A: scoped audit runtime Android audio/platform/bootstrap и graphics не нашёл recording/network writes; MediaRecorder используется только как константа AudioSource.MIC; manifest без INTERNET | B: MotionSignal без PCM; fetch/WebSocket только в локальном Node CDP tooling | E-G2: сохранённые JSON только settings/shapes; WAV в E-P/G3 синтетические fixtures | Это статический аудит и проверка формата storage, без network packet capture и полного физического IO мониторинга. |
+| FT-25 | U-JS: второй pointer, cancel, outside-view up, release/listeners | B: реальный однопальцевый drag | E-V2: CDP gestures; E-P8: настоящие Android second pointer/CANCEL/outside-UP прошли, первые DOWN после cancel/outside дали revision1→2/3→4 | Новый APK genuine native PASS, старый E-P7 FAIL сохранён. Проверены принятые изменения controls и отсутствие зависшего жеста; физическое удобство отдельно не оценивалось. |
+| FT-26 | U-K: injected IO failure до replace, concurrent saves, stale revision, lost acknowledgement retry | Не относится | E-G2: restart revision; E-P8: Android IOException после force/до replace оставила confirmed7/temp0, save8 успешна; stale7/equal9 отвергнуты при9 | Interrupted write и stale/equal save прошли на Android isolated cache. Это injected IO failure, не процесс kill или отключение питания. |
+| FT-27 | A: scoped runtime audit без recording/network writes; MediaRecorder только AudioSource.MIC; manifest без INTERNET | B: MotionSignal без PCM; fetch/WebSocket только в локальном Node CDP tooling | E-P7/P8: чтение/close local/mic/capture без новых/изменённых файлов в app data/external files/cache; E-G2: JSON только состояние; WAV синтетические | Файловый аудит трёх режимов прошёл на новом APK AVD; сеть подкреплена manifest/static audit. Network packet capture и недоступные системные каталоги/физический IO не проверялись. |
 | FT-28 | U-JS: воспроизводимая геометрия | B: кадры четырёх пресетов | E-S: native кадры всех четырёх форм и параметры для G4 | **Принято пользователем:** внешний вид Orb, Ribbon, Cloud и Pixel Cloud по четырём статическим native PNG. Плавность, динамический комфорт и физический телефон не оценивались этим решением. |
-| FT-29 | U-K/U-JS: palette/stops wire и настройки | B: штатные white/pink/lilac/spectrum при пресетах | E-S: все штатные/custom палитры и HEX через native UI, корректные stops/native store и неизменные поля; E-G2: restore штатных Orb/Ribbon | Управление цветом подтверждено; эстетика четырёх показанных штатных пресетов принята вместе с формами. Плавность цветовых переходов остаётся pending; все палитры после отдельного restart не перебирались. |
+| FT-29 | U-K/U-JS: palette/stops wire и настройки | B: штатные white/pink/lilac/spectrum при пресетах | E-S: native палитры/HEX/store; E-V2: actual texture smoothing,5 отдельных palette restart,45 GPU channels совпали с linear-sRGB expected; seed/деформации сохранены | Технические smoothing/restore assertions прошли. G4 принял статические кадры штатных пресетов; эстетика движения/цветовых переходов человеком отдельно не оценивалась. |
 
 ## Контрактные проверки
 
@@ -194,20 +328,38 @@
 |---|---|---|
 | CT-01 | U-JS: seed/count/version детерминированы, конечность и limits; B: все четыре формы рисуются | Не доказательство визуального соответствия референсу. |
 | CT-02 | U-JS: detached snapshot, falloff, revision/reset, bounded controls; E-G2: поля сохранены между формами/quality/restart; E-S: UI settings не меняют seed/controls/revision всех форм | Touch комфорт и физическая «упругость» отдельно не измерялись. |
-| CT-03 | U-K: normalized features/motion, null BPM, bounded history, phase/runtime/source/time invariants; E-G3: native PCM90BPM и782 наблюдения фазы при pause/sync/source stop | Synthetic fixtures; точность реальной музыки ещё не измерялась. |
+| CT-03 | U-K: normalized features/motion, null BPM, bounded history, phase/runtime/source/time invariants; E-G3:782наблюдения pause/sync/source stop; E-M:2128наблюдений PCM90→120/silence/irregular/EOF, phase/slope/normalization | Synthetic fixtures; точность реальной музыки ещё не измерялась. E-M относится к прежнему APK8cb. |
 | CT-04 | U-K/U-JS: shared golden/negative fixtures, enum/Vec3, versions/oversize/stale, pre-ready queue limit; B/E-G2: handshake и snapshot | Native bridge recreation при process/context failure отдельно не проверено. |
-| CT-05 | U-K: atomic temp/replace, stale saves, migration, absent/corrupt, IO interruption; E-G2: save/restore/corruption fallback | Отключение питания и процесс kill внутри Android IO не проверялись. |
+| CT-05 | U-K: atomic temp/replace, stale saves, migration, absent/corrupt, IO interruption; E-G2: save/restore/corruption fallback; E-P8: Android injected after-force/before-move failure, cleanup temp0, recovery save, stale/equal rejection | Android interruption здесь injected IOException. Отключение питания и процесс kill внутри IO не выполнялись. |
 | CT-06 | A: нет запрещённых импортов в проверенных domain/application файлах | Статическая проверка перечисленных правил, не доказательство всей архитектуры. |
-| CT-07 | U-K/U-JS: close/dispose/stop повторно, pending requests/read/open, late-open cleanup; B: context recovery/dispose; E-G2/G3/R/F: lifecycle; E-P: capture revoke и повторный mic close | Это эмулятор и модель; физический lifecycle отдельно не проверен. |
+| CT-07 | U-K/U-JS: close/dispose/stop, pending/late cleanup; B-C/B-T:2 loss/restore+quality/final dispose без old-generation GPU deletes; E-G2/G3/R/F/P/P7/P8: lifecycle; E-V2: native loss/restore1/1 GL0, поле сохранено | Исправления native GPU cleanup и genuine touchcancel прошли на новом APK, старые E-V/E-P7 FAIL сохранены. Физический lifecycle отдельно не проверен. |
 | CT-08 | A: notices/версии; U-JS: генераторы; B: GLSL без ошибок | Capture source compatibility и устройство не подтверждаются библиотечными notices. |
 
 ## Оставшаяся приёмка
 
-Статический внешний вид четырёх форм принят пользователем по G4. Остаются
-динамическая оценка движения/цветовых переходов/касания и физическая матрица источников/выходов.
-Функциональные native настройки подтверждены совокупностью двух прогонов E-S;
-единого полного успешного прогона нет. Завершённого отчёта длительных измерений пока нет.
-Пользователь принял бюджеты эмулятора: medium/60FPS, p95≤20мс, доля кадров>25мс<5%,
-рост app PSS за30мин≤32MiB. Длительные прогоны ожидаются; по10мин каждого пресета
-и по30мин памяти/батареи/нагрева ещё не выполнены. Короткий D-P не оценивает эти бюджеты;
-длительные FPS/frame-time/latency/память и физические температура/батарея не объявляются прошедшими.
+**MVP не объявляется принятым.** Статический внешний вид четырёх форм принят по G4,
+но принятые кадровые бюджеты выбранного эмулятора в D-L не выполнены. Отдельный
+30-минутный бюджет app PSS выполнен. Настройки E-S подтверждены совокупностью двух
+прогонов. Старый E-V завершился FAIL; новый полный E-V2 завершился PASS.
+Native gesture E-P7 прежнего APK завершился FAIL; финальный E-P8 нового APK —8/8 PASS,
+включая genuine Android cancel/outside и injected interrupted write/stale saves.
+
+Для просмотра человеком приложено [немое видео четырёх форм](../device/results/motion-preview-2026-10-17T22-36-01-416Z/README.md).
+Оно не является оценкой комфорта или измерением FPS. После него
+[финальная сверка](../device/results/final-state-2026-10-17T22-38-31-040Z/README.md)
+подтвердила исходную semantic scene, автономию, GL0 и hash установленного APK.
+
+| Приоритет / область | Текущий факт | Что ещё подтвердить |
+|---|---|---|
+| P0, FT-22/NFR-01 | D-L: p95/slow **FAIL5/5**, память **PASS** на APK8cb | Достичь принятых кадровых бюджетов и измерить соответствующий runtime либо получить явное решение пользователя о дальнейшей приёмке с этим отклонением; диагностика D-X сама не закрывает требование. |
+| Отдельная человеческая оценка | G4 принял четыре статических native PNG; E-V2 имеет технические cycle/rotation/decay/palette assertions | Динамический комфорт движения/цветовых переходов и удобство жеста человеком не приняты автоматически. |
+
+Физический телефон, API29, реальные сторонние плееры, физический микрофон/выход,
+гарнитура, температура и батарея остаются отдельными непроверенными условиями;
+их отсутствие не объявляется блокером выбранной пользователем эмуляторной матрицы.
+Сеть не снималась packet capture; действуют только указанные manifest/static и
+файловые доказательства E-P7/P8. D-L/E-P7/E-V относятся к прежнему APK8cb;
+E-V2/E-P8 — к новому9b59177…eae3e. D-L не превращается в performance PASS после
+исправлений context/touchcancel. Отдельный in-process Activity.recreate, process kill
+внутри IO и отключение питания не выполнены; это дополнительные непроверенные
+условия, они не выдаются за результаты E-G2 restart/E-P8 injected failure.

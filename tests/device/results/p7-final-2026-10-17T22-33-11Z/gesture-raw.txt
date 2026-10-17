@@ -1,0 +1,266 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainNativeGestureInputTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.MainNativeGestureInputTest:
+INSTRUMENTATION_STATUS: test=secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"4e3660e6-f4a1-418a-8f2b-b598f89a703a"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"4e3660e6-f4a1-418a-8f2b-b598f89a703a","elapsedMs":234,"jsElapsedMs":0.30000000074505806,"responseId":"4e3660e6-f4a1-418a-8f2b-b598f89a703a","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"4735f00f-cbde-4f81-82fa-9cd21e2b2c80"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"4735f00f-cbde-4f81-82fa-9cd21e2b2c80","elapsedMs":204,"jsElapsedMs":0.2999999998137355,"responseId":"4735f00f-cbde-4f81-82fa-9cd21e2b2c80","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"1d0c32f8-cfc0-405e-bf06-157fc19e7432"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"1d0c32f8-cfc0-405e-bf06-157fc19e7432","elapsedMs":211,"jsElapsedMs":0.20000000018626451,"responseId":"1d0c32f8-cfc0-405e-bf06-157fc19e7432","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"e3b8a26c-aadb-4585-a045-07a81e488069"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"e3b8a26c-aadb-4585-a045-07a81e488069","elapsedMs":161,"jsElapsedMs":0.09999999962747097,"responseId":"e3b8a26c-aadb-4585-a045-07a81e488069","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"1f654bfa-f2bc-457d-a2fe-60bd34887418"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"1f654bfa-f2bc-457d-a2fe-60bd34887418","elapsedMs":225,"jsElapsedMs":0.20000000018626451,"responseId":"1f654bfa-f2bc-457d-a2fe-60bd34887418","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"b48425f2-3723-429c-bb56-62a77f449704"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"b48425f2-3723-429c-bb56-62a77f449704","elapsedMs":224,"jsElapsedMs":0.09999999962747097,"responseId":"b48425f2-3723-429c-bb56-62a77f449704","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"c15d80c5-6157-4789-84db-5ea4ca61aa2f"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"c15d80c5-6157-4789-84db-5ea4ca61aa2f","elapsedMs":160,"jsElapsedMs":0.10000000055879354,"responseId":"c15d80c5-6157-4789-84db-5ea4ca61aa2f","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"9345d41e-5559-44e0-9e19-13d3b51df6a8"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"9345d41e-5559-44e0-9e19-13d3b51df6a8","elapsedMs":205,"jsElapsedMs":0.09999999962747097,"responseId":"9345d41e-5559-44e0-9e19-13d3b51df6a8","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"2710247d-3974-4ab3-8803-20727bb70bc7"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"2710247d-3974-4ab3-8803-20727bb70bc7","elapsedMs":198,"jsElapsedMs":0.09999999962747097,"responseId":"2710247d-3974-4ab3-8803-20727bb70bc7","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"ec1ea0e9-41d6-4ba4-b58c-4333d3047b60"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"ec1ea0e9-41d6-4ba4-b58c-4333d3047b60","elapsedMs":196,"jsElapsedMs":0.09999999962747097,"responseId":"ec1ea0e9-41d6-4ba4-b58c-4333d3047b60","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-first-down","label":"First DOWN after ACTION_CANCEL must start a gesture","changed":true,"x":540.0,"y":1170.0}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"90a65f09-715d-4a20-9576-a835cc8835a2"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"90a65f09-715d-4a20-9576-a835cc8835a2","elapsedMs":195,"jsElapsedMs":0.19999999925494194,"responseId":"90a65f09-715d-4a20-9576-a835cc8835a2","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"9b3cc221-2993-42c8-b155-d0d8ab28e7f4"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"9b3cc221-2993-42c8-b155-d0d8ab28e7f4","elapsedMs":224,"jsElapsedMs":0.2999999998137355,"responseId":"9b3cc221-2993-42c8-b155-d0d8ab28e7f4","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"52841b3f-636a-4f79-a993-a20522b9f51d"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"52841b3f-636a-4f79-a993-a20522b9f51d","elapsedMs":171,"jsElapsedMs":0.20000000018626451,"responseId":"52841b3f-636a-4f79-a993-a20522b9f51d","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"2ed98b53-6fdb-4a23-bfdb-11d832f9c866"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"2ed98b53-6fdb-4a23-bfdb-11d832f9c866","elapsedMs":194,"jsElapsedMs":0.20000000018626451,"responseId":"2ed98b53-6fdb-4a23-bfdb-11d832f9c866","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-first-down","label":"First DOWN after outside ACTION_UP must start a gesture","changed":true,"x":540.0,"y":1170.0}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"f2d4d3b3-5e23-42e3-9965-af50bd322b78"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"f2d4d3b3-5e23-42e3-9965-af50bd322b78","elapsedMs":199,"jsElapsedMs":0.20000000018626451,"responseId":"f2d4d3b3-5e23-42e3-9965-af50bd322b78","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"fd50ead1-89e4-4ea7-a49b-9bb0332aa37f"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"fd50ead1-89e4-4ea7-a49b-9bb0332aa37f","elapsedMs":225,"jsElapsedMs":0.20000000018626451,"responseId":"fd50ead1-89e4-4ea7-a49b-9bb0332aa37f","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":0,"type":"pointerdown","phase":"capture","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":11429.100000000559,"revision":0.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":1,"type":"pointerdown","phase":"bubble","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":11442.400000000373,"revision":1.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":2,"type":"touchstart","phase":"capture","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":11453.600000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":3,"type":"touchstart","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":11453.600000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":4,"type":"pointerdown","phase":"capture","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":12210.200000000186,"revision":1.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":5,"type":"pointerdown","phase":"bubble","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":12222.799999999814,"revision":1.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":6,"type":"touchstart","phase":"capture","pointerId":null,"pointerType":null,"touchCount":2.0,"changedTouchIds":1.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12225.100000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":7,"type":"touchstart","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":2.0,"changedTouchIds":1.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12225.100000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":8,"type":"pointermove","phase":"capture","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":98.18182373046875,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":12310.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":9,"type":"pointermove","phase":"bubble","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":98.18182373046875,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":12311.0,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":10,"type":"touchmove","phase":"capture","pointerId":null,"pointerType":null,"touchCount":2.0,"changedTouchIds":1.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12311.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":11,"type":"touchmove","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":2.0,"changedTouchIds":1.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12311.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":12,"type":"pointerup","phase":"capture","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":12678.200000000186,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":13,"type":"pointerup","phase":"bubble","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":true,"time":12678.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":14,"type":"lostpointercapture","phase":"capture","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":false,"time":12678.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":15,"type":"lostpointercapture","phase":"bubble","pointerId":3.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":66.76349639892578,"y":612.6544799804688,"target":"CANVAS","captured":false,"time":12678.700000000186,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":16,"type":"touchend","phase":"capture","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":1.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12679.200000000186,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":17,"type":"touchend","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":1.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12679.299999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":18,"type":"touchcancel","phase":"capture","pointerId":null,"pointerType":null,"touchCount":0.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12704.299999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":19,"type":"touchcancel","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":0.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":12706.799999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":20,"type":"pointerdown","phase":"capture","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":13446.0,"revision":1.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":21,"type":"pointerdown","phase":"bubble","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":13470.100000000559,"revision":2.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":22,"type":"touchstart","phase":"capture","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":13501.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":23,"type":"touchstart","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":13501.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":24,"type":"pointermove","phase":"capture","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":-7.2727274894714355,"y":-7.2727274894714355,"target":"CANVAS","captured":true,"time":14173.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":25,"type":"pointermove","phase":"bubble","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":-7.2727274894714355,"y":-7.2727274894714355,"target":"CANVAS","captured":true,"time":14174.600000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":26,"type":"touchmove","phase":"capture","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":14174.799999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":27,"type":"touchmove","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":14174.900000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":28,"type":"pointerup","phase":"capture","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":-7.2727274894714355,"y":-7.2727274894714355,"target":"CANVAS","captured":true,"time":14240.700000000186,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":29,"type":"pointerup","phase":"bubble","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":-7.2727274894714355,"y":-7.2727274894714355,"target":"CANVAS","captured":false,"time":14243.100000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":30,"type":"lostpointercapture","phase":"capture","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":-7.2727274894714355,"y":-7.2727274894714355,"target":"CANVAS","captured":false,"time":14243.299999999814,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":31,"type":"lostpointercapture","phase":"bubble","pointerId":2.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":-7.2727274894714355,"y":-7.2727274894714355,"target":"CANVAS","captured":false,"time":14243.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":32,"type":"touchend","phase":"capture","pointerId":null,"pointerType":null,"touchCount":0.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":14243.900000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":33,"type":"touchend","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":0.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":14244.0,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":34,"type":"pointerdown","phase":"capture","pointerId":5.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":14993.200000000186,"revision":3.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":35,"type":"pointerdown","phase":"bubble","pointerId":5.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":15013.900000000373,"revision":4.0,"m00":0.9848743081092834,"m02":-0.17284049093723297,"m20":0.1731233298778534,"m22":0.9844965934753418}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":36,"type":"touchstart","phase":"capture","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":15020.0,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":37,"type":"touchstart","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":1.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":15020.100000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":38,"type":"pointerup","phase":"capture","pointerId":5.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":true,"time":15727.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":39,"type":"pointerup","phase":"bubble","pointerId":5.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":false,"time":15728.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":40,"type":"lostpointercapture","phase":"capture","pointerId":5.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":false,"time":15728.5,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":41,"type":"lostpointercapture","phase":"bubble","pointerId":5.0,"pointerType":"touch","touchCount":null,"changedTouchIds":null,"trusted":true,"x":196.3636474609375,"y":425.4545593261719,"target":"CANVAS","captured":false,"time":15728.600000000559,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":42,"type":"touchend","phase":"capture","pointerId":null,"pointerType":null,"touchCount":0.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":15729.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"native-dom-event","index":43,"type":"touchend","phase":"bubble","pointerId":null,"pointerType":null,"touchCount":0.0,"changedTouchIds":0.0,"trusted":true,"x":null,"y":null,"target":"CANVAS","captured":null,"time":15729.400000000373,"revision":null,"m00":null,"m02":null,"m20":null,"m22":null}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"546bcc4f-9157-4165-ad43-15dea75a4171"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"546bcc4f-9157-4165-ad43-15dea75a4171","elapsedMs":211,"jsElapsedMs":0.09999999962747097,"responseId":"546bcc4f-9157-4165-ad43-15dea75a4171","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainNativeGestureInputTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=secondPointerIsIgnoredAndCancelAndOutsideUpAllowNextGesture
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 20.914
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

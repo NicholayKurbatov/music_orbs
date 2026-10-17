@@ -1,0 +1,107 @@
+{
+  "settings": {
+    "shapeId": "orb",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0,
+    "amplitude": 0,
+    "touchSensitivity": 1,
+    "musicSync": false,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "white",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FFFFFF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFFFFF"
+      }
+    ]
+  },
+  "shapes": [
+    {
+      "shapeId": "orb",
+      "seed": 157,
+      "generatorVersion": 1,
+      "revision": 55,
+      "controls": [
+        {
+          "center": [
+            -0.33840300563039166,
+            0.19005614057831788,
+            0.8503146673583988
+          ],
+          "delta": [
+            0,
+            0,
+            0.025
+          ],
+          "radius": 0.5
+        },
+        {
+          "center": [
+            -0.3453775377769701,
+            0.1910747950798396,
+            0.8677254143616047
+          ],
+          "delta": [
+            0,
+            0,
+            0.025
+          ],
+          "radius": 0.5
+        },
+        {
+          "center": [
+            -0.3526403815458363,
+            0.19213555848927255,
+            0.885855882861282
+          ],
+          "delta": [
+            -0.18557819567821932,
+            0.002939804800626431,
+            -0.049512353583488246
+          ],
+          "radius": 0.5
+        },
+        {
+          "center": [
+            -0.352911941953435,
+            0.19217522082444027,
+            0.8865337877663605
+          ],
+          "delta": [
+            0,
+            0,
+            0.025
+          ],
+          "radius": 0.5
+        }
+      ]
+    },
+    {
+      "shapeId": "ribbon",
+      "seed": 254,
+      "generatorVersion": 1,
+      "revision": 0,
+      "controls": []
+    },
+    {
+      "shapeId": "cloud",
+      "seed": 351,
+      "generatorVersion": 1,
+      "revision": 0,
+      "controls": []
+    },
+    {
+      "shapeId": "pixel-cloud",
+      "seed": 448,
+      "generatorVersion": 1,
+      "revision": 0,
+      "controls": []
+    }
+  ]
+}

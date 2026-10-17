@@ -32,6 +32,14 @@ jobs:
         run: MUSIC_ORBS_BROWSER="$(command -v google-chrome)" npm run test:browser --prefix graphics
       - name: JVM без Android SDK
         run: bash gradlew -PjvmOnly :core:test --console=plain
+      - name: Синтаксис device runners и синтетическая PCM-фикстура
+        run: |
+          node --check scripts/android-visual-acceptance.mjs
+          node --check scripts/android-motion-transitions.mjs
+          node --check scripts/android-context-probe.mjs
+          node --check scripts/android-palette-probe.mjs
+          node --check scripts/android-render-probe.mjs
+          node scripts/android-motion-transitions.mjs --self-check
       - name: Документация и направления импортов
         run: node scripts/check-project.mjs
       - name: OpenSpec
