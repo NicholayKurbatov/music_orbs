@@ -1,0 +1,100 @@
+{
+  "motion": {
+    "sourceSessionId": "none",
+    "timestampSeconds": 266.1191744,
+    "bpm": null,
+    "slowCycleSeconds": 23.98142297036361,
+    "phase": 0.696356551925632,
+    "energy": 0,
+    "intensity": 0,
+    "confidence": 0,
+    "mode": "autonomous"
+  },
+  "snapshot": {
+    "settings": {
+      "shapeId": "orb",
+      "materialId": "dots",
+      "colorHex": "#FFFFFF",
+      "paletteId": "white",
+      "paletteStops": [
+        {
+          "offset": 0,
+          "colorHex": "#FFFFFF"
+        },
+        {
+          "offset": 1,
+          "colorHex": "#FFFFFF"
+        }
+      ],
+      "speed": 0.5,
+      "amplitude": 0.3,
+      "touchSensitivity": 1,
+      "musicSync": true,
+      "quality": "medium",
+      "targetFps": 60
+    },
+    "shapes": [
+      {
+        "shapeId": "orb",
+        "seed": 157,
+        "generatorVersion": 1,
+        "revision": 39,
+        "controls": [
+          {
+            "center": [
+              -0.18297254557956785,
+              0.16072364509300185,
+              0.8719116574583232
+            ],
+            "delta": [
+              0.19079700887778026,
+              0.18885753449359116,
+              0.06451013876152598
+            ],
+            "radius": 0.5
+          },
+          {
+            "center": [
+              0.6807427786546203,
+              0.3193901842557667,
+              0.7065589010104878
+            ],
+            "delta": [
+              0.10660487854475653,
+              0.19050908687320078,
+              -0.1197205018137594
+            ],
+            "radius": 0.5
+          }
+        ]
+      },
+      {
+        "shapeId": "ribbon",
+        "seed": 254,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "cloud",
+        "seed": 351,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "pixel-cloud",
+        "seed": 448,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      }
+    ]
+  },
+  "canvas": {
+    "width": 393,
+    "height": 851
+  },
+  "glError": 0,
+  "now": 266295
+}

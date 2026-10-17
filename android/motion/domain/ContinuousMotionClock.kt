@@ -65,7 +65,7 @@ class ContinuousMotionClock(
                 candidateAge = 0.0
             }
             candidateAge += dt
-            if (candidateAge + 1e-12 >= MotionPolicy.TEMPO_HOLD_SECONDS) acceptedBpm = candidateBpm
+            if (candidateAge + 1e-12 >= MotionPolicy.TEMPO_HOLD_SECONDS) acceptedBpm = bpm
         } else {
             acceptedBpm = null
             candidateBpm = null

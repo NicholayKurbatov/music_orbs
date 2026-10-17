@@ -7,7 +7,7 @@ import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { unzipSync } from 'fflate';
 import { connectLocalCdp } from './cdp-client.mjs';
-import { profileOptions, parseMemory, memorySummary, segmentComplete } from './android-profile-options.mjs';
+import { profileOptions, parseMemory, memorySummary, segmentComplete, screenTimeoutPlan } from './android-profile-options.mjs';
 
 const options = profileOptions(process.argv.slice(2));
 const root = fileURLToPath(new URL('../../', import.meta.url));
@@ -57,7 +57,7 @@ const report = {
   nativeUiDuringRun: 'Тестовые settings передаются через локальный CDP. Нативная панель во время теста может показывать baseline; после теста baseline settings восстанавливаются.',
   segments: [], memory: [], errors: [], droppedErrors: 0,
 };
-let cdp, baseline, profiling = false, interrupted = false;
+let cdp, baseline, profiling = false, interrupted = false, screenTimeoutChanged = false;
 process.on('SIGINT', () => { interrupted = true; });
 process.on('SIGTERM', () => { interrupted = true; });
 const stateExpression = `(async()=>({visible:!document.hidden,viewport:[innerWidth,innerHeight,devicePixelRatio],snapshot:await window.musicOrbs.snapshot(),motion:window.musicOrbs.visualState(),profilingAvailable:typeof window.musicOrbs.profiling?.start==='function',assets:[...document.querySelectorAll('script[src],link[rel=stylesheet]')].map(e=>e.src||e.href),glVersion:document.querySelector('canvas').getContext('webgl2')?.getParameter(7938)}))()`;
@@ -85,6 +85,10 @@ try {
     if (!initial.visible || initial.motion.sourceSessionId !== 'none') throw new Error('Нужна foreground-сцена с явно остановленным аудио.');
     if (!options.screenshotsOnly && !initial.profilingAvailable) throw new Error('Установленный APK не содержит profiling hook. Пересоберите graphics и APK.');
     baseline = initial.snapshot; await write('baseline.json', baseline);
+    report.screenAwake = { ...screenTimeoutPlan(await shell('settings', 'get', 'system', 'screen_off_timeout'), options.durations), restored: false };
+    await checkpoint(); screenTimeoutChanged = true;
+    await shell('settings', 'put', 'system', 'screen_off_timeout', String(report.screenAwake.temporarySystemTimeoutMs));
+    if (Number((await shell('settings', 'get', 'system', 'screen_off_timeout')).trim()) !== report.screenAwake.temporarySystemTimeoutMs) throw new Error('Test AVD did not confirm screen timeout.');
     const props = await shell('getprop');
     const prop = key => new RegExp(`^\\[${key.replaceAll('.', '\\.')}\\]: \\[(.*)\\]$`, 'm').exec(props)?.[1] ?? null;
     report.environment = { deviceClass: 'emulator', model: prop('ro.product.model'), manufacturer: prop('ro.product.manufacturer'), android: prop('ro.build.version.release'), sdk: prop('ro.build.version.sdk'), fingerprint: prop('ro.build.fingerprint'), webView: (await shell('dumpsys', 'webviewupdate')).split(/\r?\n/).find(line => line.includes('Current WebView package'))?.trim(), viewport: initial.viewport, glVersion: initial.glVersion };
@@ -164,6 +168,16 @@ try {
       await cdp.evaluate('window.__musicOrbsDiagnosticsEnabled=false');
     } catch (error) { report.cleanupFailure = cleanError(error); report.result = 'incomplete'; process.exitCode = 1; }
     cdp.close();
+  }
+  if (screenTimeoutChanged) {
+    try {
+      const original = report.screenAwake.originalSystemTimeoutMs;
+      if (original === null) await shell('settings', 'delete', 'system', 'screen_off_timeout');
+      else await shell('settings', 'put', 'system', 'screen_off_timeout', String(original));
+      const restored = (await shell('settings', 'get', 'system', 'screen_off_timeout')).trim();
+      if (restored !== String(original)) throw new Error('Screen timeout restore not confirmed.');
+      report.screenAwake.restored = true;
+    } catch (error) { report.screenAwake.restoreFailure = cleanError(error); report.result = 'incomplete'; process.exitCode = 1; }
   }
   report.finishedAt = new Date().toISOString(); await checkpoint();
   console.log(JSON.stringify({ result: report.result, output: path.relative(root, output).split(path.sep).join('/'), phoneAcceptance: 'not-assessed' }));

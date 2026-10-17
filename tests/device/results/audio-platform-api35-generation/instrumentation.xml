@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="musicorbs.platform.audio.PlaybackCaptureTest" tests="4" failures="0" errors="0" skipped="0" time="15.112" timestamp="2026-10-17T20:05:39" hostname="localhost">
+  <properties>
+    <property name="device" value="MusicOrbs_API35(AVD) - 15" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="canceledSystemConsentLeavesNoProjectionServiceOrAudioRecord" classname="musicorbs.platform.audio.PlaybackCaptureTest" time="3.401" />
+  <testcase name="explicitConsentCapturesSyntheticPcmAndRevocationStopsIt" classname="musicorbs.platform.audio.PlaybackCaptureTest" time="5.234" />
+  <testcase name="closingPendingBindingRejectsLateCallbackWithoutRetiringNextAcquire" classname="musicorbs.platform.audio.PlaybackCaptureTest" time="3.669" />
+  <testcase name="repeatedPauseResumeKeepsActiveLongDecoderAlive" classname="musicorbs.platform.audio.LocalFilePlaybackTest" time="1.964" />
+</testsuite>

@@ -1,0 +1,24 @@
+﻿{
+    "measuredAtUtc":  "2026-10-17T20:12:03Z",
+    "command":  ".\\gradlew.bat :app:assembleDebug --console=plain",
+    "result":  "BUILD SUCCESSFUL in 3s",
+    "apk":  "android/build/outputs/apk/debug/app-debug.apk",
+    "sha256":  "17E22E4A8373604AA0FCB4D134E273827EBBB358CD450F27D0A13D5C79AAB605",
+    "install":  "adb install -r: Success; pm path exists",
+    "launch":  {
+                   "component":  "musicorbs.app/musicorbs.bootstrap.MainActivity",
+                   "status":  "ok",
+                   "state":  "COLD",
+                   "totalMs":  3155
+               },
+    "assets":  [
+                   "assets/assets/index-D4yFGS0Q.js",
+                   "assets/assets/index-BBqcT9Hu.css"
+               ],
+    "licenseFiles":  8,
+    "includedFixes":  [
+                          "Main: принадлежность focus request и noisy для всех источников",
+                          "BeatClock: уточнение BPM внутри hysteresis после hold"
+                      ],
+    "note":  "Runtime adapters не изменялись после успешных целевых 4 instrumentation tests; device smoke выполняются отдельно"
+}

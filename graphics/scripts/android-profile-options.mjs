@@ -47,3 +47,10 @@ export function segmentComplete(metrics, requestedSeconds) {
     && metrics.durationSeconds - metrics.activeSeconds < 0.1
     && metrics.counters.contextLosses === 0 && metrics.counters.renderErrors === 0;
 }
+
+export function screenTimeoutPlan(raw, durations) {
+  const text = raw.trim();
+  if (text !== 'null' && (!/^\d+$/.test(text) || Number(text) > 2147483647)) throw new Error('Unknown screen_off_timeout; preserving device setting.');
+  return { originalSystemTimeoutMs: text === 'null' ? null : Number(text),
+    temporarySystemTimeoutMs: Math.max(5400000, Math.ceil((durations.reduce((a, b) => a + b, 0) + 600) * 1000)) };
+}

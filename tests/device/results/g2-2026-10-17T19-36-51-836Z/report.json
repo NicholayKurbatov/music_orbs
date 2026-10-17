@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T19:36:51.838Z",
+  "serial": "emulator-5554",
+  "appId": "musicorbs.app",
+  "result": "pass",
+  "steps": [
+    {
+      "id": "open-without-audio-permission",
+      "result": "pass",
+      "details": "Native settings доступны без RECORD_AUDIO; системный permission prompt отсутствует.",
+      "scenarios": [
+        "FT-01 (native UI, partial)"
+      ]
+    },
+    {
+      "id": "deform-orb",
+      "result": "pass",
+      "details": "orb: 3 controls; native revision 6",
+      "scenarios": [
+        "FT-04 (input→snapshot)",
+        "FT-07"
+      ]
+    },
+    {
+      "id": "deform-ribbon",
+      "result": "pass",
+      "details": "ribbon: 1 controls; native revision 8",
+      "scenarios": [
+        "FT-04 (input→snapshot)",
+        "FT-07"
+      ]
+    },
+    {
+      "id": "quality-preserves-fields",
+      "result": "pass",
+      "details": "quality=low; seed/controls/revision формы сохранены.",
+      "scenarios": [
+        "FT-22 (state)",
+        "FT-11 (subset)"
+      ]
+    },
+    {
+      "id": "background-resume",
+      "result": "pass",
+      "details": "После HOME и возврата новая Configure подтверждена; settings/controls/seed сохранены.",
+      "scenarios": [
+        "FT-21 (emulator state/lifecycle)"
+      ]
+    },
+    {
+      "id": "force-stop-restore",
+      "result": "pass",
+      "details": "После перезапуска UI и новый snapshot сохраняют обе деформации, seed и quality; revision не уменьшается.",
+      "scenarios": [
+        "FT-07",
+        "FT-08 (emulator)"
+      ]
+    },
+    {
+      "id": "reset-active-only",
+      "result": "pass",
+      "details": "Orb controls пусты; Ribbon, settings и seed сохранены.",
+      "scenarios": [
+        "FT-10 (emulator)"
+      ]
+    },
+    {
+      "id": "optional-corruption-fallback",
+      "result": "pass",
+      "details": "Неверная schema вызывает понятный fallback; файл до новой явной записи сохранён.",
+      "scenarios": [
+        "FT-09 (emulator)"
+      ]
+    }
+  ],
+  "screenshots": [
+    "opened-without-audio-permission.png",
+    "orb-deformed.png",
+    "ribbon-deformed.png",
+    "quality-changed.png",
+    "background-resumed.png",
+    "restored-ribbon.png",
+    "reset-orb.png",
+    "corruption-fallback.png"
+  ],
+  "limits": [
+    "Android Emulator, без физического устройства.",
+    "Форма и настройки проверяются через сохранённый snapshot и native UI.",
+    "Визуальная эстетика, FPS, нагрев, звук и доступность capture этим сценарием не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35",
+    "webView": "Current WebView package (name, version): (com.android.webview, 124.0.6367.219)"
+  },
+  "finishedAt": "2026-10-17T19:39:18.248Z"
+}

@@ -1,0 +1,37 @@
+{
+    "measuredAtUtc":  "2026-10-17T19:52:32Z",
+    "command":  ".\\gradlew.bat :app:connectedDebugAndroidTest :app:assembleDebug :core:test --write-locks --console=plain",
+    "device":  {
+                   "avd":  "MusicOrbs_API35",
+                   "profile":  "Pixel 5",
+                   "android":  "15",
+                   "api":  35,
+                   "systemImage":  "AOSP x86_64 revision 2",
+                   "emulator":  "37.2.12",
+                   "accelerator":  "WHPX",
+                   "gpu":  "swiftshader_indirect",
+                   "hostAudio":  "Включено: AVD перезапущен без -no-audio",
+                   "webView":  "124.0.6367.219"
+               },
+    "instrumentation":  {
+                            "tests":  6,
+                            "failures":  0,
+                            "errors":  0,
+                            "local":  "Whole-block heard/runtime gate; pause/resume без seek; pause/seek/resume/EOF; неподдерживаемый файл",
+                            "microphone":  "Явный open даёт конечный mono PCM48k; ненулевая амплитуда не утверждается",
+                            "capture":  "Системное согласие и Cancel через UiAutomator; собственный AudioTrack 440 Гц ALLOW_CAPTURE_BY_ALL даёт конечный ненулевой PCM; отзыв projection вызывает SOURCE_UNAVAILABLE; после Cancel нет foreground service и AudioRecord",
+                            "pcmFiles":  "Нет; сгенерированная локальная WAV-фикстура удаляется после теста"
+                        },
+    "notVerified":  [
+                        "Слышимый выход динамика хоста",
+                        "Сигнал физического микрофона",
+                        "Совместимость сторонних плееров",
+                        "Задержка и производительность физического телефона"
+                    ],
+    "pauseRootCause":  "AudioTrack.write WRITE_BLOCKING может вернуть 0 при pause. Раньше 0 считался SOURCE_UNAVAILABLE. Теперь partial write ждёт resume на condition; ноль не является ошибкой, отрицательные коды остаются ошибками. Epoch очищает PCM, пересекающий паузу; close будит ожидающий writer.",
+    "finalApkAssets":  [
+                           "assets/assets/index-D4yFGS0Q.js",
+                           "assets/assets/index-BBqcT9Hu.css"
+                       ],
+    "apkInstalledAfterTests":  true
+}

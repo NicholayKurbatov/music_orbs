@@ -45,8 +45,9 @@ zoom-handlers с обращением к uScale, отсутствующим в �
 | ashima/webgl-noise | 6abed1e77ed1e18b181627c35f688eb30c9fe75e | Исследование; выбор fork ещё открыт |
 | Eyeing0721/android-internal-audio-recorder | 317a010b26eac74c90c1ad35da1c9b15dcb6216a | Исследование; не vendored |
 
-Версия Three.js пока не выбрана. Версия в демо danlex не является автоматически
-версией нашего приложения. До заимствования проверить API addons и shader dialect.
+Выбрана Three.js 0.186.1 из npm с локальным bundle, без CDN. Danlex и GLSL noise
+не включались; выбор их фрагментов в будущем потребует отдельной проверки
+совместимости API/shader dialect и записи фактических notices.
 
 ## 3. Порядок интеграции после разрешения разработки
 

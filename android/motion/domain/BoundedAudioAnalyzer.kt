@@ -22,6 +22,7 @@ class BoundedAudioAnalyzer(
     private var filled = 0
     private var previousSpectrum = DoubleArray(513)
     private var previousRms = 0.0
+    private var hasPreviousWindow = false
     private val onsets = ArrayDeque<Double>()
     private var lastFlux = 0.0
     private var energyEnvelope = 0.0
@@ -44,6 +45,7 @@ class BoundedAudioAnalyzer(
         filled = 0
         previousSpectrum.fill(0.0)
         previousRms = 0.0
+        hasPreviousWindow = false
         onsets.clear()
         lastFlux = 0.0
         energyEnvelope = 0.0
@@ -107,13 +109,14 @@ class BoundedAudioAnalyzer(
             total += magnitudes[i]
         }
         lastFlux = if (total > 1e-12) (positiveFlux / total).coerceIn(0.0, 1.0) else 0.0
-        if (rms > MotionPolicy.SILENCE_RMS && lastFlux > 0.3 && rms > previousRms * 1.35 &&
+        if (hasPreviousWindow && rms > MotionPolicy.SILENCE_RMS && lastFlux > 0.3 && rms > previousRms * 1.35 &&
             (onsets.isEmpty() || timestamp - onsets.last() >= 0.20)) {
             if (onsets.size == MotionPolicy.MAX_ONSETS) onsets.removeFirst()
             onsets.addLast(timestamp)
         }
         previousSpectrum = magnitudes
         previousRms = rms
+        hasPreviousWindow = true
     }
 
     private fun estimateTempo(timestamp: Double): Pair<Double?, Double> {

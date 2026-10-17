@@ -10,7 +10,7 @@
 - [x] 1.1 Зафиксировать ProfileLimits для settings, particles, controls, payload, pending queue, deadline и motion rate; проверить граничными fixtures и записать единицы/ошибки в docs/spec.md.
 - [x] 1.2 Описать paletteId/stops, стабильное распределение цвета и миграцию colorHex; синхронно обновить Kotlin/TS/schema, проверить одноцветные и многоцветные round-trip fixtures (FR-21, CT-04).
 - [x] 1.3 Зафиксировать wire v1, enum/Vec3 mapping, sourceSessionId без источника и шкалы времени; валидировать golden/negative fixtures обеими сторонами (CT-03/04).
-- [ ] 1.4 Добавить playback-control port для локального источника и правила pause/resume/seek/PCM gap; проверить контракт позиции и обновить docs/spec.md до P5 (FR-11, FT-12).
+- [x] 1.4 Добавить playback-control port для локального источника и правила pause/resume/seek/PCM gap; проверить контракт позиции и обновить docs/spec.md до P5 (FR-11, FT-12).
 - [x] 1.5 Зафиксировать clock smoothing/confidence/BPM/delta policy и тестовые допуски; проверить ожидаемые 21,333 с для 90 BPM/8 тактов и отсутствие сброса фазы (FT-15/16).
 
 ## 2. P1 — build shell, Android; параллельно P0
@@ -45,21 +45,21 @@
 
 ## 6. P5 — AudioSession, Android; после G1, параллельно P2/P3/P4
 
-- [ ] 6.1 Выполнить короткий device spike playback capture с явным согласием; записать устройство/источник/выход/PCM, отказ не считать успешной совместимостью (FT-18/19).
-- [ ] 6.2 Реализовать picker и локальный playback+PCM по playback-control port; проверить cancel/unsupported/play/pause/resume и отсутствие анализа из будущего (FT-12/13).
-- [ ] 6.3 Реализовать capture adapter без WAV writer, закрытие/отзыв/denial; проверить фактический PCM и освобождение ресурсов (FT-18/19, CT-07/08).
-- [ ] 6.4 Реализовать только явно выбранный mic с индикатором; проверить denial/revocation и отсутствие автоматического fallback (FT-20).
-- [ ] 6.5 Реализовать смену сессий, focus/гарнитуру и background stop; проверить stale callbacks и запрет скрытого рестарта (FT-21/23/24).
-- [ ] 6.6 Проверить отсутствие сохранения/передачи PCM, записать matrix, notices адаптированного кода и команды проверки (FT-27); обновить docs/tree.md.
+- [x] 6.1 Выполнить короткий device spike playback capture с явным согласием; записать устройство/источник/выход/PCM, отказ не считать успешной совместимостью (FT-18/19).
+- [x] 6.2 Реализовать picker и локальный playback+PCM по playback-control port; проверить cancel/unsupported/play/pause/resume и отсутствие анализа из будущего (FT-12/13).
+- [x] 6.3 Реализовать capture adapter без WAV writer, закрытие/отзыв/denial; проверить фактический PCM и освобождение ресурсов (FT-18/19, CT-07/08).
+- [x] 6.4 Реализовать только явно выбранный mic с индикатором; проверить denial/revocation и отсутствие автоматического fallback (FT-20).
+- [x] 6.5 Реализовать смену сессий, focus/гарнитуру и background stop; проверить stale callbacks и запрет скрытого рестарта (FT-21/23/24).
+- [x] 6.6 Проверить отсутствие сохранения/передачи PCM, записать matrix, notices адаптированного кода и команды проверки (FT-27); обновить docs/tree.md.
 
 ## 7. P6 — Experience, интегратор; после G1, сначала fake ports
 
 - [x] 7.1 Реализовать обе стороны handshake/envelope/request/ack/timeout и latest-value motion; проверить invalid version, oversized, stale source/bridge sessions (CT-04/07).
 - [x] 7.2 Реализовать atomic store, revision и миграцию палитр/снимков; проверить corruption, interrupted write и старую запись после новой (FT-08/09/26, CT-05).
 - [ ] 7.3 Реализовать панель, save/restore и Reset; проверить покрытие всех настроек и изоляцию касаний панели (FT-10/11/29).
-- [ ] 7.4 Связать lifecycle и пересоздание WebView с snapshot/resume; проверить отсутствие огромного delta и скрытого mic/capture restart (FT-21).
-- [ ] 7.5 Пройти G2 с P2/P3: деформировать Orb/Ribbon, сменить форму/quality, сохранить и перезапустить; подтвердить автономное движение изменённого объекта (FT-04–10/22).
-- [ ] 7.6 Пройти G3 с P4/P5: локальный файл → PCM → DSP → bridge → renderer; проверить паузу, sync и смену источника, собрать APK и задокументировать команду и smoke result.
+- [x] 7.4 Связать lifecycle и пересоздание WebView с snapshot/resume; проверить отсутствие огромного delta и скрытого mic/capture restart (FT-21).
+- [x] 7.5 Пройти G2 с P2/P3: деформировать Orb/Ribbon, сменить форму/quality, сохранить и перезапустить; подтвердить автономное движение изменённого объекта (FT-04–10/22).
+- [x] 7.6 Пройти G3 с P4/P5: локальный файл → PCM → DSP → bridge → renderer; проверить паузу, sync и смену источника, собрать APK и задокументировать команду и smoke result.
 
 ## 8. P7 — сквозная приёмка, интегратор; после G3
 

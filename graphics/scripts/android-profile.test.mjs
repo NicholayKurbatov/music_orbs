@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { profileOptions, parseMemory, memorySummary, segmentComplete } from './android-profile-options.mjs';
+import { profileOptions, parseMemory, memorySummary, segmentComplete, screenTimeoutPlan } from './android-profile-options.mjs';
 
 test('default — план, выполнение требует --run; proposal не превращается в accepted', () => {
   const options = profileOptions([]);
@@ -42,4 +42,11 @@ test('30-minute Orb PSS growth отделён от предыдущих пико
     initialPssKiB: 4096, finalPssKiB: 4608, peakPssKiB: 5120, peakGrowthMiB: 1, complete: true,
   });
   assert.equal(memorySummary(samples, 'missing').complete, false);
+});
+
+test('screen timeout сохраняет исходное отсутствие/значение и покрывает длительный run с запасом', () => {
+  assert.deepEqual(screenTimeoutPlan('60000\n', [600, 600, 600, 600, 1800]), { originalSystemTimeoutMs: 60000, temporarySystemTimeoutMs: 5400000 });
+  assert.equal(screenTimeoutPlan('null', [2, 2, 2, 2, 3]).originalSystemTimeoutMs, null);
+  assert.equal(screenTimeoutPlan('30000', [10800, 10800, 10800, 10800, 10800]).temporarySystemTimeoutMs, 54600000);
+  assert.throws(() => screenTimeoutPlan('unknown', [1]), /preserving/);
 });

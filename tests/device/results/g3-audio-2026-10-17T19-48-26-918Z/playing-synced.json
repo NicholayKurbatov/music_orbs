@@ -1,0 +1,100 @@
+{
+  "motion": {
+    "sourceSessionId": "07bc81e4-e14d-485c-bfee-40cad7d05ec9",
+    "timestampSeconds": 241.8230971,
+    "bpm": 90.43408360128568,
+    "slowCycleSeconds": 21.611247370894645,
+    "phase": 0.6332304900893622,
+    "energy": 0.08281499211687822,
+    "intensity": 0.0011607656105249646,
+    "confidence": 0.9565756823821148,
+    "mode": "synced"
+  },
+  "snapshot": {
+    "settings": {
+      "shapeId": "orb",
+      "materialId": "dots",
+      "colorHex": "#FFFFFF",
+      "paletteId": "white",
+      "paletteStops": [
+        {
+          "offset": 0,
+          "colorHex": "#FFFFFF"
+        },
+        {
+          "offset": 1,
+          "colorHex": "#FFFFFF"
+        }
+      ],
+      "speed": 0.5,
+      "amplitude": 0.3,
+      "touchSensitivity": 1,
+      "musicSync": true,
+      "quality": "medium",
+      "targetFps": 60
+    },
+    "shapes": [
+      {
+        "shapeId": "orb",
+        "seed": 157,
+        "generatorVersion": 1,
+        "revision": 39,
+        "controls": [
+          {
+            "center": [
+              -0.18297254557956785,
+              0.16072364509300185,
+              0.8719116574583232
+            ],
+            "delta": [
+              0.19079700887778026,
+              0.18885753449359116,
+              0.06451013876152598
+            ],
+            "radius": 0.5
+          },
+          {
+            "center": [
+              0.6807427786546203,
+              0.3193901842557667,
+              0.7065589010104878
+            ],
+            "delta": [
+              0.10660487854475653,
+              0.19050908687320078,
+              -0.1197205018137594
+            ],
+            "radius": 0.5
+          }
+        ]
+      },
+      {
+        "shapeId": "ribbon",
+        "seed": 254,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "cloud",
+        "seed": 351,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "pixel-cloud",
+        "seed": 448,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      }
+    ]
+  },
+  "canvas": {
+    "width": 393,
+    "height": 851
+  },
+  "glError": 0,
+  "now": 242042.09999999998
+}

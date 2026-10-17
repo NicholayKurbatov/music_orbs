@@ -62,6 +62,15 @@ class MotionClockTest {
         assertEquals("none", ContinuousMotionClock().advance(0.0, null, true).sourceSessionId)
     }
 
+    @Test fun `stable tempo cluster follows refined estimate instead of pinning its first value`() {
+        val clock = ContinuousMotionClock("track-a")
+        repeat(60) { clock.advance(1.0 / 60, features(87.2, time = it / 60.0), true) }
+        var signal = clock.advance(0.0, features(89.1, time = 1.0), true)
+        repeat(2400) { signal = clock.advance(1.0 / 60, features(89.1, time = 1.0 + it / 60.0), true) }
+        assertEquals(89.1, signal.bpm)
+        assertEquals(60.0 / 89.1 * 32, signal.slowCycleSeconds, .001)
+    }
+
     @Test fun `source reset preserves phase and stale data cannot affect new session`() {
         val clock = ContinuousMotionClock("track-a")
         repeat(600) { clock.advance(1.0 / 60, features(), true) }

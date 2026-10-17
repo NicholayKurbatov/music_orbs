@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T20:12:09.057Z",
+  "serial": "emulator-5554",
+  "result": "fail",
+  "steps": [
+    {
+      "id": "ui-picker-pcm-dsp-bridge",
+      "result": "pass",
+      "details": "Настоящий OpenDocument: BPM=90.103, period=21.630, energy=0.1218."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "fixture": {
+    "filename": "music-orbs-90bpm-1792267929292.wav",
+    "bpm": 90,
+    "sampleRate": 48000,
+    "channels": 1,
+    "durationSeconds": 60,
+    "bytes": 5760044,
+    "sha256": "9a35105ae1d1b32c113873db770fd161e9b0e8668ba3946543704da688a149ae",
+    "origin": "Node-generated sine pulses and quiet carrier; не запись аудио."
+  },
+  "tolerances": {
+    "bpm": 2,
+    "steadyCycleSeconds": 0.3,
+    "phaseResidualCycles": 0.015
+  },
+  "failure": "Condition timed out: resume fresh PCM; mode=autonomous; bpm=null; period=23.98673937906715",
+  "finishedAt": "2026-10-17T20:13:22.549Z"
+}

@@ -10,7 +10,7 @@ import java.io.IOException
 import musicorbs.webassets.LocalAssetPolicy
 
 /** Единственный origin обслуживается из APK; остальные запросы закрыты. */
-class LocalAssetsClient(private val assets: AssetManager) : WebViewClient() {
+open class LocalAssetsClient(private val assets: AssetManager) : WebViewClient() {
     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =
         !LocalAssetPolicy.accepts(request.url.toString())
 

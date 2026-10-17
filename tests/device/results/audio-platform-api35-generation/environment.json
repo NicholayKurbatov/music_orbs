@@ -1,0 +1,34 @@
+﻿{
+    "measuredAtUtc":  "2026-10-17T20:05:39Z",
+    "command":  ".\\gradlew.bat :app:connectedDebugAndroidTest \u0027-Pandroid.testInstrumentationRunnerArguments.class=musicorbs.platform.audio.PlaybackCaptureTest,musicorbs.platform.audio.LocalFilePlaybackTest#repeatedPauseResumeKeepsActiveLongDecoderAlive\u0027 :app:assembleDebug --console=plain",
+    "device":  {
+                   "avd":  "MusicOrbs_API35",
+                   "android":  "15",
+                   "api":  35,
+                   "systemImage":  "AOSP x86_64 revision 2",
+                   "emulator":  "37.2.12",
+                   "hostAudio":  "Включено: без -no-audio",
+                   "gpu":  "swiftshader_indirect",
+                   "webView":  "124.0.6367.219"
+               },
+    "instrumentation":  {
+                            "tests":  4,
+                            "failures":  0,
+                            "errors":  0,
+                            "capture":  "Настоящее системное согласие; собственный разрешённый AudioTrack даёт ненулевой PCM, отзыв закрывает AudioRecord; Cancel не создаёт FGS/AudioRecord; реальный service/binder с задержанным callback подтверждает отмену pending acquire и сохранение нового поколения",
+                            "local":  "30 s synthetic WAV; decoder активен; три pause/resume сохраняют UUID, дают свежий runtime PCM и позволяют close без EOF",
+                            "testSeam":  "Для lifecycle regression обёртка Context задерживает доставку настоящего onServiceConnected; сам FGS, binder и MediaProjection системные"
+                        },
+    "apkInstalledAfterTests":  true,
+    "finalApkAssets":  [
+                           "assets/assets/index-D4yFGS0Q.js",
+                           "assets/assets/index-BBqcT9Hu.css"
+                       ],
+    "notVerified":  [
+                        "Слышимый динамик хоста",
+                        "Ненулевой физический микрофон",
+                        "Сторонние плееры",
+                        "Физическая гарнитура",
+                        "Задержка и производительность телефона"
+                    ]
+}

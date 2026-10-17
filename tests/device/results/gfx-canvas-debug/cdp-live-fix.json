@@ -1,0 +1,130 @@
+﻿{
+  "id": 1,
+  "result": {
+    "result": {
+      "type": "object",
+      "value": {
+        "visibility": "visible",
+        "hidden": false,
+        "viewport": [
+          393,
+          851,
+          2.75
+        ],
+        "canvas": {
+          "width": 786,
+          "height": 1702,
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "width": 393,
+            "height": 851,
+            "top": 0,
+            "right": 393,
+            "bottom": 851,
+            "left": 0
+          },
+          "display": "block",
+          "cssWidth": "393px",
+          "cssHeight": "851px"
+        },
+        "gl": {
+          "lost": false,
+          "error": 0,
+          "drawingBuffer": [
+            786,
+            1702
+          ],
+          "viewport": [
+            0,
+            0,
+            786,
+            1702
+          ],
+          "version": "WebGL 2.0 (OpenGL ES 3.0 Chromium)"
+        },
+        "notice": "Коснитесь и потяните форму",
+        "mode": "Автономное движение",
+        "motion": {
+          "sourceSessionId": "none",
+          "timestampSeconds": 321.82350769999994,
+          "bpm": null,
+          "slowCycleSeconds": 24,
+          "phase": 0.9866334833333104,
+          "energy": 0,
+          "intensity": 0,
+          "confidence": 0,
+          "mode": "autonomous"
+        },
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": true,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 14,
+              "controls": [
+                {
+                  "center": [
+                    0.2613769177924515,
+                    0.35975294428030635,
+                    0.838127978291519
+                  ],
+                  "delta": [
+                    0.15073123589254345,
+                    0.10531492428280714,
+                    -0.0367884534049663
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        }
+      }
+    }
+  }
+}

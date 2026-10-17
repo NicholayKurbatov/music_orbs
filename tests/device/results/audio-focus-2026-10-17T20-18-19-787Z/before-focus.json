@@ -1,0 +1,113 @@
+{
+  "motion": {
+    "sourceSessionId": "f2fbd725-dc6a-4883-970b-449ccae1dc9c",
+    "timestampSeconds": 182.3332073,
+    "bpm": 89.85623003194921,
+    "slowCycleSeconds": 23.728169255918125,
+    "phase": 0.713003635627354,
+    "energy": 0.07560071146579447,
+    "intensity": 0.0022940073628518183,
+    "confidence": 0.8068783068783438,
+    "mode": "synced"
+  },
+  "snapshot": {
+    "settings": {
+      "shapeId": "orb",
+      "materialId": "dots",
+      "colorHex": "#FFFFFF",
+      "speed": 0.5,
+      "amplitude": 0.3,
+      "touchSensitivity": 1,
+      "musicSync": true,
+      "quality": "medium",
+      "targetFps": 60,
+      "paletteId": "white",
+      "paletteStops": [
+        {
+          "offset": 0,
+          "colorHex": "#FFFFFF"
+        },
+        {
+          "offset": 1,
+          "colorHex": "#FFFFFF"
+        }
+      ]
+    },
+    "shapes": [
+      {
+        "shapeId": "orb",
+        "seed": 157,
+        "generatorVersion": 1,
+        "revision": 49,
+        "controls": [
+          {
+            "center": [
+              0.27969675157544094,
+              0.2148671133710054,
+              -0.8979217951334634
+            ],
+            "delta": [
+              -0.16877146310582863,
+              0.19514325346922134,
+              -0.014666335705620835
+            ],
+            "radius": 0.5
+          },
+          {
+            "center": [
+              -0.8381225285874779,
+              0.36756559219422463,
+              -0.07269965855335579
+            ],
+            "delta": [
+              0.027125878508172607,
+              0.1820692693307941,
+              0.22161511528106742
+            ],
+            "radius": 0.5
+          },
+          {
+            "center": [
+              -0.7326150284646502,
+              0.285401316520403,
+              0.6170053895275851
+            ],
+            "delta": [
+              0.14950013559478859,
+              0.18924187058389397,
+              0.16503794585187756
+            ],
+            "radius": 0.5
+          }
+        ]
+      },
+      {
+        "shapeId": "ribbon",
+        "seed": 254,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "cloud",
+        "seed": 351,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "pixel-cloud",
+        "seed": 448,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      }
+    ]
+  },
+  "canvas": {
+    "width": 393,
+    "height": 851
+  },
+  "glError": 0,
+  "now": 182472.1000000001
+}

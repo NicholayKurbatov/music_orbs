@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T20:06:44.883Z",
+  "serial": "emulator-5554",
+  "result": "fail",
+  "steps": [
+    {
+      "id": "real-focus-loss",
+      "result": "pass",
+      "details": "Debug service запросил настоящий AUDIOFOCUS_GAIN_TRANSIENT без окна; Main приостановил local playback, UUID и поле сохранены."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "fixture": {
+    "filename": "music-orbs-90bpm-1792266905654.wav",
+    "bpm": 90,
+    "sampleRate": 48000,
+    "channels": 1,
+    "durationSeconds": 60,
+    "bytes": 5760044,
+    "sha256": "9a35105ae1d1b32c113873db770fd161e9b0e8668ba3946543704da688a149ae",
+    "origin": "Node-generated sine pulses and quiet carrier; не запись аудио."
+  },
+  "failure": "Command failed: adb -s emulator-5554 shell am stopservice -n musicorbs.app/musicorbs.platform.audio.AudioFocusProbeService\nService not stopped: was not running.\r\n\nStopping service: Intent { cmp=musicorbs.app/musicorbs.platform.audio.AudioFocusProbeService }\r\n\nService not stopped: was not running.\r\n",
+  "finishedAt": "2026-10-17T20:07:31.022Z"
+}

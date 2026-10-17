@@ -18,6 +18,7 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "0.1.0-dev"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -31,6 +32,11 @@ android {
         java.srcDirs("platform/kotlin", "bootstrap", "experience/presentation/platform")
         assets.srcDir(layout.buildDirectory.dir("generated/graphicsAssets"))
     }
+    sourceSets["androidTest"].java.srcDir("platform/src/androidTest/kotlin")
+    sourceSets["debug"].apply {
+        manifest.srcFile("platform/src/debug/AndroidManifest.xml")
+        java.srcDir("platform/src/debug/kotlin")
+    }
 }
 
 // P2 создаёт graphics/dist. До этого APK честно показывает отдельный shell.
@@ -39,14 +45,24 @@ val prepareWebAssets by tasks.registering(Sync::class) {
     inputs.property("graphicsAvailable", providers.provider { graphicsDist.file("index.html").asFile.exists() })
     from(provider {
         if (graphicsDist.file("index.html").asFile.exists()) graphicsDist else layout.projectDirectory.dir("platform/assets")
-    })
+    }) { exclude("smoke/**") }
+    from(rootProject.file("third_party")) {
+        include("Commons-Math-*", "Kotlin-LICENSE.txt", "Coroutines-LICENSE.txt", "Serialization-LICENSE.txt", "Three-LICENSE", "Thinking-Orbs-LICENSE", "runtime.md")
+        into("third_party")
+    }
     into(layout.buildDirectory.dir("generated/graphicsAssets"))
 }
 tasks.named("preBuild").configure { dependsOn(prepareWebAssets) }
 
 dependencies {
     implementation(project(":core"))
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.10.2")
     implementation("androidx.activity:activity-compose:1.10.1")
     implementation(platform("androidx.compose:compose-bom:2025.04.01"))
     implementation("androidx.compose.material3:material3")
+    androidTestImplementation("androidx.test:runner:1.6.2")
+    androidTestImplementation("androidx.test.ext:junit:1.2.1")
+    androidTestImplementation("androidx.test:rules:1.6.1")
+    androidTestImplementation("androidx.test.uiautomator:uiautomator:2.3.0")
 }

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuite name="musicorbs.platform.audio.LocalFilePlaybackTest" tests="6" failures="0" errors="0" skipped="0" time="15.249" timestamp="2026-10-17T19:52:32" hostname="localhost">
+  <properties>
+    <property name="device" value="MusicOrbs_API35(AVD) - 15" />
+    <property name="flavor" value="" />
+    <property name="project" value=":app" />
+  </properties>
+  <testcase name="pcmIsPublishedOnlyAfterAudioTrackHasPlayedIt" classname="musicorbs.platform.audio.LocalFilePlaybackTest" time="1.181" />
+  <testcase name="unsupportedFileFailsWithoutPublishingAnOpenedSource" classname="musicorbs.platform.audio.LocalFilePlaybackTest" time="0.097" />
+  <testcase name="pauseSeekAndEofKeepPlaybackAndAnalysisTogether" classname="musicorbs.platform.audio.LocalFilePlaybackTest" time="2.792" />
+  <testcase name="onlyExplicitOpenStartsMicrophoneAndCloseEndsReading" classname="musicorbs.platform.audio.MicrophoneAudioSourceTest" time="2.37" />
+  <testcase name="canceledSystemConsentLeavesNoProjectionServiceOrAudioRecord" classname="musicorbs.platform.audio.PlaybackCaptureTest" time="3.956" />
+  <testcase name="explicitConsentCapturesSyntheticPcmAndRevocationStopsIt" classname="musicorbs.platform.audio.PlaybackCaptureTest" time="3.7" />
+</testsuite>

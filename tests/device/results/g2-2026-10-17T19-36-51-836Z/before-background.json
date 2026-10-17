@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 2,
+  "revision": 9,
+  "settings": {
+    "shapeId": "ribbon",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "low",
+    "targetFps": 60,
+    "paletteId": "pink",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FF7BBF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFD6EC"
+      }
+    ]
+  },
+  "shapes": [
+    {
+      "shapeId": "orb",
+      "seed": 157,
+      "generatorVersion": 1,
+      "revision": 50,
+      "controls": [
+        {
+          "center": [
+            0.2613769177924515,
+            0.35975294428030635,
+            0.838127978291519
+          ],
+          "delta": [
+            0.15073123589254345,
+            0.10531492428280714,
+            -0.0367884534049663
+          ],
+          "radius": 0.5
+        },
+        {
+          "center": [
+            -0.4787335196918007,
+            0.20149491550873685,
+            0.807600434082773
+          ],
+          "delta": [
+            0.20628103110498913,
+            0.21133023828611244,
+            0.13208781138817668
+          ],
+          "radius": 0.5
+        },
+        {
+          "center": [
+            -0.8606937530038208,
+            0.33505400244082606,
+            0.3339326643546598
+          ],
+          "delta": [
+            0.11770905585223523,
+            0.2161830954899886,
+            0.22007478075349654
+          ],
+          "radius": 0.5
+        }
+      ]
+    },
+    {
+      "shapeId": "ribbon",
+      "seed": 254,
+      "generatorVersion": 1,
+      "revision": 21,
+      "controls": [
+        {
+          "center": [
+            0.024069364236858348,
+            0.13959462813527382,
+            0.007224959548045359
+          ],
+          "delta": [
+            -0.10592338602258351,
+            0.24592583665248194,
+            0.2892252199504666
+          ],
+          "radius": 0.5
+        }
+      ]
+    },
+    {
+      "shapeId": "cloud",
+      "seed": 351,
+      "generatorVersion": 1,
+      "revision": 0,
+      "controls": []
+    },
+    {
+      "shapeId": "pixel-cloud",
+      "seed": 448,
+      "generatorVersion": 1,
+      "revision": 0,
+      "controls": []
+    }
+  ]
+}

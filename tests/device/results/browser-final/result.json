@@ -1,0 +1,21 @@
+{
+  "browser": "155.0.8059.82",
+  "viewport": "720x1000; portrait 393x851",
+  "renderer": "SwiftShader (headless)",
+  "checks": [
+    "four shapes",
+    "GLSL compilation",
+    "pointer drag",
+    "quality/FPS field invariant",
+    "browser persistence/reload",
+    "context loss/recovery",
+    "idempotent dispose",
+    "native handshake/snapshot",
+    "stale source rejection",
+    "delayed motion/source phase continuity",
+    "native sync-off smoothed-period integration",
+    "zero-dvh canvas CSS viewport regression",
+    "profiling opt-in/actual submissions/CPU/context loss/pause"
+  ],
+  "errors": []
+}

@@ -1,0 +1,87 @@
+{
+  "motion": {
+    "sourceSessionId": "f6fe6b31-8792-4534-beec-a3c830235bb7",
+    "timestampSeconds": 156.75391410000003,
+    "bpm": null,
+    "slowCycleSeconds": 23.98201341845394,
+    "phase": 0.07465890618940642,
+    "energy": 0,
+    "intensity": 0,
+    "confidence": 0,
+    "mode": "autonomous"
+  },
+  "snapshot": {
+    "settings": {
+      "shapeId": "orb",
+      "materialId": "dots",
+      "colorHex": "#FFFFFF",
+      "paletteId": "white",
+      "paletteStops": [
+        {
+          "offset": 0,
+          "colorHex": "#FFFFFF"
+        },
+        {
+          "offset": 1,
+          "colorHex": "#FFFFFF"
+        }
+      ],
+      "speed": 0.5,
+      "amplitude": 0.3,
+      "touchSensitivity": 1,
+      "musicSync": true,
+      "quality": "medium",
+      "targetFps": 60
+    },
+    "shapes": [
+      {
+        "shapeId": "orb",
+        "seed": 157,
+        "generatorVersion": 1,
+        "revision": 17,
+        "controls": [
+          {
+            "center": [
+              0.27969675157544094,
+              0.2148671133710054,
+              -0.8979217951334634
+            ],
+            "delta": [
+              -0.16877146310582863,
+              0.19514325346922134,
+              -0.014666335705620835
+            ],
+            "radius": 0.5
+          }
+        ]
+      },
+      {
+        "shapeId": "ribbon",
+        "seed": 254,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "cloud",
+        "seed": 351,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      },
+      {
+        "shapeId": "pixel-cloud",
+        "seed": 448,
+        "generatorVersion": 1,
+        "revision": 0,
+        "controls": []
+      }
+    ]
+  },
+  "canvas": {
+    "width": 393,
+    "height": 851
+  },
+  "glError": 0,
+  "now": 156978.5
+}

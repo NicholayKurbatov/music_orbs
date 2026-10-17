@@ -63,6 +63,24 @@ class AudioAnalyzerTest {
         }
     }
 
+    @Test fun `90 bpm wav carrier remains measurable after arbitrary resumed sample offsets`() {
+        val click = SyntheticPcm.click(90.0)
+        for (block in 0..31) {
+            val offset = block * 4096.0 / 48000
+            for (afterGap in listOf(false, true)) {
+                val analyzer = analyzer()
+                if (afterGap) for (pcm in SyntheticPcm.frames(6.0, sample = click)) analyzer.analyze(pcm)
+                val estimates = SyntheticPcm.frames(14.0, size = 4096, sample = { time ->
+                    val position = time + offset
+                    click(position) + .035 * sin(2 * PI * 220 * position)
+                }).map { analyzer.analyze(if (afterGap) it.copy(timestampSeconds = it.timestampSeconds + 20.0) else it) }.toList()
+                val latest = estimates.last()
+                assertTrue(latest.bpm != null && abs(latest.bpm!! - 90.0) <= 2.0,
+                    "offset=$offset gap=$afterGap: bpm=${latest.bpm}, confidence=${latest.confidence}")
+            }
+        }
+    }
+
     @Test fun `explicit source selection rejects old pcm and gap clears tempo history`() {
         val analyzer = analyzer()
         for (frame in SyntheticPcm.frames(6.0, sample = SyntheticPcm.click(120.0))) analyzer.analyze(frame)

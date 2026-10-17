@@ -146,3 +146,86 @@ FT-28/29 добавлены как планы; приложение для ви�
 Native controls, восстановление и аудио этого APK ещё интегрируются.
 Человеческая FT-28/29, матрица реальных плееров, 10/30-минутные измерения и
 численные бюджеты телефона остаются открыты. Эмулятор не доказывает их прохождение.
+
+## 9. Нативная сессия и аудио, после G2
+
+- Повторный TS-прогон после исправлений phase/viewport и общего MotionSignal
+  validator: 62 теста без ошибок. Полный Kotlin/JVM: 54 теста без ошибок,
+  включая 17 AudioSession/PlaybackTimeline и лимит pending до handshake.
+- Первый G2 обнаружил нулевую CSS-высоту canvas в WebView 124 внутри Compose;
+  [неуспешный отчёт](../tests/device/results/g2-2026-10-17T19-29-03-309Z/report.json)
+  сохранён. Исправление CSS-размера и portrait camera подтверждено
+  [отдельной диагностикой](../tests/device/results/gfx-canvas-debug/README.md).
+- Повторный [G2 с проверкой повреждённого snapshot](../tests/device/results/g2-2026-10-17T19-36-51-836Z/report.json)
+  прошёл: реальные жесты Orb/Ribbon, отдельные поля, quality, HOME/возврат,
+  новая Configure, force-stop/restore, Reset активной формы и corruption fallback.
+  Проверены UI и новый снимок модели, а не только наличие старого файла.
+- Android instrumentation: [5 тестов, 0 ошибок](../tests/device/results/audio-platform-api35/instrumentation.xml),
+  [условия и ограничения](../tests/device/results/audio-platform-api35/environment.json).
+  Проверены AudioTrack whole-block heard/runtime gate, pause/seek/resume/EOF,
+  unsupported file, явный AudioRecord mic и capture ненулевого PCM собственного
+  синтетического AudioTrack после системного согласия; отзыв projection останавливает чтение.
+- Сторонние плееры и физический микрофон не проверялись. При этом instrumentation
+  эмулятор запускался с отключённым выходом звука хоста; тест AudioTrack не означает,
+  что человек прослушал его. Для G3 эмулятор перезапущен с включённым аудио.
+
+Настроен `.github/workflows/verify.yml`: JS/JVM/schema/browser/Android build.
+Команды проверяются локально; удалённый GitHub Actions run ещё не запускался.
+Длительные измерения и человеческое визуальное решение остаются отдельными пунктами.
+
+## 10. Повтор после исправления pause/resume
+
+JavaScript/TypeScript: 72 теста без ошибок, включая ограниченную диагностику и
+проверку полноты отчёта. [Browser smoke](../tests/device/results/browser-final/result.json)
+проходит с включением/остановкой метрик, pause/context loss и отдельным CPU duration.
+Метрики submissions не являются измерением GPU или отображённого FPS.
+
+[Шесть Android-тестов](../tests/device/results/audio-platform-api35-final/instrumentation.xml)
+прошли на API 35 с включённым аудио эмулятора;
+[условия](../tests/device/results/audio-platform-api35-final/environment.json).
+Дополнительно проверены отмена системного consent без AudioRecord/foreground service
+и resume без seek. Исправлен реальный сбой: AudioTrack.write мог вернуть 0 при pause;
+теперь writer ждёт resume, а PCM со старой временной привязкой отбрасывается.
+Отрицательные коды записи остаются ошибками. Слышимость звука человеком не проверена.
+
+[Целевые Android-регрессии](../tests/device/results/audio-platform-api35-generation/instrumentation.xml)
+прошли 4/4: capture/revoke, Cancel, закрытие ожидающего binding с поздним callback
+и три pause/resume при активном decoder 30-секундного WAV.
+[Условия](../tests/device/results/audio-platform-api35-generation/environment.json):
+FGS/binder/projection настоящие; test Context управляет только доставкой callback.
+Эти четыре проверки частично повторяют предыдущий набор и не складываются с ним
+как десять уникальных тестов.
+
+По каждому FT-01–29 и CT-01–08 ведётся отдельная
+[матрица результатов](../tests/functional/results.md), включая частичные и
+неуспешные проверки. Успех отдельных компонентов не заменяет G3/G4 или длительный
+прогон. Remote CI ещё не выполнялся.
+
+Полный [G3](../tests/device/results/g3-audio-2026-10-17T19-55-05-313Z/report.json)
+прошёл через настоящий OpenDocument и native playback, без подмены MotionSignal:
+синтетическая фикстура 90 BPM дала 90,434 BPM, период 21,603 с и energy 0,1868.
+Проверены pause/resume с тем же sourceSessionId, Music Sync, Stop, новая сессия,
+HOME без скрытого рестарта, cancel и неподдерживаемый файл. В 842 наблюдениях
+фаза оставалась в допуске elapsed/minPeriod + 0,015 цикла; поля форм сохранены.
+
+[Native permissions](../tests/device/results/permissions-2026-10-17T20-02-24-253Z/report.json):
+5/5 шагов прошли. Отдельно проверены RECORD_AUDIO denial для capture, явный mic
+grant и индикатор, отзыв разрешения во время активного mic с завершением PID,
+восстановление без скрытого источника, mic denial и Main MediaProjection Cancel.
+Синтетическая/нулевая амплитуда эмулятора не подтверждает физический микрофон.
+
+Kotlin/JVM после интеграционных DSP-исправлений: 56 тестов без ошибок. Добавлены
+уточнение BPM внутри стабильной группы и 64 варианта начала/возобновления
+click+carrier (32 смещения × fresh/gap reset, блоки 4096). Первое FFT-окно теперь
+задаёт baseline, чтобы не создавать ложный startup onset на стационарном carrier.
+
+[Повтор G3 после DSP-исправлений](../tests/device/results/g3-audio-2026-10-17T20-15-57-327Z/report.json)
+прошёл 8/8 шагов с прежними допусками: 89,952 BPM, период 21,627 с при начале
+сглаживания, успешный pause/resume и 782 наблюдения фазы. Ранее неуспешные прогоны
+сохранены как история обнаруженных дефектов и не считаются приёмкой.
+
+[Audio focus](../tests/device/results/audio-focus-2026-10-17T20-18-19-787Z/report.json)
+прошёл 3/3: настоящий LOSS_TRANSIENT от отдельного debug client при открытом Main,
+пауза с тем же UUID/полем, abandon без autoresume и явное продолжение
+(90,144 BPM, energy 0,1064). Shell не подтвердил доставку защищённого noisy event;
+физическая гарнитура не проверена. Debug probe отсутствует в release source set.

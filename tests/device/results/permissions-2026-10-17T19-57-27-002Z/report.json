@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T19:57:27.116Z",
+  "serial": "emulator-5554",
+  "result": "fail",
+  "steps": [
+    {
+      "id": "capture-record-permission-denied",
+      "result": "pass",
+      "details": "Настоящий системный RECORD_AUDIO dialog отклонён через Main; нет источника, mic fallback или capture FGS; форма сохранена."
+    },
+    {
+      "id": "explicit-microphone-indicator",
+      "result": "pass",
+      "details": "Явный выбор и системный grant включили microphone UUID и видимый индикатор. Амплитуда физического микрофона не утверждается."
+    },
+    {
+      "id": "runtime-revoke-restart",
+      "result": "pass",
+      "details": "RECORD_AUDIO отозван; processTerminated=true; после явного запуска нет скрытого mic/capture, форма восстановлена."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "revocation": {
+    "permission": "android.permission.RECORD_AUDIO",
+    "beforeRevokePid": "3511",
+    "afterRevokePid": "",
+    "processTerminated": true
+  },
+  "failure": "System RECORD_AUDIO deny button missing",
+  "finishedAt": "2026-10-17T19:59:34.116Z"
+}

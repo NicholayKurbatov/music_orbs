@@ -1,0 +1,31 @@
+{
+    "measuredAtUtc":  "2026-10-17T19:39:56Z",
+    "command":  ".\\gradlew.bat :app:connectedDebugAndroidTest :app:assembleDebug :core:test --write-locks --console=plain",
+    "device":  {
+                   "avd":  "MusicOrbs_API35",
+                   "profile":  "Pixel 5",
+                   "android":  "15",
+                   "api":  35,
+                   "systemImage":  "AOSP x86_64 revision 2",
+                   "emulator":  "37.2.12",
+                   "accelerator":  "WHPX",
+                   "gpu":  "swiftshader_indirect",
+                   "hostAudio":  "disabled (-no-audio)",
+                   "webView":  "124.0.6367.219"
+               },
+    "instrumentation":  {
+                            "tests":  5,
+                            "failures":  0,
+                            "errors":  0,
+                            "local":  "Подтверждены whole-block heard/runtime gate, pause/seek/resume/EOF и неподдерживаемый файл",
+                            "microphone":  "Явный open даёт конечный mono PCM48k; ненулевая амплитуда не утверждается",
+                            "capture":  "Системное согласие через UiAutomator; собственный AudioTrack 440 Гц ALLOW_CAPTURE_BY_ALL даёт конечный ненулевой PCM; projection.stop вызывает SOURCE_UNAVAILABLE",
+                            "pcmFiles":  "Нет; сгенерированная локальная WAV-фикстура удаляется после теста"
+                        },
+    "notVerified":  [
+                        "Слышимый выход динамика хоста",
+                        "Сигнал физического микрофона",
+                        "Совместимость сторонних плееров",
+                        "Задержка и производительность физического телефона"
+                    ]
+}

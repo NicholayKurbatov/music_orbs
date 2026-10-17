@@ -1,0 +1,31 @@
+{
+    "measuredAtUtc":  "2026-10-17T20:15:53.1237848Z",
+    "command":  ".\\gradlew.bat :app:assembleDebug --console=plain",
+    "result":  "BUILD SUCCESSFUL",
+    "coreTests":  56,
+    "coreFailures":  0,
+    "coreErrors":  0,
+    "apkSha256":  "2B9FD784BED339489EA75B5C1D426A19C47189F433ABE67400FB54907822F3BA",
+    "installedPackage":  "package:/data/app/~~0zt8y35JQDDtzpmBehNPJA==/musicorbs.app-VdZ1HL024U6uLI1olYpuaw==/base.apk",
+    "start":  "Starting: Intent { cmp=musicorbs.app/musicorbs.bootstrap.MainActivity }\nStatus: ok\nLaunchState: COLD\nActivity: musicorbs.app/musicorbs.bootstrap.MainActivity\nTotalTime: 3156\nWaitTime: 3160\nComplete",
+    "assets":  [
+                   "assets/THIRD_PARTY_NOTICES.txt",
+                   "assets/third_party/Commons-Math-LICENSE.txt",
+                   "assets/third_party/Commons-Math-NOTICE.txt",
+                   "assets/third_party/Coroutines-LICENSE.txt",
+                   "assets/third_party/Kotlin-LICENSE.txt",
+                   "assets/third_party/Serialization-LICENSE.txt",
+                   "assets/third_party/Thinking-Orbs-LICENSE",
+                   "assets/third_party/Three-LICENSE",
+                   "assets/assets/index-BBqcT9Hu.css",
+                   "assets/assets/index-D4yFGS0Q.js"
+               ],
+    "changes":  [
+                    "First FFT window after init/gap initializes previous spectrum/RMS without onset",
+                    "Clock accepts latest reliable BPM after stable candidate hold"
+                ],
+    "limitations":  [
+                        "Android Emulator API35 only",
+                        "Host audible output and human aesthetics not confirmed"
+                    ]
+}
