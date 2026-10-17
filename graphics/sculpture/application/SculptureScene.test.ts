@@ -45,3 +45,13 @@ test('Чувствительность применяется один раз, s
   const another = create(); await another.app.handle({ type: 'restore', snapshot: saved });
   assert.deepEqual((await another.app.handle({ type: 'snapshot' })).snapshot, saved);
 });
+test('CT-03: прямой frame проверяет тот же MotionSignal, что wire, до present и мутации', async () => {
+  const { app, renderer } = create(); gesture(app);
+  const before = (await app.handle({ type: 'snapshot' })).snapshot;
+  const valid = new SyntheticMotion().advance(0.016);
+  for (const signal of [{ ...valid, sourceSessionId: 'bad id' }, { ...valid, slowCycleSeconds: 121 }, { ...valid, sourceSessionId: 'none', bpm: 90 }]) {
+    assert.throws(() => app.frame(0.016, signal), /INVALID_INPUT/);
+    assert.equal(renderer.frames.length, 0);
+    assert.deepEqual((await app.handle({ type: 'snapshot' })).snapshot, before);
+  }
+});

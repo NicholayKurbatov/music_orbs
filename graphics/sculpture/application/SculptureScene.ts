@@ -1,4 +1,4 @@
-import type { MotionSignal } from '../../motion/domain/MotionSignal';
+import { validateMotionSignal, type MotionSignal } from '../../motion/domain/MotionSignal';
 import type { BaseGeometry, DeformationSnapshot, SceneSettings, SceneSnapshot, ShapeId, Stroke, Vec3 } from '../domain/Models';
 import { LocalDeformationField } from '../domain/LocalDeformationField';
 import type { ShapeFactory } from '../domain/Policies';
@@ -57,13 +57,8 @@ export class SculptureScene implements SceneApplication {
   }
   frame(deltaSeconds: number, signal: MotionSignal): void {
     if (!Number.isFinite(deltaSeconds) || deltaSeconds < 0) throw new Error('INVALID_INPUT: frame delta');
+    validateMotionSignal(signal);
     if (this.paused) return;
-    if (!Number.isFinite(signal.phase) || signal.phase < 0 || signal.phase >= 1 || !Number.isFinite(signal.slowCycleSeconds) || signal.slowCycleSeconds <= 0
-      || ![signal.energy, signal.intensity, signal.confidence].every(x => Number.isFinite(x) && x >= 0 && x <= 1)
-      || !Number.isFinite(signal.timestampSeconds) || signal.timestampSeconds < 0 || typeof signal.sourceSessionId !== 'string' || !signal.sourceSessionId
-      || (signal.bpm !== null && (!Number.isFinite(signal.bpm) || signal.bpm < 40 || signal.bpm > 240))
-      || !['synced', 'autonomous'].includes(signal.mode)
-      || (signal.mode === 'synced' && (signal.bpm === null || signal.confidence < 0.65 || signal.sourceSessionId === 'none'))) throw new Error('INVALID_INPUT: motion');
     // Авторитетная смена sourceSessionId выполняется bridge; старые значения времени одной сессии игнорируются.
     if (this.lastMotion?.sourceSessionId === signal.sourceSessionId && this.lastMotion.timestampSeconds > signal.timestampSeconds) signal = this.lastMotion;
     this.lastMotion = signal;

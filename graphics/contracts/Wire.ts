@@ -1,4 +1,4 @@
-import type { MotionSignal } from '../motion/domain/MotionSignal';
+import { validateMotionSignal, type MotionSignal } from '../motion/domain/MotionSignal';
 import type { SceneCommand } from '../sculpture/application/SceneApplication';
 import type { SceneSnapshot } from '../sculpture/domain/Models';
 import { inRange, isRecord, ProfileLimits, requireValid, validCounter, validateSceneSnapshot, validateSettings } from '../sculpture/domain/ProfileLimits';
@@ -14,14 +14,7 @@ export function validId(value: unknown): value is string {
   return typeof value === 'string' && /^[A-Za-z0-9._:-]{1,128}$/.test(value);
 }
 export function validateMotion(value: unknown): asserts value is MotionSignal {
-  requireValid(isRecord(value) && validId(value.sourceSessionId));
-  requireValid(inRange(value.timestampSeconds, 0, Number.MAX_SAFE_INTEGER));
-  requireValid(value.bpm === null || inRange(value.bpm, 40, 240));
-  requireValid(inRange(value.slowCycleSeconds, 1, 120) && inRange(value.phase, 0, 1) && value.phase < 1);
-  for (const name of ['energy', 'intensity', 'confidence']) requireValid(inRange(value[name], 0, 1));
-  requireValid(value.mode === 'autonomous' || value.mode === 'synced');
-  requireValid(value.mode !== 'synced' || (value.bpm !== null && value.sourceSessionId !== NO_SOURCE && (value.confidence as number) >= 0.65));
-  requireValid(value.sourceSessionId !== NO_SOURCE || (value.mode === 'autonomous' && value.bpm === null));
+  validateMotionSignal(value);
 }
 export function validateCommand(value: unknown): asserts value is SceneCommand {
   requireValid(isRecord(value));

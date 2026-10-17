@@ -105,17 +105,28 @@ Source adapter — один тип источника на экземпляр. �
 | AudioSourcePort.read() | Открытый источник | Следующий PcmFrame или null при EOF; silence — непустой нулевой PCM, не EOF | Read failure → SOURCE_UNAVAILABLE; suspend без busy loop |
 | AudioSourcePort.close() | Любое состояние | Отменяет read и освобождает handles/AudioRecord | Идемпотентно; не сохраняет PCM |
 | PlaybackControlPort.pause()/resume() | Открытый local-file | Идемпотентная пауза/продолжение с одной позиции; read не выдаёт будущие sample | SOURCE_UNAVAILABLE; IO адаптера |
-| PlaybackControlPort.seek(positionSeconds) | Конечная позиция >= 0 секунд, в пределах длительности файла | Новая playback-позиция; история анализатора очищается, визуальная фаза сохраняется | INVALID_INPUT; очередь старого PCM очищается |
+| PlaybackControlPort.seek(positionSeconds) | Конечная позиция >= 0 секунд, в пределах длительности файла | Новая playback-позиция, прежний sourceSessionId; адаптер очищает очередь старого PCM | INVALID_INPUT; вызывающий сценарий обязан отдельно сбросить историю анализатора, сохранив визуальную фазу |
 | PlaybackControlPort.position() | Открытый local-file | PlaybackPosition(playbackSeconds, runtimeTimestampSeconds, playing); пара позиций относится к одному моменту | SOURCE_UNAVAILABLE; снимок состояния, без сохранения аудио |
+| DefaultAudioSession.read() | Текущая сессия; один последовательный consumer | Валидный PcmFrame текущего ID; null при EOF/паузе/отсутствии/смене сессии | Stale/overlap/future пропускаются; 64 подряд → SOURCE_UNAVAILABLE и закрытие; без busy loop |
+| DefaultAudioSession.onFocusLost()/onBackground() | Событие платформы | Focus: локальная пауза, pending open отменён; background: все ресурсы закрыты | Не запускают новый источник; повторная остановка безопасна |
+| PlaybackTimeline.emit(samples,rate,firstPlaybackSeconds,position) | Конечный mono блок и согласованная playback/runtime позиция | Отделённая PcmFrame только после услышанного конца; null при паузе/будущем блоке | INVALID_INPUT для overlap/backward/границ; null не расходует блок |
+| PlaybackTimeline.seek(seconds)/reset() | Позиция >=0 с или новая временная привязка | Очищает порядок предыдущих блоков; seek задаёт новую нижнюю playback границу | Визуальный clock не меняется, IO нет |
 
 У локального источника график чтения PCM согласован с позицией воспроизведения.
 Downmix/resample в адаптере; MusicalMotion принимает уже нормализованный mono.
 PlaybackControlPort расширяет AudioSourcePort только для локального файла.
 PCM timestamp вычисляется как runtimeTimestampSeconds − (playbackSeconds −
 позиция первого sample в файле). Адаптер не публикует блок, конец которого
-ещё не был воспроизведён. Пауза замораживает позицию и анализ; seek очищает
-очередь и историю анализа без сброса визуальной фазы. Capture/mic этот порт не реализуют.
-AudioSessionStub и AudioSourceStub — явные TODO, ресурсов не открывают.
+ещё не был воспроизведён. Пауза замораживает позицию и анализ; при продолжении
+адаптер отбрасывает очередь блоков с прежней временной привязкой. Seek очищает
+decoder/track/очередь; анализатором адаптер не владеет. Будущий application-сценарий
+seek должен явно вызвать analyzer.reset(), сохранив визуальную фазу; сейчас seek
+не открыт через AudioSession и UI. Capture/mic этот порт не реализуют.
+DefaultAudioSession получает factory(SourceKind)→AudioSourcePort из bootstrap.
+Смена сначала инвалидирует ID, отменяет read/open и ждёт закрытия старых ресурсов;
+поздно открытый ресурс также закрывается до новой публикации. SourceFactory не
+хранится в domain. AudioSessionStub/AudioSourceStub остаются явными TODO и не
+подключаются к приложению.
 
 ## 6. MusicalMotion
 
@@ -150,7 +161,8 @@ AudioSessionStub и AudioSourceStub — явные TODO, ресурсов не �
 
 Нативная сессия добавляет schemaVersion/revision к SceneSnapshot из графики.
 Это явное отображение, а не передача Kotlin SessionSnapshot напрямую в JS.
-ExperienceServiceStub все операции завершает TODO; UI пока отсутствует.
+ExperienceServiceStub остаётся явной заглушкой; bootstrap использует
+DefaultExperienceService и Compose MusicOrbsScreen.
 
 ## 8. Версионированный транспорт
 
@@ -244,13 +256,14 @@ FR-18 регулирует плотность через quality profile: тек
 | API реализации | Вход / результат / эффекты |
 |---|---|
 | validateSettings/validateShapeSnapshot/validateSceneSnapshot (TS), ProfileLimits.validate (Kotlin) | DTO/модели; границы без мутации/IO; INVALID_INPUT либо SNAPSHOT_INVALID |
+| validateMotionSignal (TS projection domain) | Неизвестное значение → MotionSignal после проверки диапазонов/ID/none; INVALID_INPUT без мутации/IO; общий валидатор для frame и wire |
 | decodeEnvelope/encodeEnvelope (TS), WireCodec.decode/encode (Kotlin) | JSON UTF-8 ↔ envelope v1, явные enum/Vec3; PROTOCOL_MISMATCH или INVALID_INPUT; без изменения сцены |
 | migrateSession (TS), WireCodec.session (Kotlin) | v1/v2 → валидный v2, кодирование v2; SNAPSHOT_INVALID для неизвестной версии; без IO и изменения исходника |
 | BoundedAudioAnalyzer.selectSource(id) | Непустой ID, кроме none; очищает историю; stale PCM отвергается без смены источника |
 | ContinuousMotionClock.setBars(4/8/16) | Меняет целевой период, сохраняет фазу; INVALID_INPUT для прочих значений |
 | ContinuousMotionClock.pause()/resume() | Идемпотентны; пауза не интегрирует фазу; timestamp монотонен |
 | attachNativeBridge(app,onMotion,onSourceChange?) | null без native, иначе close(); проверяет version/ID/sequence/source и pending; close удаляет receive hook и dirty listener; source callback сохраняет фазу и переводит сцену в autonomous |
-| CoroutineBridge(id,scope,transmit,runtimeSeconds) | Native BridgePort; callback передаёт локальному WebView только JSON; timeout 3000 мс включая ready, до 16 pending; close завершает ожидания ошибкой |
+| CoroutineBridge(id,scope,transmit,runtimeSeconds) | Native BridgePort; callback передаёт локальному WebView только JSON; timeout 3000 мс включая ready, до 16 pending также до handshake; timeout → SOURCE_UNAVAILABLE, внешняя cancellation сохраняется; close завершает ожидания ошибкой |
 | CoroutineBridge.setSource(id)/receive(json) | Авторитетно объявляет source и очищает latest motion; receive валидирует текущие bridgeSessionId/sequence; stale/невалидные сообщения игнорируются без изменения сцены |
 | DefaultExperienceService(bridge,store), dirty | Сериализованные dispatch/save/restore; dirty только после ack изменяющей команды; bootstrap планирует save, успех записи снимает dirty; не импортирует adapter |
 | AtomicSessionStore(path), SessionStoreException.code | IO на Dispatchers.IO, temporary+force+atomic replace; stale/equal revision INVALID_INPUT; отсутствие null, corruption SNAPSHOT_INVALID, IO STORAGE_FAILURE; последняя подтверждённая запись остаётся при ошибке |
@@ -259,3 +272,38 @@ FR-18 регулирует плотность через quality profile: тек
 актуального snapshot и save. Сам сигнал не содержит постоянного состояния.
 Native revision резервируется до попытки записи; после отмены/ошибки возможны
 пропуски номеров, но следующая попытка не перезаписывает подтверждённую revision.
+
+## 13. Android composition и lifecycle
+
+MainActivity создаёт WebView, CoroutineBridge, AtomicSessionStore,
+DefaultExperienceService/DefaultAudioSession, CommonsMathSpectrum, анализатор и clock.
+Единая runtimeSeconds берётся из монотонного System.nanoTime с начала Activity.
+Clock.advance вызывается также в фоне с pause: timestamp остаётся монотонным,
+а фаза в фоне не интегрируется. Визуальная проекция принимает первую phase,
+после этого непрерывно интегрирует сглаженный slowCycleSeconds; задержанные motion
+пакеты не откатывают фазу. Смена source сохраняет фазу и период, убирая аудиоакценты.
+Отсутствие новых features более 0,5 с переводит clock в автономное движение.
+
+MusicOrbsScreen отображает только подтверждённые settings; optional
+settingsEnabled=false временно блокирует изменение настроек до ack, чтобы второй
+полный settings DTO не отменил ещё не подтверждённое изменение. Панель модальная,
+её касания не передаются WebView. SourceKind появляется только после успешного open;
+для микрофона всегда виден индикатор и отдельная кнопка выключения.
+
+Save планируется через 250 мс после подтверждённой команды/жеста. OnPause закрывает
+аудио, сохраняет snapshot и приостанавливает сцену; возвращение во время ожидания
+не позволяет старому pause остановить уже возобновлённый WebView. OnResume не
+перезапускает audio. Ошибка восстановления сохраняет исходный файл до принятого
+пользовательского изменения; фоновый save сам по себе его не заменяет.
+
+Локальный адаптер использует MediaExtractor/MediaCodec → AudioTrack и ограниченную
+очередь 16 блоков по ≤4096 mono samples; анализ получает только услышанные блоки.
+Mic/capture используют AudioRecord 48 кГц, блок ≤2048 samples. Permission token и
+MediaProjection остаются у platform adapter; CaptureProjectionHost получает его
+после системного согласия через foreground service, bind ограничен 10 с.
+Отзыв проекции останавливает чтение и освобождает ресурсы; автоматического mic fallback нет.
+
+Viewport resize задаёт отдельно CSS-размер canvas в пикселях и GPU backing buffer
+через renderer.resize. Это учитывает WebView 124 внутри Compose AndroidView,
+где `100dvh` мог давать нулевую CSS-высоту при ненулевом GPU buffer. Camera aspect
+адаптирует portrait без изменения object-space базы и сохранённого поля.

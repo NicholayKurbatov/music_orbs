@@ -17,7 +17,7 @@ class CoroutineBridge(
     private val runtimeSeconds: () -> Double,
     private val deadlineMs: Long = ProfileLimits.REQUEST_DEADLINE_MS,
 ) : BridgePort {
-    private data class Pending(val snapshot: Boolean, val result: CompletableDeferred<SceneReply>)
+    private data class Pending(val snapshot: Boolean, val result: CompletableDeferred<SceneReply>, var sent: Boolean = false)
     private val guard = Any()
     private var outgoing = 0L
     private var incoming = -1L
@@ -71,6 +71,7 @@ class CoroutineBridge(
             "ack", "snapshot", "error" -> {
                 val id = envelope.requestId ?: return@synchronized
                 val expected = pending[id] ?: return@synchronized
+                if (!expected.sent) return@synchronized
                 when {
                     envelope.type == "error" -> { pending.remove(id); expected.result.completeExceptionally(IllegalStateException(envelope.payload.getValue("code").jsonPrimitive.content)) }
                     envelope.type == "snapshot" && expected.snapshot -> { pending.remove(id); expected.result.complete(SceneReply(WireCodec.scene(envelope.payload))) }
@@ -80,8 +81,9 @@ class CoroutineBridge(
         }
     }
 
-    override suspend fun request(command: SceneCommand): SceneReply = withTimeout(deadlineMs) {
-        ready.await()
+    override suspend fun request(command: SceneCommand): SceneReply = try {
+      withTimeout(deadlineMs) {
+        val payload = WireCodec.command(command)
         val waiter = CompletableDeferred<SceneReply>()
         val id = synchronized(guard) {
             check(!closed) { "SOURCE_UNAVAILABLE" }
@@ -89,17 +91,29 @@ class CoroutineBridge(
             check(requestCounter < ProfileLimits.MAX_COUNTER) { "PROTOCOL_MISMATCH" }
             val key = "request:${++requestCounter}"
             pending[key] = Pending(command == SceneCommand.Snapshot, waiter)
-            try { send("command", WireCodec.command(command), key) }
-            catch (failure: RuntimeException) { pending.remove(key); throw failure }
             key
         }
-        try { waiter.await() } finally { synchronized(guard) { pending.remove(id) }; waiter.cancel() }
+        try {
+            ready.await()
+            synchronized(guard) {
+                check(!closed) { "SOURCE_UNAVAILABLE" }
+                pending.getValue(id).sent = true
+                send("command", payload, id)
+            }
+            waiter.await()
+        } finally { synchronized(guard) { pending.remove(id) }; waiter.cancel() }
+      }
+    } catch (failure: TimeoutCancellationException) {
+        currentCoroutineContext().ensureActive()
+        throw IllegalStateException("SOURCE_UNAVAILABLE: bridge deadline", failure)
     }
 
     override fun sendMotion(signal: MotionSignal) {
         if (closed || signal.sourceSessionId != sourceId) return
         try { WireCodec.motion(signal) } catch (_: RuntimeException) { return }
-        latestMotion.set(signal)
+        latestMotion.updateAndGet { previous ->
+            if (previous != null && previous.sourceSessionId == signal.sourceSessionId && previous.timestampSeconds > signal.timestampSeconds) previous else signal
+        }
     }
 
     override fun close() = synchronized(guard) {

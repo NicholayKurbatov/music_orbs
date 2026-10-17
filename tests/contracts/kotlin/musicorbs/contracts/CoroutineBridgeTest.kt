@@ -30,7 +30,10 @@ class CoroutineBridgeTest {
         bridge.receive(reply(0, "ready"))
         val requests = (1..16).map { async { runCatching { bridge.request(SceneCommand.Reset) } } }; yield()
         assertFailsWith<IllegalArgumentException> { bridge.request(SceneCommand.Reset) }
-        requests.forEach { assertTrue(it.await().isFailure) }
+        requests.forEach {
+            val failure = it.await().exceptionOrNull()
+            assertTrue(failure is IllegalStateException && failure.message!!.startsWith("SOURCE_UNAVAILABLE"))
+        }
         assertEquals(16, sent.count { WireCodec.decode(it).type == "command" }); bridge.close()
     }
     @Test fun latestMotionAndAuthoritativeSource() = runBlocking {
@@ -39,10 +42,19 @@ class CoroutineBridgeTest {
         bridge.receive(reply(0, "ready")); bridge.setSource("local:2")
         fun signal(id: String, timestamp: Double) = MotionSignal(id, timestamp, null, 24.0, .2, .1, .1, .1, MotionMode.AUTONOMOUS)
         repeat(100) { bridge.sendMotion(signal("local:2", it.toDouble())) }
+        bridge.sendMotion(signal("local:2", 1.0)) // Старый callback не вытесняет ещё не отправленное новое значение.
         bridge.sendMotion(signal("local:old", 999.0)); delay(50)
         val motions = synchronized(sent) { sent.map { WireCodec.decode(it) }.filter { it.type == "motion" } }
         assertEquals(1, motions.size); assertEquals(99.0, WireCodec.motion(motions.single().payload).timestampSeconds)
         bridge.sendMotion(signal("local:2", 1.0)); delay(50)
         assertEquals(1, synchronized(sent) { sent.count { WireCodec.decode(it).type == "motion" } }); bridge.close()
+    }
+    @Test fun pendingLimitAlsoAppliesBeforeHandshake() = runBlocking {
+        val sent = mutableListOf<String>()
+        val bridge = CoroutineBridge("bridge:1", this, { sent.add(it) }, { 0.0 }, deadlineMs = 1000)
+        val requests = (1..16).map { async { runCatching { bridge.request(SceneCommand.Reset) } } }; yield()
+        assertFailsWith<IllegalArgumentException> { bridge.request(SceneCommand.Reset) }
+        assertTrue(sent.isEmpty())
+        bridge.close(); requests.forEach { assertTrue(it.await().isFailure) }
     }
 }
