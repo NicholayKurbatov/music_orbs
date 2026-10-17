@@ -1,0 +1,16 @@
+﻿[
+    {
+        "process":  "emulator.exe",
+        "gpuArgument":  "swiftshader_indirect",
+        "avdArgument":  "MusicOrbs_API35",
+        "fpsArgument":  "",
+        "noWindow":  true
+    },
+    {
+        "process":  "qemu-system-x86_64-headless.exe",
+        "gpuArgument":  "swiftshader_indirect",
+        "avdArgument":  "MusicOrbs_API35",
+        "fpsArgument":  "",
+        "noWindow":  true
+    }
+]

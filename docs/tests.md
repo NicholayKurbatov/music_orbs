@@ -229,3 +229,51 @@ click+carrier (32 смещения × fresh/gap reset, блоки 4096). Пер�
 пауза с тем же UUID/полем, abandon без autoresume и явное продолжение
 (90,144 BPM, energy 0,1064). Shell не подтвердил доставку защищённого noisy event;
 физическая гарнитура не проверена. Debug probe отсутствует в release source set.
+
+## 11. Нативная панель настроек
+
+Проверки собраны из двух прогонов с неизменным кодом UI:
+[первые 14 шагов](../tests/device/results/native-settings-2026-10-17T20-20-04-528Z/report.json)
+и [оставшиеся 7 настроек](../tests/device/results/native-settings-2026-10-17T20-29-43-718Z/report.json).
+Первый общий результат `fail`: автоматизация свайпала по IME вместо ScrollView
+при поиске «Применить цвет». После исправления координат targeted `--remaining`
+подтвердил HEX, три ползунка, Music Sync, 30 FPS и high quality. Эти результаты
+не объявляются одним непрерывным полным прогоном. Служебный cleanup исключён
+из доказательства UI; native код не менялся ради локатора.
+
+Через настоящую нативную панель проверены четыре формы, три материала, четыре
+встроенные палитры и custom HEX, medium/high quality и 30/60 FPS. После каждого
+действия совпадают живые settings и native store; seed/controls/revisions всех
+форм не изменились. Low quality и Reset дополнительно проверены G2.
+[Четыре кадра и параметры для G4](../tests/device/results/native-settings-2026-10-17T20-20-04-528Z/README.md)
+приняты пользователем 2026-10-17: внешний вид всех четырёх форм, включая Cloud.
+Это решение по статическим кадрам; плавность движения и физический телефон
+таким решением не подтверждены.
+
+## 12. Короткая проверка измерений и GPU эмулятора
+
+[Software smoke метрик](../tests/device/results/profile-2026-10-17T20-34-31-231Z/report.json)
+прошёл как проверка инструмента, без оценки бюджетов. На Google SwiftShader
+наблюдались 26,46–28,50 JS submissions/с, p95 интервала 44,5–53 мс и p95 CPU
+present 0,75–1,5 мс. Длительности 2/2/2/2/3 с не заменяют 10/30-минутную приёмку.
+Baseline и screen timeout восстановлены, ошибок JS/render/context loss не было.
+
+[RAF probe](../tests/device/results/raf-probe-2026-10-17T20-37-03-616Z/report.json)
+показал около 60 RAF/с без отрисовки и 29 при отрисовке; SurfaceFlinger сообщает
+VSYNC 16,67 мс. Это наблюдение о программном пути GPU, а не доказательство точного
+узкого места. Для следующей проверки выбран GPU хоста на том же API 35 AVD;
+userdata и код приложения сохраняются. Новая конфигурация и actual GL renderer
+записываются отдельно; бюджеты medium/60 не ослабляются.
+
+[Host GPU](../tests/device/results/gpu-host-2026-10-17T20-39-08-965Z/environment.json)
+загрузился с AMD Radeon; hash session.json до/после совпал.
+[Короткий профиль host](../tests/device/results/profile-2026-10-17T20-39-56-351Z/report.json)
+с actual GL renderer и размерами backing buffer дал около 36–38 JS submissions/с,
+p95 около 31–33 мс, без JS/GL ошибок. Это также software smoke, без оценки бюджетов.
+[Временный DPR1 probe](../tests/device/results/dpr-probe-2026-10-17T20-41-53-202Z/report.json)
+сократил backing 786×1702 →393×851 без роста частоты (около 36/с).
+Descriptor DPR, settings и поля полностью восстановлены. Код renderer и принятый
+внешний вид не менялись; длительный профиль выполняется с обычным DPR на host GPU.
+В текстовых Android dumps удалены только конечные пробелы/пустые строки для
+`git diff --check`; численные значения и начальные отступы сохранены. JSON и PNG
+не проходят такую нормализацию.

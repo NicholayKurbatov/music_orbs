@@ -1,0 +1,48 @@
+{
+  "before": {
+    "shapeId": "ribbon",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "pink",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FF7BBF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFD6EC"
+      }
+    ]
+  },
+  "after": {
+    "shapeId": "cloud",
+    "materialId": "soft",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "lilac",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#9875FF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#E1C7FF"
+      }
+    ]
+  },
+  "persistedRevision": 20,
+  "fieldsUnchanged": true
+}

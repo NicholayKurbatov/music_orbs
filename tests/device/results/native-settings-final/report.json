@@ -1,0 +1,130 @@
+{
+  "schemaVersion": 1,
+  "scope": "aggregate-emulator-native-settings",
+  "result": "pass",
+  "uniqueSettingsChecks": 21,
+  "evidence": [
+    {
+      "report": "../native-settings-2026-10-17T20-20-04-528Z/report.json",
+      "overallResult": "fail",
+      "scope": "full-settings"
+    },
+    {
+      "report": "../native-settings-2026-10-17T20-29-43-718Z/report.json",
+      "overallResult": "pass",
+      "scope": "remaining-settings-custom-color-sliders-sync-fps-quality"
+    }
+  ],
+  "checks": [
+    {
+      "id": "quality-medium",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "fps60",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "preset-orb",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "preset-ribbon",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "preset-cloud",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "preset-pixel-cloud",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "material-dots",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "material-soft",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "material-pixels",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "palette-white",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "palette-pink",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "palette-lilac",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "palette-spectrum",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-20-04-528Z/report.json"
+    },
+    {
+      "id": "palette-custom",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "custom-color",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "slider-speed",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "slider-amplitude",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "slider-touchSensitivity",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "music-sync",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "fps30",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    },
+    {
+      "id": "quality-high",
+      "result": "pass",
+      "evidence": "../native-settings-2026-10-17T20-29-43-718Z/report.json"
+    }
+  ],
+  "singleFullRunPassed": false,
+  "nativeUiChangedBetweenRuns": false,
+  "humanVisualAcceptance": "pending",
+  "phoneAcceptance": "not-assessed",
+  "cleanup": "Baseline settings restored; fields preserved; native app restarted."
+}

@@ -1,0 +1,6 @@
+﻿INFO         | Selecting Vulkan device: AMD Radeon(TM) Graphics, Version: 1.3.260
+INFO         | Graphics Adapter Vendor Google (ATI Technologies Inc.)
+INFO         | Graphics Adapter Android Emulator OpenGL ES Translator (AMD Radeon(TM) Graphics)
+INFO         | Graphics API Version OpenGL ES 3.0 (4.5.0 Core Profile Context 26.5.2.260413)
+WHPX on Windows 10.0.19045 detected.
+Windows Hypervisor Platform accelerator is operational

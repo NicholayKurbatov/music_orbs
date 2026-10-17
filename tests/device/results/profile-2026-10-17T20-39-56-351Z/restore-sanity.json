@@ -1,0 +1,10 @@
+{
+  "result": "pass",
+  "swiftShaderToHostBaselineExact": true,
+  "dprDescriptorSettingsFieldsRestoredExact": true,
+  "evidence": [
+    "../profile-2026-10-17T20-34-31-231Z/baseline.json",
+    "baseline.json",
+    "../dpr-probe-2026-10-17T20-41-53-202Z/report.json"
+  ]
+}

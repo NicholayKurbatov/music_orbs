@@ -1,0 +1,60 @@
+{
+  "before": {
+    "shapeId": "pixel-cloud",
+    "materialId": "pixels",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "spectrum",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FF306E"
+      },
+      {
+        "offset": 0.25,
+        "colorHex": "#FFBE32"
+      },
+      {
+        "offset": 0.5,
+        "colorHex": "#33E8CA"
+      },
+      {
+        "offset": 0.75,
+        "colorHex": "#6585FF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#D855FF"
+      }
+    ]
+  },
+  "after": {
+    "shapeId": "pixel-cloud",
+    "materialId": "pixels",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "custom",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FFFFFF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFFFFF"
+      }
+    ]
+  },
+  "persistedRevision": 29,
+  "fieldsUnchanged": true
+}

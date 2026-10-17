@@ -34,6 +34,9 @@ MusicOrbs/
 |       |   \-- SKILL.md
 |       \-- openspec-update-change/
 |           \-- SKILL.md
+|-- .github/
+|   \-- workflows/
+|       \-- verify.yml
 |-- .gitignore
 |-- AGENTS.md
 |-- LICENSE
@@ -113,10 +116,31 @@ MusicOrbs/
 |       |-- AndroidManifest.xml
 |       |-- assets/
 |       |   \-- index.html
-|       \-- kotlin/
-|           \-- musicorbs/
-|               \-- platform/
-|                   \-- LocalAssetsClient.kt
+|       |-- kotlin/
+|       |   \-- musicorbs/
+|       |       \-- platform/
+|       |           |-- LocalAssetsClient.kt
+|       |           \-- audio/
+|       |               |-- CaptureProjectionHost.kt
+|       |               |-- LocalFilePlaybackAdapter.kt
+|       |               \-- RecordAudioSources.kt
+|       \-- src/
+|           |-- androidTest/
+|           |   \-- kotlin/
+|           |       \-- musicorbs/
+|           |           \-- platform/
+|           |               \-- audio/
+|           |                   |-- LocalFilePlaybackTest.kt
+|           |                   |-- MicrophoneAudioSourceTest.kt
+|           |                   \-- PlaybackCaptureTest.kt
+|           \-- debug/
+|               |-- AndroidManifest.xml
+|               \-- kotlin/
+|                   \-- musicorbs/
+|                       \-- platform/
+|                           \-- audio/
+|                               |-- AudioFocusProbeService.kt
+|                               \-- CaptureConsentTestActivity.kt
 |-- build.gradle.kts
 |-- contracts/
 |   |-- README.md
@@ -158,6 +182,8 @@ MusicOrbs/
 |   |-- README.md
 |   |-- bootstrap/
 |   |   |-- README.md
+|   |   |-- RenderMetrics.test.ts
+|   |   |-- RenderMetrics.ts
 |   |   |-- SyntheticMotion.test.ts
 |   |   |-- SyntheticMotion.ts
 |   |   |-- assets.d.ts
@@ -171,11 +197,18 @@ MusicOrbs/
 |   |-- index.html
 |   |-- motion/
 |   |   \-- domain/
-|   |       \-- MotionSignal.ts
+|   |       |-- MotionSignal.ts
+|   |       |-- VisualPhase.test.ts
+|   |       \-- VisualPhase.ts
 |   |-- package-lock.json
 |   |-- package.json
 |   |-- scripts/
-|   |   \-- browser-smoke.mjs
+|   |   |-- android-profile-options.mjs
+|   |   |-- android-profile.mjs
+|   |   |-- android-profile.test.mjs
+|   |   |-- browser-smoke.mjs
+|   |   |-- cdp-client.mjs
+|   |   \-- device-inspect.mjs
 |   |-- sculpture/
 |   |   |-- application/
 |   |   |   |-- SceneApplication.ts
@@ -225,6 +258,15 @@ MusicOrbs/
 |   \-- specs/
 |       \-- .gitkeep
 |-- scripts/
+|   |-- android-audio-smoke.mjs
+|   |-- android-device.mjs
+|   |-- android-dpr-probe.mjs
+|   |-- android-focus-smoke.mjs
+|   |-- android-permission-smoke.mjs
+|   |-- android-profile.mjs
+|   |-- android-raf-probe.mjs
+|   |-- android-settings-smoke.mjs
+|   |-- android-smoke.mjs
 |   |-- check-project.mjs
 |   \-- update-tree.mjs
 |-- settings.gradle.kts
@@ -237,9 +279,388 @@ MusicOrbs/
 |   |               |-- CoroutineBridgeTest.kt
 |   |               \-- WireCodecTest.kt
 |   |-- device/
-|   |   \-- README.md
+|   |   |-- README.md
+|   |   \-- results/
+|   |       |-- audio-focus-2026-10-17T20-06-21-780Z/
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   \-- report.json
+|   |       |-- audio-focus-2026-10-17T20-06-44-785Z/
+|   |       |   |-- baseline.json
+|   |       |   |-- before-focus.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- focus-paused.json
+|   |       |   |-- focus-paused.png
+|   |       |   |-- probe-start.txt
+|   |       |   \-- report.json
+|   |       |-- audio-focus-2026-10-17T20-07-42-992Z/
+|   |       |   |-- after-abandon.json
+|   |       |   |-- baseline.json
+|   |       |   |-- before-focus.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- focus-paused.json
+|   |       |   |-- focus-paused.png
+|   |       |   |-- last-state.json
+|   |       |   |-- probe-log.txt
+|   |       |   |-- probe-start.txt
+|   |       |   \-- report.json
+|   |       |-- audio-focus-2026-10-17T20-18-19-787Z/
+|   |       |   |-- after-abandon.json
+|   |       |   |-- baseline.json
+|   |       |   |-- before-focus.json
+|   |       |   |-- explicit-resumed.json
+|   |       |   |-- focus-paused.json
+|   |       |   |-- focus-paused.png
+|   |       |   |-- noisy-local-broadcast.txt
+|   |       |   |-- probe-log.txt
+|   |       |   |-- probe-start.txt
+|   |       |   \-- report.json
+|   |       |-- audio-platform-api35-final/
+|   |       |   |-- environment.json
+|   |       |   \-- instrumentation.xml
+|   |       |-- audio-platform-api35-generation/
+|   |       |   |-- environment.json
+|   |       |   \-- instrumentation.xml
+|   |       |-- audio-platform-api35/
+|   |       |   |-- environment.json
+|   |       |   \-- instrumentation.xml
+|   |       |-- browser-final/
+|   |       |   |-- README.md
+|   |       |   |-- cloud.png
+|   |       |   |-- orb.png
+|   |       |   |-- pixel-cloud.png
+|   |       |   |-- result.json
+|   |       |   |-- ribbon.png
+|   |       |   \-- sculpted-restored.png
+|   |       |-- browser-smoke-2026-10-17/
+|   |       |   |-- cloud.png
+|   |       |   |-- orb.png
+|   |       |   |-- pixel-cloud.png
+|   |       |   |-- result.json
+|   |       |   |-- ribbon.png
+|   |       |   \-- sculpted-restored.png
+|   |       |-- dpr-probe-2026-10-17T20-41-53-202Z/
+|   |       |   |-- README.md
+|   |       |   \-- report.json
+|   |       |-- g2-2026-10-17T19-29-03-309Z/
+|   |       |   |-- baseline.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- opened-without-audio-permission.png
+|   |       |   |-- opened.xml
+|   |       |   |-- orb-before.json
+|   |       |   \-- report.json
+|   |       |-- g2-2026-10-17T19-36-51-836Z/
+|   |       |   |-- after-background.json
+|   |       |   |-- after-reset.json
+|   |       |   |-- after-restart.json
+|   |       |   |-- background-resumed.png
+|   |       |   |-- baseline.json
+|   |       |   |-- before-background.json
+|   |       |   |-- before-optional-corruption.json
+|   |       |   |-- before-restart.json
+|   |       |   |-- corruption-fallback.png
+|   |       |   |-- corruption-fallback.xml
+|   |       |   |-- opened-without-audio-permission.png
+|   |       |   |-- opened.xml
+|   |       |   |-- orb-before.json
+|   |       |   |-- orb-deformed.json
+|   |       |   |-- orb-deformed.png
+|   |       |   |-- quality-changed.png
+|   |       |   |-- report.json
+|   |       |   |-- reset-orb.png
+|   |       |   |-- restored-ribbon.png
+|   |       |   |-- restored-settings.xml
+|   |       |   |-- ribbon-before.json
+|   |       |   |-- ribbon-deformed.json
+|   |       |   \-- ribbon-deformed.png
+|   |       |-- g3-audio-2026-10-17T19-44-31-162Z/
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   \-- report.json
+|   |       |-- g3-audio-2026-10-17T19-45-04-755Z/
+|   |       |   |-- baseline.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- playing-synced.json
+|   |       |   |-- playing-synced.png
+|   |       |   \-- report.json
+|   |       |-- g3-audio-2026-10-17T19-47-36-872Z/
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   \-- report.json
+|   |       |-- g3-audio-2026-10-17T19-48-26-918Z/
+|   |       |   |-- baseline.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- last-state.json
+|   |       |   |-- playing-synced.json
+|   |       |   |-- playing-synced.png
+|   |       |   \-- report.json
+|   |       |-- g3-audio-2026-10-17T19-55-05-313Z/
+|   |       |   |-- after-background.json
+|   |       |   |-- baseline.json
+|   |       |   |-- completed.png
+|   |       |   |-- motion-samples.json
+|   |       |   |-- playing-synced.json
+|   |       |   |-- playing-synced.png
+|   |       |   |-- report.json
+|   |       |   |-- resumed.json
+|   |       |   |-- stopped.json
+|   |       |   |-- sync-off.json
+|   |       |   |-- sync-on.json
+|   |       |   \-- unsupported.json
+|   |       |-- g3-audio-2026-10-17T20-12-08-959Z/
+|   |       |   |-- baseline.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- last-state.json
+|   |       |   |-- motion-samples.json
+|   |       |   |-- playing-synced.json
+|   |       |   |-- playing-synced.png
+|   |       |   \-- report.json
+|   |       |-- g3-audio-2026-10-17T20-15-57-327Z/
+|   |       |   |-- after-background.json
+|   |       |   |-- baseline.json
+|   |       |   |-- completed.png
+|   |       |   |-- motion-samples.json
+|   |       |   |-- playing-synced.json
+|   |       |   |-- playing-synced.png
+|   |       |   |-- report.json
+|   |       |   |-- resumed.json
+|   |       |   |-- stopped.json
+|   |       |   |-- sync-off.json
+|   |       |   |-- sync-on.json
+|   |       |   \-- unsupported.json
+|   |       |-- gfx-canvas-debug/
+|   |       |   |-- README.md
+|   |       |   |-- after-drag-cdp.json
+|   |       |   |-- after-drag.png
+|   |       |   |-- cdp-live-fix.json
+|   |       |   |-- fresh-build-cdp.json
+|   |       |   |-- fresh-build.png
+|   |       |   |-- live-css-fix.png
+|   |       |   |-- saved-after-drag.json
+|   |       |   |-- saved-before-install.json
+|   |       |   \-- settled-cdp.json
+|   |       |-- gpu-host-2026-10-17T20-39-08-965Z/
+|   |       |   |-- avd-config.json
+|   |       |   |-- emulator-gpu.txt
+|   |       |   |-- environment.json
+|   |       |   |-- renderer-environment.json
+|   |       |   |-- report.json
+|   |       |   \-- scene.png
+|   |       |-- local-playback-2026-10-17/
+|   |       |   \-- results.xml
+|   |       |-- native-integration-build/
+|   |       |   \-- environment.json
+|   |       |-- native-integration-dsp-build/
+|   |       |   \-- environment.json
+|   |       |-- native-settings-2026-10-17T20-20-04-528Z/
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- fps60-panel.xml
+|   |       |   |-- fps60.json
+|   |       |   |-- material-dots-panel.xml
+|   |       |   |-- material-dots.json
+|   |       |   |-- material-pixels-panel.xml
+|   |       |   |-- material-pixels.json
+|   |       |   |-- material-soft-panel.xml
+|   |       |   |-- material-soft.json
+|   |       |   |-- palette-custom-panel.xml
+|   |       |   |-- palette-custom.json
+|   |       |   |-- palette-lilac-panel.xml
+|   |       |   |-- palette-lilac.json
+|   |       |   |-- palette-pink-panel.xml
+|   |       |   |-- palette-pink.json
+|   |       |   |-- palette-spectrum-panel.xml
+|   |       |   |-- palette-spectrum.json
+|   |       |   |-- palette-white-panel.xml
+|   |       |   |-- palette-white.json
+|   |       |   |-- preset-cloud-panel.xml
+|   |       |   |-- preset-cloud-parameters.json
+|   |       |   |-- preset-cloud.json
+|   |       |   |-- preset-cloud.png
+|   |       |   |-- preset-orb-panel.xml
+|   |       |   |-- preset-orb-parameters.json
+|   |       |   |-- preset-orb.json
+|   |       |   |-- preset-orb.png
+|   |       |   |-- preset-pixel-cloud-panel.xml
+|   |       |   |-- preset-pixel-cloud-parameters.json
+|   |       |   |-- preset-pixel-cloud.json
+|   |       |   |-- preset-pixel-cloud.png
+|   |       |   |-- preset-ribbon-panel.xml
+|   |       |   |-- preset-ribbon-parameters.json
+|   |       |   |-- preset-ribbon.json
+|   |       |   |-- preset-ribbon.png
+|   |       |   |-- quality-medium-panel.xml
+|   |       |   |-- quality-medium.json
+|   |       |   \-- report.json
+|   |       |-- native-settings-2026-10-17T20-27-45-405Z/
+|   |       |   |-- README.md
+|   |       |   |-- action-failure.png
+|   |       |   |-- action-failure.xml
+|   |       |   |-- baseline.json
+|   |       |   |-- custom-color-typed.png
+|   |       |   |-- custom-color-typed.xml
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- palette-custom-panel.xml
+|   |       |   |-- palette-custom.json
+|   |       |   \-- report.json
+|   |       |-- native-settings-2026-10-17T20-29-43-718Z/
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- custom-color-before-apply.png
+|   |       |   |-- custom-color-before-apply.xml
+|   |       |   |-- custom-color-panel.xml
+|   |       |   |-- custom-color-typed.png
+|   |       |   |-- custom-color-typed.xml
+|   |       |   |-- custom-color.json
+|   |       |   |-- custom-color.png
+|   |       |   |-- fps30-panel.xml
+|   |       |   |-- fps30.json
+|   |       |   |-- music-sync-panel.xml
+|   |       |   |-- music-sync.json
+|   |       |   |-- palette-custom-panel.xml
+|   |       |   |-- palette-custom.json
+|   |       |   |-- quality-high-panel.xml
+|   |       |   |-- quality-high.json
+|   |       |   |-- report.json
+|   |       |   |-- slider-amplitude-panel.xml
+|   |       |   |-- slider-amplitude.json
+|   |       |   |-- slider-speed-panel.xml
+|   |       |   |-- slider-speed.json
+|   |       |   |-- slider-touchSensitivity-panel.xml
+|   |       |   \-- slider-touchSensitivity.json
+|   |       |-- native-settings-final/
+|   |       |   |-- README.md
+|   |       |   \-- report.json
+|   |       |-- native-settings-hex-debug-2026-10-17T20-26-41-287Z/
+|   |       |   |-- README.md
+|   |       |   \-- baseline.json
+|   |       |-- permissions-2026-10-17T19-57-27-002Z/
+|   |       |   |-- after-revoke-restart.json
+|   |       |   |-- after-revoke-restart.png
+|   |       |   |-- baseline.json
+|   |       |   |-- failure.png
+|   |       |   |-- failure.xml
+|   |       |   |-- microphone-active.json
+|   |       |   |-- microphone-active.png
+|   |       |   |-- record-denied.json
+|   |       |   |-- record-denied.png
+|   |       |   \-- report.json
+|   |       |-- permissions-2026-10-17T19-59-47-808Z/
+|   |       |   |-- README.md
+|   |       |   |-- after-revoke-restart.json
+|   |       |   |-- after-revoke-restart.png
+|   |       |   |-- baseline.json
+|   |       |   |-- main-capture-canceled.json
+|   |       |   |-- main-capture-canceled.png
+|   |       |   |-- microphone-active.json
+|   |       |   |-- microphone-active.png
+|   |       |   |-- microphone-denied.json
+|   |       |   |-- microphone-denied.png
+|   |       |   |-- record-denied.json
+|   |       |   |-- record-denied.png
+|   |       |   \-- report.json
+|   |       |-- permissions-2026-10-17T20-02-24-253Z/
+|   |       |   |-- after-revoke-restart.json
+|   |       |   |-- after-revoke-restart.png
+|   |       |   |-- baseline.json
+|   |       |   |-- main-capture-canceled.json
+|   |       |   |-- main-capture-canceled.png
+|   |       |   |-- microphone-active.json
+|   |       |   |-- microphone-active.png
+|   |       |   |-- microphone-denied.json
+|   |       |   |-- microphone-denied.png
+|   |       |   |-- record-denied.json
+|   |       |   |-- record-denied.png
+|   |       |   \-- report.json
+|   |       |-- profile-2026-10-17T20-34-31-231Z/
+|   |       |   |-- 1-orb-after-android-window-framestats.txt
+|   |       |   |-- 1-orb-before-android-window-framestats.txt
+|   |       |   |-- 1-orb-metrics.json
+|   |       |   |-- 1-orb.png
+|   |       |   |-- 2-ribbon-after-android-window-framestats.txt
+|   |       |   |-- 2-ribbon-before-android-window-framestats.txt
+|   |       |   |-- 2-ribbon-metrics.json
+|   |       |   |-- 2-ribbon.png
+|   |       |   |-- 3-cloud-after-android-window-framestats.txt
+|   |       |   |-- 3-cloud-before-android-window-framestats.txt
+|   |       |   |-- 3-cloud-metrics.json
+|   |       |   |-- 3-cloud.png
+|   |       |   |-- 4-pixel-cloud-after-android-window-framestats.txt
+|   |       |   |-- 4-pixel-cloud-before-android-window-framestats.txt
+|   |       |   |-- 4-pixel-cloud-metrics.json
+|   |       |   |-- 4-pixel-cloud.png
+|   |       |   |-- 5-orb-memory-after-android-window-framestats.txt
+|   |       |   |-- 5-orb-memory-before-android-window-framestats.txt
+|   |       |   |-- 5-orb-memory-metrics.json
+|   |       |   |-- 5-orb-memory.png
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- memory-001.txt
+|   |       |   |-- memory-002.txt
+|   |       |   |-- memory-003.txt
+|   |       |   |-- memory-004.txt
+|   |       |   |-- memory-005.txt
+|   |       |   |-- memory-006.txt
+|   |       |   |-- memory-007.txt
+|   |       |   |-- memory-008.txt
+|   |       |   |-- memory-009.txt
+|   |       |   |-- memory-010.txt
+|   |       |   \-- report.json
+|   |       |-- profile-2026-10-17T20-39-56-351Z/
+|   |       |   |-- 1-orb-after-android-window-framestats.txt
+|   |       |   |-- 1-orb-before-android-window-framestats.txt
+|   |       |   |-- 1-orb-metrics.json
+|   |       |   |-- 1-orb.png
+|   |       |   |-- 2-ribbon-after-android-window-framestats.txt
+|   |       |   |-- 2-ribbon-before-android-window-framestats.txt
+|   |       |   |-- 2-ribbon-metrics.json
+|   |       |   |-- 2-ribbon.png
+|   |       |   |-- 3-cloud-after-android-window-framestats.txt
+|   |       |   |-- 3-cloud-before-android-window-framestats.txt
+|   |       |   |-- 3-cloud-metrics.json
+|   |       |   |-- 3-cloud.png
+|   |       |   |-- 4-pixel-cloud-after-android-window-framestats.txt
+|   |       |   |-- 4-pixel-cloud-before-android-window-framestats.txt
+|   |       |   |-- 4-pixel-cloud-metrics.json
+|   |       |   |-- 4-pixel-cloud.png
+|   |       |   |-- 5-orb-memory-after-android-window-framestats.txt
+|   |       |   |-- 5-orb-memory-before-android-window-framestats.txt
+|   |       |   |-- 5-orb-memory-metrics.json
+|   |       |   |-- 5-orb-memory.png
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- memory-001.txt
+|   |       |   |-- memory-002.txt
+|   |       |   |-- memory-003.txt
+|   |       |   |-- memory-004.txt
+|   |       |   |-- memory-005.txt
+|   |       |   |-- memory-006.txt
+|   |       |   |-- memory-007.txt
+|   |       |   |-- memory-008.txt
+|   |       |   |-- memory-009.txt
+|   |       |   |-- memory-010.txt
+|   |       |   |-- report.json
+|   |       |   \-- restore-sanity.json
+|   |       |-- raf-probe-2026-10-17T20-37-03-616Z/
+|   |       |   |-- README.md
+|   |       |   |-- avd-config.json
+|   |       |   |-- emulator-flags.json
+|   |       |   |-- report.json
+|   |       |   \-- surface-refresh.txt
+|   |       \-- raf-probe-2026-10-17T20-39-22-057Z/
+|   |           \-- report.json
 |   \-- functional/
-|       \-- README.md
+|       |-- README.md
+|       \-- results.md
 \-- third_party/
     |-- Commons-Math-LICENSE.txt
     |-- Commons-Math-NOTICE.txt

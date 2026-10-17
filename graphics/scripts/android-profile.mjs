@@ -47,7 +47,11 @@ const resultsRoot = path.join(root, 'tests', 'device', 'results');
 const output = path.resolve(root, options.output || path.join('tests', 'device', 'results', `profile-${new Date().toISOString().replace(/[:.]/g, '-')}`));
 if (!output.startsWith(resultsRoot + path.sep) || existsSync(path.join(output, 'report.json'))) throw new Error('Выберите новый каталог tests/device/results/<run>.');
 await fs.mkdir(output, { recursive: true });
-const write = (name, data) => fs.writeFile(path.join(output, name), typeof data === 'string' || Buffer.isBuffer(data) ? data : JSON.stringify(data, null, 2));
+const write = (name, data) => {
+  const value = typeof data === 'string' && name.endsWith('.txt')
+    ? data.replace(/[\t ]+$/gm, '').trimEnd() + '\n' : data;
+  return fs.writeFile(path.join(output, name), typeof value === 'string' || Buffer.isBuffer(value) ? value : JSON.stringify(value, null, 2));
+};
 const report = {
   schemaVersion: 1, startedAt: new Date().toISOString(), scope: options.scope, budgets: options.budgets,
   serial, result: 'running', phoneAcceptance: 'not-assessed',
@@ -60,7 +64,7 @@ const report = {
 let cdp, baseline, profiling = false, interrupted = false, screenTimeoutChanged = false;
 process.on('SIGINT', () => { interrupted = true; });
 process.on('SIGTERM', () => { interrupted = true; });
-const stateExpression = `(async()=>({visible:!document.hidden,viewport:[innerWidth,innerHeight,devicePixelRatio],snapshot:await window.musicOrbs.snapshot(),motion:window.musicOrbs.visualState(),profilingAvailable:typeof window.musicOrbs.profiling?.start==='function',assets:[...document.querySelectorAll('script[src],link[rel=stylesheet]')].map(e=>e.src||e.href),glVersion:document.querySelector('canvas').getContext('webgl2')?.getParameter(7938)}))()`;
+const stateExpression = `(async()=>{const canvas=document.querySelector('canvas'),rect=canvas.getBoundingClientRect(),gl=canvas.getContext('webgl2'),debug=gl?.getExtension('WEBGL_debug_renderer_info');return {visible:!document.hidden,viewport:[innerWidth,innerHeight,devicePixelRatio],canvasCss:[rect.width,rect.height],canvasBacking:[canvas.width,canvas.height],snapshot:await window.musicOrbs.snapshot(),motion:window.musicOrbs.visualState(),profilingAvailable:typeof window.musicOrbs.profiling?.start==='function',assets:[...document.querySelectorAll('script[src],link[rel=stylesheet]')].map(e=>e.src||e.href),glVersion:gl?.getParameter(gl.VERSION),glRenderer:debug?gl.getParameter(debug.UNMASKED_RENDERER_WEBGL):null,glVendor:debug?gl.getParameter(debug.UNMASKED_VENDOR_WEBGL):null};})()`;
 const state = () => cdp.evaluate(stateExpression);
 const checkpoint = () => write('report.json', report);
 async function memorySample(segment) {
@@ -91,7 +95,7 @@ try {
     if (Number((await shell('settings', 'get', 'system', 'screen_off_timeout')).trim()) !== report.screenAwake.temporarySystemTimeoutMs) throw new Error('Test AVD did not confirm screen timeout.');
     const props = await shell('getprop');
     const prop = key => new RegExp(`^\\[${key.replaceAll('.', '\\.')}\\]: \\[(.*)\\]$`, 'm').exec(props)?.[1] ?? null;
-    report.environment = { deviceClass: 'emulator', model: prop('ro.product.model'), manufacturer: prop('ro.product.manufacturer'), android: prop('ro.build.version.release'), sdk: prop('ro.build.version.sdk'), fingerprint: prop('ro.build.fingerprint'), webView: (await shell('dumpsys', 'webviewupdate')).split(/\r?\n/).find(line => line.includes('Current WebView package'))?.trim(), viewport: initial.viewport, glVersion: initial.glVersion };
+    report.environment = { deviceClass: 'emulator', model: prop('ro.product.model'), manufacturer: prop('ro.product.manufacturer'), android: prop('ro.build.version.release'), sdk: prop('ro.build.version.sdk'), fingerprint: prop('ro.build.fingerprint'), webView: (await shell('dumpsys', 'webviewupdate')).split(/\r?\n/).find(line => line.includes('Current WebView package'))?.trim(), viewport: initial.viewport, canvasCss: initial.canvasCss, canvasBacking: initial.canvasBacking, glVersion: initial.glVersion, glRenderer: initial.glRenderer, glVendor: initial.glVendor };
     const packagePath = (await shell('pm', 'path', packageId)).split(/\r?\n/).find(line => line.endsWith('/base.apk'))?.slice('package:'.length);
     if (!packagePath || !/^\/data\/app\/[A-Za-z0-9_~./+=-]+\/base\.apk$/.test(packagePath)) throw new Error('Не найден безопасный путь установленного APK.');
     const apk = await adb(['exec-out', 'cat', packagePath], true);

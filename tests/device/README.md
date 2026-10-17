@@ -90,3 +90,39 @@ broadcast или доставка `NOT_EXPORTED` receiver не подтверж�
 Матрица физического устройства заполняется отдельно: модель, Android/WebView,
 источник, разрешения, фактический PCM, выход звука, отзыв, FPS, память, нагрев
 и батарея. Совместимость внешнего приложения фиксируется после измерения.
+
+## Панель и длительные измерения
+
+```powershell
+node scripts/android-settings-smoke.mjs --serial emulator-5554
+```
+
+[Settings runner](../../scripts/android-settings-smoke.mjs) меняет настройки
+через UIAutomator, сравнивает живой snapshot и native store, проверяет изоляцию
+касания панели и сохраняет четыре PNG. `--remaining` запускает только custom HEX,
+ползунки, sync, 30 FPS и high quality после уже записанного предыдущего checkpoint;
+его scope явно указан в отчёте, он не заменяет пропущенные проверки.
+Ввод HEX прокручивает фактическую область ScrollView над открытой IME.
+Baseline settings восстанавливаются служебной командой; поля сохраняются.
+
+После установки APK заново получить PID/локальный CDP forward через
+`AndroidDevice.cdp()` из helper: force-stop/reinstall меняют PID. Профилировщик
+ожидает уже открытую foreground-сцену с sourceSessionId=`none` и актуальный
+`http://127.0.0.1:9223` (либо локальный `MUSIC_ORBS_CDP_URL`).
+
+```powershell
+node scripts/android-profile.mjs
+node scripts/android-profile.mjs --run --serial emulator-5554 --durations 2,2,2,2,3 --budget-status accepted
+node scripts/android-profile.mjs --run --serial emulator-5554 --budget-status accepted
+```
+
+Первая команда печатает план; вторая — короткий software smoke без приёмки
+производительности; третья выполняет четыре формы по 10 минут и Orb 30 минут.
+[Runner](../../scripts/android-profile.mjs) сохраняет SHA-256 установленного APK,
+settings, интервалы JS submissions, CPU duration, поминутный app PSS/RSS и отдельно
+Android window framestats. Бюджеты и ограничения измерений описаны в
+[spec.md](../../docs/spec.md#14-локальная-диагностика-renderer).
+В finally восстанавливаются baseline settings и исходный screen_off_timeout;
+настройка экрана временно увеличивается, чтобы AVD не уснул во время измерения.
+Нативная панель после служебного профиля согласуется перезапуском приложения.
+Во время длительного прогона не запускаются параллельные browser/Gradle тесты.

@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T20:20:04.656Z",
+  "serial": "emulator-5554",
+  "result": "fail",
+  "steps": [
+    {
+      "id": "quality-medium",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "fps60",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "preset-orb",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "preset-ribbon",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "preset-cloud",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "preset-pixel-cloud",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "material-dots",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "material-soft",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "material-pixels",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "palette-white",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "palette-pink",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "palette-lilac",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "palette-spectrum",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "palette-custom",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "cleanup-baseline",
+      "result": "pass",
+      "details": "Настройки восстановлены служебной командой и перезапуском native UI; этот шаг не считается UI-проверкой."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "failure": "UI element missing: Применить цвет",
+  "finishedAt": "2026-10-17T20:26:21.523Z"
+}

@@ -1,0 +1,52 @@
+﻿         present offset:         0 ns	        VSYNC period:  16666666 ns
+app: state=Idle VSyncState={displayId=4619827259835644672, count=149740}
+mWorkDuration=16.67 mReadyDuration=15.67 last vsync time 30.61ms relative to now
+    Connection{0x7882e866ee50, VSyncRequest::None}
+    Connection{0x7882e8673d10, VSyncRequest::None}
+    Connection{0x7882e8673590, VSyncRequest::None}
+    Connection{0x7882e8671a90, VSyncRequest::None}
+    Connection{0x7882e8674790, VSyncRequest::None}
+    Connection{0x7882e8678450, VSyncRequest::None}
+    Connection{0x7882e8678c90, VSyncRequest::None}
+    Connection{0x7882e86770d0, VSyncRequest::None}
+    Connection{0x7882e86734d0, VSyncRequest::None}
+    Connection{0x7882e8671310, VSyncRequest::None}
+    Connection{0x7882e86746d0, VSyncRequest::None}
+    Connection{0x7882e86776d0, VSyncRequest::None}
+    Connection{0x7882e8673110, VSyncRequest::None}
+    Connection{0x7882e8675d50, VSyncRequest::None}
+    Connection{0x7882e86716d0, VSyncRequest::None}
+    Connection{0x7882e8677cd0, VSyncRequest::None}
+    Connection{0x7882e86782d0, VSyncRequest::None}
+    Connection{0x7882e8674490, VSyncRequest::None}
+    Connection{0x7882e8676e90, VSyncRequest::None}
+    Connection{0x7882e8678210, VSyncRequest::None}
+    Connection{0x7882e867ab50, VSyncRequest::None}
+    Connection{0x7882e8678990, VSyncRequest::None}
+    Connection{0x7882e867bc90, VSyncRequest::None}
+    Connection{0x7882e867c950, VSyncRequest::None}
+VsyncSchedule for pacesetter 4619827259835644672:
+hwVsyncState=Enabled
+pendingHwVsyncState=Enabled
+VsyncController:
+VsyncReactor in use
+No Last HW vsync
+VSyncTracker:
+	mDisplayModePtr={id=0, hwcId=0, resolution=1080x2340, vsyncRate=60.00 Hz, dpi=440.00x440.00, group=0, vrrConfig=N/A}
+	Refresh Rate Map:
+VsyncDispatch:
+	mTimerSlack: 0.50ms mMinVsyncDistance: 3.00ms
+			workDuration: 15.67ms readyDuration: 0.00ms lastVsync: -52.84ms relative to now
+			workDuration: 16.67ms readyDuration: 15.67ms lastVsync: 13.80ms relative to now
+			workDuration: 16.67ms readyDuration: 15.67ms lastVsync: -23969.56ms relative to now
+    activeMode={id=0, hwcId=0, resolution=1080x2340, vsyncRate=60.00 Hz, dpi=440.00x440.00, group=0, vrrConfig=N/A}
+        {id=0, hwcId=0, resolution=1080x2340, vsyncRate=60.00 Hz, dpi=440.00x440.00, group=0, vrrConfig=N/A}
+EGL_ANDROID_front_buffer_auto_refresh EGL_ANDROID_get_native_client_buffer EGL_ANDROID_presentation_time EGL_EXT_surface_CTA861_3_metadata EGL_EXT_surface_SMPTE2086_metadata EGL_KHR_get_all_proc_addresses EGL_KHR_swap_buffers_with_damage EGL_ANDROID_get_frame_timestamps EGL_ANDROID_image_native_buffer EGL_ANDROID_native_fence_sync EGL_ANDROID_recordable EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_gl_texture_2D_image EGL_KHR_image EGL_KHR_image_base
+  peak-refresh-rate         : 60.00 Hz
+refresh_rate_overlay_on_external_display: false
+use_known_refresh_rate_for_fps_consistency: false
+idle_screen_refresh_rate_timeout: true
+latch_unsignaled_with_auto_refresh_changed: true
+deprecate_vsync_sf: false
+allow_n_vsyncs_in_targeter: false
+  max send vsync id: -1

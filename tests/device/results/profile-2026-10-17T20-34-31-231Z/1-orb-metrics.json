@@ -1,0 +1,274 @@
+{
+  "active": false,
+  "paused": false,
+  "contextLost": false,
+  "durationSeconds": 2.1542000000001864,
+  "activeSeconds": 2.1542000000001864,
+  "submissions": 57,
+  "submissionFps": 26.45993872435014,
+  "intervalThresholdMs": 25,
+  "slowIntervals": 54,
+  "slowFraction": 0.9642857142857143,
+  "submissionIntervals": {
+    "count": 56,
+    "minMs": 19.600000000093132,
+    "maxMs": 61.5,
+    "meanMs": 37.90714285713953,
+    "p50Ms": 36.5,
+    "p95Ms": 48.25,
+    "p99Ms": 61.5,
+    "bucketWidthMs": 0.25,
+    "overflowAtMs": 1000,
+    "percentileMethod": "histogram-upper-bound",
+    "bins": [
+      [
+        78,
+        1
+      ],
+      [
+        97,
+        1
+      ],
+      [
+        106,
+        2
+      ],
+      [
+        121,
+        1
+      ],
+      [
+        122,
+        1
+      ],
+      [
+        123,
+        2
+      ],
+      [
+        127,
+        2
+      ],
+      [
+        128,
+        2
+      ],
+      [
+        132,
+        2
+      ],
+      [
+        135,
+        2
+      ],
+      [
+        136,
+        4
+      ],
+      [
+        137,
+        1
+      ],
+      [
+        138,
+        1
+      ],
+      [
+        140,
+        1
+      ],
+      [
+        142,
+        3
+      ],
+      [
+        144,
+        1
+      ],
+      [
+        145,
+        1
+      ],
+      [
+        146,
+        1
+      ],
+      [
+        148,
+        1
+      ],
+      [
+        153,
+        1
+      ],
+      [
+        154,
+        1
+      ],
+      [
+        155,
+        1
+      ],
+      [
+        156,
+        1
+      ],
+      [
+        157,
+        1
+      ],
+      [
+        161,
+        2
+      ],
+      [
+        164,
+        1
+      ],
+      [
+        165,
+        1
+      ],
+      [
+        168,
+        1
+      ],
+      [
+        169,
+        1
+      ],
+      [
+        170,
+        1
+      ],
+      [
+        173,
+        2
+      ],
+      [
+        174,
+        1
+      ],
+      [
+        177,
+        3
+      ],
+      [
+        180,
+        1
+      ],
+      [
+        182,
+        1
+      ],
+      [
+        185,
+        1
+      ],
+      [
+        189,
+        1
+      ],
+      [
+        192,
+        2
+      ],
+      [
+        232,
+        1
+      ],
+      [
+        246,
+        1
+      ]
+    ]
+  },
+  "presentCpuDuration": {
+    "count": 57,
+    "minMs": 0.10000000009313226,
+    "maxMs": 3,
+    "meanMs": 0.42280701756183253,
+    "p50Ms": 0.5,
+    "p95Ms": 1.5,
+    "p99Ms": 3,
+    "bucketWidthMs": 0.25,
+    "overflowAtMs": 1000,
+    "percentileMethod": "histogram-upper-bound",
+    "bins": [
+      [
+        0,
+        24
+      ],
+      [
+        1,
+        20
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        3
+      ],
+      [
+        4,
+        2
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        12,
+        1
+      ]
+    ]
+  },
+  "counters": {
+    "contextLosses": 0,
+    "contextRestores": 0,
+    "renderErrors": 0,
+    "skippedPaused": 0,
+    "skippedContextLost": 0
+  },
+  "minuteBucketLimit": 180,
+  "minuteOverflow": false,
+  "minutes": [
+    {
+      "minute": 0,
+      "activeSeconds": 2.1542000000001864,
+      "submissions": 57,
+      "submissionFps": 26.45993872435014,
+      "slowIntervals": 54,
+      "submissionIntervals": {
+        "count": 56,
+        "minMs": 19.600000000093132,
+        "maxMs": 61.5,
+        "meanMs": 37.90714285713953,
+        "p50Ms": 37,
+        "p95Ms": 49,
+        "p99Ms": 61.5,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 57,
+        "minMs": 0.10000000009313226,
+        "maxMs": 3,
+        "meanMs": 0.42280701756183253,
+        "p50Ms": 1,
+        "p95Ms": 2,
+        "p99Ms": 3,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    }
+  ]
+}

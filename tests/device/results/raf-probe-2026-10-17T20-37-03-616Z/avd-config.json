@@ -1,0 +1,9 @@
+﻿{
+    "hw.gpu.enabled":  "no",
+    "hw.gpu.mode":  "auto",
+    "hw.lcd.density":  "440",
+    "hw.lcd.height":  "2340",
+    "hw.lcd.vsync":  "60",
+    "hw.lcd.width":  "1080",
+    "hw.ramSize":  "2G"
+}

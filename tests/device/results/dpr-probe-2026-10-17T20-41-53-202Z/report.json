@@ -1,0 +1,1375 @@
+{
+  "schemaVersion": 1,
+  "scope": "temporary-backing-DPR1-diagnostic-not-acceptance",
+  "startedAt": "2026-10-17T20:41:53.205Z",
+  "segments": [
+    {
+      "shape": "orb",
+      "original": {
+        "visible": true,
+        "dpr": 2.75,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          786,
+          1702
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": true,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      },
+      "temporary": {
+        "visible": true,
+        "dpr": 1,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          393,
+          851
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": false,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      },
+      "metrics": {
+        "active": false,
+        "paused": false,
+        "contextLost": false,
+        "durationSeconds": 3.001600000000006,
+        "activeSeconds": 3.001600000000006,
+        "submissions": 109,
+        "submissionFps": 36.31396588486133,
+        "intervalThresholdMs": 25,
+        "slowIntervals": 92,
+        "slowFraction": 0.8518518518518519,
+        "submissionIntervals": {
+          "count": 108,
+          "minMs": 22.79999999998836,
+          "maxMs": 49.39999999999418,
+          "meanMs": 27.61759259259243,
+          "p50Ms": 27.25,
+          "p95Ms": 32,
+          "p99Ms": 36.25,
+          "bucketWidthMs": 0.25,
+          "overflowAtMs": 1000,
+          "percentileMethod": "histogram-upper-bound",
+          "bins": [
+            [
+              91,
+              4
+            ],
+            [
+              92,
+              1
+            ],
+            [
+              95,
+              1
+            ],
+            [
+              97,
+              3
+            ],
+            [
+              98,
+              3
+            ],
+            [
+              99,
+              4
+            ],
+            [
+              100,
+              1
+            ],
+            [
+              101,
+              2
+            ],
+            [
+              102,
+              4
+            ],
+            [
+              103,
+              1
+            ],
+            [
+              104,
+              6
+            ],
+            [
+              105,
+              1
+            ],
+            [
+              106,
+              6
+            ],
+            [
+              107,
+              5
+            ],
+            [
+              108,
+              12
+            ],
+            [
+              109,
+              7
+            ],
+            [
+              110,
+              8
+            ],
+            [
+              111,
+              5
+            ],
+            [
+              112,
+              2
+            ],
+            [
+              113,
+              7
+            ],
+            [
+              114,
+              2
+            ],
+            [
+              115,
+              2
+            ],
+            [
+              116,
+              2
+            ],
+            [
+              117,
+              1
+            ],
+            [
+              118,
+              2
+            ],
+            [
+              119,
+              2
+            ],
+            [
+              121,
+              2
+            ],
+            [
+              122,
+              1
+            ],
+            [
+              123,
+              1
+            ],
+            [
+              125,
+              1
+            ],
+            [
+              126,
+              1
+            ],
+            [
+              127,
+              3
+            ],
+            [
+              129,
+              1
+            ],
+            [
+              132,
+              1
+            ],
+            [
+              137,
+              1
+            ],
+            [
+              144,
+              1
+            ],
+            [
+              197,
+              1
+            ]
+          ]
+        },
+        "presentCpuDuration": {
+          "count": 109,
+          "minMs": 0,
+          "maxMs": 0.6999999999825377,
+          "meanMs": 0.19266055045791458,
+          "p50Ms": 0.25,
+          "p95Ms": 0.5,
+          "p99Ms": 0.6999999999825377,
+          "bucketWidthMs": 0.25,
+          "overflowAtMs": 1000,
+          "percentileMethod": "histogram-upper-bound",
+          "bins": [
+            [
+              0,
+              86
+            ],
+            [
+              1,
+              21
+            ],
+            [
+              2,
+              2
+            ]
+          ]
+        },
+        "counters": {
+          "contextLosses": 0,
+          "contextRestores": 0,
+          "renderErrors": 0,
+          "skippedPaused": 0,
+          "skippedContextLost": 0
+        },
+        "minuteBucketLimit": 180,
+        "minuteOverflow": false,
+        "minutes": [
+          {
+            "minute": 0,
+            "activeSeconds": 3.001600000000006,
+            "submissions": 109,
+            "submissionFps": 36.31396588486133,
+            "slowIntervals": 92,
+            "submissionIntervals": {
+              "count": 108,
+              "minMs": 22.79999999998836,
+              "maxMs": 49.39999999999418,
+              "meanMs": 27.61759259259243,
+              "p50Ms": 28,
+              "p95Ms": 32,
+              "p99Ms": 37,
+              "bucketWidthMs": 1,
+              "overflowAtMs": 250,
+              "percentileMethod": "histogram-upper-bound"
+            },
+            "presentCpuDuration": {
+              "count": 109,
+              "minMs": 0,
+              "maxMs": 0.6999999999825377,
+              "meanMs": 0.19266055045791458,
+              "p50Ms": 0.6999999999825377,
+              "p95Ms": 0.6999999999825377,
+              "p99Ms": 0.6999999999825377,
+              "bucketWidthMs": 1,
+              "overflowAtMs": 250,
+              "percentileMethod": "histogram-upper-bound"
+            }
+          }
+        ]
+      },
+      "afterMeasurement": {
+        "visible": true,
+        "dpr": 1,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          393,
+          851
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": false,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      },
+      "restored": {
+        "visible": true,
+        "dpr": 2.75,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          786,
+          1702
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": true,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      }
+    },
+    {
+      "shape": "cloud",
+      "original": {
+        "visible": true,
+        "dpr": 2.75,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          786,
+          1702
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": true,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      },
+      "temporary": {
+        "visible": true,
+        "dpr": 1,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          393,
+          851
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "cloud",
+            "materialId": "soft",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": false,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "lilac",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#9875FF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#E1C7FF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      },
+      "metrics": {
+        "active": false,
+        "paused": false,
+        "contextLost": false,
+        "durationSeconds": 3.0018999999999942,
+        "activeSeconds": 3.0018999999999942,
+        "submissions": 108,
+        "submissionFps": 35.97721443086052,
+        "intervalThresholdMs": 25,
+        "slowIntervals": 93,
+        "slowFraction": 0.8691588785046729,
+        "submissionIntervals": {
+          "count": 107,
+          "minMs": 17.5,
+          "maxMs": 49.60000000000582,
+          "meanMs": 27.900000000000162,
+          "p50Ms": 27.75,
+          "p95Ms": 32.75,
+          "p99Ms": 38.25,
+          "bucketWidthMs": 0.25,
+          "overflowAtMs": 1000,
+          "percentileMethod": "histogram-upper-bound",
+          "bins": [
+            [
+              70,
+              1
+            ],
+            [
+              79,
+              1
+            ],
+            [
+              92,
+              3
+            ],
+            [
+              93,
+              1
+            ],
+            [
+              94,
+              2
+            ],
+            [
+              96,
+              3
+            ],
+            [
+              97,
+              2
+            ],
+            [
+              98,
+              1
+            ],
+            [
+              100,
+              2
+            ],
+            [
+              101,
+              1
+            ],
+            [
+              102,
+              2
+            ],
+            [
+              103,
+              4
+            ],
+            [
+              104,
+              5
+            ],
+            [
+              105,
+              4
+            ],
+            [
+              106,
+              4
+            ],
+            [
+              107,
+              2
+            ],
+            [
+              108,
+              7
+            ],
+            [
+              109,
+              3
+            ],
+            [
+              110,
+              8
+            ],
+            [
+              111,
+              4
+            ],
+            [
+              112,
+              3
+            ],
+            [
+              113,
+              3
+            ],
+            [
+              114,
+              7
+            ],
+            [
+              115,
+              3
+            ],
+            [
+              116,
+              3
+            ],
+            [
+              117,
+              1
+            ],
+            [
+              118,
+              6
+            ],
+            [
+              119,
+              6
+            ],
+            [
+              121,
+              1
+            ],
+            [
+              123,
+              1
+            ],
+            [
+              124,
+              2
+            ],
+            [
+              126,
+              2
+            ],
+            [
+              127,
+              1
+            ],
+            [
+              128,
+              1
+            ],
+            [
+              130,
+              3
+            ],
+            [
+              132,
+              1
+            ],
+            [
+              133,
+              1
+            ],
+            [
+              152,
+              1
+            ],
+            [
+              198,
+              1
+            ]
+          ]
+        },
+        "presentCpuDuration": {
+          "count": 108,
+          "minMs": 0.09999999997671694,
+          "maxMs": 1.5,
+          "meanMs": 0.24907407407186433,
+          "p50Ms": 0.25,
+          "p95Ms": 0.75,
+          "p99Ms": 1.5,
+          "bucketWidthMs": 0.25,
+          "overflowAtMs": 1000,
+          "percentileMethod": "histogram-upper-bound",
+          "bins": [
+            [
+              0,
+              76
+            ],
+            [
+              1,
+              23
+            ],
+            [
+              2,
+              6
+            ],
+            [
+              3,
+              1
+            ],
+            [
+              5,
+              1
+            ],
+            [
+              6,
+              1
+            ]
+          ]
+        },
+        "counters": {
+          "contextLosses": 0,
+          "contextRestores": 0,
+          "renderErrors": 0,
+          "skippedPaused": 0,
+          "skippedContextLost": 0
+        },
+        "minuteBucketLimit": 180,
+        "minuteOverflow": false,
+        "minutes": [
+          {
+            "minute": 0,
+            "activeSeconds": 3.0018999999999942,
+            "submissions": 108,
+            "submissionFps": 35.97721443086052,
+            "slowIntervals": 93,
+            "submissionIntervals": {
+              "count": 107,
+              "minMs": 17.5,
+              "maxMs": 49.60000000000582,
+              "meanMs": 27.900000000000162,
+              "p50Ms": 28,
+              "p95Ms": 33,
+              "p99Ms": 39,
+              "bucketWidthMs": 1,
+              "overflowAtMs": 250,
+              "percentileMethod": "histogram-upper-bound"
+            },
+            "presentCpuDuration": {
+              "count": 108,
+              "minMs": 0.09999999997671694,
+              "maxMs": 1.5,
+              "meanMs": 0.24907407407186433,
+              "p50Ms": 1,
+              "p95Ms": 1,
+              "p99Ms": 1.5,
+              "bucketWidthMs": 1,
+              "overflowAtMs": 250,
+              "percentileMethod": "histogram-upper-bound"
+            }
+          }
+        ]
+      },
+      "afterMeasurement": {
+        "visible": true,
+        "dpr": 1,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          393,
+          851
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "cloud",
+            "materialId": "soft",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": false,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "lilac",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#9875FF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#E1C7FF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      },
+      "restored": {
+        "visible": true,
+        "dpr": 2.75,
+        "css": [
+          393,
+          851
+        ],
+        "backing": [
+          786,
+          1702
+        ],
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": true,
+            "quality": "medium",
+            "targetFps": 60,
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ]
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": 157,
+              "generatorVersion": 1,
+              "revision": 49,
+              "controls": [
+                {
+                  "center": [
+                    0.27969675157544094,
+                    0.2148671133710054,
+                    -0.8979217951334634
+                  ],
+                  "delta": [
+                    -0.16877146310582863,
+                    0.19514325346922134,
+                    -0.014666335705620835
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.8381225285874779,
+                    0.36756559219422463,
+                    -0.07269965855335579
+                  ],
+                  "delta": [
+                    0.027125878508172607,
+                    0.1820692693307941,
+                    0.22161511528106742
+                  ],
+                  "radius": 0.5
+                },
+                {
+                  "center": [
+                    -0.7326150284646502,
+                    0.285401316520403,
+                    0.6170053895275851
+                  ],
+                  "delta": [
+                    0.14950013559478859,
+                    0.18924187058389397,
+                    0.16503794585187756
+                  ],
+                  "radius": 0.5
+                }
+              ]
+            },
+            {
+              "shapeId": "ribbon",
+              "seed": 254,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "cloud",
+              "seed": 351,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            },
+            {
+              "shapeId": "pixel-cloud",
+              "seed": 448,
+              "generatorVersion": 1,
+              "revision": 0,
+              "controls": []
+            }
+          ]
+        },
+        "glError": 0
+      }
+    }
+  ],
+  "result": "diagnostic-complete",
+  "finishedAt": "2026-10-17T20:42:01.617Z"
+}

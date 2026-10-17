@@ -1,0 +1,58 @@
+﻿{
+    "measuredAtUtc":  "2026-10-17T20:39:08.965Z",
+    "avd":  "MusicOrbs_API35",
+    "serial":  "emulator-5554",
+    "api":  35,
+    "android":  "15",
+    "systemImage":  "AOSP default x86_64 revision 2",
+    "emulatorVersion":  "37.2.12",
+    "launch":  {
+                   "executable":  "emulator",
+                   "arguments":  [
+                                     "-avd",
+                                     "MusicOrbs_API35",
+                                     "-no-window",
+                                     "-no-boot-anim",
+                                     "-gpu",
+                                     "host",
+                                     "-no-snapshot",
+                                     "-memory",
+                                     "2048"
+                                 ],
+                   "window":  "Hidden",
+                   "hostAudio":  "Enabled: no -no-audio",
+                   "snapshotLoad":  false,
+                   "snapshotSave":  false,
+                   "userdataWiped":  false
+               },
+    "acceleration":  "WHPX operational, Windows 10.0.19045",
+    "hostVideoControllers":  [
+                                 {
+                                     "Name":  "AMD Radeon(TM) Graphics",
+                                     "DriverVersion":  "31.0.21925.1001"
+                                 },
+                                 {
+                                     "Name":  "Honor Virtual Display Device",
+                                     "DriverVersion":  "1.0.23.0"
+                                 }
+                             ],
+    "emulatorGpu":  {
+                        "vulkanDevice":  "AMD Radeon(TM) Graphics",
+                        "vulkanVersion":  "1.3.260",
+                        "vendor":  "Google (ATI Technologies Inc.)",
+                        "adapter":  "Android Emulator OpenGL ES Translator (AMD Radeon(TM) Graphics)",
+                        "api":  "OpenGL ES 3.0 (4.5.0 Core Profile Context 26.5.2.260413)"
+                    },
+    "app":  {
+                "package":  "musicorbs.app",
+                "stillInstalledAfterRestart":  true,
+                "reinstalled":  false,
+                "mainStatus":  "ok",
+                "launchState":  "COLD",
+                "launchMs":  3546,
+                "sessionSha256Before":  "23c48aa4c7b73f86b873b6e297627d2593048ed016ceddd0b64fad89450dc621",
+                "sessionSha256After":  "23c48aa4c7b73f86b873b6e297627d2593048ed016ceddd0b64fad89450dc621"
+            },
+    "shortRafDiagnostic":  "../raf-probe-2026-10-17T20-39-22-057Z/report.json",
+    "scope":  "GPU и сохранность AVD проверены; короткая диагностика не является прохождением G5 или проверкой физического телефона"
+}

@@ -1,0 +1,48 @@
+{
+  "before": {
+    "shapeId": "orb",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "white",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FFFFFF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFFFFF"
+      }
+    ]
+  },
+  "after": {
+    "shapeId": "orb",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "white",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FFFFFF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFFFFF"
+      }
+    ]
+  },
+  "persistedRevision": 16,
+  "fieldsUnchanged": true
+}

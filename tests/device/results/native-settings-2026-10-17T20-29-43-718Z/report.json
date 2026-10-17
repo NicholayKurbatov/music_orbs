@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-17T20:29:43.830Z",
+  "serial": "emulator-5554",
+  "result": "pass",
+  "steps": [
+    {
+      "id": "palette-custom",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "custom-color",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "slider-speed",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "slider-amplitude",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "slider-touchSensitivity",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "music-sync",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "fps30",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "quality-high",
+      "result": "pass",
+      "details": "Native UI → подтверждённые settings/store; поля всех форм сохранены."
+    },
+    {
+      "id": "panel-isolation",
+      "result": "pass",
+      "details": "Во всех UI-действиях seed, controls и revisions всех четырёх форм совпали с состоянием до открытия панели."
+    },
+    {
+      "id": "cleanup-baseline",
+      "result": "pass",
+      "details": "Настройки восстановлены служебной командой и перезапуском native UI; этот шаг не считается UI-проверкой."
+    }
+  ],
+  "limits": [
+    "Android Emulator API 35; физическое устройство не проверено.",
+    "Звук хоста и эстетическая приёмка человеком не подтверждаются."
+  ],
+  "device": {
+    "model": "Android SDK built for x86_64",
+    "android": "15",
+    "sdk": "35"
+  },
+  "scope": "remaining-settings-custom-color-sliders-sync-fps-quality",
+  "finishedAt": "2026-10-17T20:33:11.579Z"
+}

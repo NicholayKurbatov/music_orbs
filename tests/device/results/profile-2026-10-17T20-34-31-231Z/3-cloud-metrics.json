@@ -1,0 +1,286 @@
+{
+  "active": false,
+  "paused": false,
+  "contextLost": false,
+  "durationSeconds": 2.1462000000001864,
+  "activeSeconds": 2.1462000000001864,
+  "submissions": 58,
+  "submissionFps": 27.024508433508043,
+  "intervalThresholdMs": 25,
+  "slowIntervals": 54,
+  "slowFraction": 0.9473684210526315,
+  "submissionIntervals": {
+    "count": 57,
+    "minMs": 8.600000000093132,
+    "maxMs": 58.299999999813735,
+    "meanMs": 36.90175438596328,
+    "p50Ms": 37.25,
+    "p95Ms": 53,
+    "p99Ms": 58.299999999813735,
+    "bucketWidthMs": 0.25,
+    "overflowAtMs": 1000,
+    "percentileMethod": "histogram-upper-bound",
+    "bins": [
+      [
+        34,
+        1
+      ],
+      [
+        52,
+        1
+      ],
+      [
+        99,
+        1
+      ],
+      [
+        110,
+        1
+      ],
+      [
+        116,
+        1
+      ],
+      [
+        119,
+        1
+      ],
+      [
+        122,
+        1
+      ],
+      [
+        126,
+        2
+      ],
+      [
+        128,
+        1
+      ],
+      [
+        129,
+        2
+      ],
+      [
+        130,
+        2
+      ],
+      [
+        132,
+        1
+      ],
+      [
+        133,
+        2
+      ],
+      [
+        136,
+        1
+      ],
+      [
+        137,
+        1
+      ],
+      [
+        138,
+        1
+      ],
+      [
+        139,
+        1
+      ],
+      [
+        140,
+        1
+      ],
+      [
+        142,
+        2
+      ],
+      [
+        144,
+        1
+      ],
+      [
+        145,
+        1
+      ],
+      [
+        146,
+        1
+      ],
+      [
+        147,
+        1
+      ],
+      [
+        148,
+        2
+      ],
+      [
+        149,
+        1
+      ],
+      [
+        152,
+        2
+      ],
+      [
+        154,
+        2
+      ],
+      [
+        155,
+        1
+      ],
+      [
+        156,
+        1
+      ],
+      [
+        157,
+        1
+      ],
+      [
+        158,
+        4
+      ],
+      [
+        159,
+        1
+      ],
+      [
+        160,
+        2
+      ],
+      [
+        162,
+        1
+      ],
+      [
+        165,
+        1
+      ],
+      [
+        166,
+        1
+      ],
+      [
+        167,
+        1
+      ],
+      [
+        169,
+        1
+      ],
+      [
+        181,
+        1
+      ],
+      [
+        186,
+        1
+      ],
+      [
+        191,
+        1
+      ],
+      [
+        197,
+        1
+      ],
+      [
+        211,
+        1
+      ],
+      [
+        223,
+        1
+      ],
+      [
+        233,
+        1
+      ]
+    ]
+  },
+  "presentCpuDuration": {
+    "count": 58,
+    "minMs": 0.09999999962747097,
+    "maxMs": 4.2000000001862645,
+    "meanMs": 0.42241379311950555,
+    "p50Ms": 0.25,
+    "p95Ms": 1.25,
+    "p99Ms": 4.2000000001862645,
+    "bucketWidthMs": 0.25,
+    "overflowAtMs": 1000,
+    "percentileMethod": "histogram-upper-bound",
+    "bins": [
+      [
+        0,
+        30
+      ],
+      [
+        1,
+        17
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        16,
+        2
+      ]
+    ]
+  },
+  "counters": {
+    "contextLosses": 0,
+    "contextRestores": 0,
+    "renderErrors": 0,
+    "skippedPaused": 0,
+    "skippedContextLost": 0
+  },
+  "minuteBucketLimit": 180,
+  "minuteOverflow": false,
+  "minutes": [
+    {
+      "minute": 0,
+      "activeSeconds": 2.1462000000001864,
+      "submissions": 58,
+      "submissionFps": 27.024508433508043,
+      "slowIntervals": 54,
+      "submissionIntervals": {
+        "count": 57,
+        "minMs": 8.600000000093132,
+        "maxMs": 58.299999999813735,
+        "meanMs": 36.90175438596328,
+        "p50Ms": 38,
+        "p95Ms": 53,
+        "p99Ms": 58.299999999813735,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 58,
+        "minMs": 0.09999999962747097,
+        "maxMs": 4.2000000001862645,
+        "meanMs": 0.42241379311950555,
+        "p50Ms": 1,
+        "p95Ms": 2,
+        "p99Ms": 4.2000000001862645,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    }
+  ]
+}

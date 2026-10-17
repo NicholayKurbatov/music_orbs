@@ -1,0 +1,46 @@
+{
+  "settings": {
+    "shapeId": "ribbon",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60,
+    "paletteId": "pink",
+    "paletteStops": [
+      {
+        "offset": 0,
+        "colorHex": "#FF7BBF"
+      },
+      {
+        "offset": 1,
+        "colorHex": "#FFD6EC"
+      }
+    ]
+  },
+  "shapes": [
+    {
+      "shapeId": "orb",
+      "controls": 3,
+      "seed": 157
+    },
+    {
+      "shapeId": "ribbon",
+      "controls": 0,
+      "seed": 254
+    },
+    {
+      "shapeId": "cloud",
+      "controls": 0,
+      "seed": 351
+    },
+    {
+      "shapeId": "pixel-cloud",
+      "controls": 0,
+      "seed": 448
+    }
+  ]
+}
