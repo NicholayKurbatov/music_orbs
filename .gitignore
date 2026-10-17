@@ -1,0 +1,9 @@
+.idea/
+.vscode/
+.gradle/
+node_modules/
+build/
+dist/
+local.properties
+*.apk
+*.aab
