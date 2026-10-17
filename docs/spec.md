@@ -307,3 +307,67 @@ Viewport resize задаёт отдельно CSS-размер canvas в пик�
 через renderer.resize. Это учитывает WebView 124 внутри Compose AndroidView,
 где `100dvh` мог давать нулевую CSS-высоту при ненулевом GPU buffer. Camera aspect
 адаптирует portrait без изменения object-space базы и сохранённого поля.
+
+## 14. Локальная диагностика renderer
+
+В debug-сцене `window.musicOrbs.profiling` — внутренний тестовый API bootstrap,
+не wire-контракт и не часть домена. До явного включения
+`window.__musicOrbsDiagnosticsEnabled = true` метод `start` отклоняется.
+Android runner обращается к нему через локальный CDP/adb forward; PCM,
+разрешения аудио и сетевой транспорт приложения не используются.
+
+| Метод | Вход и результат | Инварианты и ошибки |
+|---|---|---|
+| `start(options = {})` | `intervalThresholdMs?: number`, миллисекунды, конечное число >0; default 25. Возвращает начальный `RenderMetricsSnapshot`. | Повторный start до stop и выключенный диагностический флаг дают `INVALID_INPUT`. Состояние сцены, фаза и поля не меняются. |
+| `read()` | Без аргументов; текущий snapshot, последний остановленный snapshot либо `null` до первого start. | Чтение учитывает прошедшее активное время; после stop результат заморожен. |
+| `stop()` | Без аргументов; финальный snapshot с разреженными histogram bins либо `null`. | Идемпотентен; снимает context listeners и освобождает измеритель. `dispose()` также останавливает измерение. |
+
+`submissions` считает успешные вызовы `RendererPort.present`, а
+`submissionIntervals` — интервалы между началами этих вызовов. Это JS submissions,
+не GPU time и не подтверждённый display FPS. `presentCpuDuration` отдельно измеряет
+CPU-длительность вызова адаптера через `performance.now()`. Все длительности в
+distributions — миллисекунды; `durationSeconds` и `activeSeconds` — секунды;
+`submissionFps = submissions / activeSeconds`. Пауза/document.hidden и потеря
+контекста исключаются из active time; первый кадр после них не создаёт интервал
+через паузу. Счётчики context loss/restore, render errors и пропущенных вызовов
+публикуются отдельно. `slowFraction` — доля интервалов строго больше порога;
+без интервалов она и percentiles равны `null`.
+
+Общие histogram имеют шаг 0,25 мс и overflow от 1000 мс. Percentiles — верхняя
+граница корзины с ограничением наблюдаемым максимумом; overflow возвращает
+наблюдаемый максимум (`percentileMethod: histogram-upper-bound`). Minute aggregates
+имеют шаг 1 мс, overflow 250 мс и максимум 180 корзин; дальнейшие минуты объединяются
+в последнюю с `minuteOverflow=true`. До start массивы измерений не создаются;
+кадры не сохраняются поштучно, domain не зависит от диагностики или IO.
+
+`node scripts/android-profile.mjs` без `--run` печатает только план. Runner работает
+на Android Emulator с локальной debug-сценой; default — medium/60, четыре формы
+по 600 секунд и Orb 1800 секунд. `--durations 2,2,2,2,3` — отдельный software smoke,
+не длинная проверка производительности. Он сохраняет UTC, Android/WebView/GL,
+viewport, SHA-256 установленного APK и его assets, settings/число controls,
+ограниченные histogram и поминутные агрегаты, `dumpsys meminfo` TOTAL PSS/RSS в KiB
+и отдельно native window `dumpsys gfxinfo framestats`. Эти window stats не являются
+GPU-метриками WebGL. PSS growth — peak минус начальный PSS; отсутствие начального
+или последующих измерений помечает прогон неполным. Пауза, потеря контекста,
+render error или недостаточное активное время также не считаются полным прогоном.
+`meminfo musicorbs.app` измеряет процесс приложения: память отдельного isolated
+WebView renderer и GPU может не входить в PSS/RSS. Поэтому этот показатель
+не подтверждает отсутствие всех утечек WebGL и не объявляется общей памятью сцены.
+
+Численные бюджеты задаются CLI и сохраняют статус `proposal`, `accepted` либо
+`unconfigured`; предложение не становится приёмкой автоматически. Сравнение
+эмулятора не подтверждает требования физического телефона. Нагрев и батарея
+эмулятором не измеряются. Тестовые настройки передаются валидируемой командой
+configure; native UI во время профиля может показывать baseline. В finally runner
+восстанавливает baseline settings, сохраняя поля; `--restore-baseline` позволяет
+повторить восстановление после прерывания. Для согласования native UI после
+служебного прогона приложение перезапускается.
+
+Для выбранного пользователем прогона приняты бюджеты Android Emulator medium/60:
+p95 JS submission interval ≤20 мс, доля интервалов строго >25 мс <0,05,
+рост app PSS ≤32 MiB за отдельные 30 минут Orb. Этот прогон запускается с
+`--budget-status accepted`; CLI default остаётся `proposal`. Memory budget
+использует initial/peak только сегмента `5-orb-memory`, а не предыдущих форм;
+сегмент короче 1800 секунд не оценивается по этому бюджету. Общий PSS growth
+за все 70 минут сохраняется справочно, отдельно от per-segment summary.
+Принятие бюджетов не означает их фактического прохождения.

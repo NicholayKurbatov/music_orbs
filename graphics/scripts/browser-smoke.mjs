@@ -19,6 +19,11 @@ await mkdir(output, { recursive: true });
 try {
   await page.goto('http://127.0.0.1:4173');
   await page.waitForFunction(() => !!window.musicOrbs);
+  assert.equal(await page.evaluate(() => window.musicOrbs.profiling.read()), null);
+  assert.equal(await page.evaluate(() => { try { window.musicOrbs.profiling.start(); return false; } catch { return true; } }), true);
+  await page.addStyleTag({ content: '#scene { height: 0px; }' });
+  const canvasViewport = await page.$eval('#scene', canvas => ({ height: canvas.getBoundingClientRect().height, viewport: innerHeight }));
+  assert.equal(canvasViewport.height, canvasViewport.viewport, 'CSS canvas должен совпадать с viewport даже при нулевом dvh');
   await page.waitForTimeout(350);
   for (const shape of ['orb', 'ribbon', 'cloud', 'pixel-cloud']) {
     await page.click('#toggle');
@@ -44,8 +49,12 @@ try {
   assert.deepEqual(quality.shapes, sculpted.shapes);
   await page.waitForTimeout(300); await page.reload(); await page.waitForFunction(() => !!window.musicOrbs);
   assert.deepEqual((await page.evaluate(() => window.musicOrbs.snapshot())).shapes, sculpted.shapes);
-  await page.evaluate(() => { const gl = document.querySelector('canvas').getContext('webgl2'); const ext = gl.getExtension('WEBGL_lose_context'); ext.loseContext(); setTimeout(() => ext.restoreContext(), 100); });
+  await page.evaluate(() => { window.__musicOrbsDiagnosticsEnabled = true; window.musicOrbs.profiling.start(); const gl = document.querySelector('canvas').getContext('webgl2'); const ext = gl.getExtension('WEBGL_lose_context'); ext.loseContext(); setTimeout(() => ext.restoreContext(), 100); });
   await page.waitForTimeout(600);
+  const recoveryMetrics = await page.evaluate(() => window.musicOrbs.profiling.stop());
+  assert.equal(recoveryMetrics.counters.contextLosses, 1); assert.equal(recoveryMetrics.counters.contextRestores, 1);
+  assert.equal(recoveryMetrics.counters.renderErrors, 0); assert.ok(recoveryMetrics.submissions > 0);
+  assert.equal(recoveryMetrics.presentCpuDuration.count, recoveryMetrics.submissions);
   assert.deepEqual((await page.evaluate(() => window.musicOrbs.snapshot())).shapes, sculpted.shapes);
   await page.screenshot({ path: new URL('sculpted-restored.png', output).pathname.replace(/^\/([A-Za-z]:)/, '$1') });
   await page.evaluate(() => { window.musicOrbs.dispose(); window.musicOrbs.dispose(); });
@@ -61,16 +70,62 @@ try {
   await deliver(2, 'ready', { runtimeTimestampSeconds: 2, sourceSessionId: 'current-source' });
   await deliver(3, 'motion', { ...motion, sourceSessionId: 'current-source' }); await nativePage.waitForTimeout(100);
   assert.equal(await nativePage.textContent('#mode'), 'Движение под музыку');
-  await deliver(4, 'command', { type: 'snapshot' }, 'smoke-snapshot');
+  const beforeDelayed = await nativePage.evaluate(() => window.musicOrbs.visualState());
+  await deliver(4, 'motion', { ...motion, sourceSessionId: 'current-source', timestampSeconds: 2, phase: 0.01 });
+  const afterDelayed = await nativePage.evaluate(() => window.musicOrbs.visualState());
+  assert.ok((afterDelayed.phase - beforeDelayed.phase + 1) % 1 < 0.02, 'Задержанный motion не должен устанавливать старую фазу');
+  await deliver(5, 'command', { type: 'snapshot' }, 'smoke-snapshot');
   await nativePage.waitForFunction(() => window.nativeMessages.some(raw => raw.startsWith('{') && JSON.parse(raw).type === 'snapshot'));
   assert.equal(await nativePage.isVisible('#toggle'), false);
-  await deliver(5, 'ready', { runtimeTimestampSeconds: 3, sourceSessionId: 'none' });
+  const beforeSource = await nativePage.evaluate(() => window.musicOrbs.visualState());
+  await deliver(6, 'ready', { runtimeTimestampSeconds: 3, sourceSessionId: 'none' });
   await nativePage.waitForTimeout(100);
   assert.equal(await nativePage.textContent('#mode'), 'Автономное движение');
+  const afterSource = await nativePage.evaluate(() => window.musicOrbs.visualState());
+  assert.equal(afterSource.slowCycleSeconds, beforeSource.slowCycleSeconds);
+  assert.equal(afterSource.energy, 0);
+  assert.ok((afterSource.phase - beforeSource.phase + 1) % 1 < 0.02, 'Source switch должен сохранять фазу');
   await nativePage.evaluate(() => window.musicOrbs.dispose());
   await nativePage.close();
+  const phasePage = await context.newPage();
+  await phasePage.addInitScript(() => {
+    window.MusicOrbsNative = { postMessage() {} };
+    let callback, clock = null, id = 0;
+    window.requestAnimationFrame = next => { callback = next; return ++id; };
+    window.cancelAnimationFrame = () => { callback = null; };
+    window.stepVisual = milliseconds => { clock = (clock ?? performance.now()) + milliseconds; const next = callback; if (next) next(clock); };
+  });
+  phasePage.on('pageerror', error => errors.push(error.message));
+  await phasePage.goto('http://127.0.0.1:4173'); await phasePage.waitForFunction(() => !!window.musicOrbs);
+  await phasePage.setViewportSize({ width: 393, height: 851 });
+  const nativeViewport = await phasePage.$eval('#scene', canvas => ({ height: canvas.getBoundingClientRect().height, width: canvas.getBoundingClientRect().width }));
+  assert.deepEqual(nativeViewport, { width: 393, height: 851 });
+  await phasePage.evaluate(async () => {
+    const send = (sequence, type, payload, requestId) => window.MusicOrbsReceive(JSON.stringify({ protocolVersion: 1, bridgeSessionId: 'phase-smoke', sequence, type, payload, ...(requestId ? { requestId } : {}) }));
+    send(0, 'ready', { runtimeTimestampSeconds: 0, sourceSessionId: 'current-source' });
+    send(1, 'motion', { sourceSessionId: 'current-source', timestampSeconds: 1, bpm: 120, slowCycleSeconds: 16, phase: 0.4, energy: 0.5, intensity: 0.3, confidence: 0.9, mode: 'synced' });
+    const snapshot = await window.musicOrbs.snapshot();
+    await window.musicOrbs.command({ type: 'configure', settings: { ...snapshot.settings, musicSync: false } });
+    window.stepVisual(100);
+  });
+  const firstTick = await phasePage.evaluate(() => window.musicOrbs.visualState());
+  assert.ok(Math.abs(firstTick.phase - (0.4 + 0.1 / 16)) < 1e-10, 'Native syncOff должен использовать плавный период16, без скачка на24');
+  await phasePage.evaluate(() => {
+    window.MusicOrbsReceive(JSON.stringify({ protocolVersion: 1, bridgeSessionId: 'phase-smoke', sequence: 2, type: 'motion', payload: { sourceSessionId: 'current-source', timestampSeconds: 2, bpm: null, slowCycleSeconds: 17, phase: 0.001, energy: 0, intensity: 0, confidence: 0, mode: 'autonomous' } }));
+    window.stepVisual(100);
+  });
+  const secondTick = await phasePage.evaluate(() => window.musicOrbs.visualState());
+  assert.ok(Math.abs(secondTick.phase - firstTick.phase - 0.1 / 17) < 1e-10);
+  const pausedMetrics = await phasePage.evaluate(async () => {
+    window.__musicOrbsDiagnosticsEnabled = true; window.musicOrbs.profiling.start(); window.stepVisual(100);
+    await window.musicOrbs.command({ type: 'pause' }); window.stepVisual(100); window.stepVisual(100);
+    await window.musicOrbs.command({ type: 'resume' }); window.stepVisual(100);
+    return window.musicOrbs.profiling.stop();
+  });
+  assert.equal(pausedMetrics.submissions, 2); assert.equal(pausedMetrics.submissionIntervals.count, 0);
+  await phasePage.evaluate(() => window.musicOrbs.dispose()); await phasePage.close();
   assert.deepEqual(errors, []);
-  const result = { browser: browser.version(), viewport: '720x1000', renderer: 'SwiftShader (headless)', checks: ['four shapes', 'GLSL compilation', 'pointer drag', 'quality/FPS field invariant', 'browser persistence/reload', 'context loss/recovery', 'idempotent dispose', 'native handshake/snapshot', 'stale source rejection'], errors };
+  const result = { browser: browser.version(), viewport: '720x1000; portrait 393x851', renderer: 'SwiftShader (headless)', checks: ['four shapes', 'GLSL compilation', 'pointer drag', 'quality/FPS field invariant', 'browser persistence/reload', 'context loss/recovery', 'idempotent dispose', 'native handshake/snapshot', 'stale source rejection', 'delayed motion/source phase continuity', 'native sync-off smoothed-period integration', 'zero-dvh canvas CSS viewport regression', 'profiling opt-in/actual submissions/CPU/context loss/pause'], errors };
   await writeFile(new URL('result.json', output), JSON.stringify(result, null, 2));
   console.log(JSON.stringify(result, null, 2));
 } finally { await browser.close(); await server.close(); }

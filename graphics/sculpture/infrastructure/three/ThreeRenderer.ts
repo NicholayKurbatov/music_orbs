@@ -101,7 +101,10 @@ export class ThreeRenderer implements RendererPort {
   resize(width: number, height: number, dpr: number): void {
     if (![width, height, dpr].every(x => Number.isFinite(x) && x > 0) || width > 16384 || height > 16384 || dpr > 8) throw new Error('INVALID_INPUT: viewport');
     this.renderer.setPixelRatio(Math.min(dpr, 2)); this.renderer.setSize(width, height, false);
-    this.camera.aspect = width / height; this.camera.position.z = width / height < 0.8 ? 6.3 : 4.7; this.camera.updateProjectionMatrix();
+    this.camera.aspect = width / height;
+    this.camera.position.z = 4.7 / Math.min(1, this.camera.aspect);
+    this.camera.far = this.camera.position.z + 20;
+    this.camera.updateProjectionMatrix();
     this.material.uniforms.pixelRatio.value = Math.min(dpr, 2);
   }
   /** Picking преобразуется inverse matrix в object space; DOM остаётся в адаптере. */

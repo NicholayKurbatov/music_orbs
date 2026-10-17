@@ -9,20 +9,36 @@ import type { PaletteId, SceneSettings } from '../sculpture/domain/Models';
 import type { MotionSignal } from '../motion/domain/MotionSignal';
 import { SyntheticMotion } from './SyntheticMotion';
 import { attachNativeBridge } from '../contracts/WireBridge';
+import { VisualPhase } from '../motion/domain/VisualPhase';
+import { RenderMetrics, type RenderMetricsSnapshot } from './RenderMetrics';
+import type { RendererPort } from '../sculpture/application/ports/RendererPort';
 
 const element = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const notice = element('notice');
-const report = (error: unknown) => { notice.textContent = error instanceof Error ? error.message : String(error); };
+const report = (error: unknown) => { notice.dataset.error = 'true'; notice.textContent = error instanceof Error ? error.message : String(error); };
 const canvas = element<HTMLCanvasElement>('scene');
 const native = !!window.MusicOrbsNative || location.hostname === 'appassets.androidplatform.net';
+if (native) document.documentElement.dataset.runtime = 'native';
 try {
   const renderer = new ThreeRenderer(canvas);
-  const app = new SculptureScene(new ProceduralShapeFactory(), renderer);
+  let metrics: RenderMetrics | null = null;
+  let lastMetrics: RenderMetricsSnapshot | null = null;
+  const diagnosticRenderer: RendererPort = {
+    present(frame) {
+      if (!metrics) { renderer.present(frame); return; }
+      const start = performance.now();
+      try { renderer.present(frame); metrics.recordPresent(start, performance.now()); }
+      catch (error) { metrics.renderError(performance.now()); throw error; }
+    },
+    resize: (width, height, dpr) => renderer.resize(width, height, dpr), dispose: () => renderer.dispose(),
+  };
+  const app = new SculptureScene(new ProceduralShapeFactory(), diagnosticRenderer);
   const synthetic = new SyntheticMotion();
+  const visual = new VisualPhase();
   let settings: SceneSettings = JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
   let paused = false;
-  let external: MotionSignal | null = null;
-  let currentPhase = 0;
+  let external = native;
+  if (!native) visual.accept(synthetic.advance(0));
   let saveTimer: ReturnType<typeof setTimeout> | undefined;
   const storeKey = 'music-orbs-browser-v2';
   const snapshot = async () => (await app.handle({ type: 'snapshot' })).snapshot!;
@@ -43,6 +59,7 @@ try {
     if (value.type === 'configure' || value.type === 'restore') { settings = (await snapshot()).settings; reflect(); }
     if (value.type === 'pause') { paused = true; synthetic.paused = true; }
     if (value.type === 'resume') { paused = false; synthetic.paused = false; }
+    if (value.type === 'pause' || value.type === 'resume') metrics?.setPaused(paused || document.hidden, performance.now());
     if (value.type === 'configure' || value.type === 'restore' || value.type === 'reset') save();
     return reply;
   };
@@ -54,7 +71,12 @@ try {
   }
   reflect();
   const pointer = new PointerController(canvas, renderer, app, save, report);
-  const resize = () => { if (innerWidth > 0 && innerHeight > 0) renderer.resize(innerWidth, innerHeight, devicePixelRatio); };
+  const resize = () => {
+    if (innerWidth <= 0 || innerHeight <= 0) return;
+    // WebView может возвращать 0 для dvh после измерения AndroidView; backing buffer и CSS должны совпадать.
+    canvas.style.width = `${innerWidth}px`; canvas.style.height = `${innerHeight}px`;
+    renderer.resize(innerWidth, innerHeight, devicePixelRatio);
+  };
   resize(); addEventListener('resize', resize);
   const update = async (patch: Partial<SceneSettings>) => { try { await command({ type: 'configure', settings: { ...settings, ...patch } }); } catch (error) { report(error); reflect(); } };
   element('toggle').addEventListener('click', () => { const panel = element('panel'); panel.hidden = !panel.hidden; element('toggle').setAttribute('aria-expanded', String(!panel.hidden)); });
@@ -83,26 +105,44 @@ try {
     if (paused || document.hidden) return;
     if (now - lastDraw < 1000 / settings.targetFps - 0.5) return;
     const frameDelta = Math.min((now - lastDraw) / 1000, ProfileLimits.maxDeltaSeconds); lastDraw = now;
-    let signal = synthetic.advance(frameDelta);
-    if (external) signal = external;
-    currentPhase = (currentPhase + frameDelta / (settings.musicSync ? signal.slowCycleSeconds : 24)) % 1;
-    signal = { ...signal, phase: currentPhase };
+    if (!external) visual.accept(synthetic.advance(frameDelta, settings.musicSync));
+    let signal = visual.advance(frameDelta);
     if (!settings.musicSync) signal = { ...signal, energy: 0, mode: 'autonomous' };
     element('mode').textContent = signal.mode === 'synced' ? 'Движение под музыку' : 'Автономное движение';
     try { app.frame(frameDelta, signal); } catch (error) { report(error); }
   };
   raf = requestAnimationFrame(draw);
-  const visibility = () => { lastDraw = performance.now(); if (document.hidden) { void app.handle({ type: 'pause' }); } else if (!paused) { void app.handle({ type: 'resume' }); } };
+  const visibility = () => { lastDraw = performance.now(); metrics?.setPaused(paused || document.hidden, lastDraw); if (document.hidden) { void app.handle({ type: 'pause' }); } else if (!paused) { void app.handle({ type: 'resume' }); } };
   document.addEventListener('visibilitychange', visibility);
   const bridge = attachNativeBridge(
     { handle: command, gesture: stroke => app.gesture(stroke), frame: (delta, signal) => app.frame(delta, signal) },
-    signal => { external = signal; currentPhase = signal.phase; },
-    sourceSessionId => { external = { sourceSessionId, timestampSeconds: 0, bpm: null, slowCycleSeconds: 24, phase: currentPhase, energy: 0, intensity: 0, confidence: 0, mode: 'autonomous' }; },
+    signal => { external = true; visual.accept(signal); },
+    sourceSessionId => { external = true; visual.setSource(sourceSessionId); },
   );
+  const profileLost = () => metrics?.contextLost(performance.now());
+  const profileRestored = () => metrics?.contextRestored(performance.now());
+  const stopProfiling = () => {
+    if (metrics) { lastMetrics = metrics.stop(performance.now()); metrics = null; }
+    canvas.removeEventListener('webglcontextlost', profileLost); canvas.removeEventListener('webglcontextrestored', profileRestored);
+    return lastMetrics;
+  };
   const api = {
     command, snapshot,
-    motion(signal: MotionSignal) { external = signal; currentPhase = signal.phase; },
-    dispose() { cancelAnimationFrame(raf); clearTimeout(saveTimer); bridge?.close(); pointer.dispose(); renderer.dispose(); removeEventListener('resize', resize); document.removeEventListener('visibilitychange', visibility); },
+    motion(signal: MotionSignal) { external = true; visual.accept(signal); },
+    visualState() { return visual.advance(0); },
+    profiling: {
+      start(options: { intervalThresholdMs?: number } = {}) {
+        if (!(window as Window & { __musicOrbsDiagnosticsEnabled?: boolean }).__musicOrbsDiagnosticsEnabled) throw new Error('INVALID_INPUT: profiling disabled');
+        if (metrics) throw new Error('INVALID_INPUT: profiling active');
+        metrics = new RenderMetrics(performance.now(), options.intervalThresholdMs ?? 25, paused || document.hidden, canvas.getContext('webgl2')?.isContextLost() ?? false);
+        lastMetrics = null;
+        canvas.addEventListener('webglcontextlost', profileLost); canvas.addEventListener('webglcontextrestored', profileRestored);
+        return metrics.read(performance.now());
+      },
+      read() { return metrics?.read(performance.now()) ?? lastMetrics; },
+      stop: stopProfiling,
+    },
+    dispose() { stopProfiling(); cancelAnimationFrame(raf); clearTimeout(saveTimer); bridge?.close(); pointer.dispose(); renderer.dispose(); removeEventListener('resize', resize); document.removeEventListener('visibilitychange', visibility); },
     synthetic,
   };
   Object.assign(window, { musicOrbs: api });
