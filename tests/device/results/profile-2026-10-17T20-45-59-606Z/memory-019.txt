@@ -1,0 +1,49 @@
+Applications Memory Usage (in Kilobytes):
+Uptime: 1421373 Realtime: 1421374
+
+** MEMINFO in pid 1931 [musicorbs.app] **
+                   Pss  Private  Private     Swap      Rss     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty    Total     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------   ------
+  Native Heap    19145    19072        0        0    23076    33152    25052     3656
+  Dalvik Heap     5299     5140        0        0    12852     9200     4600     4600
+ Dalvik Other     8963     3920        0        0    14636
+        Stack     1568     1568        0        0     1576
+       Ashmem      848      160        0        0     2096
+    Other dev       15        0       12        0      332
+     .so mmap     2888      160      248        0    37620
+    .jar mmap     2985        0       12        0    43476
+    .apk mmap    62619      392    36544        0    91104
+    .ttf mmap      278        0        0        0      932
+    .dex mmap       48        4        0        0     1012
+    .oat mmap       36        0        0        0     1784
+    .art mmap     8528     8024        4        0    29612
+   Other mmap     4544      108      636        0     9684
+      Unknown     7735     7728        0        0     8552
+        TOTAL   125499    46276    37456        0   278344    42352    29652     8256
+
+ App Summary
+                       Pss(KB)                        Rss(KB)
+                        ------                         ------
+           Java Heap:    13168                          42464
+         Native Heap:    19072                          23076
+                Code:    37508                         186152
+               Stack:     1568                           1576
+            Graphics:        0                              0
+       Private Other:    12416
+              System:    41767
+             Unknown:                                   25076
+
+           TOTAL PSS:   125499            TOTAL RSS:   278344      TOTAL SWAP (KB):        0
+
+ Objects
+               Views:       10         ViewRootImpl:        1
+         AppContexts:        6           Activities:        1
+              Assets:        9        AssetManagers:        0
+       Local Binders:       30        Proxy Binders:       60
+       Parcel memory:       11         Parcel count:       43
+    Death Recipients:        2             WebViews:        1
+
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0

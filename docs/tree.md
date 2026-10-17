@@ -131,7 +131,12 @@ MusicOrbs/
 |           |           \-- platform/
 |           |               \-- audio/
 |           |                   |-- LocalFilePlaybackTest.kt
+|           |                   |-- MainCaptureLifecycleTest.kt
+|           |                   |-- MainNativeGestureInputTest.kt
 |           |                   |-- MicrophoneAudioSourceTest.kt
+|           |                   |-- P7AudioPolicyStorageTest.kt
+|           |                   |-- P7AudioTestSupport.kt
+|           |                   |-- P7MainUiProbe.kt
 |           |                   \-- PlaybackCaptureTest.kt
 |           \-- debug/
 |               |-- AndroidManifest.xml
@@ -259,14 +264,19 @@ MusicOrbs/
 |       \-- .gitkeep
 |-- scripts/
 |   |-- android-audio-smoke.mjs
+|   |-- android-context-probe.mjs
 |   |-- android-device.mjs
 |   |-- android-dpr-probe.mjs
 |   |-- android-focus-smoke.mjs
+|   |-- android-motion-transitions.mjs
+|   |-- android-palette-probe.mjs
 |   |-- android-permission-smoke.mjs
 |   |-- android-profile.mjs
 |   |-- android-raf-probe.mjs
+|   |-- android-render-probe.mjs
 |   |-- android-settings-smoke.mjs
 |   |-- android-smoke.mjs
+|   |-- android-visual-acceptance.mjs
 |   |-- check-project.mjs
 |   \-- update-tree.mjs
 |-- settings.gradle.kts
@@ -326,6 +336,15 @@ MusicOrbs/
 |   |       |-- audio-platform-api35/
 |   |       |   |-- environment.json
 |   |       |   \-- instrumentation.xml
+|   |       |-- browser-context-recovery-2026-10-17T22-21-31-181Z/
+|   |       |   |-- README.md
+|   |       |   |-- before-fix.json
+|   |       |   |-- cloud.png
+|   |       |   |-- orb.png
+|   |       |   |-- pixel-cloud.png
+|   |       |   |-- result.json
+|   |       |   |-- ribbon.png
+|   |       |   \-- sculpted-restored.png
 |   |       |-- browser-final/
 |   |       |   |-- README.md
 |   |       |   |-- cloud.png
@@ -341,6 +360,11 @@ MusicOrbs/
 |   |       |   |-- result.json
 |   |       |   |-- ribbon.png
 |   |       |   \-- sculpted-restored.png
+|   |       |-- context-probe-2026-10-17T22-15-48-374Z/
+|   |       |   |-- README.md
+|   |       |   |-- after-context.png
+|   |       |   |-- context.json
+|   |       |   \-- report.json
 |   |       |-- dpr-probe-2026-10-17T20-41-53-202Z/
 |   |       |   |-- README.md
 |   |       |   \-- report.json
@@ -543,6 +567,71 @@ MusicOrbs/
 |   |       |-- native-settings-hex-debug-2026-10-17T20-26-41-287Z/
 |   |       |   |-- README.md
 |   |       |   \-- baseline.json
+|   |       |-- p7-instrumentation-2026-10-17T21-59-49Z/
+|   |       |   |-- README.md
+|   |       |   |-- after-final-gesture.json
+|   |       |   |-- after-final-main.json
+|   |       |   |-- after-final-policy.json
+|   |       |   |-- after-gesture-trace.json
+|   |       |   |-- after-main-attempt1.json
+|   |       |   |-- after-main-attempt2.json
+|   |       |   |-- after-main-mic-diagnostic.json
+|   |       |   |-- after-policy-attempt1.json
+|   |       |   |-- after-policy.json
+|   |       |   |-- build-final.txt
+|   |       |   |-- build-first-touch-fixture.txt
+|   |       |   |-- build-gesture-trace.txt
+|   |       |   |-- build-home-diagnostic.txt
+|   |       |   |-- build-main-dispatcher-fixture.txt
+|   |       |   |-- build-panel-fixture.txt
+|   |       |   |-- build-profile-warmup-final.txt
+|   |       |   |-- build-profile-warmup.txt
+|   |       |   |-- build.txt
+|   |       |   |-- environment-before-final.json
+|   |       |   |-- environment-before.json
+|   |       |   |-- final-gesture-command.json
+|   |       |   |-- final-gesture-raw.txt
+|   |       |   |-- final-gesture-stderr.txt
+|   |       |   |-- final-main-command.json
+|   |       |   |-- final-main-raw.txt
+|   |       |   |-- final-main-stderr.txt
+|   |       |   |-- final-policy-command.json
+|   |       |   |-- final-policy-raw.txt
+|   |       |   |-- final-policy-stderr.txt
+|   |       |   |-- gesture-trace-command.json
+|   |       |   |-- gesture-trace-raw.txt
+|   |       |   |-- gesture-trace-stderr.txt
+|   |       |   |-- main-attempt2-activity-events.txt
+|   |       |   |-- main-command.json
+|   |       |   |-- main-mic-diagnostic-command.json
+|   |       |   |-- main-mic-diagnostic-raw.txt
+|   |       |   |-- main-mic-diagnostic-stderr.txt
+|   |       |   |-- main-raw.txt
+|   |       |   |-- main-retry-command.json
+|   |       |   |-- main-retry-raw.txt
+|   |       |   |-- main-retry-stderr.txt
+|   |       |   |-- main-stderr.txt
+|   |       |   |-- policy-command.json
+|   |       |   |-- policy-raw.txt
+|   |       |   |-- policy-retry-command.json
+|   |       |   |-- policy-retry-raw.txt
+|   |       |   |-- policy-retry-stderr.txt
+|   |       |   |-- policy-stderr.txt
+|   |       |   |-- report.json
+|   |       |   |-- session-after-final-gesture.json
+|   |       |   |-- session-after-final-main.json
+|   |       |   |-- session-after-final-policy.json
+|   |       |   |-- session-after-gesture-trace.json
+|   |       |   |-- session-after-main-attempt1.json
+|   |       |   |-- session-after-main-attempt2.json
+|   |       |   |-- session-after-main-mic-diagnostic.json
+|   |       |   |-- session-after-policy-attempt1.json
+|   |       |   |-- session-after-policy.json
+|   |       |   |-- session-before-final.json
+|   |       |   \-- session-before.json
+|   |       |-- palette-probe-2026-10-17T21-57-27-877Z/
+|   |       |   |-- README.md
+|   |       |   \-- report.json
 |   |       |-- permissions-2026-10-17T19-57-27-002Z/
 |   |       |   |-- after-revoke-restart.json
 |   |       |   |-- after-revoke-restart.png
@@ -650,14 +739,143 @@ MusicOrbs/
 |   |       |   |-- memory-010.txt
 |   |       |   |-- report.json
 |   |       |   \-- restore-sanity.json
+|   |       |-- profile-2026-10-17T20-45-59-606Z/
+|   |       |   |-- 1-orb-after-android-window-framestats.txt
+|   |       |   |-- 1-orb-before-android-window-framestats.txt
+|   |       |   |-- 1-orb-metrics.json
+|   |       |   |-- 1-orb.png
+|   |       |   |-- 2-ribbon-after-android-window-framestats.txt
+|   |       |   |-- 2-ribbon-before-android-window-framestats.txt
+|   |       |   |-- 2-ribbon-metrics.json
+|   |       |   |-- 2-ribbon.png
+|   |       |   |-- 3-cloud-after-android-window-framestats.txt
+|   |       |   |-- 3-cloud-before-android-window-framestats.txt
+|   |       |   |-- 3-cloud-metrics.json
+|   |       |   |-- 3-cloud.png
+|   |       |   |-- 4-pixel-cloud-after-android-window-framestats.txt
+|   |       |   |-- 4-pixel-cloud-before-android-window-framestats.txt
+|   |       |   |-- 4-pixel-cloud-metrics.json
+|   |       |   |-- 4-pixel-cloud.png
+|   |       |   |-- 5-orb-memory-after-android-window-framestats.txt
+|   |       |   |-- 5-orb-memory-before-android-window-framestats.txt
+|   |       |   |-- 5-orb-memory-metrics.json
+|   |       |   |-- 5-orb-memory.png
+|   |       |   |-- README.md
+|   |       |   |-- baseline.json
+|   |       |   |-- cleanup-verification.json
+|   |       |   |-- memory-001.txt
+|   |       |   |-- memory-002.txt
+|   |       |   |-- memory-003.txt
+|   |       |   |-- memory-004.txt
+|   |       |   |-- memory-005.txt
+|   |       |   |-- memory-006.txt
+|   |       |   |-- memory-007.txt
+|   |       |   |-- memory-008.txt
+|   |       |   |-- memory-009.txt
+|   |       |   |-- memory-010.txt
+|   |       |   |-- memory-011.txt
+|   |       |   |-- memory-012.txt
+|   |       |   |-- memory-013.txt
+|   |       |   |-- memory-014.txt
+|   |       |   |-- memory-015.txt
+|   |       |   |-- memory-016.txt
+|   |       |   |-- memory-017.txt
+|   |       |   |-- memory-018.txt
+|   |       |   |-- memory-019.txt
+|   |       |   |-- memory-020.txt
+|   |       |   |-- memory-021.txt
+|   |       |   |-- memory-022.txt
+|   |       |   |-- memory-023.txt
+|   |       |   |-- memory-024.txt
+|   |       |   |-- memory-025.txt
+|   |       |   |-- memory-026.txt
+|   |       |   |-- memory-027.txt
+|   |       |   |-- memory-028.txt
+|   |       |   |-- memory-029.txt
+|   |       |   |-- memory-030.txt
+|   |       |   |-- memory-031.txt
+|   |       |   |-- memory-032.txt
+|   |       |   |-- memory-033.txt
+|   |       |   |-- memory-034.txt
+|   |       |   |-- memory-035.txt
+|   |       |   |-- memory-036.txt
+|   |       |   |-- memory-037.txt
+|   |       |   |-- memory-038.txt
+|   |       |   |-- memory-039.txt
+|   |       |   |-- memory-040.txt
+|   |       |   |-- memory-041.txt
+|   |       |   |-- memory-042.txt
+|   |       |   |-- memory-043.txt
+|   |       |   |-- memory-044.txt
+|   |       |   |-- memory-045.txt
+|   |       |   |-- memory-046.txt
+|   |       |   |-- memory-047.txt
+|   |       |   |-- memory-048.txt
+|   |       |   |-- memory-049.txt
+|   |       |   |-- memory-050.txt
+|   |       |   |-- memory-051.txt
+|   |       |   |-- memory-052.txt
+|   |       |   |-- memory-053.txt
+|   |       |   |-- memory-054.txt
+|   |       |   |-- memory-055.txt
+|   |       |   |-- memory-056.txt
+|   |       |   |-- memory-057.txt
+|   |       |   |-- memory-058.txt
+|   |       |   |-- memory-059.txt
+|   |       |   |-- memory-060.txt
+|   |       |   |-- memory-061.txt
+|   |       |   |-- memory-062.txt
+|   |       |   |-- memory-063.txt
+|   |       |   |-- memory-064.txt
+|   |       |   |-- memory-065.txt
+|   |       |   |-- memory-066.txt
+|   |       |   |-- memory-067.txt
+|   |       |   |-- memory-068.txt
+|   |       |   |-- memory-069.txt
+|   |       |   |-- memory-070.txt
+|   |       |   |-- memory-071.txt
+|   |       |   |-- memory-072.txt
+|   |       |   |-- memory-073.txt
+|   |       |   |-- memory-074.txt
+|   |       |   |-- memory-075.txt
+|   |       |   |-- memory-076.txt
+|   |       |   |-- memory-077.txt
+|   |       |   |-- memory-078.txt
+|   |       |   |-- memory-079.txt
+|   |       |   |-- memory-080.txt
+|   |       |   |-- native-restored-after-diagnostics.json
+|   |       |   |-- native-restored-session.json
+|   |       |   |-- post-diagnostics-verification.json
+|   |       |   \-- report.json
 |   |       |-- raf-probe-2026-10-17T20-37-03-616Z/
 |   |       |   |-- README.md
 |   |       |   |-- avd-config.json
 |   |       |   |-- emulator-flags.json
 |   |       |   |-- report.json
 |   |       |   \-- surface-refresh.txt
-|   |       \-- raf-probe-2026-10-17T20-39-22-057Z/
-|   |           \-- report.json
+|   |       |-- raf-probe-2026-10-17T20-39-22-057Z/
+|   |       |   \-- report.json
+|   |       |-- render-probe-2026-10-17T21-58-16-207Z/
+|   |       |   |-- README.md
+|   |       |   \-- report.json
+|   |       |-- render-probe-2026-10-17T21-58-55-422Z/
+|   |       |   |-- README.md
+|   |       |   \-- report.json
+|   |       \-- visual-acceptance-2026-10-17T22-12-35-713Z/
+|   |           |-- baseline.json
+|   |           |-- drag-sensitivity-0.5.json
+|   |           |-- drag-sensitivity-2.json
+|   |           |-- failure.png
+|   |           |-- failure.xml
+|   |           |-- impulse-decay.json
+|   |           |-- original-store.json
+|   |           |-- pointer-cancel-outside.json
+|   |           |-- report.json
+|   |           |-- restored-baseline.json
+|   |           |-- rotated-deformed-orb.png
+|   |           |-- rotation-cycles.json
+|   |           |-- tap-sensitivity-0.5.json
+|   |           \-- tap-sensitivity-2.json
 |   \-- functional/
 |       |-- README.md
 |       \-- results.md

@@ -1,0 +1,1208 @@
+{
+  "active": false,
+  "paused": false,
+  "contextLost": false,
+  "durationSeconds": 600.2856999999999,
+  "activeSeconds": 600.2857,
+  "submissions": 21642,
+  "submissionFps": 36.05283284276137,
+  "intervalThresholdMs": 25,
+  "slowIntervals": 19361,
+  "slowFraction": 0.8946444249341527,
+  "submissionIntervals": {
+    "count": 21641,
+    "minMs": 4.299999999930151,
+    "maxMs": 91.79999999993015,
+    "meanMs": 27.736892934707267,
+    "p50Ms": 27.75,
+    "p95Ms": 31.75,
+    "p99Ms": 34.5,
+    "bucketWidthMs": 0.25,
+    "overflowAtMs": 1000,
+    "percentileMethod": "histogram-upper-bound",
+    "bins": [
+      [
+        17,
+        2
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        24,
+        4
+      ],
+      [
+        25,
+        2
+      ],
+      [
+        26,
+        5
+      ],
+      [
+        27,
+        2
+      ],
+      [
+        29,
+        7
+      ],
+      [
+        30,
+        5
+      ],
+      [
+        31,
+        4
+      ],
+      [
+        32,
+        8
+      ],
+      [
+        33,
+        6
+      ],
+      [
+        34,
+        2
+      ],
+      [
+        36,
+        4
+      ],
+      [
+        37,
+        2
+      ],
+      [
+        38,
+        3
+      ],
+      [
+        39,
+        3
+      ],
+      [
+        40,
+        2
+      ],
+      [
+        42,
+        7
+      ],
+      [
+        43,
+        4
+      ],
+      [
+        44,
+        2
+      ],
+      [
+        46,
+        3
+      ],
+      [
+        47,
+        3
+      ],
+      [
+        48,
+        3
+      ],
+      [
+        49,
+        5
+      ],
+      [
+        50,
+        5
+      ],
+      [
+        51,
+        1
+      ],
+      [
+        52,
+        6
+      ],
+      [
+        53,
+        3
+      ],
+      [
+        54,
+        9
+      ],
+      [
+        55,
+        4
+      ],
+      [
+        56,
+        6
+      ],
+      [
+        57,
+        11
+      ],
+      [
+        58,
+        9
+      ],
+      [
+        59,
+        4
+      ],
+      [
+        60,
+        15
+      ],
+      [
+        61,
+        2
+      ],
+      [
+        62,
+        16
+      ],
+      [
+        63,
+        10
+      ],
+      [
+        64,
+        15
+      ],
+      [
+        65,
+        8
+      ],
+      [
+        66,
+        14
+      ],
+      [
+        67,
+        12
+      ],
+      [
+        68,
+        17
+      ],
+      [
+        69,
+        14
+      ],
+      [
+        70,
+        8
+      ],
+      [
+        71,
+        5
+      ],
+      [
+        72,
+        15
+      ],
+      [
+        73,
+        9
+      ],
+      [
+        74,
+        17
+      ],
+      [
+        75,
+        15
+      ],
+      [
+        76,
+        15
+      ],
+      [
+        77,
+        15
+      ],
+      [
+        78,
+        9
+      ],
+      [
+        79,
+        8
+      ],
+      [
+        80,
+        19
+      ],
+      [
+        81,
+        5
+      ],
+      [
+        82,
+        15
+      ],
+      [
+        83,
+        10
+      ],
+      [
+        84,
+        17
+      ],
+      [
+        85,
+        19
+      ],
+      [
+        86,
+        20
+      ],
+      [
+        87,
+        16
+      ],
+      [
+        88,
+        44
+      ],
+      [
+        89,
+        37
+      ],
+      [
+        90,
+        51
+      ],
+      [
+        91,
+        42
+      ],
+      [
+        92,
+        114
+      ],
+      [
+        93,
+        69
+      ],
+      [
+        94,
+        157
+      ],
+      [
+        95,
+        142
+      ],
+      [
+        96,
+        233
+      ],
+      [
+        97,
+        173
+      ],
+      [
+        98,
+        316
+      ],
+      [
+        99,
+        245
+      ],
+      [
+        100,
+        452
+      ],
+      [
+        101,
+        395
+      ],
+      [
+        102,
+        632
+      ],
+      [
+        103,
+        518
+      ],
+      [
+        104,
+        899
+      ],
+      [
+        105,
+        643
+      ],
+      [
+        106,
+        1152
+      ],
+      [
+        107,
+        751
+      ],
+      [
+        108,
+        1246
+      ],
+      [
+        109,
+        828
+      ],
+      [
+        110,
+        1236
+      ],
+      [
+        111,
+        776
+      ],
+      [
+        112,
+        1179
+      ],
+      [
+        113,
+        724
+      ],
+      [
+        114,
+        1076
+      ],
+      [
+        115,
+        638
+      ],
+      [
+        116,
+        894
+      ],
+      [
+        117,
+        538
+      ],
+      [
+        118,
+        708
+      ],
+      [
+        119,
+        446
+      ],
+      [
+        120,
+        650
+      ],
+      [
+        121,
+        374
+      ],
+      [
+        122,
+        506
+      ],
+      [
+        123,
+        315
+      ],
+      [
+        124,
+        374
+      ],
+      [
+        125,
+        201
+      ],
+      [
+        126,
+        296
+      ],
+      [
+        127,
+        158
+      ],
+      [
+        128,
+        186
+      ],
+      [
+        129,
+        110
+      ],
+      [
+        130,
+        125
+      ],
+      [
+        131,
+        63
+      ],
+      [
+        132,
+        70
+      ],
+      [
+        133,
+        34
+      ],
+      [
+        134,
+        36
+      ],
+      [
+        135,
+        25
+      ],
+      [
+        136,
+        25
+      ],
+      [
+        137,
+        16
+      ],
+      [
+        138,
+        27
+      ],
+      [
+        139,
+        10
+      ],
+      [
+        140,
+        10
+      ],
+      [
+        141,
+        6
+      ],
+      [
+        142,
+        7
+      ],
+      [
+        143,
+        5
+      ],
+      [
+        144,
+        10
+      ],
+      [
+        145,
+        4
+      ],
+      [
+        146,
+        6
+      ],
+      [
+        147,
+        4
+      ],
+      [
+        148,
+        9
+      ],
+      [
+        149,
+        3
+      ],
+      [
+        150,
+        3
+      ],
+      [
+        151,
+        4
+      ],
+      [
+        152,
+        4
+      ],
+      [
+        153,
+        3
+      ],
+      [
+        154,
+        5
+      ],
+      [
+        155,
+        4
+      ],
+      [
+        156,
+        5
+      ],
+      [
+        157,
+        3
+      ],
+      [
+        158,
+        8
+      ],
+      [
+        159,
+        4
+      ],
+      [
+        160,
+        6
+      ],
+      [
+        161,
+        1
+      ],
+      [
+        163,
+        1
+      ],
+      [
+        164,
+        4
+      ],
+      [
+        166,
+        3
+      ],
+      [
+        168,
+        2
+      ],
+      [
+        169,
+        3
+      ],
+      [
+        170,
+        1
+      ],
+      [
+        172,
+        1
+      ],
+      [
+        173,
+        1
+      ],
+      [
+        174,
+        2
+      ],
+      [
+        175,
+        3
+      ],
+      [
+        180,
+        2
+      ],
+      [
+        182,
+        2
+      ],
+      [
+        183,
+        1
+      ],
+      [
+        184,
+        1
+      ],
+      [
+        185,
+        1
+      ],
+      [
+        186,
+        1
+      ],
+      [
+        187,
+        1
+      ],
+      [
+        188,
+        2
+      ],
+      [
+        190,
+        1
+      ],
+      [
+        191,
+        1
+      ],
+      [
+        192,
+        1
+      ],
+      [
+        193,
+        1
+      ],
+      [
+        194,
+        1
+      ],
+      [
+        198,
+        1
+      ],
+      [
+        199,
+        1
+      ],
+      [
+        200,
+        3
+      ],
+      [
+        201,
+        1
+      ],
+      [
+        202,
+        1
+      ],
+      [
+        203,
+        1
+      ],
+      [
+        204,
+        3
+      ],
+      [
+        206,
+        1
+      ],
+      [
+        210,
+        1
+      ],
+      [
+        212,
+        1
+      ],
+      [
+        214,
+        1
+      ],
+      [
+        216,
+        1
+      ],
+      [
+        218,
+        1
+      ],
+      [
+        221,
+        1
+      ],
+      [
+        225,
+        1
+      ],
+      [
+        227,
+        2
+      ],
+      [
+        248,
+        1
+      ],
+      [
+        251,
+        1
+      ],
+      [
+        264,
+        1
+      ],
+      [
+        281,
+        1
+      ],
+      [
+        288,
+        1
+      ],
+      [
+        325,
+        1
+      ],
+      [
+        367,
+        1
+      ]
+    ]
+  },
+  "presentCpuDuration": {
+    "count": 21642,
+    "minMs": 0,
+    "maxMs": 8.20000000006985,
+    "meanMs": 0.21129285648267032,
+    "p50Ms": 0.25,
+    "p95Ms": 0.75,
+    "p99Ms": 1,
+    "bucketWidthMs": 0.25,
+    "overflowAtMs": 1000,
+    "percentileMethod": "histogram-upper-bound",
+    "bins": [
+      [
+        0,
+        17589
+      ],
+      [
+        1,
+        2880
+      ],
+      [
+        2,
+        833
+      ],
+      [
+        3,
+        136
+      ],
+      [
+        4,
+        79
+      ],
+      [
+        5,
+        17
+      ],
+      [
+        6,
+        20
+      ],
+      [
+        7,
+        10
+      ],
+      [
+        8,
+        5
+      ],
+      [
+        9,
+        1
+      ],
+      [
+        10,
+        7
+      ],
+      [
+        11,
+        8
+      ],
+      [
+        12,
+        13
+      ],
+      [
+        13,
+        15
+      ],
+      [
+        14,
+        13
+      ],
+      [
+        15,
+        7
+      ],
+      [
+        16,
+        2
+      ],
+      [
+        17,
+        3
+      ],
+      [
+        22,
+        1
+      ],
+      [
+        23,
+        1
+      ],
+      [
+        27,
+        1
+      ],
+      [
+        32,
+        1
+      ]
+    ]
+  },
+  "counters": {
+    "contextLosses": 0,
+    "contextRestores": 0,
+    "renderErrors": 0,
+    "skippedPaused": 0,
+    "skippedContextLost": 0
+  },
+  "minuteBucketLimit": 180,
+  "minuteOverflow": false,
+  "minutes": [
+    {
+      "minute": 0,
+      "activeSeconds": 60,
+      "submissions": 2164,
+      "submissionFps": 36.06666666666667,
+      "slowIntervals": 1933,
+      "submissionIntervals": {
+        "count": 2163,
+        "minMs": 7.2999999999883585,
+        "maxMs": 70.30000000004657,
+        "meanMs": 27.72912621359225,
+        "p50Ms": 28,
+        "p95Ms": 32,
+        "p99Ms": 34,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2164,
+        "minMs": 0,
+        "maxMs": 4,
+        "meanMs": 0.21030499075762987,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 1,
+      "activeSeconds": 60.00000000000006,
+      "submissions": 2172,
+      "submissionFps": 36.19999999999997,
+      "slowIntervals": 1964,
+      "submissionIntervals": {
+        "count": 2172,
+        "minMs": 5.699999999953434,
+        "maxMs": 36.199999999953434,
+        "meanMs": 27.621224677716384,
+        "p50Ms": 28,
+        "p95Ms": 32,
+        "p99Ms": 33,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2172,
+        "minMs": 0,
+        "maxMs": 3.699999999953434,
+        "meanMs": 0.20778084714534867,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 2,
+      "activeSeconds": 60,
+      "submissions": 2207,
+      "submissionFps": 36.78333333333333,
+      "slowIntervals": 1903,
+      "submissionIntervals": {
+        "count": 2207,
+        "minMs": 6.5,
+        "maxMs": 51.09999999997672,
+        "meanMs": 27.19628454916174,
+        "p50Ms": 28,
+        "p95Ms": 32,
+        "p99Ms": 33,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2207,
+        "minMs": 0,
+        "maxMs": 3.800000000046566,
+        "meanMs": 0.19999999999932483,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 3,
+      "activeSeconds": 60,
+      "submissions": 2173,
+      "submissionFps": 36.21666666666667,
+      "slowIntervals": 1938,
+      "submissionIntervals": {
+        "count": 2173,
+        "minMs": 4.299999999930151,
+        "maxMs": 43.39999999990687,
+        "meanMs": 27.61201104463876,
+        "p50Ms": 28,
+        "p95Ms": 32,
+        "p99Ms": 34,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2173,
+        "minMs": 0,
+        "maxMs": 3.699999999953434,
+        "meanMs": 0.20165669581473766,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 4,
+      "activeSeconds": 60,
+      "submissions": 2162,
+      "submissionFps": 36.03333333333333,
+      "slowIntervals": 1946,
+      "submissionIntervals": {
+        "count": 2162,
+        "minMs": 6,
+        "maxMs": 72,
+        "meanMs": 27.743570767807576,
+        "p50Ms": 28,
+        "p95Ms": 32,
+        "p99Ms": 35,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2162,
+        "minMs": 0,
+        "maxMs": 3.799999999930151,
+        "meanMs": 0.21151711378129376,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 5,
+      "activeSeconds": 60,
+      "submissions": 2146,
+      "submissionFps": 35.766666666666666,
+      "slowIntervals": 1910,
+      "submissionIntervals": {
+        "count": 2146,
+        "minMs": 6.099999999976717,
+        "maxMs": 91.79999999993015,
+        "meanMs": 27.963793103448296,
+        "p50Ms": 28,
+        "p95Ms": 33,
+        "p99Ms": 43,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2146,
+        "minMs": 0,
+        "maxMs": 8.20000000006985,
+        "meanMs": 0.22707362534885814,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 2,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 6,
+      "activeSeconds": 60,
+      "submissions": 2152,
+      "submissionFps": 35.86666666666667,
+      "slowIntervals": 1943,
+      "submissionIntervals": {
+        "count": 2152,
+        "minMs": 6.100000000093132,
+        "maxMs": 50.59999999997672,
+        "meanMs": 27.88192379182157,
+        "p50Ms": 29,
+        "p95Ms": 32,
+        "p99Ms": 35,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2152,
+        "minMs": 0,
+        "maxMs": 4.400000000023283,
+        "meanMs": 0.21375464684068965,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 7,
+      "activeSeconds": 60,
+      "submissions": 2157,
+      "submissionFps": 35.95,
+      "slowIntervals": 1951,
+      "submissionIntervals": {
+        "count": 2157,
+        "minMs": 6.5,
+        "maxMs": 43.79999999993015,
+        "meanMs": 27.812100139082037,
+        "p50Ms": 28,
+        "p95Ms": 32,
+        "p99Ms": 34,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2157,
+        "minMs": 0,
+        "maxMs": 3.799999999930151,
+        "meanMs": 0.20829856281885925,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 1,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 8,
+      "activeSeconds": 60,
+      "submissions": 2137,
+      "submissionFps": 35.61666666666667,
+      "slowIntervals": 1972,
+      "submissionIntervals": {
+        "count": 2137,
+        "minMs": 4.399999999906868,
+        "maxMs": 54.5,
+        "meanMs": 28.078568086102024,
+        "p50Ms": 29,
+        "p95Ms": 32,
+        "p99Ms": 34,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2137,
+        "minMs": 0,
+        "maxMs": 6.900000000023283,
+        "meanMs": 0.21104351895136578,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 2,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 9,
+      "activeSeconds": 60,
+      "submissions": 2163,
+      "submissionFps": 36.05,
+      "slowIntervals": 1893,
+      "submissionIntervals": {
+        "count": 2163,
+        "minMs": 6.900000000023283,
+        "maxMs": 81.30000000004657,
+        "meanMs": 27.738002773925125,
+        "p50Ms": 28,
+        "p95Ms": 33,
+        "p99Ms": 40,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 2163,
+        "minMs": 0,
+        "maxMs": 5.599999999976717,
+        "meanMs": 0.22214516874727197,
+        "p50Ms": 1,
+        "p95Ms": 1,
+        "p99Ms": 2,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    },
+    {
+      "minute": 10,
+      "activeSeconds": 0.28569999999995344,
+      "submissions": 9,
+      "submissionFps": 31.50157507875907,
+      "slowIntervals": 8,
+      "submissionIntervals": {
+        "count": 9,
+        "minMs": 24.800000000046566,
+        "maxMs": 39.800000000046566,
+        "meanMs": 30.433333333322985,
+        "p50Ms": 31,
+        "p95Ms": 39.800000000046566,
+        "p99Ms": 39.800000000046566,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      },
+      "presentCpuDuration": {
+        "count": 9,
+        "minMs": 0.10000000009313226,
+        "maxMs": 0.19999999995343387,
+        "meanMs": 0.1555555555710776,
+        "p50Ms": 0.19999999995343387,
+        "p95Ms": 0.19999999995343387,
+        "p99Ms": 0.19999999995343387,
+        "bucketWidthMs": 1,
+        "overflowAtMs": 250,
+        "percentileMethod": "histogram-upper-bound"
+      }
+    }
+  ]
+}

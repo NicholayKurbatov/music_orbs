@@ -277,3 +277,36 @@ Descriptor DPR, settings и поля полностью восстановлен
 В текстовых Android dumps удалены только конечные пробелы/пустые строки для
 `git diff --check`; численные значения и начальные отступы сохранены. JSON и PNG
 не проходят такую нормализацию.
+
+## 13. Длительный профиль, 2026-10-18 по Москве
+
+[Полный отчёт и таблица](../tests/device/results/profile-2026-10-17T20-45-59-606Z/README.md)
+фиксируют четыре формы по600с и отдельный Orb1800с на том же API35 AVD с host AMD.
+Время UTC20:45:59–21:56:15 2026-10-17; medium/10 000 частиц, target60,
+обычный DPR2.75/cap2, без аудио. JS submissions/с35.05–36.38,
+p50 интервала27.75–28.75мс, p9531.75–32.75мс, доля >25мс87.91–92.30%.
+Принятые p95≤20мс и доля >25мс<5% **не выполнены** во всех пяти сегментах.
+p95 CPU present0.75мс; это не весь JS-кадр/GPU/display FPS.
+
+Отдельный 30-минутный Orb: app PSS initial124275, peak127074, final123681КиБ;
+peak−initial2.7334МиБ≤32МиБ — **принятый бюджет памяти выполнен**.
+Поминутная выборка и PSS одного app-процесса не охватывают все GPU/WebView
+allocation и пики между выборками. Ошибок JS/render/context loss/пауз нет.
+Физические нагрев, батарея и звук хоста не измерены.
+[Независимый cleanup](../tests/device/results/profile-2026-10-17T20-45-59-606Z/cleanup-verification.json)
+подтвердил точное восстановление native/live settings и всех shapes,
+выключенную диагностику, исходный DPR и screen_off_timeout.
+Полный результат — `measurement-complete`, а не общий performance pass/MVP acceptance.
+
+После профиля выполнены короткие контролируемые диагностические сравнения:
+[palette A/B/A](../tests/device/results/palette-probe-2026-10-17T21-57-27-877Z/report.json)
+реально подавил102/102 загрузки по1КиБ без улучшения: normal33.98→skip33.98→normal33.97
+submissions/с. [Clear/count probe](../tests/device/results/render-probe-2026-10-17T21-58-16-207Z/report.json)
+дал34.81/с с подавленными draw calls; normal10k34.20, low4k33.86, high20k34.26.
+[Отдельный raw WebGL clear](../tests/device/results/render-probe-2026-10-17T21-58-55-422Z/report.json)
+при остановленном app.frame/DOM всё равно дал mean RAF27.523мс (около36.33Гц),
+p9533.4мс; RAF без GL ранее давал60Гц. Это указывает на ограничение пути
+WebGL surface/composition в выбранном AVD, но не устанавливает точную причину.
+Снижение числа частиц и отказ от повторных palette uploads её не подтвердили.
+Методы GL, clear color, RAF, settings и поля восстановлены; production renderer
+ради этой диагностики не менялся. Короткие сравнения не заменяют длительный отчёт.
