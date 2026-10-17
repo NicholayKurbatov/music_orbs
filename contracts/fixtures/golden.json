@@ -1,0 +1,2897 @@
+[
+  {
+    "name": "session-white",
+    "kind": "session",
+    "valid": true,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "session-spectrum",
+    "kind": "session",
+    "valid": true,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "spectrum",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FF306E"
+          },
+          {
+            "offset": 0.5,
+            "colorHex": "#33E8CA"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#D855FF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "motion-synced",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "local:1",
+        "timestampSeconds": 3.5,
+        "bpm": 90,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 0.25,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": 0.9,
+        "mode": "synced"
+      }
+    }
+  },
+  {
+    "name": "motion-autonomous",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "none",
+        "timestampSeconds": 3.5,
+        "bpm": null,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 0.25,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": 0,
+        "mode": "autonomous"
+      }
+    }
+  },
+  {
+    "name": "ready",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "ready",
+      "payload": {
+        "runtimeTimestampSeconds": 0,
+        "sourceSessionId": "none"
+      }
+    }
+  },
+  {
+    "name": "command-configure",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "configure",
+        "settings": {
+          "shapeId": "orb",
+          "materialId": "dots",
+          "colorHex": "#FFFFFF",
+          "paletteId": "white",
+          "paletteStops": [
+            {
+              "offset": 0,
+              "colorHex": "#FFFFFF"
+            },
+            {
+              "offset": 1,
+              "colorHex": "#FFFFFF"
+            }
+          ],
+          "speed": 0.5,
+          "amplitude": 0.3,
+          "touchSensitivity": 1,
+          "musicSync": true,
+          "quality": "medium",
+          "targetFps": 60
+        }
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "command-restore",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "restore",
+        "snapshot": {
+          "settings": {
+            "shapeId": "orb",
+            "materialId": "dots",
+            "colorHex": "#FFFFFF",
+            "paletteId": "white",
+            "paletteStops": [
+              {
+                "offset": 0,
+                "colorHex": "#FFFFFF"
+              },
+              {
+                "offset": 1,
+                "colorHex": "#FFFFFF"
+              }
+            ],
+            "speed": 0.5,
+            "amplitude": 0.3,
+            "touchSensitivity": 1,
+            "musicSync": true,
+            "quality": "medium",
+            "targetFps": 60
+          },
+          "shapes": [
+            {
+              "shapeId": "orb",
+              "seed": -17,
+              "generatorVersion": 1,
+              "revision": 2,
+              "controls": [
+                {
+                  "center": [
+                    0.1,
+                    0.2,
+                    0.3
+                  ],
+                  "delta": [
+                    0.02,
+                    0,
+                    0
+                  ],
+                  "radius": 0.3
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "command-snapshot",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "snapshot"
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "command-pause",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "pause"
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "command-resume",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "resume"
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "command-reset",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "reset"
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "snapshot",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "snapshot",
+      "payload": {
+        "settings": {
+          "shapeId": "orb",
+          "materialId": "dots",
+          "colorHex": "#FFFFFF",
+          "paletteId": "white",
+          "paletteStops": [
+            {
+              "offset": 0,
+              "colorHex": "#FFFFFF"
+            },
+            {
+              "offset": 1,
+              "colorHex": "#FFFFFF"
+            }
+          ],
+          "speed": 0.5,
+          "amplitude": 0.3,
+          "touchSensitivity": 1,
+          "musicSync": true,
+          "quality": "medium",
+          "targetFps": 60
+        },
+        "shapes": [
+          {
+            "shapeId": "orb",
+            "seed": -17,
+            "generatorVersion": 1,
+            "revision": 2,
+            "controls": [
+              {
+                "center": [
+                  0.1,
+                  0.2,
+                  0.3
+                ],
+                "delta": [
+                  0.02,
+                  0,
+                  0
+                ],
+                "radius": 0.3
+              }
+            ]
+          }
+        ]
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "ack",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "ack",
+      "payload": {},
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "error",
+    "kind": "envelope",
+    "valid": true,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "error",
+      "payload": {
+        "code": "INVALID_INPUT",
+        "message": "Invalid command"
+      },
+      "requestId": "req:1"
+    }
+  },
+  {
+    "name": "speed-negative",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": -0.1,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "amplitude-high",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 1.1,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "touch-high",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 3.1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "fps-invalid",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 24
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "palette-unknown",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "unknown",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "counter-unsafe",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 9007199254740992,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "generator-unknown",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 2,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "vec-not-array",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": {
+                "x": 0,
+                "y": 0,
+                "z": 0
+              },
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "radius-zero",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "coordinate-high",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                5,
+                0,
+                0
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "version-future",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 3,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "protocol-future",
+    "kind": "envelope",
+    "valid": false,
+    "value": {
+      "protocolVersion": 2,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "local:1",
+        "timestampSeconds": 3.5,
+        "bpm": 90,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 0.25,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": 0.9,
+        "mode": "synced"
+      }
+    }
+  },
+  {
+    "name": "phase-one",
+    "kind": "envelope",
+    "valid": false,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "local:1",
+        "timestampSeconds": 3.5,
+        "bpm": 90,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 1,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": 0.9,
+        "mode": "synced"
+      }
+    }
+  },
+  {
+    "name": "bpm-zero",
+    "kind": "envelope",
+    "valid": false,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "local:1",
+        "timestampSeconds": 3.5,
+        "bpm": 0,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 0.25,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": 0.9,
+        "mode": "synced"
+      }
+    }
+  },
+  {
+    "name": "confidence-negative",
+    "kind": "envelope",
+    "valid": false,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "local:1",
+        "timestampSeconds": 3.5,
+        "bpm": 90,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 0.25,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": -0.1,
+        "mode": "synced"
+      }
+    }
+  },
+  {
+    "name": "source-none-synced",
+    "kind": "envelope",
+    "valid": false,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "motion",
+      "payload": {
+        "sourceSessionId": "none",
+        "timestampSeconds": 3.5,
+        "bpm": 90,
+        "slowCycleSeconds": 21.333333333333332,
+        "phase": 0.25,
+        "energy": 0.2,
+        "intensity": 0.1,
+        "confidence": 0.9,
+        "mode": "synced"
+      }
+    }
+  },
+  {
+    "name": "request-missing",
+    "kind": "envelope",
+    "valid": false,
+    "value": {
+      "protocolVersion": 1,
+      "bridgeSessionId": "bridge:1",
+      "sequence": 1,
+      "type": "command",
+      "payload": {
+        "type": "reset"
+      }
+    }
+  },
+  {
+    "name": "profile-upper-boundaries",
+    "kind": "session",
+    "valid": true,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 9007199254740991,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 2,
+        "amplitude": 1,
+        "touchSensitivity": 3,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 30
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "controls-overflow",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 9007199254740991,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 2,
+        "amplitude": 1,
+        "touchSensitivity": 3,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 30
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            },
+            {
+              "center": [
+                4,
+                -4,
+                4
+              ],
+              "delta": [
+                1,
+                0,
+                0
+              ],
+              "radius": 2
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

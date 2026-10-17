@@ -1,0 +1,50 @@
+schema: spec-driven
+
+context: |
+  Language: Russian
+  All artifacts must be written in Russian.
+  Keep OpenSpec structural headings and SHALL/MUST keywords in English.
+  Music Orbs: Android 10+, Kotlin/Compose и Three.js в локальном WebView.
+  Приложение пока содержит только модели, интерфейсы и явные заглушки.
+  Читать AGENTS.md, README.md, docs/scope.md, docs/design.md, docs/spec.md,
+  docs/tests.md, docs/references.md и docs/reuse.md до планирования изменений.
+  docs/scope.md — источник FR/NFR; docs/spec.md — публичных контрактов.
+  Сохранять Sculpture, MusicalMotion, AudioSession, Experience и зависимости внутрь.
+  Деформация в object space, фаза непрерывна, очереди ограничены, stale sessions отвергаются.
+  PCM не сохранять и не отправлять в сеть; микрофон включается только явно.
+  references/local/ — игнорируемые визуальные материалы, не assets приложения.
+  Текущая задача разрешает настройку tooling и план, но не реализацию MVP.
+  План параллельной работы не разрешает фактический запуск нескольких агентов.
+  При добавлении файлов обновлять docs/tree.md; новые FR связывать с FT.
+
+rules:
+  proposal:
+    - Отличать будущую реализацию от состояния текущих заглушек.
+  specs:
+    - Ссылаться на стабильные FR/NFR и сценарии FT/CT из docs.
+  design:
+    - Явно указывать владельцев файлов, зависимости пакетов и точки интеграции.
+  tasks:
+    - Указывать пакет и зависимости; все будущие задачи оставлять незавершёнными.
+
+# Per-artifact rules (optional)
+# Add custom rules for specific artifacts.
+# Example:
+#   rules:
+#     proposal:
+#       - Keep proposals under 500 words
+#       - Always state what is out of scope
+#     tasks:
+#       - Break tasks into chunks of max 2 hours
+
+# Per-operation guidance (optional)
+# Add advisory guidance for how apply and archive work should be conducted.
+# This is separate from artifact rules above.
+# Example:
+#   operations:
+#     apply:
+#       guidance:
+#         - Keep test summaries concise
+#     archive:
+#       guidance:
+#         - Summarize the archive outcome before finishing

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#05050b"><link rel="icon" href="data:,"><title>Music Orbs</title></head>
+<body>
+  <canvas id="scene" aria-label="Музыкальная скульптура. Потяните форму пальцем."></canvas>
+  <header><span class="brand">MUSIC ORBS</span><span id="mode">Автономное движение</span><button id="toggle" aria-expanded="false" aria-controls="panel">Настройки</button></header>
+  <aside id="panel" hidden>
+    <h1>Ваша скульптура</h1><p>Потяните форму. Отпустите и наблюдайте.</p>
+    <label>Форма<select id="shape"><option value="orb">Particle Orb</option><option value="ribbon">Particle Ribbon</option><option value="cloud">Particle Cloud</option><option value="pixel-cloud">Pixel Cloud</option></select></label>
+    <label>Материал<select id="material"><option value="dots">Точки</option><option value="soft">Мягкие частицы</option><option value="pixels">Пиксели</option></select></label>
+    <label>Палитра<select id="palette"><option value="white">Белая</option><option value="pink">Розовая</option><option value="lilac">Лиловая</option><option value="spectrum">Многоцветная</option><option value="custom">Свой цвет</option></select></label>
+    <label>Свой цвет<input id="color" type="color" value="#ffffff"></label>
+    <label>Скорость<input id="speed" type="range" min="0" max="2" step="0.05" value="0.5"></label>
+    <label>Амплитуда<input id="amplitude" type="range" min="0" max="1" step="0.05" value="0.3"></label>
+    <label>Чувствительность<input id="touch" type="range" min="0" max="3" step="0.1" value="1"></label>
+    <label>Плотность<select id="quality"><option value="low">Низкая · 4 000</option><option value="medium" selected>Средняя · 10 000</option><option value="high">Высокая · 20 000</option></select></label>
+    <label>Частота кадров<select id="fps"><option value="60">60 FPS</option><option value="30">30 FPS</option></select></label>
+    <label class="check"><input id="sync" type="checkbox" checked>Music Sync</label>
+    <div id="synthetic"><h2>Тестовое движение</h2><label class="check"><input id="test-motion" type="checkbox">Искусственный ритм</label><label>BPM<input id="bpm" type="range" min="60" max="180" step="1" value="90"></label><button id="source">Сменить тестовый источник</button></div>
+    <div class="actions"><button id="pause">Пауза</button><button id="reset">Reset формы</button></div>
+  </aside>
+  <p id="notice" role="status">Коснитесь и потяните форму</p>
+  <script type="module" src="./bootstrap/main.ts"></script>
+</body></html>

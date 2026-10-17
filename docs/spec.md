@@ -1,7 +1,8 @@
 # Контракты модулей
 
-Статус: проект API v0.1. Интерфейсы и заглушки в каталогах android/graphics
-не реализуют описанное поведение. Политики ошибок ниже обязательны для будущей реализации.
+Статус: API v0.2, реализация начата 2026-10-17. Общие модели, валидация,
+wire v1/session v2 и музыкальный движок реализованы; остальные компоненты
+проверяются по мере интеграции. Наличие контракта само по себе не означает прохождение FT.
 Публичный API ограничен перечисленными типами и методами; новые публичные методы
 добавляются вместе с контрактом и сценарием проверки.
 
@@ -29,22 +30,20 @@
 | ControlPoint | center: Vec3 в локальных координатах; delta: Vec3 постоянного смещения; radius > 0 | Sculpture |
 | DeformationSnapshot / ShapeSnapshot | shapeId, seed (целый Int32), generatorVersion >= 1, revision >= 0, controls[]; без индексов частиц и GPU-ресурсов | Sculpture, нативная копия для хранения |
 | Stroke | pointerId >= 0, phase begin/move/end/cancel, center, delta, radius > 0; sensitivity применяется один раз на application-границе | Sculpture application |
-| SceneSettings | shapeId, materialId, colorHex (#RRGGBB), speed >= 0, amplitude >= 0, touchSensitivity >= 0, musicSync: bool, quality low/medium/high, targetFps 30/60 | Experience |
+| SceneSettings | shapeId, materialId, colorHex (#RRGGBB), paletteId, paletteStops[], speed 0..2, amplitude 0..1, touchSensitivity 0..3, musicSync: bool, quality low/medium/high, targetFps 30/60 | Experience |
 | SourceRequest | kind local-file/playback-capture/microphone; uri обязателен только для local-file; не является системным разрешением | AudioSession |
 | SourceSession | id уникальный для каждого открытия; kind; state idle/requesting/running/unavailable | AudioSession |
-| PcmFrame | sourceSessionId; timestampSeconds >= 0 — позиция первого sample; sampleRate > 0; samples FloatArray непустой, mono, [-1,1], конечный | AudioSession published language |
+| PcmFrame | sourceSessionId; timestampSeconds >= 0 — монотонное runtime-время первого sample; sampleRate 8000..192000 Гц; samples FloatArray 1..16384, mono, [-1,1], конечный | AudioSession published language |
 | FeatureFrame | sourceSessionId, timestampSeconds, bpm: number или null, energy/intensity/confidence в [0,1] | MusicalMotion |
 | MotionSignal | sourceSessionId, timestampSeconds, bpm/null, slowCycleSeconds > 0, phase в [0,1), energy/intensity/confidence в [0,1], mode autonomous/synced | MusicalMotion |
 | SceneSnapshot | settings и shapes[]; уникальный shapeId, активная форма присутствует, даже при пустой деформации | Graphics application |
-| SessionSnapshot | schemaVersion >= 1, revision >= 0, settings, shapes[]; согласованный снимок сессии | Experience |
+| SessionSnapshot | schemaVersion=2, revision 0..2^53−1, settings, shapes[]; версия 1 мигрируется, неизвестные версии отклоняются | Experience |
 | SceneCommand | configure(settings), reset, restore(snapshot), snapshot, pause, resume | Experience application |
 | SceneReply / SceneEvent | ack для команд; snapshot содержит снимок для запроса snapshot | Application |
 | RenderFrame | base, deformation, settings, motion, elapsedSeconds >= 0; согласованные shapeId и версии | Sculpture application |
 
-Верхние пределы настроек, count, размеров сообщений и controls — открытые
-продуктовые/производительные параметры; до реализации фиксируются единым ProfileLimits.
-Порог confidence и допустимый диапазон BPM также выбираются до реализации DSP.
-Не допускаются неограниченные очереди или поля деформации.
+Начальные пределы ProfileLimits зафиксированы в §12. Это бюджеты прототипа,
+а не измерения устройства. Не допускаются неограниченные очереди или поля деформации.
 
 Kotlin enum — внутренние значения, а не JSON enum.name(). На границе явно
 отображаются ORB→orb, PIXEL_CLOUD→pixel-cloud, LOCAL_FILE→local-file,
@@ -84,8 +83,11 @@ Kotlin Vec3 объект преобразуется в JSON-массив [x,y,z]
 | RendererPort.resize(width,height,dpr) | Положительные конечные значения; физические лимиты проверены | Меняет viewport/camera; не сбрасывает поле | INVALID_INPUT; размер 0 от скрытого view обрабатывается presentation до вызова |
 | RendererPort.dispose() | Любое состояние, включая уже закрытое | Освобождает GPU и listeners | Идемпотентно в реализации |
 
-SceneApplicationStub и ThreeRendererStub имеют те же сигнатуры, но всегда
-выбрасывают NOT_IMPLEMENTED. Их поведение не является реализацией инвариантов.
+Реализации: SculptureScene, ThreeRenderer и ProceduralShapeFactory.
+SculptureScene сериализует команды, хранит поля каждой формы и ограничивает delta;
+renderer владеет только GPU и временным движением. ThreeRenderer.pick — внутренний
+адаптер object-space picking, не расширение RendererPort. Функция deformationAt
+вычисляет ограниченное локальное поле независимо от particle count.
 
 ## 5. AudioSession и источники
 
@@ -102,12 +104,17 @@ Source adapter — один тип источника на экземпляр. �
 | AudioSourcePort.open(request) | Запрос соответствующего kind; согласия получены через платформенный UI | Running SourceSession после реального открытия ресурса | Отказ не выдаётся за успешный захват |
 | AudioSourcePort.read() | Открытый источник | Следующий PcmFrame или null при EOF; silence — непустой нулевой PCM, не EOF | Read failure → SOURCE_UNAVAILABLE; suspend без busy loop |
 | AudioSourcePort.close() | Любое состояние | Отменяет read и освобождает handles/AudioRecord | Идемпотентно; не сохраняет PCM |
+| PlaybackControlPort.pause()/resume() | Открытый local-file | Идемпотентная пауза/продолжение с одной позиции; read не выдаёт будущие sample | SOURCE_UNAVAILABLE; IO адаптера |
+| PlaybackControlPort.seek(positionSeconds) | Конечная позиция >= 0 секунд, в пределах длительности файла | Новая playback-позиция; история анализатора очищается, визуальная фаза сохраняется | INVALID_INPUT; очередь старого PCM очищается |
+| PlaybackControlPort.position() | Открытый local-file | PlaybackPosition(playbackSeconds, runtimeTimestampSeconds, playing); пара позиций относится к одному моменту | SOURCE_UNAVAILABLE; снимок состояния, без сохранения аудио |
 
 У локального источника график чтения PCM согласован с позицией воспроизведения.
 Downmix/resample в адаптере; MusicalMotion принимает уже нормализованный mono.
-Pause/resume локального воспроизведения выражаются AudioSession.pause/resume
-с сохранённой адаптером позицией; точный внутренний playback API требует отдельного
-уточнения до реализации FR-11. Текущий каркас это не скрывает.
+PlaybackControlPort расширяет AudioSourcePort только для локального файла.
+PCM timestamp вычисляется как runtimeTimestampSeconds − (playbackSeconds −
+позиция первого sample в файле). Адаптер не публикует блок, конец которого
+ещё не был воспроизведён. Пауза замораживает позицию и анализ; seek очищает
+очередь и историю анализа без сброса визуальной фазы. Capture/mic этот порт не реализуют.
 AudioSessionStub и AudioSourceStub — явные TODO, ресурсов не открывают.
 
 ## 6. MusicalMotion
@@ -158,7 +165,15 @@ bridgeSessionId меняется после пересоздания WebView; ti
 Ошибки: code, message без чувствительных данных, requestId при наличии.
 Неподдерживаемая версия отклоняется до десериализации payload доменной модели.
 Предел размера payload, deadline request и rate motion определяются ProfileLimits.
-JSON Schema и golden fixtures ещё не реализованы; задача отмечена в contracts/README.md.
+JSON Schema и общие golden/negative fixtures находятся в [contracts](../contracts/README.md).
+Schema проверяет структуру и численные границы; runtime дополнительно проверяет
+порядок stops, норму delta, уникальность форм и наличие активной формы.
+Ready payload содержит runtimeTimestampSeconds, необязательные browserTimestampSeconds
+и sourceSessionId. Native повторяет ready при смене источника: это авторитетное
+объявление sourceSessionId; графика принимает motion только текущего источника.
+`none` зарезервировано для отсутствия источника: mode=autonomous, bpm=null.
+Строки ID соответствуют `[A-Za-z0-9._:-]{1,128}`. Графика сообщает готовность
+transport строкой `graphics-ready`, после чего native начинает handshake v1.
 
 ## 9. Расширение и изоляция
 
@@ -170,18 +185,77 @@ JSON Schema и golden fixtures ещё не реализованы; задача 
 фикстур и сохранения последней читаемой версии либо явно обозначенного fallback.
 
 
-## 10. Дополнительная заглушка upstream
+## 10. Адаптация геометрии
 
-UpstreamShapeFactoryStub.generate имеет тот же контракт, что ShapeFactory.generate,
-и сейчас всегда выбрасывает NOT_IMPLEMENTED. Включение конкретного upstream
-и версия генератора фиксируются только вместе с реализацией и notices.
+ProceduralShapeFactory.generate реализует ShapeFactory с generatorVersion=1.
+Orb использует адаптированный Fibonacci sampling, остальные пресеты — собственные
+параметрические распределения; происхождение фрагмента и лицензия в
+[third_party](../third_party/runtime.md). Генерация не выполняет IO и не меняет поле.
 
 
 
-## 11. Открытые параметры оформления
+## 11. Палитры и миграция оформления
 
-FR-10 включает несколько палитр. Текущий colorHex задаёт основной цвет;
-контракт многокрасочной paletteId/stops требует дополнения до реализации.
+PaletteId: white, pink, lilac, spectrum, custom. PaletteStop: offset 0..1
+без единиц и colorHex #RRGGBB; 2..8 stops, первый offset=0, последний=1,
+промежуточные строго возрастают. Неизвестная палитра или неверные stops
+дают INVALID_INPUT до изменения сцены. Stops сохраняются вместе с paletteId.
+Предустановки: white #FFFFFF; pink #FF7BBF→#FFD6EC; lilac #9875FF→#E1C7FF;
+spectrum #FF306E→#FFBE32→#33E8CA→#6585FF→#D855FF, равноудалённые offsets.
+Цвет линейно интерполируется между stops и привязан к исходной object-space
+позиции, без индекса частицы; quality не меняет координатное правило.
+Renderer меняет палитру плавно без изменения seed/поля.
+Session v1 colorHex мигрируется в custom с двумя одинаковыми концевыми stops;
+seed, generatorVersion, controls и revision сохраняются. Неизвестная версия
+не применяется частично и не перезаписывает читаемое сохранение автоматически.
 FR-18 регулирует плотность через quality profile: текущий API не обещает
 отдельный произвольный particleCount/density slider. Его добавление требует
 общих ProfileLimits и соответствующего изменения SceneSettings/fixtures.
+
+## 12. ProfileLimits и политика музыкального времени
+
+Это выбранные до fixtures начальные бюджеты, без утверждения достигнутых FPS.
+
+| Параметр | Значение / единицы |
+|---|---|
+| Частицы low/medium/high | 4000/10000/20000, count целый 1..20000 |
+| controls | Не более 64 на форму; отказ на лимите атомарный |
+| center / delta | center компоненты −4..4 object space; норма постоянного delta ≤1 |
+| stroke / radius | Норма одного смещения ≤0,2; radius 0,02..2 object space |
+| speed/amplitude/touchSensitivity | 0..2 / 0..1 / 0..3, безразмерные коэффициенты |
+| Transport | UTF-8 envelope ≤262144 байт; pending ≤16; deadline 3000 мс |
+| Motion | Latest-value, не более 30 отправок/с; PCM мосту не передаётся |
+| Версии | protocol=1; session schema=2; generator=1 |
+| По умолчанию | orb/dots/white, speed=0,5; amplitude=0,3; sensitivity=1; sync=true; medium/60 FPS |
+| Анализ | PCM 8..192 кГц, mono, 1..16384 sample; Hann FFT 256..4096, hop=N/2; ≤32 onset |
+| BPM / confidence | 40..240 BPM; sync при confidence ≥0,65 и energy >0,01 |
+| energy / intensity | RMS envelope attack 0,03 с/release 0,5 с; positive spectral flux, оба 0..1 |
+| Tempo | Минимум 5 onset; confidence зависит от регулярности; устаревает после 3 с без onset |
+| Clock | 4/8/16 тактов 4/4, default 8; автономный период 24 с |
+| Сглаживание | Экспоненциальное по частоте, τ=3 с; изменение ≤0,02 цикла/с²; новая оценка стабильна ≥0,5 с |
+| Delta / gap | Фаза интегрирует min(delta,0,1 с); timestamp учитывает raw delta; PCM gap >0,1 с или новая частота очищают историю |
+
+Допуски synthetic fixtures: 40/60/90/120/180/240 BPM при 48 кГц ±2 BPM;
+120 BPM также при 8/44,1/96/192 кГц. Для 90 BPM/8 тактов целевой период
+21,333333 с; после сглаживания допуск ±0,002 с. Фаза интегрируется
+трапецией частоты, без переустановки из BPM/PCM timestamp. Эти допуски
+не подтверждают качество анализа реальной музыки.
+
+| API реализации | Вход / результат / эффекты |
+|---|---|
+| validateSettings/validateShapeSnapshot/validateSceneSnapshot (TS), ProfileLimits.validate (Kotlin) | DTO/модели; границы без мутации/IO; INVALID_INPUT либо SNAPSHOT_INVALID |
+| decodeEnvelope/encodeEnvelope (TS), WireCodec.decode/encode (Kotlin) | JSON UTF-8 ↔ envelope v1, явные enum/Vec3; PROTOCOL_MISMATCH или INVALID_INPUT; без изменения сцены |
+| migrateSession (TS), WireCodec.session (Kotlin) | v1/v2 → валидный v2, кодирование v2; SNAPSHOT_INVALID для неизвестной версии; без IO и изменения исходника |
+| BoundedAudioAnalyzer.selectSource(id) | Непустой ID, кроме none; очищает историю; stale PCM отвергается без смены источника |
+| ContinuousMotionClock.setBars(4/8/16) | Меняет целевой период, сохраняет фазу; INVALID_INPUT для прочих значений |
+| ContinuousMotionClock.pause()/resume() | Идемпотентны; пауза не интегрирует фазу; timestamp монотонен |
+| attachNativeBridge(app,onMotion,onSourceChange?) | null без native, иначе close(); проверяет version/ID/sequence/source и pending; close удаляет receive hook и dirty listener; source callback сохраняет фазу и переводит сцену в autonomous |
+| CoroutineBridge(id,scope,transmit,runtimeSeconds) | Native BridgePort; callback передаёт локальному WebView только JSON; timeout 3000 мс включая ready, до 16 pending; close завершает ожидания ошибкой |
+| CoroutineBridge.setSource(id)/receive(json) | Авторитетно объявляет source и очищает latest motion; receive валидирует текущие bridgeSessionId/sequence; stale/невалидные сообщения игнорируются без изменения сцены |
+| DefaultExperienceService(bridge,store), dirty | Сериализованные dispatch/save/restore; dirty только после ack изменяющей команды; bootstrap планирует save, успех записи снимает dirty; не импортирует adapter |
+| AtomicSessionStore(path), SessionStoreException.code | IO на Dispatchers.IO, temporary+force+atomic replace; stale/equal revision INVALID_INPUT; отсутствие null, corruption SNAPSHOT_INVALID, IO STORAGE_FAILURE; последняя подтверждённая запись остаётся при ошибке |
+
+`scene-dirty` — сигнал transport после принятого жеста; native планирует запрос
+актуального snapshot и save. Сам сигнал не содержит постоянного состояния.
+Native revision резервируется до попытки записи; после отмены/ошибки возможны
+пропуски номеров, но следующая попытка не перезаписывает подтверждённую revision.

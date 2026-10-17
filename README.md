@@ -18,14 +18,14 @@
 
 ## Текущее состояние
 
-Подготовлены требования, архитектура, контракты, сценарии приёмки и структура
-модулей по Clean Architecture и DDD. Kotlin/TypeScript-файлы содержат модели,
-интерфейсы и явные заглушки `TODO` / `NOT_IMPLEMENTED`.
+Реализация запущена. Работают browser harness с четырьмя формами, локальной
+деформацией и палитрами, Kotlin DSP/clock и общие JSON-контракты. Добавлены JVM
+runner и Android shell; bridge, хранение и аудио интегрируются по
+[плану](docs/implementation-plan.md). Статус приёмки — в [tests.md](docs/tests.md).
 
-Рабочий визуализатор, аудиоанализ, Android-сборка и APK пока отсутствуют.
-Gradle/npm-проекты и зависимости приложения ещё не настроены; команды запуска
-приложения появятся вместе с реализацией. Текущий объём работ ограничен
-документацией и каркасом до отдельного указания начать реализацию.
+Desktop/JVM проверки не подтверждают совместимость захвата, удобство касаний
+и производительность телефона. Оставшиеся явные заглушки не используются
+как работающие адаптеры.
 
 ## Документация
 
@@ -38,6 +38,7 @@ Gradle/npm-проекты и зависимости приложения ещё 
 | [Структура проекта](docs/tree.md) | Фактическое дерево файлов и назначение слоёв |
 | [Визуальные референсы](docs/references.md) | Визуальные направления, желаемые свойства и материалы для уточнения |
 | [Переиспользование](docs/reuse.md) | Проверенные проекты, исходные модули, commits, лицензии и адаптеры |
+| [План реализации и OpenSpec](docs/implementation-plan.md) | Параллельные пакеты, владельцы файлов, зависимости и точки интеграции |
 | [Правила работы](AGENTS.md) | Инструкции для изменений в репозитории |
 
 ## Модули
@@ -51,18 +52,72 @@ Gradle/npm-проекты и зависимости приложения ещё 
 Домен не зависит от Android, Three.js, DOM или хранилища. Внешние технологии
 подключаются адаптерами через порты; зависимости связываются в `bootstrap/`.
 
-## Проверка каркаса
+## Запуск и проверки
+
+Browser harness (Node.js 24+, PowerShell):
+
+```powershell
+npm.cmd ci --prefix graphics
+npm.cmd run dev --prefix graphics
+```
+
+Проверки TypeScript, контрактов и графики:
+
+```powershell
+npm.cmd test --prefix graphics
+npm.cmd run build --prefix graphics
+npm.cmd run test:browser --prefix graphics
+node scripts/check-project.mjs
+```
+
+JVM без Android SDK, с JDK 17 в JAVA_HOME:
+
+```powershell
+.\gradlew.bat -PjvmOnly :core:test --console=plain
+```
+
+Android требует SDK Platform/Build Tools 35 и platform-tools; путь задаётся
+ANDROID_HOME либо игнорируемым local.properties. Сначала собирается локальная графика:
+
+```powershell
+npm.cmd run build --prefix graphics
+.\gradlew.bat :app:assembleDebug --console=plain
+```
+
+APK: `android/build/outputs/apk/debug/app-debug.apk`. При отсутствии graphics/dist
+сборка показывает отдельный shell. Фактический результат Android-сборки и эмулятора
+отмечается в docs/tests.md. Версии закреплены lockfiles.
+
+Исходная проверка TypeScript-каркаса:
 
 Из корня проекта в PowerShell:
 
 ```powershell
-$tsFiles = Get-ChildItem graphics -Recurse -Filter *.ts | ForEach-Object FullName
-npm.cmd exec --yes --package typescript@7.0.2 -- tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution bundler @tsFiles
+$tsFiles = Get-ChildItem graphics -Recurse -Filter *.ts | Where-Object { $_.FullName -notmatch '[\\/](node_modules|dist)[\\/]' } | ForEach-Object FullName
+npm.cmd exec --yes --package typescript@7.0.2 -- tsc --noEmit --strict --target ES2022 --module ESNext --moduleResolution bundler --esModuleInterop @tsFiles
 ```
 
 Команда использует npm cache и при отсутствии пакета обращается к реестру.
 Проверка типов не подтверждает работоспособность графики или Android-приложения.
 Подробности выполненных проверок и планов — в [tests.md](docs/tests.md).
+
+## Референсы и планирование изменений
+
+Четыре изученных видеореференса находятся локально в `references/local/`,
+исключены из Git и не входят в assets приложения. Файлы, SHA-256, интервалы
+сравнения и выводы — в [реестре](docs/references.md).
+
+Установлен OpenSpec CLI 1.14.3 и проектные skills в `.agents/skills/`.
+OpenSpec ведёт checklist реализации; browser harness запускается отдельно.
+Проверка плана из корня PowerShell:
+
+```powershell
+openspec.cmd status --change implement-mvp-blocks
+openspec.cmd validate --all --strict --no-interactive
+```
+
+Настройка и пакеты — в [плане](docs/implementation-plan.md), задачи и отметки —
+в [OpenSpec checklist](openspec/changes/implement-mvp-blocks/tasks.md).
 
 ## Лицензия и исходный код
 

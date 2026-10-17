@@ -1,0 +1,9 @@
+{
+  "description": "Независимые входы MotionSignal для browser harness/P6; не последовательная запись реального звука.",
+  "signals": [
+    { "sourceSessionId": "none", "timestampSeconds": 0.0, "bpm": null, "slowCycleSeconds": 24.0, "phase": 0.0, "energy": 0.0, "intensity": 0.0, "confidence": 0.0, "mode": "autonomous" },
+    { "sourceSessionId": "synthetic-a", "timestampSeconds": 10.0, "bpm": 90.0, "slowCycleSeconds": 21.333333333333332, "phase": 0.25, "energy": 0.5, "intensity": 0.08, "confidence": 0.95, "mode": "synced" },
+    { "sourceSessionId": "synthetic-b", "timestampSeconds": 20.0, "bpm": 120.0, "slowCycleSeconds": 16.0, "phase": 0.75, "energy": 0.35, "intensity": 0.02, "confidence": 0.9, "mode": "synced" },
+    { "sourceSessionId": "synthetic-b", "timestampSeconds": 30.0, "bpm": null, "slowCycleSeconds": 24.0, "phase": 0.5, "energy": 0.0, "intensity": 0.0, "confidence": 0.0, "mode": "autonomous" }
+  ]
+}

@@ -1,0 +1,76 @@
+import { chromium } from 'playwright-core';
+import { createServer } from 'vite';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
+import assert from 'node:assert/strict';
+
+const executablePath = process.env.MUSIC_ORBS_BROWSER || ['C:/Program Files/Google/Chrome/Application/chrome.exe', 'C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe'].find(existsSync);
+if (!executablePath) throw new Error('Задайте MUSIC_ORBS_BROWSER: путь к Chromium/Chrome/Edge.');
+const server = await createServer({ server: { port: 4173, host: '127.0.0.1' } });
+await server.listen();
+const browser = await chromium.launch({ executablePath, headless: true, args: ['--enable-webgl', '--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+const context = await browser.newContext({ viewport: { width: 720, height: 1000 } });
+const page = await context.newPage();
+const errors = [];
+page.on('pageerror', error => errors.push(error.message));
+page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+const output = new URL('../dist/smoke/', import.meta.url);
+await mkdir(output, { recursive: true });
+try {
+  await page.goto('http://127.0.0.1:4173');
+  await page.waitForFunction(() => !!window.musicOrbs);
+  await page.waitForTimeout(350);
+  for (const shape of ['orb', 'ribbon', 'cloud', 'pixel-cloud']) {
+    await page.click('#toggle');
+    await page.selectOption('#shape', shape);
+    await page.click('#toggle');
+    await page.waitForTimeout(650);
+    await page.screenshot({ path: new URL(`${shape}.png`, output).pathname.replace(/^\/([A-Za-z]:)/, '$1') });
+    const scene = await page.evaluate(() => window.musicOrbs.snapshot());
+    assert.equal(scene.settings.shapeId, shape);
+    const draw = await page.evaluate(() => {
+      const gl = document.querySelector('canvas').getContext('webgl2');
+      return { error: gl.getError(), lost: gl.isContextLost() };
+    });
+    assert.equal(draw.error, 0); assert.equal(draw.lost, false);
+  }
+  await page.evaluate(async () => { const s = await window.musicOrbs.snapshot(); await window.musicOrbs.command({ type: 'configure', settings: { ...s.settings, shapeId: 'orb', speed: 0 } }); });
+  await page.waitForTimeout(100);
+  await page.mouse.move(360, 500); await page.mouse.down(); await page.mouse.move(430, 470, { steps: 8 }); await page.mouse.up();
+  const sculpted = await page.evaluate(() => window.musicOrbs.snapshot());
+  assert.ok(sculpted.shapes.find(s => s.shapeId === 'orb').controls.length > 0, 'Реальный drag должен изменить поле');
+  await page.evaluate(async () => { const s = await window.musicOrbs.snapshot(); await window.musicOrbs.command({ type: 'configure', settings: { ...s.settings, quality: 'high', targetFps: 30 } }); });
+  const quality = await page.evaluate(() => window.musicOrbs.snapshot());
+  assert.deepEqual(quality.shapes, sculpted.shapes);
+  await page.waitForTimeout(300); await page.reload(); await page.waitForFunction(() => !!window.musicOrbs);
+  assert.deepEqual((await page.evaluate(() => window.musicOrbs.snapshot())).shapes, sculpted.shapes);
+  await page.evaluate(() => { const gl = document.querySelector('canvas').getContext('webgl2'); const ext = gl.getExtension('WEBGL_lose_context'); ext.loseContext(); setTimeout(() => ext.restoreContext(), 100); });
+  await page.waitForTimeout(600);
+  assert.deepEqual((await page.evaluate(() => window.musicOrbs.snapshot())).shapes, sculpted.shapes);
+  await page.screenshot({ path: new URL('sculpted-restored.png', output).pathname.replace(/^\/([A-Za-z]:)/, '$1') });
+  await page.evaluate(() => { window.musicOrbs.dispose(); window.musicOrbs.dispose(); });
+  const nativePage = await context.newPage();
+  await nativePage.addInitScript(() => { window.nativeMessages = []; window.MusicOrbsNative = { postMessage: json => window.nativeMessages.push(json) }; });
+  nativePage.on('pageerror', error => errors.push(error.message));
+  await nativePage.goto('http://127.0.0.1:4173'); await nativePage.waitForFunction(() => !!window.MusicOrbsReceive);
+  const deliver = (sequence, type, payload, requestId) => nativePage.evaluate(message => window.MusicOrbsReceive(JSON.stringify(message)), { protocolVersion: 1, bridgeSessionId: 'browser-smoke', sequence, type, payload, ...(requestId ? { requestId } : {}) });
+  await deliver(0, 'ready', { runtimeTimestampSeconds: 0, sourceSessionId: 'none' });
+  const motion = { sourceSessionId: 'stale-source', timestampSeconds: 1, bpm: 90, slowCycleSeconds: 21.3333333333, phase: 0.25, energy: 0.5, intensity: 0.3, confidence: 0.9, mode: 'synced' };
+  await deliver(1, 'motion', motion); await nativePage.waitForTimeout(100);
+  assert.equal(await nativePage.textContent('#mode'), 'Автономное движение');
+  await deliver(2, 'ready', { runtimeTimestampSeconds: 2, sourceSessionId: 'current-source' });
+  await deliver(3, 'motion', { ...motion, sourceSessionId: 'current-source' }); await nativePage.waitForTimeout(100);
+  assert.equal(await nativePage.textContent('#mode'), 'Движение под музыку');
+  await deliver(4, 'command', { type: 'snapshot' }, 'smoke-snapshot');
+  await nativePage.waitForFunction(() => window.nativeMessages.some(raw => raw.startsWith('{') && JSON.parse(raw).type === 'snapshot'));
+  assert.equal(await nativePage.isVisible('#toggle'), false);
+  await deliver(5, 'ready', { runtimeTimestampSeconds: 3, sourceSessionId: 'none' });
+  await nativePage.waitForTimeout(100);
+  assert.equal(await nativePage.textContent('#mode'), 'Автономное движение');
+  await nativePage.evaluate(() => window.musicOrbs.dispose());
+  await nativePage.close();
+  assert.deepEqual(errors, []);
+  const result = { browser: browser.version(), viewport: '720x1000', renderer: 'SwiftShader (headless)', checks: ['four shapes', 'GLSL compilation', 'pointer drag', 'quality/FPS field invariant', 'browser persistence/reload', 'context loss/recovery', 'idempotent dispose', 'native handshake/snapshot', 'stale source rejection'], errors };
+  await writeFile(new URL('result.json', output), JSON.stringify(result, null, 2));
+  console.log(JSON.stringify(result, null, 2));
+} finally { await browser.close(); await server.close(); }

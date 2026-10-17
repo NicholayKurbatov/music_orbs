@@ -1,5 +1,7 @@
-# Native composition root
+# Создание зависимостей Android
 
-Будущая сборка зависимостей и lifecycle. Здесь связываются порты с адаптерами.
-Gradle, AndroidManifest, Activity и конфигурация SDK пока отсутствуют намеренно:
-создан архитектурный каркас, а не собираемое Android-приложение.
+`MainActivity` создаёт WebView с локальным `LocalAssetsClient` и передаёт
+ему события pause/resume/destroy. На старте аудио и разрешения не запрашиваются.
+Дальнейшие порты Experience и AudioSession связываются здесь;
+домен не создаёт платформенные адаптеры. Сборка и ограничения — в
+[Android README](../README.md).

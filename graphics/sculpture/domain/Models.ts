@@ -11,10 +11,14 @@ export interface DeformationSnapshot {
 }
 export interface BaseGeometry { readonly positions: Float32Array; }
 export interface Stroke { readonly pointerId: number; readonly phase: 'begin' | 'move' | 'end' | 'cancel'; readonly center: Vec3; readonly delta: Vec3; readonly radius: number; }
+export type PaletteId = 'white' | 'pink' | 'lilac' | 'spectrum' | 'custom';
+export interface PaletteStop { readonly offset: number; readonly colorHex: string; }
 export interface SceneSettings {
   readonly shapeId: ShapeId;
   readonly materialId: MaterialId;
   readonly colorHex: string;
+  readonly paletteId: PaletteId;
+  readonly paletteStops: readonly PaletteStop[];
   readonly speed: number;
   readonly amplitude: number;
   readonly touchSensitivity: number;

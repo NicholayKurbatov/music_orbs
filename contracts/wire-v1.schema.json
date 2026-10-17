@@ -1,0 +1,688 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://musicorbs.local/contracts/wire-v1.schema.json",
+  "title": "Music Orbs wire v1 and session v2",
+  "$defs": {
+    "settings": {
+      "type": "object",
+      "properties": {
+        "shapeId": {
+          "type": "string",
+          "enum": [
+            "orb",
+            "ribbon",
+            "cloud",
+            "pixel-cloud"
+          ]
+        },
+        "materialId": {
+          "type": "string",
+          "enum": [
+            "dots",
+            "pixels",
+            "soft"
+          ]
+        },
+        "colorHex": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "paletteId": {
+          "type": "string",
+          "enum": [
+            "white",
+            "pink",
+            "lilac",
+            "spectrum",
+            "custom"
+          ]
+        },
+        "paletteStops": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 8,
+          "items": {
+            "type": "object",
+            "properties": {
+              "offset": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "colorHex": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}$"
+              }
+            },
+            "required": [
+              "offset",
+              "colorHex"
+            ]
+          }
+        },
+        "speed": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "amplitude": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "touchSensitivity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 3
+        },
+        "musicSync": {
+          "type": "boolean"
+        },
+        "quality": {
+          "type": "string",
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "targetFps": {
+          "enum": [
+            30,
+            60
+          ]
+        }
+      },
+      "required": [
+        "shapeId",
+        "materialId",
+        "colorHex",
+        "paletteId",
+        "paletteStops",
+        "speed",
+        "amplitude",
+        "touchSensitivity",
+        "musicSync",
+        "quality",
+        "targetFps"
+      ]
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number",
+        "minimum": -4,
+        "maximum": 4
+      }
+    },
+    "delta": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "number",
+        "minimum": -1,
+        "maximum": 1
+      }
+    },
+    "shape": {
+      "type": "object",
+      "properties": {
+        "shapeId": {
+          "type": "string",
+          "enum": [
+            "orb",
+            "ribbon",
+            "cloud",
+            "pixel-cloud"
+          ]
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": -2147483648,
+          "maximum": 2147483647
+        },
+        "generatorVersion": {
+          "const": 1
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "controls": {
+          "type": "array",
+          "maxItems": 64,
+          "items": {
+            "type": "object",
+            "properties": {
+              "center": {
+                "$ref": "#/$defs/vec3"
+              },
+              "delta": {
+                "$ref": "#/$defs/delta"
+              },
+              "radius": {
+                "type": "number",
+                "minimum": 0.02,
+                "maximum": 2
+              }
+            },
+            "required": [
+              "center",
+              "delta",
+              "radius"
+            ]
+          }
+        }
+      },
+      "required": [
+        "shapeId",
+        "seed",
+        "generatorVersion",
+        "revision",
+        "controls"
+      ]
+    },
+    "scene": {
+      "type": "object",
+      "properties": {
+        "settings": {
+          "$ref": "#/$defs/settings"
+        },
+        "shapes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/shape"
+          }
+        }
+      },
+      "required": [
+        "settings",
+        "shapes"
+      ]
+    },
+    "session": {
+      "type": "object",
+      "properties": {
+        "schemaVersion": {
+          "const": 2
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "settings": {
+          "$ref": "#/$defs/settings"
+        },
+        "shapes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 4,
+          "items": {
+            "$ref": "#/$defs/shape"
+          }
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "revision",
+        "settings",
+        "shapes"
+      ]
+    },
+    "command": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "reset"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "snapshot"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "pause"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "resume"
+            }
+          },
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "configure"
+            },
+            "settings": {
+              "$ref": "#/$defs/settings"
+            }
+          },
+          "required": [
+            "type",
+            "settings"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "const": "restore"
+            },
+            "snapshot": {
+              "$ref": "#/$defs/scene"
+            }
+          },
+          "required": [
+            "type",
+            "snapshot"
+          ]
+        }
+      ]
+    },
+    "motion": {
+      "type": "object",
+      "properties": {
+        "sourceSessionId": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+        },
+        "timestampSeconds": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "bpm": {
+          "anyOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "number",
+              "minimum": 40,
+              "maximum": 240
+            }
+          ]
+        },
+        "slowCycleSeconds": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "phase": {
+          "type": "number",
+          "minimum": 0,
+          "exclusiveMaximum": 1
+        },
+        "energy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "intensity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "mode": {
+          "type": "string",
+          "enum": [
+            "autonomous",
+            "synced"
+          ]
+        }
+      },
+      "required": [
+        "sourceSessionId",
+        "timestampSeconds",
+        "bpm",
+        "slowCycleSeconds",
+        "phase",
+        "energy",
+        "intensity",
+        "confidence",
+        "mode"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "mode": {
+                "const": "synced"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "bpm": {
+                "type": "number",
+                "minimum": 40,
+                "maximum": 240
+              },
+              "confidence": {
+                "type": "number",
+                "minimum": 0.65,
+                "maximum": 1
+              },
+              "sourceSessionId": {
+                "not": {
+                  "const": "none"
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "sourceSessionId": {
+                "const": "none"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "mode": {
+                "const": "autonomous"
+              },
+              "bpm": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "envelope": {
+      "oneOf": [
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "const": 1
+            },
+            "bridgeSessionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "type": {
+              "const": "ready"
+            },
+            "payload": {
+              "type": "object",
+              "properties": {
+                "runtimeTimestampSeconds": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "browserTimestampSeconds": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "sourceSessionId": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+                }
+              },
+              "required": [
+                "runtimeTimestampSeconds"
+              ]
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "bridgeSessionId",
+            "sequence",
+            "type",
+            "payload"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "const": 1
+            },
+            "bridgeSessionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "type": {
+              "const": "command"
+            },
+            "payload": {
+              "$ref": "#/$defs/command"
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "bridgeSessionId",
+            "sequence",
+            "requestId",
+            "type",
+            "payload"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "const": 1
+            },
+            "bridgeSessionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "type": {
+              "const": "ack"
+            },
+            "payload": {
+              "type": "object"
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "bridgeSessionId",
+            "sequence",
+            "requestId",
+            "type",
+            "payload"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "const": 1
+            },
+            "bridgeSessionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "type": {
+              "const": "snapshot"
+            },
+            "payload": {
+              "$ref": "#/$defs/scene"
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "bridgeSessionId",
+            "sequence",
+            "requestId",
+            "type",
+            "payload"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "const": 1
+            },
+            "bridgeSessionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "type": {
+              "const": "motion"
+            },
+            "payload": {
+              "$ref": "#/$defs/motion"
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "bridgeSessionId",
+            "sequence",
+            "type",
+            "payload"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "protocolVersion": {
+              "const": 1
+            },
+            "bridgeSessionId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "sequence": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 9007199254740991
+            },
+            "requestId": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._:-]{1,128}$"
+            },
+            "type": {
+              "const": "error"
+            },
+            "payload": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "pattern": "^[A-Z_]{1,40}$"
+                },
+                "message": {
+                  "type": "string",
+                  "maxLength": 256
+                }
+              },
+              "required": [
+                "code",
+                "message"
+              ]
+            }
+          },
+          "required": [
+            "protocolVersion",
+            "bridgeSessionId",
+            "sequence",
+            "type",
+            "payload"
+          ]
+        }
+      ]
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/envelope"
+    },
+    {
+      "$ref": "#/$defs/session"
+    }
+  ]
+}

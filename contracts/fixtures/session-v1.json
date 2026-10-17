@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "revision": 7,
+  "settings": {
+    "shapeId": "orb",
+    "materialId": "dots",
+    "colorHex": "#FFFFFF",
+    "speed": 0.5,
+    "amplitude": 0.3,
+    "touchSensitivity": 1,
+    "musicSync": true,
+    "quality": "medium",
+    "targetFps": 60
+  },
+  "shapes": [
+    {
+      "shapeId": "orb",
+      "seed": -17,
+      "generatorVersion": 1,
+      "revision": 2,
+      "controls": [
+        {
+          "center": [
+            0.1,
+            0.2,
+            0.3
+          ],
+          "delta": [
+            0.02,
+            0,
+            0
+          ],
+          "radius": 0.3
+        }
+      ]
+    }
+  ]
+}
