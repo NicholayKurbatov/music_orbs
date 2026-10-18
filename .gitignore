@@ -1,9 +1,13 @@
 .idea/
 .vscode/
 .gradle/
+.agents/
 node_modules/
 build/
 dist/
 local.properties
 *.apk
 *.aab
+
+# Локальные видеореференсы и производные кадры; реестр хранится в docs/references.md.
+/references/local/

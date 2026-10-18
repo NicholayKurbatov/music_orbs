@@ -5,6 +5,8 @@ wire v1/session v2 и музыкальный движок реализованы
 проверяются по мере интеграции. Наличие контракта само по себе не означает прохождение FT.
 Публичный API ограничен перечисленными типами и методами; новые публичные методы
 добавляются вместе с контрактом и сценарием проверки.
+План Visualizer для APK 0.2.0-dev описан отдельно в §15: эти контракты ещё
+не реализованы и не меняют статус фактически проверенного PCM-пути.
 
 ## 1. Общие правила
 
@@ -124,6 +126,8 @@ Source adapter — один тип источника на экземпляр. �
 | PlaybackControlPort.seek(positionSeconds) | Конечная позиция >= 0 секунд, в пределах длительности файла | Новая playback-позиция, прежний sourceSessionId; адаптер очищает очередь старого PCM | INVALID_INPUT; вызывающий сценарий обязан отдельно сбросить историю анализатора, сохранив визуальную фазу |
 | PlaybackControlPort.position() | Открытый local-file | PlaybackPosition(playbackSeconds, runtimeTimestampSeconds, playing); пара позиций относится к одному моменту | SOURCE_UNAVAILABLE; снимок состояния, без сохранения аудио |
 | DefaultAudioSession.read() | Текущая сессия; один последовательный consumer | Валидный PcmFrame текущего ID; null при EOF/паузе/отсутствии/смене сессии | Stale/overlap/future пропускаются; 64 подряд → SOURCE_UNAVAILABLE и закрытие; без busy loop |
+| PlaybackCaptureMonitor.observe(frame) | Валидный mono PcmFrame текущего sourceSessionId; без overlap, timestamp в секундах | CaptureSignalState: WAITING, RECEIVING или NO_SIGNAL; RMS >0,001 означает поступление сигнала; после 3 с без сигнала — NO_SIGNAL | INVALID_INPUT до изменения состояния; хранит только timestamps, без PCM/IO; новая сессия получает новый monitor |
+| PlaybackCaptureMonitor.stateAt(timestampSeconds) | Конечное время ≥0 с в общей монотонной шкале PCM/runtime; startedAtSeconds конструктора — время открытия capture, default 0 | Текущее CaptureSignalState, в том числе NO_SIGNAL после 3 с без единого блока или после остановки поступления PCM | INVALID_INPUT для неверного времени; состояние не меняет; таймер/UI вызывает bootstrap |
 | DefaultAudioSession.onFocusLost()/onBackground() | Событие платформы | Focus: локальная пауза, pending open отменён; background: все ресурсы закрыты | Не запускают новый источник; повторная остановка безопасна |
 | PlaybackTimeline.emit(samples,rate,firstPlaybackSeconds,position) | Конечный mono блок и согласованная playback/runtime позиция | Отделённая PcmFrame только после услышанного конца; null при паузе/будущем блоке | INVALID_INPUT для overlap/backward/границ; null не расходует блок |
 | PlaybackTimeline.seek(seconds)/reset() | Позиция >=0 с или новая временная привязка | Очищает порядок предыдущих блоков; seek задаёт новую нижнюю playback границу | Визуальный clock не меняется, IO нет |
@@ -251,7 +255,7 @@ FR-18 регулирует плотность через quality profile: тек
 | center / delta | center компоненты −4..4 object space; норма постоянного delta ≤1 |
 | stroke / radius | Норма одного смещения ≤0,2; radius 0,02..2 object space |
 | speed/amplitude/touchSensitivity | 0..2 / 0..1 / 0..3, безразмерные коэффициенты |
-| Transport | UTF-8 envelope ≤262144 байт; pending ≤16; deadline 3000 мс |
+| Transport | UTF-8 envelope ≤262144 байт; глубина JSON ≤32 контейнеров; pending ≤16; deadline 3000 мс |
 | Motion | Latest-value, не более 30 отправок/с; PCM мосту не передаётся |
 | Версии | protocol=1; session schema=2; generator=1 |
 | По умолчанию | orb/dots/white, speed=0,5; amplitude=0,3; sensitivity=1; sync=true; medium/60 FPS |
@@ -261,6 +265,14 @@ FR-18 регулирует плотность через quality profile: тек
 | Tempo | Минимум 5 onset; confidence зависит от регулярности; устаревает после 3 с без onset |
 | Clock | 4/8/16 тактов 4/4, default 8; автономный период 24 с |
 | Сглаживание | Экспоненциальное по частоте, τ=3 с; изменение ≤0,02 цикла/с²; candidate в пределах ±2 BPM от якоря удерживается ≥0,5 с, затем принимается последняя надёжная оценка, а не первая в группе |
+
+Onset фиксируется по росту RMS и spectral flux либо по спектральной атаке
+поверх непрерывного сигнала ≥0,1 с. Во втором случае positive flux выше 100 Гц,
+нормированный на полный спектр, должен превышать max(0,04; 2,5 × средний flux),
+а текущий полный flux — предыдущий в 1,25 раза. Средний flux сглаживается с τ=0,3 с;
+между onset не менее 0,2 с. Это эвристика для регулярного ритма, не обещание
+распознать BPM любой композиции. После 3 с без onset история очищается,
+чтобы пауза между треками не портила следующие оценки; визуальная фаза сохраняется.
 | Delta / gap | Фаза интегрирует min(delta,0,1 с); timestamp учитывает raw delta; PCM gap >0,1 с или новая частота очищают историю |
 
 Первое FFT-окно после старта/reset задаёт предыдущие spectrum/RMS и не считается
@@ -276,7 +288,7 @@ onset: без окна сравнения стационарный carrier не 
 |---|---|
 | validateSettings/validateShapeSnapshot/validateSceneSnapshot (TS), ProfileLimits.validate (Kotlin) | DTO/модели; границы без мутации/IO; INVALID_INPUT либо SNAPSHOT_INVALID |
 | validateMotionSignal (TS projection domain) | Неизвестное значение → MotionSignal после проверки диапазонов/ID/none; INVALID_INPUT без мутации/IO; общий валидатор для frame и wire |
-| decodeEnvelope/encodeEnvelope (TS), WireCodec.decode/encode (Kotlin) | JSON UTF-8 ↔ envelope v1, явные enum/Vec3; PROTOCOL_MISMATCH или INVALID_INPUT; без изменения сцены |
+| decodeEnvelope/encodeEnvelope (TS), WireCodec.decode/encode (Kotlin) | JSON UTF-8 ↔ envelope v1, явные enum/Vec3; размер ≤262144 байт, глубина ≤32 объектов/массивов с root=1; строки и escape-последовательности глубину не увеличивают; лимиты проверяются до JSON-парсинга, нарушение INVALID_INPUT, неверная версия PROTOCOL_MISMATCH; без изменения сцены |
 | migrateSession (TS), WireCodec.session (Kotlin) | v1/v2 → валидный v2, кодирование v2; SNAPSHOT_INVALID для неизвестной версии; без IO и изменения исходника |
 | BoundedAudioAnalyzer.selectSource(id) | Непустой ID, кроме none; очищает историю; stale PCM отвергается без смены источника |
 | ContinuousMotionClock.setBars(4/8/16) | Меняет целевой период, сохраняет фазу; INVALID_INPUT для прочих значений |
@@ -285,7 +297,7 @@ onset: без окна сравнения стационарный carrier не 
 | CoroutineBridge(id,scope,transmit,runtimeSeconds) | Native BridgePort; callback передаёт локальному WebView только JSON; timeout 3000 мс включая ready, до 16 pending также до handshake; timeout → SOURCE_UNAVAILABLE, внешняя cancellation сохраняется; close завершает ожидания ошибкой |
 | CoroutineBridge.setSource(id)/receive(json) | Авторитетно объявляет source и очищает latest motion; receive валидирует текущие bridgeSessionId/sequence; stale/невалидные сообщения игнорируются без изменения сцены |
 | DefaultExperienceService(bridge,store), dirty | Сериализованные dispatch/save/restore; dirty только после ack изменяющей команды; bootstrap планирует save, успех записи снимает dirty; не импортирует adapter |
-| AtomicSessionStore(path), SessionStoreException.code | IO на Dispatchers.IO, temporary+force+atomic replace; stale/equal revision INVALID_INPUT; отсутствие null, corruption SNAPSHOT_INVALID, IO STORAGE_FAILURE; последняя подтверждённая запись остаётся при ошибке |
+| AtomicSessionStore(path), SessionStoreException.code | IO на Dispatchers.IO, temporary+force+atomic replace; stale/equal revision INVALID_INPUT; отсутствие null, corruption/JSON глубже 32 контейнеров SNAPSHOT_INVALID, IO STORAGE_FAILURE; последняя подтверждённая запись остаётся при ошибке |
 
 `scene-dirty` — сигнал transport после принятого жеста; native планирует запрос
 актуального snapshot и save. Сам сигнал не содержит постоянного состояния.
@@ -296,6 +308,18 @@ Native revision резервируется до попытки записи; п�
 
 MainActivity создаёт WebView, CoroutineBridge, AtomicSessionStore,
 DefaultExperienceService/DefaultAudioSession, CommonsMathSpectrum, анализатор и clock.
+Последовательное чтение PCM и DSP выполняются в `Dispatchers.Default`, без возврата
+в UI между аудиоблоками. Последние features передаются через AtomicReference,
+время их поступления и поколение источника видимы между потоками. Проверка
+sourceSessionId/поколения сохраняется; завершение и ошибки обрабатываются на main.
+PlaybackCaptureMonitor сериализует observe/stateAt; UI читает только состояние,
+PCM в UI/bridge не передаётся. Это сохраняет независимость темпа чтения AudioRecord
+от нагрузки Compose/WebView; очередь features не накапливается.
+Сессия остаётся в private filesDir: `allowBackup=false`, `fullBackupContent=false`
+и `dataExtractionRules` исключают все файловые домены из cloud backup и
+device-to-device transfer на Android 12+. Системный перенос данных не служит
+способом экспорта сессии. Проверка конфигурации и её ограничения — в
+[отчёте безопасности](security.md).
 Единая runtimeSeconds берётся из монотонного System.nanoTime с начала Activity.
 Clock.advance вызывается также в фоне с pause: timestamp остаётся монотонным,
 а фаза в фоне не интегрируется. Визуальная проекция принимает первую phase,
@@ -308,6 +332,21 @@ settingsEnabled=false временно блокирует изменение н�
 полный settings DTO не отменил ещё не подтверждённое изменение. Панель модальная,
 её касания не передаются WebView. SourceKind появляется только после успешного open;
 для микрофона всегда виден индикатор и отдельная кнопка выключения.
+
+При внешнем захвате успешный open означает только открытый recorder.
+Bootstrap создаёт PlaybackCaptureMonitor на сессию и обновляет текст не чаще
+двух раз в секунду: ожидание; нет сигнала ≥3 с; звук есть, но тихий для DSP;
+звук есть, Music Sync выключен; определение темпа; подтверждённая clock
+синхронизация с BPM. Тишина не позволяет отличить паузу/громкость от запрета
+плеера, поэтому UI сообщает возможные причины, не объявляет запрет доказанным
+и не включает микрофон автоматически. Появление PCM восстанавливает статус
+без нового consent; смена/остановка источника очищает monitor.
+На Android 14+ consent запрашивается через
+`createScreenCaptureIntent(MediaProjectionConfig.createConfigForDefaultDisplay())`,
+на Android 10–13 — через обычный `createScreenCaptureIntent()`. Выбор отдельного
+окна не нужен для захвата воспроизведения устройства. VirtualDisplay и чтение
+экранных кадров не создаются. Политика источника всё равно ограничивает доступ
+к звуку: [правила AudioPlaybackCapture](https://developer.android.com/media/platform/av-capture).
 
 Save планируется через 250 мс после подтверждённой команды/жеста. OnPause закрывает
 аудио, сохраняет snapshot и приостанавливает сцену; возвращение во время ожидания
@@ -410,3 +449,164 @@ p95 JS submission interval ≤20 мс, доля интервалов строг�
 Отказ восстановления делает результат `incomplete`. Исходное/временное значение
 сохраняются в отчёте для восстановления после принудительного убийства runner.
 Без `--run` настройки экрана не меняются; Activity ради теста не изменяется.
+
+## 15. Visualizer для внешнего воспроизведения
+
+Статус: план версии **0.2.0-dev**, FR-22–FR-25, FT-30–FT-37. Этот раздел
+расширяет предыдущие контракты при последующей реализации; наличие документа
+не означает, что Visualizer или совместимость телефона уже проверены.
+
+### 15.1. Выбор источника и границы
+
+Внешний анализ предлагает три явных способа: `visualizer/global`,
+`visualizer/player` и существующий `playback-capture`. По умолчанию в новом
+разделе внешнего анализа предлагается общий микс Visualizer; включение требует
+нажатия пользователя. Файл и микрофон остаются отдельными источниками.
+Одновременно активен один источник; автоматического перехода к микрофону,
+PCM capture или иному способу после ошибки нет. Явная кнопка перехода допустима.
+
+Visualizer использует `RECORD_AUDIO`; для общего микса также нужен
+`MODIFY_AUDIO_SETTINGS`. Разрешение RECORD_AUDIO в этом пути не включает MIC.
+MediaProjection consent требуется только для PCM capture; Visualizer его не
+запрашивает. Он не запрашивает audio focus, не создаёт AudioTrack, Equalizer
+или DynamicsProcessing и не меняет громкость/эквализацию чужого звука.
+Физическая совместимость зависит от audio effect реализации и маршрута вывода.
+Root, DUMP, NotificationListener, Shizuku, reflection/hidden API и патчинг плееров
+не входят в реализацию 0.2.0. Не вводить разрешения ради обхода capture policy.
+
+### 15.2. Планируемые данные
+
+Все новые типы ниже — нативные модели; Android классы/константы внутрь домена
+не передаются. `sourceSessionId` остаётся UUID сессии Music Orbs, а не числовым
+Android audio session ID. Последний хранится только в platform adapter.
+
+| Тип / изменение | Атрибуты, единицы и инварианты | Владелец |
+|---|---|---|
+| SourceKind.VISUALIZER | Новый нативный kind; LOCAL_FILE/PLAYBACK_CAPTURE/MICROPHONE сохраняются | AudioSession |
+| VisualizationTarget | mode GLOBAL или PLAYER; для GLOBAL token отсутствует, для PLAYER обязателен непустой sessionToken из текущего discovery snapshot | AudioSession |
+| SourceRequest, расширение | kind/uri сохраняются; visualizationTarget обязателен только для VISUALIZER, uri допустим только для LOCAL_FILE; неверное сочетание — INVALID_INPUT до изменения текущей сессии | AudioSession |
+| PlayerSessionCandidate | sessionToken — непрозрачный временный ID, packageName, lastSeenTimestampSeconds ≥0; объявление сессии является подсказкой, не доказательством текущего воспроизведения или доступности эффекта | AudioSession |
+| VisualizationFrame | sourceSessionId; timestampSeconds ≥0 — время callback в общей монотонной шкале; samplingRateHz 8000..192000; waveform FloatArray, конечный mono [-1,1], N — степень 2, 64..4096; windowDurationSeconds = N/samplingRateHz; scaling NORMALIZED или AS_PLAYED; peakDbfs/rmsDbfs — конечные значения в dBFS либо null при недоступности | MusicalMotion |
+
+`VisualizationFrame` не является PcmFrame. Его соседние окна могут
+перекрываться или иметь пропуски; callback timestamp не считается точным
+временем первого аппаратного sample. Callback rate и sampling rate Android
+возвращает в milliHertz: адаптер переводит их в Hz, проверяет формат и хранит
+фактически выбранные значения в диагностике. Время окна не равно callback interval.
+Unsigned waveform byte преобразуется как `((b & 255) - 128) / 128.0`;
+цифровая тишина 128 соответствует 0. Native peak/RMS из mB делится на 100
+для dBFS; недоступная метрика обозначается null, а не ложным уровнем 0 dBFS.
+
+Адаптер выбирает поддерживаемый N в пределах бюджета, получает фактические
+getCaptureSizeRange/getMaxCaptureRate/getSamplingRate. Неподдерживаемый формат
+отклоняется как UNSUPPORTED_FORMAT; фиксированные 48 кГц/20 callbacks в секунду
+не предполагаются. Предпочтителен AS_PLAYED с PEAK_RMS. Если прошивка допускает
+только NORMALIZED, режим и качество данных видны; RMS нормализованной waveform
+нельзя выдавать за абсолютную громкость. Без достоверного измерения уровня
+тишина/громкость не выводятся только из нормализованной амплитуды.
+
+### 15.3. Планируемые методы и порты
+
+| Метод / изменение | Вход / предусловия | Результат / инварианты | Ошибки, эффекты и ответственность |
+|---|---|---|---|
+| SourceLifecyclePort.open(request) / close() | Соответствующий kind, согласия уже получены / любое состояние | Новая SourceSession после открытия handle / ресурсы закрыты | PERMISSION_DENIED, SOURCE_UNAVAILABLE, UNSUPPORTED_FORMAT; close идемпотентен, отменяет pending open/read; порт в AudioSession application |
+| AudioSourcePort : SourceLifecyclePort | Существующие PCM-источники | read(): PcmFrame? без изменения прежней семантики | Visualizer этот PCM-порт не реализует; PlaybackControlPort остаётся только у local-file |
+| DefaultAudioSession.select(request) | Расширенный валидный request | Один текущий SourceSession; старый закрыт до публикации нового | Factory lifecycle-портов задаёт bootstrap; VISUALIZER не выдаётся за PCM источник |
+| DefaultAudioSession.read() для VISUALIZER | Ошибочная попытка PCM-чтения | PcmFrame не создаётся, состояние сессии не меняется | INVALID_INPUT: PCM unavailable; Visualizer reader использует отдельный порт |
+| PlayerSessionDiscoveryPort.start()/snapshot()/close() | Запуск наблюдения / любое состояние | Ограниченный snapshot до 32 PlayerSessionCandidate / наблюдатели освобождены | Порт AudioSession application; без PCM, аудиозапуска и IO в domain; ошибки платформы не останавливают сцену |
+| VisualizationObservationPort.read() | Открытый lifecycle handle текущей сессии | Следующее отделённое VisualizationFrame либо null при закрытии | Порт MusicalMotion application; latest-value, pending ≤1; не busy loop, cancellation/close разблокируют read |
+| VisualizationAnalyzer.analyze(frame) / reset() | Валидные окна одного UUID с возрастающими timestamps / смена или разрыв | Прежний FeatureFrame / очищенная история | INVALID_INPUT для malformed/stale/duplicate до изменения истории; без Android/IO; возвращаемый timestamp — timestamp наблюдения |
+
+Android adapter реализует SourceLifecyclePort и VisualizationObservationPort,
+а bootstrap соединяет их по одной SourceSession. Нативная область AudioSession
+владеет жизненным циклом, MusicalMotion — окнами и их анализом. `PcmFrame`
+остаётся прежним ограниченным published language AudioSession → MusicalMotion;
+дополнительное окно поступает прямо во входной порт MusicalMotion, не расширяет
+PCM DTO и не импортируется доменом AudioSession. Прямых зависимостей application
+на concrete adapter и Android API нет.
+
+### 15.4. Сессии плееров и освобождение ресурсов
+
+GLOBAL соответствует Android audio session 0 только внутри адаптера. PLAYER
+разрешается через наблюдаемые OPEN/CLOSE_AUDIO_EFFECT_CONTROL_SESSION с
+EXTRA_AUDIO_SESSION/EXTRA_PACKAGE_NAME. Внутренний реестр ограничен 32 записями;
+известная пара заменяется, CLOSE удаляет её. Снимок не сохраняется на диск.
+Неверные extras игнорируются. Нельзя перебирать audio session IDs, читать
+чужие процессы или требовать QUERY_ALL_PACKAGES для обнаружения.
+
+Доставка broadcast зависит от плеера и ограничений Android; наблюдение не
+восстанавливает уже прошедший OPEN. Passive manifest receiver допустим только
+как обновление ограниченного RAM-реестра: не запускает FGS, Visualizer, MIC
+или Activity в фоне. Регистрация панели эффектов не должна изображать наличие
+эквалайзера. Не найденная сессия показывается как ожидание; UI предлагает
+общий микс или повторное объявление сессии плеером. Наличие MediaSession или
+уведомления само по себе не даёт audio session ID и доступ к waveform.
+
+При CLOSE выбранной сессии, Stop, смене способа/цели, уходе в фон, уничтожении
+Activity или отзыве разрешения снимаются listeners, отключается и release()
+Visualizer, инвалидируется sourceSessionId. Возврат из фона не запускает
+источник автоматически. При действующем явном мониторинге в foreground новая
+сессия того же выбранного плеера может привязаться повторно: новый UUID,
+очищенная история DSP, прежняя визуальная фаза. После фоновой остановки это
+правило не применяется до нового действия пользователя.
+
+Callbacks несут UUID/поколение конкретного открытия; старые, в том числе после
+повторного использования Android session ID, отбрасываются. ByteArray копируется
+в ограниченный слот, анализ идёт вне UI; callback не ожидает renderer/Compose.
+Ошибки приводят к закрытию ресурса и статусу недоступности без потери формы.
+
+### 15.5. Ритм, уровень и UI
+
+Новый анализатор вычисляет спектральные/энергетические наблюдения каждого окна
+и ищет периодичность по их реальным timestamps. Он не склеивает окна, не
+выдумывает потерянные samples и не подаёт их в BoundedAudioAnalyzer как сплошной
+PCM. История ограничена последними 30 с и максимум 1024 наблюдениями/32 onset.
+Разрыв >0,5 с очищает tempo history, но не фазу clock; дубликаты не считаются
+новыми ударами. Изменение N/rate/scaling сбрасывает историю анализа.
+Состояние stale (>0,5 с) убирает features из clock; отсутствие сигнала или
+блоков ≥3 с получает отдельное объяснение в UI.
+
+Результат — прежний FeatureFrame, confidence/BPM 40..240 и порог ≥0,65 из §12.
+Недостаток данных, постоянный тон и нерегулярный ритм дают bpm=null.
+Уровень/акценты могут отображаться без BPM; общий clock остаётся автономным
+при низкой уверенности/выключенном Sync, сохраняя непрерывность фазы. В этом
+релизе низкая уверенность не оправдывает подмену BPM случайной величиной.
+
+Статусы различают: выбранный способ/цель; ожидание сессии; ожидание данных;
+сигнал есть/уровень; тихий достоверно измеренный сигнал; определение темпа;
+синхронизация с BPM; Music Sync выключен; разрешение не выдано; Visualizer
+не поддержан/не открылся; данных нет или они устарели. Тишина не доказывает
+запрет плеера. При NORMALIZED без абсолютной метрики UI не предлагает увеличить
+громкость как установленную причину. Успешный конструктор — только открытый
+ресурс, не подтверждение получения музыки.
+
+### 15.6. Поставка и проверка
+
+Цель: versionName `0.2.0-dev`, versionCode **2** относительно текущих 0.1.0-dev/1.
+Если к внедрению code уже увеличен, выбрать больший текущего; не понижать версию.
+applicationId `musicorbs.app` и debug signing сохраняются, обновление выполняется
+поверх предыдущего APK, без uninstall/pm clear и потери session.json. Wire v1,
+session schema v2, generator v1, renderer API и SceneSettings не меняются:
+Visualizer kind/target/status остаются в нативном UI; IDs/permissions/цели
+анализа не записываются в снимок и не передаются через bridge. Любая реально
+необходимая смена DTO требует отдельного обновления схемы и fixtures до кода.
+
+Обязательны FT-30–FT-35/FT-37 и регрессии прежних PCM-источников. Для частичных
+окон: synthetic 8-bit fixtures 90/120/150 BPM, 10/20/30 callbacks/с, сдвиги,
+неровные интервалы, перекрытия/пропуски; после ≥12 регулярных ударов оценка
+в пределах ±3 BPM при достаточной уверенности, устойчивое достижение не позднее
+30 с на положительной fixture. Потеря наблюдений должна снижать confidence,
+а не создавать обязательный ложный BPM. Для 8 тактов после сходимости период
+в пределах ±0,6 с от 60/BPM*32; нулевая длительность шага сохраняет phase.
+Device-тест проходит весь реальный путь AudioTrack → Visualizer → новый DSP →
+clock → bridge → сцена и отдельно отрицательные случаи. Запрещающий PCM capture
+контроль для Visualizer исследуется без заранее заданного результата обхода.
+
+FT-36 — отдельная матрица Honor 200 Pro: Android/MagicOS/WebView, версия Яндекс
+Музыки, способ GLOBAL/PLAYER/PCM, динамик/Bluetooth, разрешения, RMS/энергия,
+freshness, confidence/BPM/период и сохранность формы. Положительный synthetic
+контроль на том же телефоне обязателен. Отчёт не содержит PCM/waveform/FFT,
+имён треков или содержимого уведомлений. Если телефон недоступен, APK всё равно
+собирается и выдаётся с явным статусом FT-36 «не проверено»; этот сценарий и
+соответствующая задача не отмечаются выполненными. Успех на эмуляторе не
+объявляется исправлением захвата Яндекс Музыки на Honor.

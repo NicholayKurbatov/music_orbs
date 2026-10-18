@@ -13,11 +13,12 @@ import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import musicorbs.audio.application.ports.AudioSourcePort
 import musicorbs.audio.application.ports.PlaybackControlPort
+import musicorbs.audio.application.ports.SourceLifecyclePort
 import musicorbs.audio.domain.*
 
 /** Платформенные адаптеры выбираются bootstrap; согласия остаются их ответственностью. */
-class DefaultAudioSession(private val sourceFactory: (SourceKind) -> AudioSourcePort) : AudioSession {
-    private class Handle(val port: AudioSourcePort, val generation: Long) {
+class DefaultAudioSession(private val sourceFactory: (SourceKind) -> SourceLifecyclePort) : AudioSession {
+    private class Handle(val port: SourceLifecyclePort, val generation: Long) {
         val controls = Mutex()
         var opening: Deferred<SourceSession>? = null
         var reading: Deferred<PcmFrame?>? = null
@@ -75,9 +76,10 @@ class DefaultAudioSession(private val sourceFactory: (SourceKind) -> AudioSource
     suspend fun read(): PcmFrame? = readers.withLock {
         supervisorScope {
             val handle = state.withLock { current?.takeIf { it.session != null && !it.paused } } ?: return@supervisorScope null
+            val pcm = handle.port as? AudioSourcePort ?: throw IllegalArgumentException("INVALID_INPUT: PCM unavailable")
             var rejected = 0
             while (true) {
-                val reading = async(start = CoroutineStart.LAZY) { handle.port.read() }
+                val reading = async(start = CoroutineStart.LAZY) { pcm.read() }
                 val accepted = state.withLock {
                     if (current !== handle || handle.paused) false else { handle.reading = reading; true }
                 }
@@ -199,6 +201,8 @@ class DefaultAudioSession(private val sourceFactory: (SourceKind) -> AudioSource
     }
 
     private fun validate(request: SourceRequest) {
+        require((request.kind == SourceKind.VISUALIZER) == (request.visualizationTarget != null)) { "INVALID_INPUT: visualization target kind" }
+        request.visualizationTarget?.validate()
         if (request.kind != SourceKind.LOCAL_FILE) {
             require(request.uri == null) { "INVALID_INPUT: URI only for local-file" }
             return

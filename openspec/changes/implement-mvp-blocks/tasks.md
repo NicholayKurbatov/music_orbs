@@ -76,3 +76,19 @@
 **PASS**. Выбран Android Emulator; физические батарея/нагрев не измеряются этой
 матрицей. Итог MVP остаётся в [журнале](../../../docs/tests.md) и
 [матрице FT/CT](../../../tests/functional/results.md).
+
+## 9. P8 — Visualizer и версия 0.2.0-dev; после P0–P7
+
+Реализация P8 начата 2026-10-18. Отметки ниже отражают фактические проверки; старые отметки не означают
+готовности P8. Контракт: §15 [spec.md](../../../docs/spec.md), FR-22–FR-25,
+FT-30–37/CT-09. Владение/зависимости: §6 [плана](../../../docs/implementation-plan.md).
+
+- [x] 9.1 Интегратор/DSP: расширить нативные SourceKind/SourceRequest, выделить SourceLifecyclePort и VisualizationObservationPort/VisualizationFrame; сохранить PCM/read и wire/session API; добавить валидацию/CA fixtures (CT-06/09). До adapter/DSP.
+- [ ] 9.2 Android: реализовать публичный Visualizer GLOBAL, обычные permissions, проверку device ranges и mapping unsigned byte/milliHz/mB/scaling; bounded copied callback, close/cancel/release без UI ожидания (FT-30/34/35). После 9.1.
+- [ ] 9.3 Android: добавить PLAYER и discovery доступных OPEN/CLOSE с временными tokens, реестром ≤32, честным ожиданием пропущенного OPEN и rebind с новым UUID; late callback не принимается, фоновый broadcast не запускает анализ (FT-31/35). После 9.1/9.2, без DUMP/root/hidden API.
+- [ ] 9.4 DSP: реализовать отдельный partial-window анализ с реальными timestamps, качеством уровня, confidence/BPM и bounded history; общий clock/фаза прежние; fixtures 90/120/150, 10/20/30 callbacks, сдвиги/gaps/scaling/тон/тишина/invalid (FT-32, CT-03/09). После 9.1.
+- [ ] 9.5 Интегратор: связать новые порты в bootstrap, один активный источник и правильный reader; добавить native выбор GLOBAL/PLAYER/PCM, уровень/BPM/Sync и статусы недоступности без скрытого fallback; сохранить SceneSettings/bridge/скульптуру (FT-33/34). После 9.2–9.4.
+- [ ] 9.6 Интегратор: выполнить FT-30–35 и CT-09 на JVM/native; реальный synthetic AudioTrack → Visualizer → новый DSP → clock → bridge → сцена, 90→150 BPM, отрицательные случаи, фон/отзыв/rebind/приватность. Тестовые MotionSignal не подменяют аудиопуть. После 9.5.
+- [ ] 9.7 Интегратор: выполнить прежние local-file pause/resume/EOF/focus, capture consent/revoke, mic indicator, snapshot restore/update, wire/graphics регрессии; собрать graphics и Android APK/test APK, lint; проверить ссылки/imports/traceability/OpenSpec/diff (FT-37). После 9.5.
+- [ ] 9.8 Device-приёмка: на Honor 200 Pro проверить Яндекс Музыку и synthetic positive control для GLOBAL/PLAYER/PCM, динамика/Bluetooth, записать версии/permissions/scalar metrics/pass/fail/unsupported (FT-36). Без телефона отметить «не проверено» и оставить этот checkbox открытым; APK не блокируется.
+- [ ] 9.9 Android/интегратор: увеличить APK до 0.2.0-dev/code2 либо code выше текущего, сохранить applicationId/подпись, проверить установку поверх 0.1.0 без uninstall/pm clear; выдать APK, SHA-256, результаты и ограничения; обновить README/docs/tree.md/tests и честные отметки 9.1–9.9 (FR-25/FT-37). После 9.6/9.7; 9.8 может оставаться не выполнен.

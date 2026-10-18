@@ -19,21 +19,6 @@ node_modules, SDK, локальные референсы и Git-метаданн
 
 ```text
 MusicOrbs/
-|-- .agents/
-|   \-- skills/
-|       |-- .openspec-target
-|       |-- openspec-apply-change/
-|       |   \-- SKILL.md
-|       |-- openspec-archive-change/
-|       |   \-- SKILL.md
-|       |-- openspec-explore/
-|       |   \-- SKILL.md
-|       |-- openspec-propose/
-|       |   \-- SKILL.md
-|       |-- openspec-sync-specs/
-|       |   \-- SKILL.md
-|       \-- openspec-update-change/
-|           \-- SKILL.md
 |-- .github/
 |   \-- workflows/
 |       \-- verify.yml
@@ -51,9 +36,12 @@ MusicOrbs/
 |   |   |   \-- ports/
 |   |   |       |-- AudioSourcePort.kt
 |   |   |       |-- PlaybackControlPort.kt
-|   |   |       \-- README.md
+|   |   |       |-- PlayerSessionDiscoveryPort.kt
+|   |   |       |-- README.md
+|   |   |       \-- SourceLifecyclePort.kt
 |   |   |-- domain/
-|   |   |   \-- AudioModels.kt
+|   |   |   |-- AudioModels.kt
+|   |   |   \-- PlaybackCaptureMonitor.kt
 |   |   |-- infrastructure/
 |   |   |   |-- AudioSourceStub.kt
 |   |   |   \-- README.md
@@ -63,7 +51,9 @@ MusicOrbs/
 |   |               \-- musicorbs/
 |   |                   \-- audio/
 |   |                       |-- AudioSessionTest.kt
-|   |                       \-- PlaybackTimelineTest.kt
+|   |                       |-- PlaybackCaptureMonitorTest.kt
+|   |                       |-- PlaybackTimelineTest.kt
+|   |                       \-- VisualizationContractTest.kt
 |   |-- bootstrap/
 |   |   |-- MainActivity.kt
 |   |   \-- README.md
@@ -94,15 +84,22 @@ MusicOrbs/
 |   |                       \-- ExperienceServiceTest.kt
 |   |-- gradle.lockfile
 |   |-- motion/
+|   |   |-- application/
+|   |   |   \-- ports/
+|   |   |       \-- VisualizationObservationPort.kt
 |   |   |-- domain/
 |   |   |   |-- BoundedAudioAnalyzer.kt
 |   |   |   |-- ContinuousMotionClock.kt
 |   |   |   |-- MotionModels.kt
-|   |   |   \-- MotionPolicy.kt
+|   |   |   |-- MotionPolicy.kt
+|   |   |   |-- VisualizationAnalyzer.kt
+|   |   |   |-- VisualizationFrame.kt
+|   |   |   \-- VisualizationSignalStatus.kt
 |   |   |-- fixtures/
 |   |   |   \-- synthetic-motion.json
 |   |   |-- infrastructure/
-|   |   |   \-- CommonsMathSpectrum.kt
+|   |   |   |-- CommonsMathSpectrum.kt
+|   |   |   \-- VisualizationMapping.kt
 |   |   \-- src/
 |   |       \-- test/
 |   |           \-- kotlin/
@@ -111,7 +108,9 @@ MusicOrbs/
 |   |                       |-- AudioAnalyzerTest.kt
 |   |                       |-- MotionClockTest.kt
 |   |                       |-- MotionFixtureTest.kt
-|   |                       \-- SyntheticPcm.kt
+|   |                       |-- SyntheticPcm.kt
+|   |                       |-- VisualizationAnalyzerTest.kt
+|   |                       \-- VisualizationMappingTest.kt
 |   \-- platform/
 |       |-- AndroidManifest.xml
 |       |-- assets/
@@ -123,7 +122,12 @@ MusicOrbs/
 |       |           \-- audio/
 |       |               |-- CaptureProjectionHost.kt
 |       |               |-- LocalFilePlaybackAdapter.kt
-|       |               \-- RecordAudioSources.kt
+|       |               |-- PlayerSessionDiscovery.kt
+|       |               |-- RecordAudioSources.kt
+|       |               \-- VisualizerAdapter.kt
+|       |-- res/
+|       |   \-- xml/
+|       |       \-- data_extraction_rules.xml
 |       \-- src/
 |           |-- androidTest/
 |           |   \-- kotlin/
@@ -132,6 +136,7 @@ MusicOrbs/
 |           |               |-- audio/
 |           |               |   |-- LocalFilePlaybackTest.kt
 |           |               |   |-- MainCaptureLifecycleTest.kt
+|           |               |   |-- MainCaptureSignalTest.kt
 |           |               |   |-- MainNativeGestureInputTest.kt
 |           |               |   |-- MicrophoneAudioSourceTest.kt
 |           |               |   |-- P7AudioPolicyStorageTest.kt
@@ -170,11 +175,15 @@ MusicOrbs/
 |                   \-- webassets/
 |                       \-- LocalAssetPolicyTest.kt
 |-- docs/
+|   |-- MusicOrbs-threat-model.md
 |   |-- design.md
 |   |-- implementation-plan.md
 |   |-- references.md
 |   |-- reuse.md
 |   |-- scope.md
+|   |-- security-ownership.md
+|   |-- security.md
+|   |-- security_best_practices_report.md
 |   |-- spec.md
 |   |-- tests.md
 |   \-- tree.md
@@ -370,6 +379,8 @@ MusicOrbs/
 |   |       |   |-- result.json
 |   |       |   |-- ribbon.png
 |   |       |   \-- sculpted-restored.png
+|   |       |-- capture-regression-2026-10-18/
+|   |       |   \-- report.json
 |   |       |-- context-probe-2026-10-17T22-15-48-374Z/
 |   |       |   |-- README.md
 |   |       |   |-- after-context.png
@@ -987,9 +998,14 @@ MusicOrbs/
 |   |           |-- rotation-cycles.json
 |   |           |-- tap-sensitivity-0.5.json
 |   |           \-- tap-sensitivity-2.json
-|   \-- functional/
-|       |-- README.md
-|       \-- results.md
+|   |-- functional/
+|   |   |-- README.md
+|   |   \-- results.md
+|   \-- security/
+|       |-- dependency-audit.json
+|       |-- ownership-sensitivity.csv
+|       |-- ownership-summary.json
+|       \-- skill-audit.json
 \-- third_party/
     |-- Commons-Math-LICENSE.txt
     |-- Commons-Math-NOTICE.txt
