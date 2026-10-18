@@ -15,7 +15,8 @@ class VisualizationMappingTest {
         assertEquals(1024, M.captureSize(intArrayOf(128, 1024)))
         assertEquals(256, M.captureSize(intArrayOf(64, 256)))
         assertEquals(20000, M.callbackMilliHz(20000)); assertEquals(30000, M.callbackMilliHz(60000))
-        assertFailsWith<IllegalArgumentException> { M.captureSize(intArrayOf(2048, 4096)) }
+        assertEquals(2048, M.captureSize(intArrayOf(2048, 4096)))
+        assertFailsWith<IllegalArgumentException> { M.captureSize(intArrayOf(8192, 16384)) }
         assertFailsWith<IllegalArgumentException> { M.samplingHz(44100001) }
         assertFailsWith<IllegalArgumentException> { M.callbackMilliHz(0) }
         assertFailsWith<IllegalArgumentException> { M.dbfs(1) }

@@ -79,3 +79,30 @@ zoom-handlers с обращением к uScale, отсутствующим в �
 Названия видеореференсов, свойства Orb/Ribbon/Cloud/Pixel и материалы для
 уточнения собраны в [references.md](references.md). Реестр библиотек выше
 описывает техническое заимствование; он не подменяет визуальные критерии.
+
+## 6. Исследование внешнего анализа через Visualizer
+
+Дата: 2026-10-18. Статус: основания плана 0.2.0, **код не включён**.
+Исследование не является device-проверкой Honor 200 Pro или Яндекс Музыки.
+
+| Источник | Что проверено | Применение и граница |
+|---|---|---|
+| [Android Visualizer](https://developer.android.com/reference/android/media/audiofx/Visualizer) | GLOBAL/session ID, partial 8-bit waveform/FFT, PEAK_RMS, milliHz и разрешения RECORD_AUDIO/MODIFY_AUDIO_SETTINGS | Использовать публичный SDK за адаптером; не изображать поток непрерывным PCM, проверять поддержку эффекта/маршрута |
+| [Android AudioEffect](https://developer.android.com/reference/android/media/audiofx/AudioEffect) | OPEN/CLOSE_AUDIO_EFFECT_CONTROL_SESSION, extras package/session, управление системными эффектами | Стандартные объявления помогают найти PLAYER; управление Equalizer само по себе не выдаёт PCM; не добавлять DSP-эффект, меняющий звук |
+| [Poweramp compatibility](https://forum.powerampapp.com/peq-kb/en_us/faq/what-players-are-supported-what-if-player-doesnt-support-equalization-r6/) | Автор указывает Яндекс Музыку среди поддерживаемых эквалайзером плееров | Основание проверить session-путь; это не гарантия получения данных Visualizer на Honor. Закрытый runtime не копируется |
+| [Wavelet settings](https://github.com/Pittvandewitt/Wavelet/blob/master/docs/Settings.md) | Legacy/OEM и enhanced session detection с DUMP/уведомлениями | Описания поведения, не исходники production DSP. Расширенное обнаружение отложено, базовый релиз не требует ADB |
+| [Equalizer314 VisualizerHelper](https://github.com/bearinmindcat/Equalizer314/blob/90dd51a8f3e1333b7ffcfedba4e167ab3f250034/app/src/main/java/com/bearinmind/equalizer314/audio/VisualizerHelper.kt) и [AudioSessionReceiver](https://github.com/bearinmindcat/Equalizer314/blob/90dd51a8f3e1333b7ffcfedba4e167ab3f250034/app/src/main/java/com/bearinmind/equalizer314/audio/AudioSessionReceiver.kt) | Commit 90dd51a8f3e1333b7ffcfedba4e167ab3f250034; Visualizer(0), waveform callback/PEAK_RMS, отдельный receiver сессий; репозиторий обозначен GPL-3.0 | Референс границ и lifecycle; код не переносится в MIT-проект автоматически. Любое будущее включение — только после проверки условий и полного third_party учёта |
+| [RootlessJamesDSP](https://github.com/timschneeb/RootlessJamesDSP/tree/60d25ae8a53c6f4691c090673df290a73c6b6357) | Commit 60d25ae8a53c6f4691c090673df290a73c6b6357; внутренний MediaProjection/AudioPlaybackCapture и ограничения запрещённых источников; GPL-3.0 | Другой пример DSP, не решение доступности Visualizer; recording/replay pipeline и патчинг плееров не включать |
+
+Выбран собственный небольшой adapter к публичному SDK и отдельный bounded
+анализ наблюдений. Новые runtime-зависимости для Visualizer не нужны; уже
+выбранный SpectrumPort/Commons Math используется для FFT внутри анализа.
+Если включается любой upstream-фрагмент, сначала проверить актуальный commit,
+условия распространения и оформить URL/пути/изменения/copyright/license в
+third_party. Описание исследования не означает такого включения.
+
+В P8 реализован собственный SDK-адаптер и анализатор окон. Исходники GPL-проектов
+из таблицы не копировались; новые runtime-библиотеки не добавлены. Использованы
+существующие Commons Math (FFT), coroutines (latest-value channel) и AndroidX
+(совместимая регистрация receiver). Notices остаются в
+[runtime.md](../third_party/runtime.md).

@@ -1,10 +1,11 @@
-# Runtime source control
+# Управление источниками
 
-AudioSourcePort описывает получение PCM и закрытие источника.
-Локальному адаптеру также нужен внутренний LocalPlaybackControlPort:
-- pause(): остановить playback и подачу PCM, сохранив позицию;
-- resume(): продолжить оба потока с одной позиции.
+`SourceLifecyclePort` задаёт открытие/закрытие одного источника. `AudioSourcePort`
+расширяет его только чтением непрерывного PCM. `PlaybackControlPort` реализуется
+локальным playback: pause/resume/seek и позиция фактически проигранных samples.
 
-Он принадлежит application AudioSession, реализуется LocalFileAdapter.
-Отдельные Kotlin-декларации будут введены при выборе playback pipeline;
-публичный сценарий уже объявлен в AudioSession.pause/resume.
+Visualizer реализует lifecycle и отдельный вход MusicalMotion
+`VisualizationObservationPort`; PCM-чтение для него недопустимо. Bootstrap
+выбирает reader по виду текущей сессии. `PlayerSessionDiscoveryPort` предоставляет
+только временные подсказки объявленных сессий, не запускает аудио.
+Контракты и ошибки — §15 [спецификации](../../../../docs/spec.md).

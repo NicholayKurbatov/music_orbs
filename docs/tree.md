@@ -142,7 +142,8 @@ MusicOrbs/
 |           |               |   |-- P7AudioPolicyStorageTest.kt
 |           |               |   |-- P7AudioTestSupport.kt
 |           |               |   |-- P7MainUiProbe.kt
-|           |               |   \-- PlaybackCaptureTest.kt
+|           |               |   |-- PlaybackCaptureTest.kt
+|           |               |   \-- VisualizerTest.kt
 |           |               \-- experience/
 |           |                   \-- AtomicSessionStoreAndroidTest.kt
 |           \-- debug/
@@ -280,6 +281,8 @@ MusicOrbs/
 |   |-- android-dpr-probe.mjs
 |   |-- android-focus-smoke.mjs
 |   |-- android-motion-transitions.mjs
+|   |-- android-p8-instrumentation.mjs
+|   |-- android-p8-update.mjs
 |   |-- android-palette-probe.mjs
 |   |-- android-permission-smoke.mjs
 |   |-- android-profile.mjs
@@ -727,6 +730,14 @@ MusicOrbs/
 |   |       |   |-- session-after-policy.json
 |   |       |   |-- session-before-final.json
 |   |       |   \-- session-before.json
+|   |       |-- p8-global-diagnostic/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-update/
+|   |       |   \-- report.json
+|   |       |-- p8-visualizer-attempt2/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
 |   |       |-- palette-probe-2026-10-17T21-57-27-877Z/
 |   |       |   |-- README.md
 |   |       |   \-- report.json

@@ -70,6 +70,7 @@ class VisualizationAnalyzer(private val spectrum: SpectrumPort) {
         val intervals = times.zipWithNext { a, b -> b - a }
         val median = intervals.sorted()[intervals.size / 2]
         if (median !in 0.25..1.5) return null to 0.0
+        if (intervals.any { abs(it - median) > median * 0.35 }) return null to 0.0
         val error = intervals.sumOf { abs(it - median) } / intervals.size / median
         // Пропущенные удары снижают уверенность; кратности не вставляются искусственно.
         val confidence = ((1 - error / 0.4).coerceIn(0.0, 1.0) * min(1.0, intervals.size / 10.0))

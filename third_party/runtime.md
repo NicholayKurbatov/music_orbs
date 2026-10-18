@@ -42,6 +42,27 @@ CI использует оригинальные GitHub Actions v4 без вкл
 обновить этот реестр и locks, выполнить контрактные/JVM/browser/Android проверки.
 PCM fixtures синтезированы нашим тестовым кодом, не содержат сторонних записей.
 
+## Обновление безопасности инструментов Android-тестирования
+
+2026-10-18: только конфигурации `_internal-unified-test-platform-*` в
+`android/build.gradle.kts` закрепляют Netty 4.1.139.Final вместо 4.1.93.Final
+и Protobuf 3.25.9 вместо 3.22.3/3.24.4; согласованные транзитивные модули
+записаны Gradle в `android/gradle.lockfile`. Артефакты загружаются из Maven Central
+в Gradle cache хоста; в APK эти библиотеки не входят. Исходники не копировались,
+изменений upstream нет; меняется только разрешение версий зависимостей UTP.
+
+- [Netty](https://github.com/netty/netty/tree/7bc0414acbb21f752dd615c386821f58e722c5f5):
+  tag `netty-4.1.139.Final`, commit `7bc0414acbb21f752dd615c386821f58e722c5f5`,
+  Maven `io.netty:*:4.1.139.Final`; Apache-2.0, The Netty Project.
+  Проверен оригинальный [LICENSE.txt](https://github.com/netty/netty/blob/7bc0414acbb21f752dd615c386821f58e722c5f5/LICENSE.txt).
+- [Protobuf](https://github.com/protocolbuffers/protobuf/tree/081fbf471d9ee13a1d95c652796655e62d599c07):
+  tag `v25.9`, commit `081fbf471d9ee13a1d95c652796655e62d599c07`,
+  Maven `com.google.protobuf:protobuf-{java,java-util,kotlin}:3.25.9`;
+  BSD-3-Clause, ©2008 Google Inc. Проверен оригинальный
+  [LICENSE](https://github.com/protocolbuffers/protobuf/blob/081fbf471d9ee13a1d95c652796655e62d599c07/LICENSE).
+
+Измеренные результаты и CVE — в [отчёте безопасности](../docs/security.md).
+
 ## Локальный инструмент профилирования APK
 
 [fflate 0.8.3](https://github.com/101arrowz/fflate/tree/a661bab4c135c368b6e68af3be1904f89ed070cf)
@@ -55,3 +76,9 @@ PCM fixtures синтезированы нашим тестовым кодом, 
 для чтения index/assets установленного локального APK и вычисления SHA-256.
 Исходники не копируются, библиотека не включается в приложение или web bundle;
 других изменений upstream нет. Условия лицензии сохраняются внутри npm package.
+# Дополнение P8: Visualizer
+
+Новый адаптер использует публичный Android SDK и существующие AndroidX,
+coroutines и Commons Math. Код сторонних Visualizer/equalizer-приложений не
+включён; новых runtime-зависимостей и заимствованных фрагментов нет.
+

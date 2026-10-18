@@ -63,4 +63,43 @@ class VisualizationAnalyzerTest {
         for (i in 1..1500) assertNull(a.analyze(window(22.0 + i / 30.0).copy(waveform = FloatArray(1024))).bpm)
         assertTrue(a.observationCount <= 901)
     }
+
+    @Test fun `normalized spectral observations and missing callbacks retain honest confidence`() {
+        for (bpm in listOf(90, 120, 150)) for (hz in listOf(10, 20, 30)) for (drop in listOf(false, true)) {
+            val a = VisualizationAnalyzer(CommonsMathSpectrum()).apply { selectSource("visual") }
+            var last: FeatureFrame? = null
+            for (i in 0 until hz * 30) {
+                if (drop && i % 23 == 17) continue
+                val f = window(0.073 + i.toDouble() / hz, bpm, scaling = VisualizationScaling.NORMALIZED)
+                val peak = f.waveform.maxOf { abs(it) }.coerceAtLeast(0.01f)
+                last = a.analyze(f.copy(waveform = FloatArray(f.waveform.size) { f.waveform[it] / peak * 0.9f }))
+            }
+            if (!drop) assertNotNull(last!!.bpm, "normalized $bpm/$hz: $last")
+            if (last!!.bpm != null) assertEquals(bpm.toDouble(), last.bpm!!, 3.0, "normalized $bpm/$hz/drop=$drop")
+            else assertTrue(last.confidence < 0.65)
+        }
+        val a = VisualizationAnalyzer(CommonsMathSpectrum()).apply { selectSource("visual") }
+        for (i in 0..1500) {
+            val f = window(i / 20.0, tone = true)
+            assertNull(a.analyze(f.copy(waveform = FloatArray(f.waveform.size) { f.waveform[it] * 0.05f })).bpm)
+        }
+    }
+
+    @Test fun `irregular attacks cannot become a confident invented BPM`() {
+        val a = VisualizationAnalyzer(CommonsMathSpectrum()).apply { selectSource("visual") }
+        val attacks = generateSequence(0.0 to 0) { (time, index) ->
+            (time + listOf(0.31, 0.91, 0.43, 1.28, 0.29, 0.73, 0.52)[index % 7]) to index + 1
+        }.take(80).map { it.first }.toList()
+        for (i in 0..900) {
+            val t = i / 30.0
+            val f = window(t)
+            val samples = FloatArray(1024) { index ->
+                val at = t - 1024.0 / 48000 + index / 48000.0
+                val previous = attacks.lastOrNull { it <= at } ?: -100.0
+                val elapsed = at - previous
+                if (elapsed < 0.12) (0.7 * sin(2 * PI * 1000 * at) * (1 - elapsed / 0.12)).toFloat() else 0f
+            }
+            assertNull(a.analyze(f.copy(waveform = samples)).bpm)
+        }
+    }
 }

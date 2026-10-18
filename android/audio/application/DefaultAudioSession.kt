@@ -54,6 +54,7 @@ class DefaultAudioSession(private val sourceFactory: (SourceKind) -> SourceLifec
                 }
                 val opened = opening.await()
                 check(opened.id.matches(ID) && opened.id != "none" && opened.kind == request.kind && opened.state == SourceState.RUNNING) { "SOURCE_UNAVAILABLE: invalid adapter session" }
+                if (opened.kind == SourceKind.VISUALIZER) check(handle.port !is AudioSourcePort) { "SOURCE_UNAVAILABLE: Visualizer must not expose PCM" }
                 if (opened.kind == SourceKind.LOCAL_FILE) check(handle.port is PlaybackControlPort) { "SOURCE_UNAVAILABLE: missing playback controls" }
                 state.withLock {
                     if (current !== handle || generation != token) throw CancellationException("Source selection superseded")

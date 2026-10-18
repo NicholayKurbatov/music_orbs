@@ -6,6 +6,18 @@ plugins {
 
 dependencyLocking { lockAllConfigurations() }
 
+// UTP работает на хосте: закрываем известные CVE без добавления библиотек в APK.
+configurations.configureEach {
+    if (name.startsWith("_internal-unified-test-platform-")) {
+        resolutionStrategy.eachDependency {
+            when (requested.group) {
+                "io.netty" -> useVersion("4.1.139.Final")
+                "com.google.protobuf" -> useVersion("3.25.9")
+            }
+        }
+    }
+}
+
 android {
     namespace = "musicorbs.platform"
     compileSdk = 35
@@ -16,8 +28,8 @@ android {
         applicationId = "musicorbs.app"
         minSdk = 29
         targetSdk = 35
-        versionCode = 1
-        versionName = "0.1.0-dev"
+        versionCode = 2
+        versionName = "0.2.0-dev"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +42,7 @@ android {
     sourceSets["main"].apply {
         manifest.srcFile("platform/AndroidManifest.xml")
         java.srcDirs("platform/kotlin", "bootstrap", "experience/presentation/platform")
+        res.srcDir("platform/res")
         assets.srcDir(layout.buildDirectory.dir("generated/graphicsAssets"))
     }
     sourceSets["androidTest"].java.srcDir("platform/src/androidTest/kotlin")

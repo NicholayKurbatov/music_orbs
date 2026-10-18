@@ -45,6 +45,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import musicorbs.audio.domain.SourceKind
+import musicorbs.audio.domain.PlayerSessionCandidate
+import musicorbs.audio.domain.VisualizationTarget
+import musicorbs.audio.domain.VisualizationMode
 import musicorbs.experience.domain.MaterialId
 import musicorbs.experience.domain.PaletteId
 import musicorbs.experience.domain.PaletteStop
@@ -70,6 +73,10 @@ fun MusicOrbsScreen(
     onMicrophone: () -> Unit,
     onPauseResume: () -> Unit,
     onStop: () -> Unit,
+    externalMethod: String = "Visualizer GLOBAL",
+    playerCandidates: List<PlayerSessionCandidate> = emptyList(),
+    onVisualization: (VisualizationTarget) -> Unit = {},
+    onWaitForPlayer: () -> Unit = {},
     settingsEnabled: Boolean = true,
 ) {
     var panelVisible by rememberSaveable { mutableStateOf(false) }
@@ -139,8 +146,19 @@ fun MusicOrbsScreen(
                     Button(onClick = onPick, modifier = Modifier.fillMaxWidth()) { Text("Выбрать аудиофайл") }
                     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         OutlinedButton(onClick = onPauseResume, enabled = sourceKind == SourceKind.LOCAL_FILE, modifier = Modifier.weight(1f)) { Text(if (playing) "Пауза" else "Продолжить") }
-                        OutlinedButton(onClick = onStop, enabled = sourceKind != null, modifier = Modifier.weight(1f)) { Text("Стоп") }
+                        OutlinedButton(onClick = onStop, modifier = Modifier.weight(1f)) { Text("Стоп") }
                     }
+                    Text("Внешний анализ", style = MaterialTheme.typography.titleMedium)
+                    Text("Выбран способ: $externalMethod", style = MaterialTheme.typography.bodySmall)
+                    OutlinedButton(onClick = { onVisualization(VisualizationTarget(VisualizationMode.GLOBAL)) }, modifier = Modifier.fillMaxWidth()) { Text("Visualizer GLOBAL · общий микс") }
+                    OutlinedButton(onClick = onWaitForPlayer, modifier = Modifier.fillMaxWidth()) { Text("Visualizer PLAYER · выбрать плеер") }
+                    if (playerCandidates.isEmpty()) Text("Нет объявленных сессий. Запустите или перезапустите воспроизведение в плеере. Прошедшие объявления не восстанавливаются.", style = MaterialTheme.typography.bodySmall)
+                    playerCandidates.forEachIndexed { index, candidate ->
+                        OutlinedButton(onClick = { onVisualization(VisualizationTarget(VisualizationMode.PLAYER, candidate.sessionToken)) }, modifier = Modifier.fillMaxWidth()) {
+                            Text("Плеер: ${candidate.packageName} · ${index + 1}")
+                        }
+                    }
+                    Text("Visualizer требует доступ к аудио, но не включает микрофон. Доступность зависит от устройства, плеера и выхода; открытый ресурс ещё не означает получение музыки.", style = MaterialTheme.typography.bodySmall)
                     OutlinedButton(onClick = onCapture, modifier = Modifier.fillMaxWidth()) { Text("Захват внешнего воспроизведения") }
                     Text("Потребуется системное согласие. Доступность зависит от источника звука.", style = MaterialTheme.typography.bodySmall)
                     OutlinedButton(onClick = onMicrophone, modifier = Modifier.fillMaxWidth()) { Text("Выбрать микрофон") }
@@ -187,4 +205,4 @@ private fun shapeLabel(value: ShapeId) = when (value) { ShapeId.ORB -> "Сфер
 private fun materialLabel(value: MaterialId) = when (value) { MaterialId.DOTS -> "Точки"; MaterialId.PIXELS -> "Пиксели"; MaterialId.SOFT -> "Мягкие частицы" }
 private fun paletteLabel(value: PaletteId) = when (value) { PaletteId.WHITE -> "Белая"; PaletteId.PINK -> "Розовая"; PaletteId.LILAC -> "Лиловая"; PaletteId.SPECTRUM -> "Многоцветная"; PaletteId.CUSTOM -> "Свой цвет" }
 private fun qualityLabel(value: Quality) = when (value) { Quality.LOW -> "Низкая · 4 000"; Quality.MEDIUM -> "Средняя · 10 000"; Quality.HIGH -> "Высокая · 20 000" }
-private fun sourceLabel(value: SourceKind?) = when (value) { SourceKind.LOCAL_FILE -> "Локальный аудиофайл"; SourceKind.PLAYBACK_CAPTURE -> "Внешнее воспроизведение"; SourceKind.MICROPHONE -> "Выбран микрофон"; null -> "Источник не выбран · автономное движение" }
+private fun sourceLabel(value: SourceKind?) = when (value) { SourceKind.LOCAL_FILE -> "Локальный аудиофайл"; SourceKind.PLAYBACK_CAPTURE -> "Внешнее воспроизведение · PCM capture"; SourceKind.MICROPHONE -> "Выбран микрофон"; SourceKind.VISUALIZER -> "Внешний анализ · Visualizer"; null -> "Источник не выбран · автономное движение" }

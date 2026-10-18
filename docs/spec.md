@@ -452,9 +452,9 @@ p95 JS submission interval ≤20 мс, доля интервалов строг�
 
 ## 15. Visualizer для внешнего воспроизведения
 
-Статус: план версии **0.2.0-dev**, FR-22–FR-25, FT-30–FT-37. Этот раздел
-расширяет предыдущие контракты при последующей реализации; наличие документа
-не означает, что Visualizer или совместимость телефона уже проверены.
+Статус: реализовано в **0.2.0-dev**, FR-22–FR-25, FT-30–FT-37.
+Результаты исполнения и ограничения устройств фиксируются отдельно в
+[tests.md](tests.md). Совместимость Honor/Яндекс Музыки не проверена.
 
 ### 15.1. Выбор источника и границы
 
@@ -474,7 +474,7 @@ MediaProjection consent требуется только для PCM capture; Visu
 Root, DUMP, NotificationListener, Shizuku, reflection/hidden API и патчинг плееров
 не входят в реализацию 0.2.0. Не вводить разрешения ради обхода capture policy.
 
-### 15.2. Планируемые данные
+### 15.2. Нативные данные
 
 Все новые типы ниже — нативные модели; Android классы/константы внутрь домена
 не передаются. `sourceSessionId` остаётся UUID сессии Music Orbs, а не числовым
@@ -505,7 +505,7 @@ getCaptureSizeRange/getMaxCaptureRate/getSamplingRate. Неподдержива�
 нельзя выдавать за абсолютную громкость. Без достоверного измерения уровня
 тишина/громкость не выводятся только из нормализованной амплитуды.
 
-### 15.3. Планируемые методы и порты
+### 15.3. Методы и порты
 
 | Метод / изменение | Вход / предусловия | Результат / инварианты | Ошибки, эффекты и ответственность |
 |---|---|---|---|
@@ -516,6 +516,16 @@ getCaptureSizeRange/getMaxCaptureRate/getSamplingRate. Неподдержива�
 | PlayerSessionDiscoveryPort.start()/snapshot()/close() | Запуск наблюдения / любое состояние | Ограниченный snapshot до 32 PlayerSessionCandidate / наблюдатели освобождены | Порт AudioSession application; без PCM, аудиозапуска и IO в domain; ошибки платформы не останавливают сцену |
 | VisualizationObservationPort.read() | Открытый lifecycle handle текущей сессии | Следующее отделённое VisualizationFrame либо null при закрытии | Порт MusicalMotion application; latest-value, pending ≤1; не busy loop, cancellation/close разблокируют read |
 | VisualizationAnalyzer.analyze(frame) / reset() | Валидные окна одного UUID с возрастающими timestamps / смена или разрыв | Прежний FeatureFrame / очищенная история | INVALID_INPUT для malformed/stale/duplicate до изменения истории; без Android/IO; возвращаемый timestamp — timestamp наблюдения |
+| VisualizationAnalyzer.selectSource(id) | Непустой sourceSessionId, отличный от none | Новая история для этого ID | INVALID_INPUT до мутации; визуальная фаза остаётся у внешнего clock |
+| VisualizationSignalStatus.observe(frame, features) / stateAt(now) | Последовательные проверенные scalar-наблюдения текущей сессии; now в общей монотонной шкале секунд | WAITING/RECEIVING/QUIET/UNKNOWN_LEVEL/NO_DATA/STALE | Без IO и сырых буферов; создание с openedAt для нового handle; неизвестный абсолютный RMS не считается тишиной |
+
+`VisualizationFrame.validate()` проверяет N/rate/диапазон samples/timestamp и
+конечные dBFS ≤0 до изменения истории. `VisualizationTarget.validate()` проверяет
+сочетание режима и токена. `VisualizationMapping` в infrastructure переводит
+milliHz/unsigned byte/mB и выбирает поддерживаемую степень двойки: предпочтительно
+≤1024, иначе минимальную из допустимых до 4096. Callback rate выбирается
+`min(30000, getMaxCaptureRate())` milliHz. `VisualizerAdapter.diagnostics` содержит
+только выбранные N/rate/scaling и поддержку измерения, не waveform/FFT.
 
 Android adapter реализует SourceLifecyclePort и VisualizationObservationPort,
 а bootstrap соединяет их по одной SourceSession. Нативная область AudioSession
@@ -571,6 +581,13 @@ PCM. История ограничена последними 30 с и макс�
 Уровень/акценты могут отображаться без BPM; общий clock остаётся автономным
 при низкой уверенности/выключенном Sync, сохраняя непрерывность фазы. В этом
 релизе низкая уверенность не оправдывает подмену BPM случайной величиной.
+
+Onset определяется по росту полосового спектра/уровня каждого отдельного окна.
+Оценка использует до 16 последних timestamps onset, регрессию по номеру удара и
+проверку отклонений интервалов от медианы (≤35%). Пропущенные удары не вставляются:
+выброс интервала снимает уверенность вместо выдачи замедленного ложного BPM.
+Положительные JVM fixtures включают NORMALIZED со спектрально различимыми
+атаками; абсолютный уровень такого окна без PEAK_RMS остаётся неизвестным.
 
 Статусы различают: выбранный способ/цель; ожидание сессии; ожидание данных;
 сигнал есть/уровень; тихий достоверно измеренный сигнал; определение темпа;

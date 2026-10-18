@@ -185,6 +185,7 @@ stateDiagram-v2
 затем запрашивается новый. Графика в переходе автономна. Запоздалые callbacks
 не применяются. В фоне сохраняется снимок, графика паузится, источники закрываются.
 Возврат восстанавливает сцену, но не запускает скрытно микрофон или новый capture.
+В плане 0.2.0 это же правило распространяется на Visualizer.
 Audio focus loss и отключение гарнитуры обрабатываются как остановка/пауза локального источника.
 
 ## 10. Мост, хранение и отказоустойчивость
@@ -295,3 +296,51 @@ overdraw и aliasing тонких пиксельных решёток прове
 OpenSpec фиксирует изменения к ним и задачи, не утверждая готовность заглушек.
 Tooling OpenSpec установлен отдельно от browser harness. Сгенерированные
 skills не разрешают запуск агентов или реализацию без соответствующего указания.
+
+## 17. Visualizer в версии 0.2.0
+
+Статус: реализовано, FR-22–FR-25; контракты — §15 [spec.md](spec.md),
+проверки FT-30–FT-37 — в [tests.md](tests.md), пакет P8 — в
+[плане](implementation-plan.md). PCM и Visualizer используют отдельные входы.
+
+AudioSession управляет открытием, UUID, выбором GLOBAL/PLAYER и закрытием
+ресурсов. Новый SourceLifecyclePort выделяет только open/close; AudioSourcePort
+продолжает выдавать PcmFrame для прежних источников. Android Visualizer adapter
+реализует lifecycle-порт AudioSession и отдельный входной порт MusicalMotion.
+VisualizationFrame принадлежит MusicalMotion: partial окна не добавляются
+в published language PcmFrame и не проходят через домен AudioSession.
+
+```mermaid
+flowchart LR
+    UI[Native UI] --> AS[AudioSession lifecycle]
+    AS --> VA[Visualizer adapter GLOBAL или PLAYER]
+    VA --> VP[MusicalMotion observation port]
+    VP --> VN[VisualizationAnalyzer]
+    PCM[Прежние PCM adapters] --> PA[BoundedAudioAnalyzer]
+    VN --> F[FeatureFrame]
+    PA --> F
+    F --> MC[Общий ContinuousMotionClock]
+    MC --> BR[Прежний wire v1 bridge и renderer]
+```
+
+Создание всех concrete adapters и выбор reader принадлежат bootstrap. Обе
+ветви читаются/анализируются вне main; до UI/bridge доходит только latest state.
+Очередь окон ≤1, история и реестр объявлений ограничены. Native session IDs,
+permission tokens и сырые окна не сохраняются и не передаются JavaScript.
+
+Visualizer не заменяет непрерывный PCM: анализатор использует timestamps,
+учитывает разрывы, scaling и фактическую частоту callback. Надёжный RMS
+предпочтителен нормализованной амплитуде. Без уверенного BPM общий clock
+остаётся автономным; смена источника/цели не меняет скульптуру и фазу.
+Ошибки одной ветви не запускают другую без нового явного выбора.
+
+Обнаружение PLAYER использует только доступные стандартные объявления сессий.
+Объявление, получение handle и фактический сигнал — разные состояния. Доставка
+не гарантируется, прошедший OPEN не восстанавливается; GLOBAL доступен как явная
+альтернатива. Passive receiver не начинает анализ в фоне. Root/DUMP/Shizuku,
+уведомления, собственная эквализация и hidden API не нужны базовому релизу.
+
+Нативный SourceKind расширяется, но wire v1/session v2/SceneSettings/renderer
+сохраняются. Обновление APK 0.1.0 → 0.2.0-dev не очищает session.json.
+Эмулятор доказывает путь synthetic AudioTrack → Visualizer → MotionSignal,
+а Honor/Яндекс принимаются только по отдельной фактической матрице.

@@ -10,7 +10,8 @@ object VisualizationMapping {
     }
     fun captureSize(range: IntArray): Int {
         require(range.size == 2 && range[0] > 0 && range[0] <= range[1]) { "UNSUPPORTED_FORMAT: capture range" }
-        return generateSequence(64) { it * 2 }.takeWhile { it <= 4096 }.filter { it in range[0]..minOf(range[1], 1024) }.lastOrNull()
+        val supported = generateSequence(64) { it * 2 }.takeWhile { it <= 4096 }.filter { it in range[0]..range[1] }.toList()
+        return supported.lastOrNull { it <= 1024 } ?: supported.firstOrNull()
             ?: throw IllegalArgumentException("UNSUPPORTED_FORMAT: capture size")
     }
     fun callbackMilliHz(maximum: Int): Int {
