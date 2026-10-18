@@ -66,11 +66,18 @@ class VisualizationAnalyzer(private val spectrum: SpectrumPort) {
 
     private fun estimateTempo(): Pair<Double?, Double> {
         if (onsets.size < 8) return null to 0.0
-        val times = onsets.takeLast(16)
-        val intervals = times.zipWithNext { a, b -> b - a }
+        var times = onsets.takeLast(16)
+        var intervals = times.zipWithNext { a, b -> b - a }
         val median = intervals.sorted()[intervals.size / 2]
         if (median !in 0.25..1.5) return null to 0.0
-        if (intervals.any { abs(it - median) > median * 0.35 }) return null to 0.0
+        val lastOutlier = intervals.indexOfLast { abs(it - median) > median * 0.35 }
+        if (lastOutlier >= 0) {
+            // Разрыв не сдвигает номер всех последующих ударов. Новый регулярный
+            // хвост подтверждается самостоятельно, без вставки пропущенных beats.
+            times = times.drop(lastOutlier + 1)
+            if (times.size < 8) return null to 0.0
+            intervals = times.zipWithNext { a, b -> b - a }
+        }
         val error = intervals.sumOf { abs(it - median) } / intervals.size / median
         // Пропущенные удары снижают уверенность; кратности не вставляются искусственно.
         val confidence = ((1 - error / 0.4).coerceIn(0.0, 1.0) * min(1.0, intervals.size / 10.0))

@@ -213,19 +213,31 @@ class VisualizerTest {
             var minRms = 0.0
             var maxRms = -120.0
             var maxBpm = 0.0
+            var reliableFrames = 0
+            var maximumBpmError = 0.0
+            var firstReliableAt: Double? = null
             var last: FeatureFrame? = null
             while (now() - start < 24.0) {
                 val frame = withTimeout(2000) { adapter.read()!! }
                 last = analyzer.analyze(frame); frames++
                 maxEnergy = max(maxEnergy, last.energy)
                 frame.rmsDbfs?.let { minRms = min(minRms, it); maxRms = max(maxRms, it) }
-                if (last.bpm != null) maxBpm = max(maxBpm, last.bpm!!)
+                if (last.bpm != null) {
+                    maxBpm = max(maxBpm, last.bpm!!)
+                    maximumBpmError = max(maximumBpmError, abs(last.bpm!! - 90.0))
+                    reliableFrames++
+                    if (firstReliableAt == null) firstReliableAt = now() - start
+                }
             }
             p7Evidence("visualizer-real-global-dsp", "frames" to frames, "onsets" to analyzer.onsetCount,
                 "energyMax" to maxEnergy, "rmsMinDbfs" to minRms, "rmsMaxDbfs" to maxRms,
-                "bpm" to last!!.bpm, "confidence" to last.confidence, "maxBpm" to maxBpm)
-            assertNotNull(last.bpm)
-            assertEquals(90.0, last.bpm!!, 3.0)
+                "bpm" to last!!.bpm, "confidence" to last.confidence, "maxBpm" to maxBpm,
+                "reliableFrames" to reliableFrames, "maximumBpmError" to maximumBpmError, "firstReliableSeconds" to firstReliableAt)
+            // Пропуск реального callback вправе снять уверенность в конце интервала.
+            // Проверяем устойчивое достижение, а не удачу единственного последнего чтения.
+            assertTrue("At least 30 actual windows must support the tempo", reliableFrames >= 30)
+            assertTrue(maximumBpmError <= 3.0)
+            assertTrue(firstReliableAt != null && firstReliableAt <= 30.0)
         } finally {
             adapter.close(); track?.let { runCatching { it.stop() }; it.release() }
             manager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0)
