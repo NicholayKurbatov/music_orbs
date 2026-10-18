@@ -1,0 +1,138 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.VisualizerTest:
+INSTRUMENTATION_STATUS: test=realGlobalWindowTempoDiagnostic
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-real-global-dsp","frames":425,"onsets":32,"energyMax":0.17613390180451594,"rmsMinDbfs":-21.43,"rmsMaxDbfs":-14.96,"bpm":89.78365588340938,"confidence":0.9104188117634336,"maxBpm":90.3168862654535}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realGlobalWindowTempoDiagnostic
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"b456d2ea-3777-4494-9498-14a8b155e4f4"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"b456d2ea-3777-4494-9498-14a8b155e4f4","elapsedMs":515,"jsElapsedMs":0.29999999701976776,"responseId":"b456d2ea-3777-4494-9498-14a8b155e4f4","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"visualizer-baseline","probeId":"412dd393-dd59-4154-9861-d3a21d8eb951"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"visualizer-baseline","probeId":"412dd393-dd59-4154-9861-d3a21d8eb951","elapsedMs":672,"jsElapsedMs":0.29999999701976776,"responseId":"412dd393-dd59-4154-9861-d3a21d8eb951","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Visualizer GLOBAL · общий микс","left":252,"top":1536,"width":577,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-main-tempo","expectedBpm":90,"bpm":90.03167496374567,"period":21.904609950377107,"energy":0.15231857719029385,"sourceId":"089d8548-57ee-4d79-99d9-4f3ccb5aeb3a"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-main-tempo","expectedBpm":150,"bpm":150.07410493778914,"period":13.373025150544587,"energy":0.20473428928085266,"sourceId":"089d8548-57ee-4d79-99d9-4f3ccb5aeb3a"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"eee60470-a9d2-4930-8f71-00ebadb68f40"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"eee60470-a9d2-4930-8f71-00ebadb68f40","elapsedMs":583,"jsElapsedMs":0.20000000298023224,"responseId":"eee60470-a9d2-4930-8f71-00ebadb68f40","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Синхронизация с музыкой","left":66,"top":2014,"width":582,"height":66}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Синхронизация с музыкой","left":66,"top":2014,"width":582,"height":66}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-main-tempo","expectedBpm":150,"bpm":150.25370786018894,"period":13.344016654249758,"energy":0.20335422401245615,"sourceId":"089d8548-57ee-4d79-99d9-4f3ccb5aeb3a"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Плеер: musicorbs.app · 1","left":320,"top":1932,"width":441,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-main-tempo","expectedBpm":150,"bpm":149.75045265249156,"period":13.344439627225881,"energy":0.20094744767326062,"sourceId":"955bd2df-08f3-4feb-9db9-bc32d6edf167"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-main-tempo","expectedBpm":150,"bpm":150.37878092890685,"period":13.354502549489705,"energy":0.21411878849515392,"sourceId":"92ac0e43-649e-4776-b1fa-e8d36ae469fe"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"7da36528-3f5c-4a11-b411-e1d0ddef689c"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"7da36528-3f5c-4a11-b411-e1d0ddef689c","elapsedMs":503,"jsElapsedMs":0.20000000298023224,"responseId":"7da36528-3f5c-4a11-b411-e1d0ddef689c","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"57bd7e27-2b15-4bdf-af0b-90b269f7b9ff"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"57bd7e27-2b15-4bdf-af0b-90b269f7b9ff","elapsedMs":495,"jsElapsedMs":0.10000000149011612,"responseId":"57bd7e27-2b15-4bdf-af0b-90b269f7b9ff","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-main-lifecycle","backgroundStopped":true,"noAutoRestart":true,"shapesPreserved":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"d28a20f5-9be1-4fba-b278-5745600e974f"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"d28a20f5-9be1-4fba-b278-5745600e974f","elapsedMs":228,"jsElapsedMs":0.20000000298023224,"responseId":"d28a20f5-9be1-4fba-b278-5745600e974f","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=sdkGlobalPlayerReleaseAndBoundedDiscovery
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-sdk-player","samplingRateHz":48000,"callbackHz":20.0,"size":1024,"scaling":"AS_PLAYED","peakRmsSupported":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=3
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sdkGlobalPlayerReleaseAndBoundedDiscovery
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 186.145
+
+OK (3 tests)
+
+
+INSTRUMENTATION_CODE: -1

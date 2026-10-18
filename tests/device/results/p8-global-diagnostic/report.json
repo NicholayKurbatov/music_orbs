@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-10-18T09:54:51.045Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.VisualizerTest#realGlobalWindowTempoDiagnostic",
+  "result": "pass",
+  "apkSha256": "97c59d1be6c54ba06197b84ab78eb1638386c1f5fb866fe707076708e200e3db",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 1,
+  "evidence": [
+    {
+      "stage": "visualizer-real-global-dsp",
+      "frames": 428,
+      "onsets": 32,
+      "energyMax": 0.17252587258417873,
+      "rmsMinDbfs": -21.43,
+      "rmsMaxDbfs": -15.12,
+      "bpm": 89.02668514859779,
+      "confidence": 0.9365309506238083,
+      "maxBpm": 90.46580702350988
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-18T09:55:18.064Z"
+}

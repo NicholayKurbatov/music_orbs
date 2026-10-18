@@ -1,0 +1,87 @@
+{
+  "startedAt": "2026-10-18T20:40:04.985Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.MainCaptureSignalTest",
+  "result": "fail",
+  "apkSha256": "b2ad6e66206c6905b5fcd018cd4d698cbdd2d155ef5edb53df1382319fbaddb6",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 1,
+  "evidence": [
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "492d636c-d76a-4cf1-b270-28ea99f29b6e"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "492d636c-d76a-4cf1-b270-28ea99f29b6e",
+      "elapsedMs": 697,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "492d636c-d76a-4cf1-b270-28ea99f29b6e",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-restore-ready",
+      "matchedOriginalSession": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "capture-signal-baseline",
+      "probeId": "da84d1d3-7802-4205-a9dc-f7a39bce92af"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "capture-signal-baseline",
+      "probeId": "da84d1d3-7802-4205-a9dc-f7a39bce92af",
+      "elapsedMs": 512,
+      "jsElapsedMs": 11.800000004470348,
+      "responseId": "da84d1d3-7802-4205-a9dc-f7a39bce92af",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Захват внешнего воспроизведения",
+      "left": 218,
+      "top": 1774,
+      "width": 645,
+      "height": 55
+    },
+    {
+      "stage": "main-capture-no-signal",
+      "sourceId": "ce36e343-f02a-4683-b1af-1fd11c21dcd2",
+      "energy": 0,
+      "visibleWarning": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "restore-scene-check",
+      "probeId": "cce084c3-69ae-4962-b3f3-78e07c26e9da"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "restore-scene-check",
+      "probeId": "cce084c3-69ae-4962-b3f3-78e07c26e9da",
+      "elapsedMs": 552,
+      "jsElapsedMs": 2.5,
+      "responseId": "cce084c3-69ae-4962-b3f3-78e07c26e9da",
+      "hasValue": true
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-18T20:41:32.380Z"
+}

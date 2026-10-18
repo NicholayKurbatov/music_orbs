@@ -16,6 +16,26 @@
 
 Совместимость захвата с внешними приложениями подтверждается только на устройстве.
 
+Для внешней музыки сначала включите воспроизведение в плеере, вернитесь в Music
+Orbs, включите Music Sync и запросите захват. Статус показывает, поступает ли
+звук и определён ли BPM. Если звук не поступает, проверьте громкость: источник
+может запрещать захват. Доступны локальный файл и отдельно выбираемый микрофон.
+Совместимость Яндекс Музыки на Honor 200 Pro пока не подтверждена.
+
+Версия `0.2.0-dev` (`versionCode=2`) добавляет отдельный анализ через Android
+Visualizer: общий микс GLOBAL и объявленную сессию плеера PLAYER.
+В панели «Внешний анализ» явно выберите способ и выдайте доступ к аудио;
+это не включает микрофон. Для PLAYER запустите или перезапустите воспроизведение
+в плеере и выберите появившуюся сессию. Android может не доставить объявление;
+прошедший OPEN не восстанавливается. PCM capture, файл и микрофон остаются
+отдельными вариантами. Открытый ресурс не подтверждает получение музыки;
+уровень, поиск BPM/Sync, отсутствие данных и ошибки показаны отдельно.
+Смена способа/цели сохраняет форму и фазу. После фона источник запускается явно.
+Требования FR-22–FR-25 — в
+[scope.md](docs/scope.md), контракты и критерии поставки — в §15
+[spec.md](docs/spec.md), результаты задач — в пакете P8
+[OpenSpec checklist](openspec/changes/implement-mvp-blocks/tasks.md).
+
 ## Текущее состояние
 
 Реализация запущена. Работают browser harness с четырьмя формами, локальной
@@ -32,6 +52,8 @@ audio focus и полный набор настроек проверены на 
 Desktop/JVM проверки не подтверждают совместимость захвата, удобство касаний
 и производительность телефона. Оставшиеся явные заглушки не используются
 как работающие адаптеры.
+
+P8 0.2.0-dev: 76 JVM, 81 TypeScript и 22 native проверки прошли; обновление с сохранением данных проверено. [Отчёт и ограничения](tests/device/results/p8-release/README.md). FT-36 Honor/Яндекс остаётся открытым.
 
 ## Документация
 
@@ -89,6 +111,24 @@ ANDROID_HOME либо игнорируемым local.properties. Сначала 
 npm.cmd run build --prefix graphics
 .\gradlew.bat :app:assembleDebug --console=plain
 ```
+
+Дополнительные проверки P8 (Android Emulator; без удаления приложения/данных):
+
+```powershell
+.\gradlew.bat :app:assembleDebugAndroidTest :app:lintDebug --console=plain
+$musicOrbsAdb = Join-Path $env:LOCALAPPDATA 'Android/Sdk/platform-tools/adb.exe'
+& $musicOrbsAdb -s emulator-5554 install -r android/build/outputs/apk/debug/app-debug.apk
+& $musicOrbsAdb -s emulator-5554 install -r android/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+node scripts/android-p8-instrumentation.mjs --class musicorbs.platform.audio.VisualizerTest
+node scripts/android-p8-permissions.mjs --serial emulator-5554
+```
+
+`scripts/android-p8-update.mjs` проверяет первый переход 0.1.0/code1 →
+0.2.0/code2 на тестовом эмуляторе: подпись, рост версии и точные байты сохранения.
+Для повторной установки уже обновлённой версии используйте `adb install -r`.
+Нативный positive control создаёт только собственный AudioTrack в RAM;
+отчёт содержит scalar metrics. Он временно задаёт достаточную громкость
+эмулятора и восстанавливает её; это не проверка стороннего плеера или телефона.
 
 APK: `android/build/outputs/apk/debug/app-debug.apk`. При отсутствии graphics/dist
 сборка показывает отдельный shell. Фактический результат Android-сборки и эмулятора

@@ -1,0 +1,236 @@
+{
+  "startedAt": "2026-10-18T09:58:32.859Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.VisualizerTest",
+  "result": "pass",
+  "apkSha256": "2ac7cd08ce7b57912662cb87966d2658bb71c9e3d2afa1b7605aaf8d5410f96a",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 3,
+  "evidence": [
+    {
+      "stage": "visualizer-real-global-dsp",
+      "frames": 425,
+      "onsets": 32,
+      "energyMax": 0.17613390180451594,
+      "rmsMinDbfs": -21.43,
+      "rmsMaxDbfs": -14.96,
+      "bpm": 89.78365588340938,
+      "confidence": 0.9104188117634336,
+      "maxBpm": 90.3168862654535
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "b456d2ea-3777-4494-9498-14a8b155e4f4"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "b456d2ea-3777-4494-9498-14a8b155e4f4",
+      "elapsedMs": 515,
+      "jsElapsedMs": 0.29999999701976776,
+      "responseId": "b456d2ea-3777-4494-9498-14a8b155e4f4",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-restore-ready",
+      "matchedOriginalSession": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "visualizer-baseline",
+      "probeId": "412dd393-dd59-4154-9861-d3a21d8eb951"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "visualizer-baseline",
+      "probeId": "412dd393-dd59-4154-9861-d3a21d8eb951",
+      "elapsedMs": 672,
+      "jsElapsedMs": 0.29999999701976776,
+      "responseId": "412dd393-dd59-4154-9861-d3a21d8eb951",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Visualizer GLOBAL · общий микс",
+      "left": 252,
+      "top": 1536,
+      "width": 577,
+      "height": 55
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 90,
+      "bpm": 90.03167496374567,
+      "period": 21.904609950377107,
+      "energy": 0.15231857719029385,
+      "sourceId": "089d8548-57ee-4d79-99d9-4f3ccb5aeb3a"
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.07410493778914,
+      "period": 13.373025150544587,
+      "energy": 0.20473428928085266,
+      "sourceId": "089d8548-57ee-4d79-99d9-4f3ccb5aeb3a"
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "eee60470-a9d2-4930-8f71-00ebadb68f40"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "eee60470-a9d2-4930-8f71-00ebadb68f40",
+      "elapsedMs": 583,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "eee60470-a9d2-4930-8f71-00ebadb68f40",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Синхронизация с музыкой",
+      "left": 66,
+      "top": 2014,
+      "width": 582,
+      "height": 66
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Синхронизация с музыкой",
+      "left": 66,
+      "top": 2014,
+      "width": 582,
+      "height": 66
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.25370786018894,
+      "period": 13.344016654249758,
+      "energy": 0.20335422401245615,
+      "sourceId": "089d8548-57ee-4d79-99d9-4f3ccb5aeb3a"
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Плеер: musicorbs.app · 1",
+      "left": 320,
+      "top": 1932,
+      "width": 441,
+      "height": 55
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 149.75045265249156,
+      "period": 13.344439627225881,
+      "energy": 0.20094744767326062,
+      "sourceId": "955bd2df-08f3-4feb-9db9-bc32d6edf167"
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.37878092890685,
+      "period": 13.354502549489705,
+      "energy": 0.21411878849515392,
+      "sourceId": "92ac0e43-649e-4776-b1fa-e8d36ae469fe"
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "7da36528-3f5c-4a11-b411-e1d0ddef689c"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "7da36528-3f5c-4a11-b411-e1d0ddef689c",
+      "elapsedMs": 503,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "7da36528-3f5c-4a11-b411-e1d0ddef689c",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "57bd7e27-2b15-4bdf-af0b-90b269f7b9ff"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "57bd7e27-2b15-4bdf-af0b-90b269f7b9ff",
+      "elapsedMs": 495,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "57bd7e27-2b15-4bdf-af0b-90b269f7b9ff",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-main-lifecycle",
+      "backgroundStopped": true,
+      "noAutoRestart": true,
+      "shapesPreserved": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "restore-scene-check",
+      "probeId": "d28a20f5-9be1-4fba-b278-5745600e974f"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "restore-scene-check",
+      "probeId": "d28a20f5-9be1-4fba-b278-5745600e974f",
+      "elapsedMs": 228,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "d28a20f5-9be1-4fba-b278-5745600e974f",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-sdk-player",
+      "samplingRateHz": 48000,
+      "callbackHz": 20,
+      "size": 1024,
+      "scaling": "AS_PLAYED",
+      "peakRmsSupported": true
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-18T10:01:41.259Z"
+}

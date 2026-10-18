@@ -2,34 +2,38 @@
 
 ## Why
 
-Music Orbs пока содержит контракты и заглушки. Изученные четыре видео позволяют
-зафиксировать визуальную цель и подготовить реализацию независимых блоков без
-расхождения wire-контрактов, владения состоянием и визуальной приёмки.
+Базовый срез Music Orbs 0.1.0 реализован и проверен на Android Emulator, однако
+успешный synthetic PCM не подтвердил внешний звук Яндекс Музыки на Honor 200 Pro.
+Следующий пакет добавляет отдельный путь Visualizer по принципу подключения
+аудиоэффектов, сохраняя архитектуру и уже работающий PCM-путь.
 
 ## What Changes
 
-- Запланировать работающие Sculpture, MusicalMotion, AudioSession и Experience
-  по FR-01–FR-21 и NFR-01–NFR-06.
-- Сначала согласовать ProfileLimits, палитры, clock/PCM и JSON Schema/fixtures;
-  затем вести графику, DSP и Android независимо через порты.
-- Добавить будущий browser harness с искусственным MotionSignal и Android
-  приложение с локальным аудио, хранением и явными условными источниками.
-- Проверять Ribbon/Orb/Pixel по REF-01–REF-04; Cloud считать проектным предложением.
-- Расширить одноцветные настройки палитрами с миграцией снимков до реализации UI.
+- Сохранить базовые требования FR-01–FR-21/NFR-01–NFR-06 и отметки задач P0–P7;
+  фактическая приёмка и ограничения эмулятора остаются в docs/tests.md.
+- Добавить P8/FR-22–FR-25: явные Visualizer GLOBAL и PLAYER, обычные permissions,
+  доступные объявления сессий плееров, диагностику фактически поступившего звука.
+- Развести непрерывный PcmFrame и partial VisualizationFrame через разные порты;
+  новый анализатор выдаёт прежний FeatureFrame общему clock.
+- **BREAKING (native API):** SourceRequest/SourceKind и factory lifecycle
+  расширяются; существующие вызовы PCM-пути сохраняются и проверяются регрессиями.
+- Оставить wire v1/session v2/SceneSettings/renderer, поля и фазу без изменения.
+- Выпустить APK 0.2.0-dev с увеличенным versionCode и проверкой update install;
+  отдельно проверить Honor/Яндекс или оставить явное «не проверено».
 
-Это предложение будущей реализации. В текущей задаче создаются только плановые
-артефакты; функциональность приложения и сборка не добавляются.
-Вне объёма: облако, запись/передача PCM, обход capture policy, полный Pixel Tunnel,
-морфинг и перенос чужого demo UI.
+P8 реализуется и проверяется по checklist; выполненные пункты и ограничения
+фиксируются в docs/tests.md. Вне объёма P8: root, DUMP/Shizuku,
+NotificationListener, hidden API, эквализация, патчинг плееров и обход capture
+policy; также облако, запись/передача PCM/окон/FFT, полный Pixel Tunnel и морфинг.
 
 ## Capabilities
 
 ### New Capabilities
 
 - `sculpture`: четыре пресета, палитры, постоянное поле, жесты и качество.
-- `musical-motion`: PCM-анализ, confidence, автономный режим и непрерывный clock.
-- `audio-session`: локальный playback, условный capture, явный микрофон и lifecycle.
-- `experience-session`: панель, versioned bridge, согласованные снимки и восстановление.
+- `musical-motion`: PCM и отдельный partial-window анализ, confidence и непрерывный clock.
+- `audio-session`: локальный playback, capture, микрофон, Visualizer и lifecycle.
+- `experience-session`: панель/диагностика источника, versioned bridge, сохранение и обновление APK.
 
 ### Modified Capabilities
 
@@ -38,8 +42,10 @@ Music Orbs пока содержит контракты и заглушки. И�
 
 ## Impact
 
-Будущие изменения затронут `graphics/`, `android/`, `contracts/`, `tests/`,
-сборочную конфигурацию и `third_party/`. Домен остаётся без платформенных импортов.
-Публичный API уточняется в docs/spec.md до изменения Kotlin/TS; зависимости
-выбираются после проверки лицензий по docs/reuse.md. Видеофайлы остаются локальными.
+P8 затронет `android/audio`, `android/motion`, platform adapters, bootstrap,
+нативную панель, version metadata и tests/docs. Новые graphics/contract DTO
+не требуются; прежние suites проверяют отсутствие регрессий. Домен остаётся
+без платформенных импортов, публичный API плана закреплён в docs/spec.md §15.
+Исследованные upstream источники не включены в реализацию; лицензии и источники
+учитываются по docs/reuse.md до заимствования. Видеофайлы остаются локальными.
 Пакеты, зависимости и критерии интеграции: [план](../../../docs/implementation-plan.md).

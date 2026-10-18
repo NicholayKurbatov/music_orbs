@@ -318,8 +318,7 @@ PCM в UI/bridge не передаётся. Это сохраняет незав
 Сессия остаётся в private filesDir: `allowBackup=false`, `fullBackupContent=false`
 и `dataExtractionRules` исключают все файловые домены из cloud backup и
 device-to-device transfer на Android 12+. Системный перенос данных не служит
-способом экспорта сессии. Проверка конфигурации и её ограничения — в
-[отчёте безопасности](security.md).
+способом экспорта сессии.
 Единая runtimeSeconds берётся из монотонного System.nanoTime с начала Activity.
 Clock.advance вызывается также в фоне с pause: timestamp остаётся монотонным,
 а фаза в фоне не интегрируется. Визуальная проекция принимает первую phase,

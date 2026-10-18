@@ -13,6 +13,8 @@ P7: внешний вид четырёх форм принят по статич
 Динамический комфорт не принят человеком; физическая матрица не проверялась.
 Фактические результаты и ограничения — в [tests.md](tests.md)
 и [матрице FT/CT](../tests/functional/results.md).
+Следующее изменение P8 (0.2.0-dev, FR-22–FR-25) только спланировано:
+Visualizer не реализован, новые задачи остаются незавершёнными.
 
 Основания: [scope](scope.md), [design](design.md), [контракты](spec.md),
 [приёмка](tests.md), [изученные видео](references.md), [reuse](reuse.md).
@@ -145,3 +147,26 @@ openspec.cmd validate --all --strict --no-interactive
 Официальные источники настройки:
 [installation](https://github.com/Fission-AI/OpenSpec/blob/main/docs/installation.md),
 [supported tools](https://github.com/Fission-AI/OpenSpec/blob/main/docs/supported-tools.md).
+
+## 6. P8 — внешний анализ через Visualizer и APK 0.2.0
+
+Порядок реализации от 2026-10-18. Фактические результаты фиксируются в checklist и docs/tests.md.
+Существующие 39 выполненных задач P0–P7 не переотмечаются. Новые пункты — §9
+[checklist](../openspec/changes/implement-mvp-blocks/tasks.md); публичные контракты
+и версии — §15 [spec.md](spec.md), FR — [scope.md](scope.md), FT-30–37/CT-09 —
+[tests.md](tests.md). Документ не разрешает фактическое делегирование агентам.
+
+| Шаг | Владелец / файлы | Зависимость и результат |
+|---|---|---|
+| P8.1 Контракты и фикстуры | Интегратор: android/audio/domain и application/ports; DSP: android/motion/domain и application/ports, JVM tests | Расширить нативный SourceKind/SourceRequest, выделить lifecycle и observation ports; разделить partial/PCM; проверить валидацию и CA до adapter |
+| P8.2 Platform | Android: android/platform/kotlin/musicorbs/platform/audio, manifest и instrumentation tests | Публичный Visualizer GLOBAL/PLAYER, обычные permissions, broadcast discovery с bounded RAM registry, latest-value callbacks, close/rebind/ошибки; без hidden API/DUMP/root |
+| P8.3 Анализ наблюдений | DSP: android/motion, fixtures/tests; FFT через существующий SpectrumPort | Реальные timestamps и 8-bit данные → FeatureFrame, bounded confidence/BPM; не concatenate PCM; существующий clock/фаза сохраняются |
+| P8.4 Интеграция | Интегратор: android/bootstrap и experience/presentation/platform | Один активный источник, явные способы/цель, статусы уровня и качества, правильный reader, lifecycle и late callback; без нового renderer/wire/session schema |
+| P8.5 Проверки | Интегратор: core и graphics suites, native instrumentation, tests/device | FT-30–35/37 и прежние PCM/сохранение/bridge регрессии. Synthetic источник через настоящий Visualizer, включая режим недоступности |
+| P8.6 Телефон | Device-приёмка: tests/device результаты, docs/tests.md | FT-36: Honor 200 Pro/Яндекс, GLOBAL/PLAYER/PCM, динамик/Bluetooth; без телефона «не проверено», задача остаётся открытой, APK не задерживается |
+| P8.7 Поставка | Android/интегратор: android/build.gradle.kts, README/docs/tree.md/tests | 0.2.0-dev, code2 либо выше текущего, прежние applicationId/подпись; assembleDebug, update install с сохранением данных, SHA-256/путь/ограничения; коммит/публикация отдельно |
+
+Работа начинается с P8.1 и контроля доступности SDK effect, затем adapter/анализ
+и UI; проверки добавляются с соответствующим кодом. Это обычная сборка нового
+APK, не обещание исправить конкретный OEM до FT-36. Совместимость, недоступность
+и отсутствие измерения фиксируются раздельно. Диагностика не хранит окна/PCM/FFT.

@@ -1,0 +1,219 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.VisualizerTest:
+INSTRUMENTATION_STATUS: test=realGlobalWindowTempoDiagnostic
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-real-global-dsp","frames":357,"onsets":32,"energyMax":0.1648162383857144,"rmsMinDbfs":-20.83,"rmsMaxDbfs":-13.2,"bpm":null,"confidence":0.0,"maxBpm":91.26596934365027}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at org.junit.Assert.assertNotNull(Assert.java:723)
+	at musicorbs.platform.audio.VisualizerTest$realGlobalWindowTempoDiagnostic$1.invokeSuspend(VisualizerTest.kt:227)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.realGlobalWindowTempoDiagnostic(VisualizerTest.kt:200)
+
+INSTRUMENTATION_STATUS: stream=
+Error in realGlobalWindowTempoDiagnostic(musicorbs.platform.audio.VisualizerTest):
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at org.junit.Assert.assertNotNull(Assert.java:723)
+	at musicorbs.platform.audio.VisualizerTest$realGlobalWindowTempoDiagnostic$1.invokeSuspend(VisualizerTest.kt:227)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.realGlobalWindowTempoDiagnostic(VisualizerTest.kt:200)
+
+INSTRUMENTATION_STATUS: test=realGlobalWindowTempoDiagnostic
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"5853b47b-66de-4311-a879-4224c6264487"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"5853b47b-66de-4311-a879-4224c6264487","elapsedMs":371,"jsElapsedMs":0.6000000014901161,"responseId":"5853b47b-66de-4311-a879-4224c6264487","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"visualizer-baseline","probeId":"c068fc7a-7055-4411-9982-0c96433ce615"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"visualizer-baseline","probeId":"c068fc7a-7055-4411-9982-0c96433ce615","elapsedMs":357,"jsElapsedMs":0.20000000298023224,"responseId":"c068fc7a-7055-4411-9982-0c96433ce615","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Visualizer GLOBAL · общий микс","left":252,"top":1536,"width":577,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"e617a73d-9cd0-4dfd-9cd2-31f89129cad0"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"e617a73d-9cd0-4dfd-9cd2-31f89129cad0","elapsedMs":696,"jsElapsedMs":0.09999999403953552,"responseId":"e617a73d-9cd0-4dfd-9cd2-31f89129cad0","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalStateException: Visualizer 90 BPM did not converge: {"sourceSessionId":"67a089a4-f8c4-4dc9-8b54-a9c10c1d72b9","timestampSeconds":75.69930896,"bpm":88.80047986630136,"slowCycleSeconds":22.0012895115315,"phase":0.9537440387961618,"energy":0.1645760626884925,"intensity":0.000032111780043141006,"confidence":0.859627384870481,"mode":"synced"}
+	at musicorbs.platform.audio.VisualizerTest.awaitTempo(VisualizerTest.kt:197)
+	at musicorbs.platform.audio.VisualizerTest.access$awaitTempo(VisualizerTest.kt:30)
+	at musicorbs.platform.audio.VisualizerTest$awaitTempo$1.invokeSuspend(Unknown Source:16)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind(VisualizerTest.kt:89)
+
+INSTRUMENTATION_STATUS: stream=
+Error in mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind(musicorbs.platform.audio.VisualizerTest):
+java.lang.IllegalStateException: Visualizer 90 BPM did not converge: {"sourceSessionId":"67a089a4-f8c4-4dc9-8b54-a9c10c1d72b9","timestampSeconds":75.69930896,"bpm":88.80047986630136,"slowCycleSeconds":22.0012895115315,"phase":0.9537440387961618,"energy":0.1645760626884925,"intensity":0.000032111780043141006,"confidence":0.859627384870481,"mode":"synced"}
+	at musicorbs.platform.audio.VisualizerTest.awaitTempo(VisualizerTest.kt:197)
+	at musicorbs.platform.audio.VisualizerTest.access$awaitTempo(VisualizerTest.kt:30)
+	at musicorbs.platform.audio.VisualizerTest$awaitTempo$1.invokeSuspend(Unknown Source:16)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind(VisualizerTest.kt:89)
+
+INSTRUMENTATION_STATUS: test=mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=quietSignalAndCapturePolicyAreMeasuredWithoutSavingAudio
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"visualizer-quiet","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-forbidden-policy","energyMax":0.20433917261094547,"quietStatus":true,"trackPlaying":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_STORAGE {"stage":"visualizer-forbidden","filesBefore":52,"filesNow":52,"changed":[],"writeEvents":[]}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=quietSignalAndCapturePolicyAreMeasuredWithoutSavingAudio
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=sdkGlobalPlayerReleaseAndBoundedDiscovery
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-sdk-player","samplingRateHz":48000,"callbackHz":20.0,"size":1024,"scaling":"AS_PLAYED","peakRmsSupported":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=4
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=sdkGlobalPlayerReleaseAndBoundedDiscovery
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 128.785
+There were 2 failures:
+1) realGlobalWindowTempoDiagnostic(musicorbs.platform.audio.VisualizerTest)
+java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:87)
+	at org.junit.Assert.assertTrue(Assert.java:42)
+	at org.junit.Assert.assertNotNull(Assert.java:713)
+	at org.junit.Assert.assertNotNull(Assert.java:723)
+	at musicorbs.platform.audio.VisualizerTest$realGlobalWindowTempoDiagnostic$1.invokeSuspend(VisualizerTest.kt:227)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:100)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.realGlobalWindowTempoDiagnostic(VisualizerTest.kt:200)
+2) mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind(musicorbs.platform.audio.VisualizerTest)
+java.lang.IllegalStateException: Visualizer 90 BPM did not converge: {"sourceSessionId":"67a089a4-f8c4-4dc9-8b54-a9c10c1d72b9","timestampSeconds":75.69930896,"bpm":88.80047986630136,"slowCycleSeconds":22.0012895115315,"phase":0.9537440387961618,"energy":0.1645760626884925,"intensity":0.000032111780043141006,"confidence":0.859627384870481,"mode":"synced"}
+	at musicorbs.platform.audio.VisualizerTest.awaitTempo(VisualizerTest.kt:197)
+	at musicorbs.platform.audio.VisualizerTest.access$awaitTempo(VisualizerTest.kt:30)
+	at musicorbs.platform.audio.VisualizerTest$awaitTempo$1.invokeSuspend(Unknown Source:16)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.mainAudioTrackThroughVisualizerDspClockBridgeSceneAndRebind(VisualizerTest.kt:89)
+
+FAILURES!!!
+Tests run: 4,  Failures: 2
+
+
+INSTRUMENTATION_CODE: -1

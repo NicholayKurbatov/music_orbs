@@ -1,0 +1,273 @@
+{
+  "startedAt": "2026-10-18T20:35:28.295Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.VisualizerTest",
+  "result": "pass",
+  "apkSha256": "b2ad6e66206c6905b5fcd018cd4d698cbdd2d155ef5edb53df1382319fbaddb6",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 4,
+  "evidence": [
+    {
+      "stage": "visualizer-real-global-dsp",
+      "frames": 396,
+      "onsets": 32,
+      "energyMax": 0.16481623832345915,
+      "rmsMinDbfs": -21.43,
+      "rmsMaxDbfs": -15.66,
+      "bpm": 90.44064748961729,
+      "confidence": 0.8752109231627062,
+      "maxBpm": 91.05541880661654,
+      "reliableFrames": 306,
+      "maximumBpmError": 1.0554188066165437,
+      "firstReliableSeconds": 6.2873393
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "7ddf1010-c9c3-4e31-9ecf-86d6df579506"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "7ddf1010-c9c3-4e31-9ecf-86d6df579506",
+      "elapsedMs": 430,
+      "jsElapsedMs": 1.5,
+      "responseId": "7ddf1010-c9c3-4e31-9ecf-86d6df579506",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-restore-ready",
+      "matchedOriginalSession": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "visualizer-baseline",
+      "probeId": "b7684168-42e8-402d-a744-aaa6d6cc53ba"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "visualizer-baseline",
+      "probeId": "b7684168-42e8-402d-a744-aaa6d6cc53ba",
+      "elapsedMs": 571,
+      "jsElapsedMs": 0.19999999552965164,
+      "responseId": "b7684168-42e8-402d-a744-aaa6d6cc53ba",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Visualizer GLOBAL · общий микс",
+      "left": 252,
+      "top": 1536,
+      "width": 577,
+      "height": 55
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 90,
+      "bpm": 89.97055421209107,
+      "period": 21.87235934960318,
+      "energy": 0.16476888079729674,
+      "sourceId": "63d2cdaf-d096-4d42-b608-dc816d77cf27"
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.23488229645616,
+      "period": 13.389904441863903,
+      "energy": 0.19993283372750537,
+      "sourceId": "63d2cdaf-d096-4d42-b608-dc816d77cf27"
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "7fb93abb-4d60-41e4-a4aa-3567ad7e9c1d"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "7fb93abb-4d60-41e4-a4aa-3567ad7e9c1d",
+      "elapsedMs": 511,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "7fb93abb-4d60-41e4-a4aa-3567ad7e9c1d",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-phase-continuity",
+      "observations": 250,
+      "maximumResidualCycles": 0.001384300000000005,
+      "maximumFrequencySlope": 0.009659298213929851
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "visualizer-sync-confirmed",
+      "probeId": "f832bb73-3370-4815-852a-7023c3510fda"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "visualizer-sync-confirmed",
+      "probeId": "f832bb73-3370-4815-852a-7023c3510fda",
+      "elapsedMs": 596,
+      "jsElapsedMs": 0.19999999552965164,
+      "responseId": "f832bb73-3370-4815-852a-7023c3510fda",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-native-sync",
+      "musicSync": false,
+      "confirmedSettings": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "visualizer-sync-confirmed",
+      "probeId": "77773492-a803-4756-a453-206cab486bbf"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "visualizer-sync-confirmed",
+      "probeId": "77773492-a803-4756-a453-206cab486bbf",
+      "elapsedMs": 511,
+      "jsElapsedMs": 1.7000000029802322,
+      "responseId": "77773492-a803-4756-a453-206cab486bbf",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-native-sync",
+      "musicSync": true,
+      "confirmedSettings": true
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.31710049987768,
+      "period": 13.324202234121072,
+      "energy": 0.2143627159675032,
+      "sourceId": "63d2cdaf-d096-4d42-b608-dc816d77cf27"
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Плеер: musicorbs.app · 1",
+      "left": 320,
+      "top": 1932,
+      "width": 441,
+      "height": 55
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 149.5385106865599,
+      "period": 13.369701986938681,
+      "energy": 0.1985447720045209,
+      "sourceId": "3e17ad91-bd4a-4896-ae60-aa8923dabce0"
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.69517963413688,
+      "period": 13.357074596822352,
+      "energy": 0.21386770615161388,
+      "sourceId": "87384d4f-8dcf-46b6-8203-ade96ceefaf8"
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "90cf0b5c-f933-4693-bb73-6dde78eb7c97"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "90cf0b5c-f933-4693-bb73-6dde78eb7c97",
+      "elapsedMs": 499,
+      "jsElapsedMs": 3.5,
+      "responseId": "90cf0b5c-f933-4693-bb73-6dde78eb7c97",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "7df2ac1e-0969-4a1f-b3c8-8b546dbbc499"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "7df2ac1e-0969-4a1f-b3c8-8b546dbbc499",
+      "elapsedMs": 524,
+      "jsElapsedMs": 0.8999999985098839,
+      "responseId": "7df2ac1e-0969-4a1f-b3c8-8b546dbbc499",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-main-lifecycle",
+      "backgroundStopped": true,
+      "noAutoRestart": true,
+      "shapesPreserved": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "restore-scene-check",
+      "probeId": "542521f6-cb98-416a-a9fc-9706c8f1a7aa"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "restore-scene-check",
+      "probeId": "542521f6-cb98-416a-a9fc-9706c8f1a7aa",
+      "elapsedMs": 121,
+      "jsElapsedMs": 1.8999999985098839,
+      "responseId": "542521f6-cb98-416a-a9fc-9706c8f1a7aa",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-forbidden-policy",
+      "energyMax": 0.20244141737110677,
+      "quietStatus": true,
+      "trackPlaying": true
+    },
+    {
+      "stage": "visualizer-sdk-player",
+      "samplingRateHz": 48000,
+      "callbackHz": 20,
+      "size": 1024,
+      "scaling": "AS_PLAYED",
+      "peakRmsSupported": true
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-18T20:39:14.943Z"
+}

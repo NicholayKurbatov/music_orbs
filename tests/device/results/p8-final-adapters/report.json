@@ -1,0 +1,48 @@
+{
+  "startedAt": "2026-10-18T20:39:15.323Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.P7AudioPolicyStorageTest,musicorbs.platform.audio.PlaybackCaptureTest,musicorbs.platform.audio.LocalFilePlaybackTest,musicorbs.platform.audio.MicrophoneAudioSourceTest,musicorbs.platform.experience.AtomicSessionStoreAndroidTest",
+  "result": "pass",
+  "apkSha256": "b2ad6e66206c6905b5fcd018cd4d698cbdd2d155ef5edb53df1382319fbaddb6",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 14,
+  "evidence": [
+    {
+      "stage": "profile-installer-before-audit",
+      "waitMs": 2191,
+      "markerBytes": 24
+    },
+    {
+      "stage": "capture-policy-allowed-first",
+      "sourceId": "0ee24d48-533d-4a93-9f91-337adbde1575",
+      "peak": 0.36621094
+    },
+    {
+      "stage": "capture-policy-forbidden",
+      "sourceId": "0ee24d48-533d-4a93-9f91-337adbde1575",
+      "allowedFirstPeak": 0.36621094,
+      "deniedPeak": 0,
+      "samples": 98304,
+      "headBefore": 65280,
+      "headAfter": 167552,
+      "playState": 3,
+      "capturePolicy": 3
+    },
+    {
+      "stage": "capture-policy-allowed-second",
+      "sourceId": "0ee24d48-533d-4a93-9f91-337adbde1575",
+      "peak": 0.36621094,
+      "allowedFirstPeak": 0.36621094,
+      "deniedPeak": 0,
+      "deniedSamples": 98304
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-18T20:40:04.590Z"
+}

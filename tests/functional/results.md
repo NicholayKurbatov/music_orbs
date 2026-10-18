@@ -168,8 +168,8 @@
 - **D-L**: [завершённый 70-минутный профиль](../device/results/profile-2026-10-17T20-45-59-606Z/README.md),
   [полный JSON](../device/results/profile-2026-10-17T20-45-59-606Z/report.json).
   UTC 2026-10-17 20:45:59–21:56:15: четыре формы по600с и отдельный Orb1800с,
-  medium/10 000 частиц, target60, source none, API35/host AMD/ANGLE,
-  WebView124, DPR2.75/cap2, backing786×1702.
+  medium/10 000 частиц, target60, source none, API 35/host AMD/ANGLE,
+  WebView 124, DPR2.75/cap2, backing786×1702.
   Измерен прежний APK SHA-256
   `8cb87a65cd09bbcc042b1da468d59a2fe33ab79edd8e45b996b580e6570ddf61`,
   assets `index-D4yFGS0Q.js` / `index-BBqcT9Hu.css`.
@@ -363,3 +363,18 @@ E-V2/E-P8 — к новому9b59177…eae3e. D-L не превращается 
 исправлений context/touchcancel. Отдельный in-process Activity.recreate, process kill
 внутри IO и отключение питания не выполнены; это дополнительные непроверенные
 условия, они не выдаются за результаты E-G2 restart/E-P8 injected failure.
+
+## P8: FR-22–FR-25, 0.2.0-dev
+
+Фактические результаты и границы: [отчёт P8](../device/results/p8-release/README.md).
+
+| Сценарий | Требования | Факт |
+|---|---|---|
+| FT-30/31 | FR-22, FR-19 | SDK GLOBAL/PLAYER, bounded discovery, новый UUID после CLOSE/OPEN — PASS на API 35 |
+| FT-32/CT-09 | FR-23, NFR-02/05 | 8-bit/milliHz/mB/scaling, 90/120/150 × 10/20/30 Hz, offsets/gaps/invalid/тон/NORMALIZED — PASS JVM/native |
+| FT-33 | FR-13, FR-14, FR-22, FR-23 | Настоящий AudioTrack → Visualizer → DSP → clock → сцена, BPM/phase/Sync/формы — PASS |
+| FT-34/35 | FR-16, FR-17, FR-19, FR-24, NFR-04 | Deny/revoke, отсутствие OPEN, quiet/stale/unknown level, фон/close/ресурсы/файлы — PASS; OEM без effect не проверен |
+| FT-36 | FR-22, FR-24, FR-25 | Honor/Яндекс ×GLOBAL/PLAYER/PCM ×динамик/Bluetooth — НЕ ПРОВЕРЕНО; 9.8 открыт |
+| FT-37 | FR-25, FR-08, NFR-03 | Code1→2 с той же подписью/данными; прежние источники/сохранения/графика — PASS |
+
+Это функциональная поставка P8. Прежний кадровый бюджет эмулятора не выполнен; физический телефон и человеческая оценка плавности этим прогоном не подтверждаются.

@@ -1,0 +1,23 @@
+{
+  "performedAt": "2026-10-18T09:58:31.875Z",
+  "result": "pass",
+  "applicationId": "musicorbs.app",
+  "before": {
+    "versionCode": 1,
+    "versionName": "0.1.0-dev"
+  },
+  "after": {
+    "versionCode": 2,
+    "versionName": "0.2.0-dev"
+  },
+  "certificateSha256": "63fbfd23fb8e887ad731cffe86171d3ea289c7e08a578deda1812de81d27a3d9",
+  "apkSha256": "2ac7cd08ce7b57912662cb87966d2658bb71c9e3d2afa1b7605aaf8d5410f96a",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "install": "Performing Streamed Install\r\nSuccess",
+  "uninstall": false,
+  "clearData": false,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro не проверен."
+  ]
+}

@@ -282,6 +282,7 @@ MusicOrbs/
 |   |-- android-focus-smoke.mjs
 |   |-- android-motion-transitions.mjs
 |   |-- android-p8-instrumentation.mjs
+|   |-- android-p8-permissions.mjs
 |   |-- android-p8-update.mjs
 |   |-- android-palette-probe.mjs
 |   |-- android-permission-smoke.mjs
@@ -338,6 +339,16 @@ MusicOrbs/
 |   |       |   |-- focus-paused.json
 |   |       |   |-- focus-paused.png
 |   |       |   |-- noisy-local-broadcast.txt
+|   |       |   |-- probe-log.txt
+|   |       |   |-- probe-start.txt
+|   |       |   \-- report.json
+|   |       |-- audio-focus-2026-10-18T20-52-37-467Z/
+|   |       |   |-- after-abandon.json
+|   |       |   |-- baseline.json
+|   |       |   |-- before-focus.json
+|   |       |   |-- explicit-resumed.json
+|   |       |   |-- focus-paused.json
+|   |       |   |-- focus-paused.png
 |   |       |   |-- probe-log.txt
 |   |       |   |-- probe-start.txt
 |   |       |   \-- report.json
@@ -730,12 +741,44 @@ MusicOrbs/
 |   |       |   |-- session-after-policy.json
 |   |       |   |-- session-before-final.json
 |   |       |   \-- session-before.json
+|   |       |-- p8-final-adapters/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-final-lifecycle-attempt1/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-final-lifecycle/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-final-pcm-signal-attempt1/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-final-pcm-signal/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-final-visualizer/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
 |   |       |-- p8-global-diagnostic/
 |   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-native-regression/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-permissions-2026-10-18T20-48-28-037Z/
+|   |       |   \-- report.json
+|   |       |-- p8-release/
+|   |       |   |-- README.md
+|   |       |   |-- browser.json
+|   |       |   \-- report.json
+|   |       |-- p8-update-final/
 |   |       |   \-- report.json
 |   |       |-- p8-update/
 |   |       |   \-- report.json
 |   |       |-- p8-visualizer-attempt2/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- p8-visualizer-attempt3/
 |   |       |   |-- instrumentation.txt
 |   |       |   \-- report.json
 |   |       |-- palette-probe-2026-10-17T21-57-27-877Z/

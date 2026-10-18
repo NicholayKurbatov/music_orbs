@@ -61,6 +61,23 @@ node scripts/android-permission-smoke.mjs --serial emulator-5554
 Отдельный `--capture-cancel-only` повторяет Main MediaProjection Cancel с подготовкой
 RECORD_AUDIO через adb; это не считается повторной проверкой диалога RECORD_AUDIO.
 Системный MediaProjection consent также проверяется Android instrumentation.
+
+Регрессия внешнего захвата проверяется классом
+`musicorbs.platform.audio.MainCaptureSignalTest`: запрещённый synthetic AudioTrack
+даёт видимое сообщение о тишине; разрешённые сигналы 90 и 150 BPM в той же capture
+сессии меняют BPM и период вращения. Проверяются текст статуса и сохранность форм.
+Источник содержит непрерывный тон с более тихими ударами, а не только метроном
+в тишине. WAV/запись не создаются. Как и MainCaptureLifecycleTest, проверка использует
+P7MainUiProbe и требует заранее открытой сцены с сохранённой `session.json` и
+включённым Music Sync. После сборки/установки app и androidTest APK запускается:
+
+```powershell
+adb -s emulator-5554 shell am instrument -w -r -e class musicorbs.platform.audio.MainCaptureSignalTest musicorbs.app.test/androidx.test.runner.AndroidJUnitRunner
+```
+
+Это проверка собственного разрешённого источника на AVD, а не подтверждение
+совместимости Яндекс Музыки, Honor или другого плеера/телефона.
+
 Скрипты используют общий
 [adb/UI/CDP helper](../../scripts/android-device.mjs); CDP доступен только для
 debug WebView текущего процесса, найденного через adb, с локальным forward 9223.
@@ -197,3 +214,7 @@ atomic replace сохраняет подтверждённый snapshot, stale/e
 
 Фактическое прохождение дополнительных тестов подтверждается
 только отчётом конкретного запуска и итоговой [матрицей FT/CT](../functional/results.md).
+
+## P8: Visualizer и обновление
+
+Команды нативных проверок P8 и сборки — в [README](../../README.md). Полный итог — в [поставке 0.2.0-dev](results/p8-release/README.md). `android-p8-instrumentation.mjs --class <классы> --output <каталог>` запускает настоящий instrument без UTP uninstall; проверяет SHA APK и сохранность session.json. `android-p8-permissions.mjs` проверяет системные deny/grant/revoke, MIC denial, отсутствие OPEN и пассивный broadcast в фоне. `android-p8-update.mjs --output <каталог>` проверяет именно рост code/подпись/байты при установке через install -r. Исходный APK, если он временно возвращается на выданный AVD для проверки, ставится через install -r -d с сохранением данных; затем финальный APK устанавливается поверх него. Телефонная FT-36 не выполняется эмуляторными runners.

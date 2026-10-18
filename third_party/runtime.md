@@ -61,7 +61,6 @@ PCM fixtures синтезированы нашим тестовым кодом, 
   BSD-3-Clause, ©2008 Google Inc. Проверен оригинальный
   [LICENSE](https://github.com/protocolbuffers/protobuf/blob/081fbf471d9ee13a1d95c652796655e62d599c07/LICENSE).
 
-Измеренные результаты и CVE — в [отчёте безопасности](../docs/security.md).
 
 ## Локальный инструмент профилирования APK
 

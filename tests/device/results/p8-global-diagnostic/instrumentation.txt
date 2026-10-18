@@ -1,0 +1,26 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.VisualizerTest:
+INSTRUMENTATION_STATUS: test=realGlobalWindowTempoDiagnostic
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"visualizer-real-global-dsp","frames":428,"onsets":32,"energyMax":0.17252587258417873,"rmsMinDbfs":-21.43,"rmsMaxDbfs":-15.12,"bpm":89.02668514859779,"confidence":0.9365309506238083,"maxBpm":90.46580702350988}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=realGlobalWindowTempoDiagnostic
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 24.928
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

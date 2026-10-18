@@ -2,10 +2,13 @@
 
 ## Context
 
-Мотивация — [proposal](proposal.md). В репозитории только Kotlin/TS-контракты
-и заглушки. Сборочные проекты, schema, renderer и DSP отсутствуют.
+Мотивация — [proposal](proposal.md). P0–P7 реализованы; Kotlin DSP, graphics,
+Android build, bridge и session store существуют. Прежние synthetic capture
+проверки не подтвердили Яндекс Музыку на Honor. P8/0.2.0 реализует отдельный
+Visualizer; эмулятор не подтверждает совместимость физического телефона.
 Действуют [архитектура](../../../docs/design.md) и
-[распределение пакетов P0–P7](../../../docs/implementation-plan.md).
+[распределение пакетов P0–P8](../../../docs/implementation-plan.md).
+Подробный API P8 — §15 [spec.md](../../../docs/spec.md).
 
 ## Goals / Non-Goals
 
@@ -34,13 +37,27 @@
    Полный туннель откладывается; мотив вложенных рамок остаётся в pixel-cloud.
    Альтернатива случайной россыпи кубов не проходит REF-02/FR-20.
 5. AudioSourcePort.open/read/close не выражает обещанные AudioSession.pause/resume.
-   P0 выделяет playback-control port для локального адаптера с согласованной
-   позицией playback/PCM; capture/mic остаются open/read/close. Это проектное
-   решение для следующего API-изменения, в текущих файлах порта ещё нет.
+   PlaybackControlPort уже реализован для local с согласованной позицией
+   playback/PCM; capture/mic остаются open/read/close. В P8 выделяется общий
+   SourceLifecyclePort, а read PCM и read partial windows остаются раздельными.
 6. Сессия сохраняется нативно атомарным snapshot; графика владеет текущим полем.
    Bridge использует versioned envelopes, ограниченные pending requests и
    latest-value motion. Альтернатива хранения только в WebView не даёт нужного
    восстановления после его пересоздания.
+7. P8: Android adapter реализует lifecycle-порт AudioSession и observation-порт
+   MusicalMotion. VisualizationFrame принадлежит MusicalMotion; PcmFrame остаётся
+   прежним published language. Альтернатива превращения snapshots Visualizer
+   в сплошной PCM отклонена: пропуски/перекрытия исказят время и BPM.
+8. Основной новый способ — GLOBAL; PLAYER использует только доступные стандартные
+   объявления сессий и временный bounded registry. handle/объявление не доказывают
+   получения музыки. При недоступности UI предлагает явный выбор другого способа,
+   а не скрытый mic fallback. DUMP/root/NotificationListener/Shizuku отложены.
+9. Новый bounded анализатор учитывает 8-bit/scaling/milliHz/mB, timestamps и gaps,
+   выдаёт прежний FeatureFrame. Общий clock сохраняет фазу; UI/renderer не читают
+   сырые окна. Callback и анализ не ожидают main/WebView, pending окно ≤1.
+10. 0.2.0-dev обновляет 0.1.0 с прежней подписью/applicationId и без очистки данных;
+    wire v1/session v2/generator v1 сохраняются. Android session ID/permission
+    tokens не сохраняются. Отчёт FT-36 физического телефона отделён от поставки APK.
 
 ## Risks / Trade-offs
 
@@ -54,6 +71,12 @@
 - Одновременное изменение shared-файлов → один владелец и согласованный пакет
   контракта до продолжения потребителей.
 - Неопределённый эталон Cloud → отдельно зафиксировать решение человека на G4.
+- OEM/маршрут не поддерживает Visualizer или broadcast не доставлен → явный
+  unsupported/ожидание, проверка GLOBAL/PLAYER по отдельности, без обещания обхода.
+- Нормализованный уровень/частичные окна → учитывать качество и реальное время;
+  не выдавать относительную амплитуду за абсолютный RMS или уверенный BPM.
+- Телефон недоступен → собрать APK и выполнить доступные tests; FT-36 оставить
+  открытым, совместимость Honor/Яндекс не объявлять подтверждённой.
 
 ## Migration Plan
 
@@ -63,4 +86,9 @@ G1: contracts/runners → G2: автономная скульптура+save →
 одноцветную палитру. Невалидные снимки не применять частично и не затирать
 до подтверждения нового валидного состояния. При регрессии возвращать адаптер
 к последней проверенной версии с сохранением совместимого snapshot.
-Публикация и коммиты в объём текущего плана не входят.
+Коммиты и публикация выполняются по явному указанию пользователя.
+
+Дополнение P8: контракты/fixtures → Visualizer/discovery и partial DSP → native
+UI/lifecycle → FT-30–35/37 и регрессии PCM → APK 0.2.0-dev/возрастающий code,
+SHA-256 и update install. FT-36 выполняется при доступном Honor 200 Pro и не
+подменяется эмулятором. Точные допуски и критерии — docs/spec.md §15 и tests.md.

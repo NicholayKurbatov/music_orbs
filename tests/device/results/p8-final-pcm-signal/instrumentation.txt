@@ -1,0 +1,65 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureSignalTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.MainCaptureSignalTest:
+INSTRUMENTATION_STATUS: test=silentCaptureExplainsMissingSignalAndRhythmicPlaybackChangesRotation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"bc9f87fe-1148-40ee-b757-a62aded8ed68"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"bc9f87fe-1148-40ee-b757-a62aded8ed68","elapsedMs":626,"jsElapsedMs":0.29999999701976776,"responseId":"bc9f87fe-1148-40ee-b757-a62aded8ed68","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"capture-signal-baseline","probeId":"3f92975c-8f13-4110-a1ea-40f2c804f442"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"capture-signal-baseline","probeId":"3f92975c-8f13-4110-a1ea-40f2c804f442","elapsedMs":491,"jsElapsedMs":0.09999999403953552,"responseId":"3f92975c-8f13-4110-a1ea-40f2c804f442","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Захват внешнего воспроизведения","left":218,"top":1774,"width":645,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-no-signal","sourceId":"c730316f-70c7-49ad-a6ea-206f8ba6a96c","energy":0.0,"visibleWarning":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-tempo","expectedBpm":90,"bpm":89.88402061855669,"period":21.270375158002512,"energy":0.22199357693694916}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-capture-tempo","expectedBpm":150,"bpm":149.9355116079106,"period":13.178756195769575,"energy":0.2181323594120626}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"capture-signal-invariants","probeId":"9845c3df-ce80-43c6-ba4b-8ddf9b8ed95b"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"capture-signal-invariants","probeId":"9845c3df-ce80-43c6-ba4b-8ddf9b8ed95b","elapsedMs":651,"jsElapsedMs":0.20000000298023224,"responseId":"9845c3df-ce80-43c6-ba4b-8ddf9b8ed95b","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"eb9b09da-0fea-412c-b36e-ee113ff5f5c0"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"eb9b09da-0fea-412c-b36e-ee113ff5f5c0","elapsedMs":794,"jsElapsedMs":1.8999999985098839,"responseId":"eb9b09da-0fea-412c-b36e-ee113ff5f5c0","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.MainCaptureSignalTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=silentCaptureExplainsMissingSignalAndRhythmicPlaybackChangesRotation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 97.317
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
