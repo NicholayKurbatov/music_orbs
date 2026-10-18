@@ -12,6 +12,7 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
+import androidx.test.uiautomator.By
 import androidx.lifecycle.Lifecycle
 import kotlinx.coroutines.*
 import kotlinx.serialization.json.*
@@ -135,9 +136,9 @@ class VisualizerTest {
             p7Evidence("visualizer-phase-continuity", "observations" to examined, "maximumResidualCycles" to maximumResidual,
                 "maximumFrequencySlope" to maximumSlope)
             // Sync управляется настоящей Compose-панелью, источник не меняется.
-            probe.click("Настройки"); probe.click("Синхронизация с музыкой", scroll = true); probe.closePanelIfOpen()
+            changeSync(probe, false)
             probe.awaitMotion("Sync off must stay autonomous") { it.getValue("mode").jsonPrimitive.content == "autonomous" }
-            probe.click("Настройки"); probe.click("Синхронизация с музыкой", scroll = true); probe.closePanelIfOpen()
+            changeSync(probe, true)
             awaitTempo(probe, 150)
             // Настоящее объявление Android-сессии через публичный broadcast.
             broadcast(AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION, track.audioSessionId)
@@ -165,6 +166,7 @@ class VisualizerTest {
                 assertEquals("none", probe.motion().getValue("sourceSessionId").jsonPrimitive.content)
                 delay(100)
             }
+            assertTrue("Closed source must not keep a stale synchronization status", probe.device.hasObject(By.textStartsWith("Аудио остановлено в фоне.")))
             assertEquals(baseline.getValue("shapes"), probe.snapshot().getValue("shapes"))
             p7Evidence("visualizer-main-lifecycle", "backgroundStopped" to true, "noAutoRestart" to true, "shapesPreserved" to true)
         } finally {
@@ -195,6 +197,26 @@ class VisualizerTest {
             @Suppress("UNREACHABLE_CODE") null
         }
         return checkNotNull(found) { "Visualizer $bpm BPM did not converge: $last" }
+    }
+
+    private suspend fun changeSync(probe: P7MainUiProbe, enabled: Boolean) {
+        probe.click("Настройки")
+        var clicked = false
+        for (attempt in 0 until 9) {
+            val control = probe.device.findObject(By.desc("Синхронизация с музыкой"))
+            if (control != null && control.visibleBounds.height() > 5) {
+                control.click(); clicked = true; delay(300); break
+            }
+            probe.device.swipe((probe.device.displayWidth * .75).toInt(), (probe.device.displayHeight * .78).toInt(),
+                (probe.device.displayWidth * .75).toInt(), (probe.device.displayHeight * .32).toInt(), 20)
+            delay(200)
+        }
+        check(clicked) { "Music Sync switch missing" }
+        probe.closePanelIfOpen()
+        withTimeout(5000) {
+            while (probe.snapshot("visualizer-sync-confirmed").getValue("settings").jsonObject.getValue("musicSync").jsonPrimitive.boolean != enabled) delay(100)
+        }
+        p7Evidence("visualizer-native-sync", "musicSync" to enabled, "confirmedSettings" to true)
     }
 
     @Test fun realGlobalWindowTempoDiagnostic() = runBlocking {

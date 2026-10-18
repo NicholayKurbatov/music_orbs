@@ -47,6 +47,12 @@ try {
   const restarted = await until(v => v.motion.sourceSessionId === 'none' && v.motion.mode === 'autonomous', 'Visualizer restarted after permission revoke');
   assert.deepEqual(restarted.snapshot.shapes, baseline.shapes); noCaptureOrMic();
   device.step('visualizer-revoke-restart', 'Активный Visualizer прерван отзывом RECORD_AUDIO; после нового запуска сцена восстановлена, источник не перезапущен.');
+  device.shell('pm', 'clear-permission-flags', appId, permissionName, 'user-set', 'user-fixed');
+  await device.openPanel(); await device.click('Выбрать микрофон', { scroll: true });
+  await permission(false); await closePanel();
+  const micDenied = await until(v => v.motion.sourceSessionId === 'none', 'Denied microphone became active');
+  assert.deepEqual(micDenied.snapshot.shapes, baseline.shapes); noCaptureOrMic();
+  device.step('microphone-permission-regression', 'Отдельный явный выбор MIC с системным deny не открыл источник или индикатор; форма сохранена.');
   await device.openPanel(); await device.click('Visualizer PLAYER · выбрать плеер', { scroll: true }); await closePanel();
   await device.find('Ожидание сессии плеера.', { prefix: true });
   assert.equal((await state()).motion.sourceSessionId, 'none');

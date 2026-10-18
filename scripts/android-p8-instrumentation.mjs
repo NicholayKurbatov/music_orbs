@@ -28,6 +28,7 @@ try {
   child.stdout.on('data', append); child.stderr.on('data', append);
   await new Promise((resolve, reject) => { child.on('error', reject); child.on('exit', code => code === 0 ? resolve() : reject(Error(`adb exit ${code}`))); });
   await new Promise(resolve => stream.end(resolve));
+  fs.writeFileSync(path.join(output, 'instrumentation.txt'), log.replace(/[ \t]+$/gm, '').trimEnd() + '\n');
   report.result = /OK \(\d+ tests?\)/.test(log) && !/FAILURES!!!|INSTRUMENTATION_FAILED|Process crashed/.test(log) ? 'pass' : 'fail';
   report.tests = Number(/OK \((\d+) tests?\)/.exec(log)?.[1] || /Tests run: (\d+)/.exec(log)?.[1] || 0);
   report.evidence = [...log.matchAll(/P7_AUDIO_EVIDENCE (\{[^\r\n]+\})/g)].map(m => JSON.parse(m[1]));

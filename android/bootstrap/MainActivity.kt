@@ -446,7 +446,11 @@ class MainActivity : ComponentActivity() {
             latestFeatures.set(null); clock.resetSource("none")
             if (!destroyed) bridge.setSource("none")
             sourceKind = null; playing = false; captureMonitor = null; captureStatusAt = -1.0; visualStatus = null
-            if (!keepPlayerMonitoring) monitoredPlayer = null
+            if (!keepPlayerMonitoring) {
+                monitoredPlayer = null
+                if (!destroyed) status = if (foreground) "Аудио остановлено. Автономное движение."
+                    else "Аудио остановлено в фоне. Для запуска выберите источник."
+            }
             try { audio.stop() } finally {
                 visualizer = null
                 projection = null; captureHost.close()
