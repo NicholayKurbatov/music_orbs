@@ -25,6 +25,8 @@ class BoundedAudioAnalyzer(
     private var hasPreviousWindow = false
     private val onsets = ArrayDeque<Double>()
     private var lastFlux = 0.0
+    private var fluxAverage = 0.0
+    private var continuousSignalSeconds = 0.0
     private var energyEnvelope = 0.0
 
     init {
@@ -48,6 +50,8 @@ class BoundedAudioAnalyzer(
         hasPreviousWindow = false
         onsets.clear()
         lastFlux = 0.0
+        fluxAverage = 0.0
+        continuousSignalSeconds = 0.0
         energyEnvelope = 0.0
     }
 
@@ -103,24 +107,39 @@ class BoundedAudioAnalyzer(
         val magnitudes = spectrum.magnitudes(DoubleArray(window.size) { window[it] * hann[it] })
         require(magnitudes.size == window.size / 2 + 1 && magnitudes.all { it.isFinite() && it >= 0.0 }) { "INVALID_INPUT: spectrum" }
         var positiveFlux = 0.0
+        var attackFlux = 0.0
         var total = 0.0
         for (i in magnitudes.indices) {
-            positiveFlux += max(0.0, magnitudes[i] - previousSpectrum[i])
+            val difference = max(0.0, magnitudes[i] - previousSpectrum[i])
+            positiveFlux += difference
+            // Устойчивый низкий синус меняет утечку между FFT bins из-за фазы.
+            // Новые атаки поверх микса подтверждаем спектром выше 100 Гц.
+            if (i.toDouble() * sampleRate / window.size >= 100.0) attackFlux += difference
             total += magnitudes[i]
         }
+        val previousFlux = lastFlux
         lastFlux = if (total > 1e-12) (positiveFlux / total).coerceIn(0.0, 1.0) else 0.0
-        if (hasPreviousWindow && rms > MotionPolicy.SILENCE_RMS && lastFlux > 0.3 && rms > previousRms * 1.35 &&
+        // Спектральная атака слышна и поверх непрерывного звука: общий RMS
+        // сжатого микса при ударе может почти не измениться.
+        val spectralAttack = continuousSignalSeconds >= 0.1 &&
+            attackFlux / max(total, 1e-12) > max(0.04, fluxAverage * 2.5) && lastFlux > previousFlux * 1.25
+        val energyAttack = lastFlux > 0.3 && rms > previousRms * 1.35
+        if (hasPreviousWindow && rms > MotionPolicy.SILENCE_RMS && (spectralAttack || energyAttack) &&
             (onsets.isEmpty() || timestamp - onsets.last() >= 0.20)) {
             if (onsets.size == MotionPolicy.MAX_ONSETS) onsets.removeFirst()
             onsets.addLast(timestamp)
         }
         previousSpectrum = magnitudes
         previousRms = rms
+        continuousSignalSeconds = if (rms > MotionPolicy.SILENCE_RMS)
+            (continuousSignalSeconds + window.size.toDouble() / 2 / sampleRate).coerceAtMost(0.1) else 0.0
+        fluxAverage += (lastFlux - fluxAverage) * (1.0 - exp(-window.size.toDouble() / 2 / sampleRate / 0.3))
         hasPreviousWindow = true
     }
 
     private fun estimateTempo(timestamp: Double): Pair<Double?, Double> {
-        if (onsets.size < 5 || timestamp - onsets.last() > 3.0) return null to 0.0
+        if (onsets.isNotEmpty() && timestamp - onsets.last() > 3.0) onsets.clear()
+        if (onsets.size < 5) return null to 0.0
         val intervals = onsets.zipWithNext { a, b -> b - a }
         if (intervals.any { it < 60.0 / MotionPolicy.MAX_BPM - 0.02 || it > 60.0 / MotionPolicy.MIN_BPM + 0.02 }) return null to 0.0
         val median = intervals.sorted()[intervals.size / 2]

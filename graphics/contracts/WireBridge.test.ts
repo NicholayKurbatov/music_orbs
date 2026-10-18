@@ -62,6 +62,8 @@ test('oversized/невалидные bytes и версия не потребля
   w.ready();
   w.MusicOrbsReceive!('я'.repeat(ProfileLimits.maxPayloadBytes / 2 + 1));
   w.MusicOrbsReceive!('{broken');
+  const hostile = JSON.stringify({ protocolVersion: 1, bridgeSessionId: 'bridge-one', sequence: 999, type: 'command', requestId: 'hostile', payload: { type: 'reset' } });
+  w.MusicOrbsReceive!(hostile.slice(0, -1) + ',"padding":' + '['.repeat(16000) + '0' + ']'.repeat(16000) + '}');
   w.MusicOrbsReceive!(JSON.stringify({ protocolVersion: 99, bridgeSessionId: 'bridge-one', sequence: 999, type: 'command', requestId: 'future', payload: { type: 'reset' } }));
   w.deliver(1, 'command', { type: 'reset' }, 'valid'); await tick();
   assert.deepEqual(calls, [{ type: 'reset' }]); assert.equal(w.replies().at(-1)!.requestId, 'valid');

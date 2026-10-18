@@ -11,6 +11,26 @@ data class WireEnvelope(val bridgeSessionId: String, val sequence: Long, val typ
 /** Явные wire mappings; enum.name() и reflection не участвуют в протоколе. */
 object WireCodec {
     private val json = Json { isLenient = false; allowSpecialFloatingPointValues = false }
+    private fun boundedObject(raw: String, code: String): JsonObject {
+        require(raw.length <= ProfileLimits.MAX_PAYLOAD_BYTES && raw.toByteArray(Charsets.UTF_8).size <= ProfileLimits.MAX_PAYLOAD_BYTES) { code }
+        // Лимит байтов не ограничивает рекурсию JSON-парсера; скан не строит дерево.
+        var depth = 0
+        var quoted = false
+        var escaped = false
+        for (character in raw) {
+            if (quoted) {
+                if (escaped) escaped = false
+                else if (character == '\\') escaped = true
+                else if (character == '"') quoted = false
+            } else when (character) {
+                '"' -> quoted = true
+                '{', '[' -> { depth++; require(depth <= ProfileLimits.MAX_JSON_DEPTH) { code } }
+                '}', ']' -> depth--
+            }
+        }
+        // Синтаксис по-прежнему проверяет библиотека, а не скан глубины.
+        return json.parseToJsonElement(raw).jsonObject
+    }
     private val shapes = mapOf(ShapeId.ORB to "orb", ShapeId.RIBBON to "ribbon", ShapeId.CLOUD to "cloud", ShapeId.PIXEL_CLOUD to "pixel-cloud")
     private val materials = mapOf(MaterialId.DOTS to "dots", MaterialId.PIXELS to "pixels", MaterialId.SOFT to "soft")
     private val qualities = mapOf(Quality.LOW to "low", Quality.MEDIUM to "medium", Quality.HIGH to "high")
@@ -58,8 +78,7 @@ object WireCodec {
     }
     fun session(value: SessionSnapshot): String = buildJsonObject { put("schemaVersion", value.schemaVersion); put("revision", value.revision); scene(value).forEach { (key, element) -> put(key, element) } }.toString().also { require(it.toByteArray(Charsets.UTF_8).size <= ProfileLimits.MAX_PAYLOAD_BYTES) { "SNAPSHOT_INVALID" } }
     fun session(raw: String): SessionSnapshot {
-        require(raw.toByteArray(Charsets.UTF_8).size <= ProfileLimits.MAX_PAYLOAD_BYTES) { "SNAPSHOT_INVALID" }
-        var value = json.parseToJsonElement(raw).jsonObject
+        var value = boundedObject(raw, "SNAPSHOT_INVALID")
         when (value.int("schemaVersion")) {
             1 -> {
                 val original = value.getValue("settings").jsonObject
@@ -92,8 +111,7 @@ object WireCodec {
         put("sourceSessionId", value.sourceSessionId); put("timestampSeconds", value.timestampSeconds); put("bpm", value.bpm?.let(::JsonPrimitive) ?: JsonNull); put("slowCycleSeconds", value.slowCycleSeconds); put("phase", value.phase); put("energy", value.energy); put("intensity", value.intensity); put("confidence", value.confidence); put("mode", if(value.mode == MotionMode.SYNCED) "synced" else "autonomous")
     }.also { motion(it) }
     fun decode(raw: String): WireEnvelope {
-        require(raw.toByteArray(Charsets.UTF_8).size <= ProfileLimits.MAX_PAYLOAD_BYTES) { "INVALID_INPUT" }
-        val value = json.parseToJsonElement(raw).jsonObject
+        val value = boundedObject(raw, "INVALID_INPUT")
         require(value.int("protocolVersion") == 1) { "PROTOCOL_MISMATCH" }
         val id = value.str("bridgeSessionId"); require(validId(id)) { "INVALID_INPUT" }
         val sequence = value.counter("sequence"); val type = value.str("type"); val request = value["requestId"]?.let { value.str("requestId") }

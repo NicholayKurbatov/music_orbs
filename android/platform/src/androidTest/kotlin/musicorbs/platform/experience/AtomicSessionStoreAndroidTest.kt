@@ -28,6 +28,20 @@ import org.junit.runner.RunWith
 /** FT-26: injected IO interruption on Android filesystem, not process kill or power loss. */
 @RunWith(AndroidJUnit4::class)
 class AtomicSessionStoreAndroidTest {
+    @Test fun deeplyNestedSnapshotIsRejectedWithoutCrashAndRemainsUnchanged() = runBlocking {
+        isolatedFolder { folder ->
+            val path = folder.resolve("nested.snapshot.json")
+            val raw = "{\"padding\":" + "[".repeat(16000) + "0" + "]".repeat(16000) + "}"
+            Files.write(path, raw.toByteArray(Charsets.UTF_8))
+            val failure = try {
+                AtomicSessionStore(path).load()
+                throw AssertionError("Nested snapshot must be rejected")
+            } catch (failure: SessionStoreException) { failure }
+            assertEquals("SNAPSHOT_INVALID", failure.code)
+            assertArrayEquals(raw.toByteArray(Charsets.UTF_8), Files.readAllBytes(path))
+        }
+    }
+
     @Test fun interruptionAfterForceBeforeReplacePreservesConfirmedSnapshotAndRemovesTemporary() = runBlocking {
         isolatedFolder { folder ->
             val path = folder.resolve("confirmed.snapshot.json")

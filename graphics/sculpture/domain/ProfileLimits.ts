@@ -5,7 +5,7 @@ export const ProfileLimits = Object.freeze({
   particleCounts: Object.freeze({ low: 4000, medium: 10000, high: 20000 }),
   maxParticles: 20000, maxControls: 64, maxCoordinate: 4,
   maxControlDelta: 1, maxStrokeDelta: 0.2, minRadius: 0.02, maxRadius: 2,
-  maxPayloadBytes: 262144, maxPendingRequests: 16, requestDeadlineMs: 3000,
+  maxPayloadBytes: 262144, maxJsonDepth: 32, maxPendingRequests: 16, requestDeadlineMs: 3000,
   maxMotionHz: 30, maxSpeed: 2, maxAmplitude: 1, maxTouchSensitivity: 3,
   maxDeltaSeconds: 0.1, generatorVersion: 1, schemaVersion: 2,
 });

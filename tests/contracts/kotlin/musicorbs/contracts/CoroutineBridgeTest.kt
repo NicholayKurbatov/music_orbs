@@ -10,6 +10,23 @@ import musicorbs.experience.infrastructure.*
 import musicorbs.motion.domain.*
 
 class CoroutineBridgeTest {
+    @Test fun deepInputDoesNotConsumeSequenceOrBreakNextRequest(): Unit = runBlocking {
+        val sent = mutableListOf<String>()
+        val bridge = CoroutineBridge("bridge:1", this, { sent.add(it) }, { 0.0 })
+        try {
+            bridge.receive(reply(0, "ready"))
+            val request = async { bridge.request(SceneCommand.Reset) }; yield()
+            val envelope = WireCodec.decode(sent.last())
+            val hostile = reply(999, "ack", envelope.requestId).dropLast(1) +
+                ",\"padding\":" + "[".repeat(16000) + "0" + "]".repeat(16000) + "}"
+            bridge.receive(hostile)
+            assertFalse(request.isCompleted)
+            bridge.receive(reply(1, "ack", envelope.requestId))
+            request.await()
+            Unit
+        } finally { bridge.close() }
+    }
+
     private fun reply(sequence: Long, type: String, requestId: String? = null, bridge: String = "bridge:1", source: String = "none") = WireCodec.encode(WireEnvelope(bridge, sequence, type, buildJsonObject { if (type == "ready") { put("runtimeTimestampSeconds", 0); put("sourceSessionId", source) } }, requestId))
     @Test fun handshakeRequestStaleAndClose() = runBlocking {
         val sent = Collections.synchronizedList(mutableListOf<String>())

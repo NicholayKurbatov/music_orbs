@@ -24,6 +24,14 @@ internal fun session(revision: Long = 1) = SessionSnapshot(2, revision, ProfileL
 class AtomicSessionStoreTest {
     @get:Rule val temporary = TemporaryFolder()
 
+    @Test fun `deeply nested snapshot fails safely and preserves the original file`() = runBlocking {
+        val path = temporary.root.toPath().resolve("session.json")
+        val raw = "{\"padding\":" + "[".repeat(16000) + "0" + "]".repeat(16000) + "}"
+        Files.writeString(path, raw)
+        assertEquals("SNAPSHOT_INVALID", assertFailsWith<SessionStoreException> { AtomicSessionStore(path).load() }.code)
+        assertEquals(raw, Files.readString(path))
+    }
+
     @Test fun `missing snapshot and corruption are distinct and invalid read preserves original`() = runBlocking {
         val path = temporary.root.toPath().resolve("session.json")
         val store = AtomicSessionStore(path)

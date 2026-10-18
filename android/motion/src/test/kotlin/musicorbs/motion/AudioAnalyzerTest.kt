@@ -33,6 +33,17 @@ class AudioAnalyzerTest {
         }
     }
 
+    @Test fun `spectral leakage of continuous tones is not a musical beat`() {
+        for (frequency in listOf(55, 80, 110, 220, 1000)) {
+            val analyzer = analyzer()
+            for (pcm in SyntheticPcm.frames(6.0, sample = { 0.5 * sin(2 * PI * frequency * it) })) {
+                val features = analyzer.analyze(pcm)
+                assertNormalized(features)
+                assertNull(features.bpm, "$frequency Hz must not invent a beat: $features")
+            }
+        }
+    }
+
     @Test fun `annotated click fixtures estimate tempo within two bpm after six beats`() {
         for (bpm in listOf(40.0, 60.0, 90.0, 120.0, 180.0, 240.0)) {
             val analyzer = analyzer()
@@ -51,6 +62,24 @@ class AudioAnalyzerTest {
             if (since < 0.04) 0.8 * sin(2 * PI * 1000 * since) else 0.0
         }).map { analyzer.analyze(it) }.toList()
         assertTrue(output.all { it.bpm == null })
+    }
+
+    @Test fun `beats over a continuous carrier drive tempo and rotation without a large rms jump`() {
+        for (bpm in listOf(90.0, 120.0, 150.0)) {
+            val analyzer = analyzer()
+            val clock = ContinuousMotionClock("track-a")
+            var signal = clock.advance(0.0, null, true)
+            for (pcm in SyntheticPcm.frames(18.0, size = 2048, sample = { time ->
+                val beat = time % (60.0 / bpm)
+                val drum = if (beat < 0.08) 0.18 * sin(2 * PI * 1000 * beat) * (1 - beat / 0.08) else 0.0
+                0.3 * sin(2 * PI * 220 * time) + drum
+            })) {
+                signal = clock.advance(pcm.samples.size.toDouble() / pcm.sampleRate, analyzer.analyze(pcm), true)
+            }
+            assertEquals(MotionMode.SYNCED, signal.mode, "$bpm BPM: $signal")
+            assertEquals(bpm, signal.bpm!!, 2.0)
+            assertEquals(60.0 / bpm * 32, signal.slowCycleSeconds, 0.3)
+        }
     }
 
     @Test fun `sample rates and arbitrary pcm chunk boundaries preserve tempo`() {
@@ -78,6 +107,33 @@ class AudioAnalyzerTest {
                 assertTrue(latest.bpm != null && abs(latest.bpm!! - 90.0) <= 2.0,
                     "offset=$offset gap=$afterGap: bpm=${latest.bpm}, confidence=${latest.confidence}")
             }
+        }
+    }
+
+    @Test fun `tempo history expires during silent capture before another track starts`() {
+        val analyzer = analyzer()
+        for (pcm in SyntheticPcm.frames(10.0, sample = SyntheticPcm.click(90.0))) analyzer.analyze(pcm)
+        for (pcm in SyntheticPcm.frames(4.0, sample = { 0.0 })) analyzer.analyze(pcm.copy(timestampSeconds = 10 + pcm.timestampSeconds))
+        var latest: FeatureFrame? = null
+        for (pcm in SyntheticPcm.frames(5.0, sample = SyntheticPcm.click(150.0)))
+            latest = analyzer.analyze(pcm.copy(timestampSeconds = 14 + pcm.timestampSeconds))
+        assertEquals(150.0, latest!!.bpm!!, 2.0)
+    }
+
+    @Test fun `compressed rhythm survives capture pcm quantization and window offsets`() {
+        for (offset in listOf(0.0, 0.003, 0.007, 0.011, 0.017, 0.026, 0.059, 0.19, 0.4)) {
+            val analyzer = analyzer()
+            var latest: FeatureFrame? = null
+            for (pcm in SyntheticPcm.frames(23.0, size = 2048, sample = { time ->
+                if (time < 3) 0.0 else {
+                    val position = time - 3 + offset
+                    val beat = position % (60.0 / 90)
+                    val drum = if (beat < 0.08) 0.18 * sin(2 * PI * 1000 * beat) * (1 - beat / 0.08) else 0.0
+                    ((0.3 * sin(2 * PI * 220 * position) + drum) * 32767).toInt() / 32768.0
+                }
+            })) latest = analyzer.analyze(pcm)
+            val onsets = BoundedAudioAnalyzer::class.java.getDeclaredField("onsets").apply { isAccessible = true }.get(analyzer)
+            assertTrue(latest!!.bpm != null && abs(latest.bpm!! - 90) <= 2.0, "offset=$offset: $latest; onsets=$onsets")
         }
     }
 

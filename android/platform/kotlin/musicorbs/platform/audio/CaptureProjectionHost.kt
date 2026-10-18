@@ -1,5 +1,6 @@
 package musicorbs.platform.audio
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Notification
 import android.app.NotificationChannel
@@ -122,6 +123,9 @@ class CaptureProjectionService : Service() {
 
     override fun onBind(intent: Intent?): IBinder = binder
 
+    // Тип mediaProjection задан для этого Service в platform/AndroidManifest.xml
+    // и подтверждён merged manifest; lint 8.9.2 ошибочно сообщает об отсутствии.
+    @SuppressLint("ForegroundServiceType")
     private fun foreground() {
         val notification = Notification.Builder(this, CHANNEL)
             .setSmallIcon(android.R.drawable.ic_media_play)

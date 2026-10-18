@@ -6,6 +6,7 @@ object ProfileLimits {
     val PARTICLE_COUNTS = mapOf(Quality.LOW to 4000, Quality.MEDIUM to 10000, Quality.HIGH to 20000)
     const val MAX_CONTROLS = 64
     const val MAX_PAYLOAD_BYTES = 262144
+    const val MAX_JSON_DEPTH = 32
     const val MAX_PENDING_REQUESTS = 16
     const val REQUEST_DEADLINE_MS = 3000L
     const val MAX_MOTION_HZ = 30

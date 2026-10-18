@@ -5,8 +5,34 @@ import kotlinx.serialization.json.*
 import kotlin.test.*
 import org.junit.Test
 import musicorbs.experience.infrastructure.WireCodec
+import musicorbs.experience.domain.ProfileLimits
 
 class WireCodecTest {
+    @Test fun deeplyNestedArraysAreRejectedWithoutCrashing() {
+        val raw = "{\"padding\":" + "[".repeat(16000) + "0" + "]".repeat(16000) + "}"
+        assertTrue(raw.toByteArray().size < 262144)
+        assertFailsWith<IllegalArgumentException> { WireCodec.decode(raw) }
+    }
+
+    @Test fun deeplyNestedSavedSessionIsRejectedWithoutCrashing() {
+        val raw = "{\"padding\":" + "[".repeat(16000) + "0" + "]".repeat(16000) + "}"
+        assertFailsWith<IllegalArgumentException> { WireCodec.session(raw) }
+    }
+
+    @Test fun depthBoundaryMixedContainersAndEscapedStrings() {
+        val ready = """{"protocolVersion":1,"bridgeSessionId":"depth-test","sequence":0,"type":"ready","payload":{"runtimeTimestampSeconds":0}}"""
+        fun wrapped(count: Int): String {
+            var padding = "0"
+            repeat(count) { index -> padding = if (index % 2 == 0) "[$padding]" else "{\"child\":$padding}" }
+            return ready.dropLast(1) + ",\"padding\":$padding}"
+        }
+        assertEquals("ready", WireCodec.decode(wrapped(ProfileLimits.MAX_JSON_DEPTH - 1)).type)
+        assertEquals("INVALID_INPUT", assertFailsWith<IllegalArgumentException> { WireCodec.decode(wrapped(ProfileLimits.MAX_JSON_DEPTH)) }.message)
+        val escaped = JsonObject(Json.parseToJsonElement(ready).jsonObject + ("padding" to JsonPrimitive("[{\\\"}]".repeat(100))))
+        assertEquals("ready", WireCodec.decode(escaped.toString()).type)
+        assertEquals("SNAPSHOT_INVALID", assertFailsWith<IllegalArgumentException> { WireCodec.session(wrapped(ProfileLimits.MAX_JSON_DEPTH)) }.message)
+    }
+
     private fun fixture(name: String): File {
         val root = generateSequence(File(System.getProperty("user.dir"))) { it.parentFile }.first { File(it, "contracts/fixtures/$name").isFile }
         return File(root, "contracts/fixtures/$name")

@@ -63,11 +63,25 @@ export function validateEnvelope(value: unknown): asserts value is Envelope {
     default: throw new Error('INVALID_INPUT');
   }
 }
+function validateJsonBudget(json: string): void {
+  requireValid(json.length <= ProfileLimits.maxPayloadBytes && new TextEncoder().encode(json).byteLength <= ProfileLimits.maxPayloadBytes, 'INVALID_INPUT');
+  // Общий с Kotlin лимит проверяется до построения дерева; строки не содержат узлов.
+  let depth = 0, quoted = false, escaped = false;
+  for (const character of json) {
+    if (quoted) {
+      if (escaped) escaped = false;
+      else if (character === '\\') escaped = true;
+      else if (character === '"') quoted = false;
+    } else if (character === '"') quoted = true;
+    else if (character === '{' || character === '[') requireValid(++depth <= ProfileLimits.maxJsonDepth);
+    else if (character === '}' || character === ']') depth--;
+  }
+}
 export function decodeEnvelope(json: string): Envelope {
-  requireValid(new TextEncoder().encode(json).byteLength <= ProfileLimits.maxPayloadBytes, 'INVALID_INPUT');
+  validateJsonBudget(json);
   const value: unknown = JSON.parse(json); validateEnvelope(value); return value;
 }
 export function encodeEnvelope(value: Envelope): string {
   validateEnvelope(value); const json = JSON.stringify(value);
-  requireValid(new TextEncoder().encode(json).byteLength <= ProfileLimits.maxPayloadBytes); return json;
+  validateJsonBudget(json); return json;
 }

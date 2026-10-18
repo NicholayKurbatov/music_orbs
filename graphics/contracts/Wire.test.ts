@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import test from 'node:test';
 import Ajv2020 from 'ajv/dist/2020.js';
 import { decodeEnvelope, encodeEnvelope, migrateSession, validateSession } from './Wire';
-import { DEFAULT_SETTINGS, validateSettings } from '../sculpture/domain/ProfileLimits';
+import { DEFAULT_SETTINGS, ProfileLimits, validateSettings } from '../sculpture/domain/ProfileLimits';
 
 const fixtures = JSON.parse(fs.readFileSync(new URL('../../contracts/fixtures/golden.json', import.meta.url), 'utf8')) as { name: string; kind: string; valid: boolean; value: unknown }[];
 const schema = JSON.parse(fs.readFileSync(new URL('../../contracts/wire-v1.schema.json', import.meta.url), 'utf8'));
@@ -31,4 +31,26 @@ test('payload bytes, non-finite numbers and palette ordering rejected before mut
   assert.throws(() => validateSettings({ ...DEFAULT_SETTINGS, shapeId: ['orb'] }));
   assert.throws(() => validateSettings({ ...DEFAULT_SETTINGS, paletteStops: [{ offset: 0, colorHex: '#FFFFFF' }, { offset: 0, colorHex: '#FFFFFF' }] }));
   assert.throws(() => validateSession({ schemaVersion: 2, revision: 0, settings: DEFAULT_SETTINGS, shapes: [] }));
+});
+
+test('JSON depth budget: boundary, mixed containers and escaped strings', () => {
+  const ready = { protocolVersion: 1, bridgeSessionId: 'depth-test', sequence: 0, type: 'ready', payload: { runtimeTimestampSeconds: 0 } };
+  const wrap = (count: number) => {
+    let raw = '0';
+    for (let index = 0; index < count; index++) raw = index % 2 ? `{"child":${raw}}` : `[${raw}]`;
+    return `${JSON.stringify(ready).slice(0, -1)},"padding":${raw}}`;
+  };
+  assert.doesNotThrow(() => decodeEnvelope(wrap(ProfileLimits.maxJsonDepth - 1)));
+  assert.throws(() => decodeEnvelope(wrap(ProfileLimits.maxJsonDepth)), /INVALID_INPUT/);
+  const escaped = { ...ready, padding: ('[{\\"}]').repeat(100) };
+  assert.deepEqual(decodeEnvelope(JSON.stringify(escaped)), escaped);
+  const excessive = decodeEnvelope(wrap(ProfileLimits.maxJsonDepth - 1));
+  Object.assign(excessive, { padding: JSON.parse('['.repeat(32) + '0' + ']'.repeat(32)) });
+  assert.throws(() => encodeEnvelope(excessive), /INVALID_INPUT/);
+});
+
+test('deep arrays below byte limit are rejected before accepting an envelope', () => {
+  const raw = '{"padding":' + '['.repeat(16000) + '0' + ']'.repeat(16000) + '}';
+  assert.ok(new TextEncoder().encode(raw).byteLength < ProfileLimits.maxPayloadBytes);
+  assert.throws(() => decodeEnvelope(raw), /INVALID_INPUT/);
 });

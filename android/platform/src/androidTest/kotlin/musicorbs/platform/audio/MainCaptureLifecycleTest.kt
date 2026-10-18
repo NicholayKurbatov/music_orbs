@@ -67,7 +67,11 @@ class MainCaptureLifecycleTest {
             p7Evidence("main-microphone-home-injected", "homeAccepted" to homeAccepted,
                 "scenarioState" to scenario.state.name, "topPackage" to probe.device.currentPackageName,
                 "recorders" to manager.activeRecordingConfigurations.size)
-            assertTrue("HOME key injection rejected", homeAccepted)
+            // UiDevice может вернуть false после доставленного HOME (таймаут idle).
+            // Проверяем эффект настоящего нажатия, а не статус ожидания accessibility.
+            withTimeout(5000) {
+                while (scenario.state != androidx.lifecycle.Lifecycle.State.CREATED || probe.device.currentPackageName == context.packageName) delay(100)
+            }
             try {
                 withTimeout(5000) { while (manager.activeRecordingConfigurations.isNotEmpty()) delay(100) }
             } finally {
@@ -153,7 +157,9 @@ class MainCaptureLifecycleTest {
             assertTrue("Fixture must stay audible to the capture pipeline", track.playState == AudioTrack.PLAYSTATE_PLAYING)
 
             probe.device.pressHome()
-            delay(1200)
+            withTimeout(5000) {
+                while (scenario.state != androidx.lifecycle.Lifecycle.State.CREATED || probe.captureServicePresent(context)) delay(100)
+            }
             p7Evidence("main-capture-background", "previousSourceId" to sourceId,
                 "recorders" to manager.activeRecordingConfigurations.size, "captureService" to probe.captureServicePresent(context))
             probe.assertNoCaptureService(context)
