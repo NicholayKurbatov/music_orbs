@@ -9,6 +9,8 @@ const adb = path.join(sdk, 'platform-tools', 'adb.exe');
 const java = path.join(process.env.JAVA_HOME, 'bin', 'java.exe');
 const outputIndex = process.argv.indexOf('--output');
 const output = outputIndex < 0 ? 'tests/device/results/p8-update' : process.argv[outputIndex + 1];
+const versionIndex = process.argv.indexOf('--expected-version');
+const expectedVersion = versionIndex < 0 ? '0.2.0-dev' : process.argv[versionIndex + 1];
 fs.mkdirSync(output, { recursive: true });
 fs.mkdirSync('build/p8-update', { recursive: true });
 const run = a => execFileSync(adb, ['-s', 'emulator-5554', ...a], { windowsHide: true, maxBuffer: 8 * 1024 * 1024 });
@@ -33,7 +35,7 @@ assert(install.includes('Success'));
 const after = pkg();
 const restored = run(['exec-out', 'run-as', 'musicorbs.app', 'cat', 'files/session.json']);
 assert(after.versionCode > before.versionCode, 'versionCode must increase');
-assert.equal(after.versionName, '0.2.0-dev');
+assert.equal(after.versionName, expectedVersion);
 assert(saved.equals(restored), 'session.json must survive update byte-for-byte');
 const report = { performedAt: new Date().toISOString(), result: 'pass', applicationId: 'musicorbs.app',
   before, after, certificateSha256: certificateAfter, apkSha256: sha(fs.readFileSync(apk)),

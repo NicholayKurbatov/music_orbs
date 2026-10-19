@@ -215,6 +215,8 @@ MusicOrbs/
 |   |-- motion/
 |   |   \-- domain/
 |   |       |-- MotionSignal.ts
+|   |       |-- MusicMotionResponse.test.ts
+|   |       |-- MusicMotionResponse.ts
 |   |       |-- VisualPhase.test.ts
 |   |       \-- VisualPhase.ts
 |   |-- package-lock.json
@@ -424,6 +426,10 @@ MusicOrbs/
 |   |       |   |-- native-session.json
 |   |       |   |-- report.json
 |   |       |   \-- state.json
+|   |       |-- full-sync-native/
+|   |       |   \-- instrumentation.txt
+|   |       |-- full-sync-update/
+|   |       |   \-- report.json
 |   |       |-- g2-2026-10-17T19-29-03-309Z/
 |   |       |   |-- baseline.json
 |   |       |   |-- failure.png

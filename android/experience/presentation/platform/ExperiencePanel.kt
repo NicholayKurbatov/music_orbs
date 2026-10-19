@@ -139,6 +139,11 @@ fun MusicOrbsScreen(
                         Switch(checked = settings.musicSync, onCheckedChange = { onSettings(settings.copy(musicSync = it)) }, enabled = settingsEnabled, modifier = Modifier.semantics { contentDescription = "Синхронизация с музыкой" })
                     }
                     Choice("Плотность", settings.quality, Quality.entries, ::qualityLabel, enabled = settingsEnabled) { onSettings(settings.copy(quality = it)) }
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                        Text("Полная синхронизация", modifier = Modifier.weight(1f))
+                        Switch(checked = settings.fullSync, onCheckedChange = { onSettings(settings.copy(fullSync = it)) }, enabled = settingsEnabled && settings.musicSync, modifier = Modifier.semantics { contentDescription = "Полная синхронизация" })
+                    }
+                    Text("Темп управляет вращением: медленнее музыка — медленнее объект. Барабанные и другие резкие атаки добавляют ускорение. Работает вместе с Music Sync; без уверенного темпа движение плавно возвращается к автономному.", style = MaterialTheme.typography.bodySmall)
                     Choice("Частота кадров", settings.targetFps, listOf(60, 30), { "$it FPS" }, enabled = settingsEnabled) { onSettings(settings.copy(targetFps = it)) }
                     OutlinedButton(onClick = onReset, enabled = settingsEnabled, modifier = Modifier.fillMaxWidth()) { Text("Сбросить активную форму") }
                     Text("Звук", style = MaterialTheme.typography.titleMedium)

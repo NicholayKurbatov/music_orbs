@@ -2893,5 +2893,225 @@
         }
       ]
     }
+  },
+  {
+    "name": "full-sync-enabled",
+    "kind": "session",
+    "valid": true,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60,
+        "fullSync": true
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "full-sync-disabled",
+    "kind": "session",
+    "valid": true,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60,
+        "fullSync": false
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "full-sync-string",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60,
+        "fullSync": "true"
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "full-sync-null",
+    "kind": "session",
+    "valid": false,
+    "value": {
+      "schemaVersion": 2,
+      "revision": 7,
+      "settings": {
+        "shapeId": "orb",
+        "materialId": "dots",
+        "colorHex": "#FFFFFF",
+        "paletteId": "white",
+        "paletteStops": [
+          {
+            "offset": 0,
+            "colorHex": "#FFFFFF"
+          },
+          {
+            "offset": 1,
+            "colorHex": "#FFFFFF"
+          }
+        ],
+        "speed": 0.5,
+        "amplitude": 0.3,
+        "touchSensitivity": 1,
+        "musicSync": true,
+        "quality": "medium",
+        "targetFps": 60,
+        "fullSync": null
+      },
+      "shapes": [
+        {
+          "shapeId": "orb",
+          "seed": -17,
+          "generatorVersion": 1,
+          "revision": 2,
+          "controls": [
+            {
+              "center": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "delta": [
+                0.02,
+                0,
+                0
+              ],
+              "radius": 0.3
+            }
+          ]
+        }
+      ]
+    }
   }
 ]

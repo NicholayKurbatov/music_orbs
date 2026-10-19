@@ -32,7 +32,7 @@ wire v1/session v2 и музыкальный движок реализованы
 | ControlPoint | center: Vec3 в локальных координатах; delta: Vec3 постоянного смещения; radius > 0 | Sculpture |
 | DeformationSnapshot / ShapeSnapshot | shapeId, seed (целый Int32), generatorVersion >= 1, revision >= 0, controls[]; без индексов частиц и GPU-ресурсов | Sculpture, нативная копия для хранения |
 | Stroke | pointerId >= 0, phase begin/move/end/cancel, center, delta, radius > 0; sensitivity применяется один раз на application-границе | Sculpture application |
-| SceneSettings | shapeId, materialId, colorHex (#RRGGBB), paletteId, paletteStops[], speed 0..2, amplitude 0..1, touchSensitivity 0..3, musicSync: bool, quality low/medium/high, targetFps 30/60 | Experience |
+| SceneSettings | shapeId, materialId, colorHex (#RRGGBB), paletteId, paletteStops[], speed 0..2, amplitude 0..1, touchSensitivity 0..3, musicSync: bool, fullSync?: bool (отсутствие = false), quality low/medium/high, targetFps 30/60 | Experience |
 | SourceRequest | kind local-file/playback-capture/microphone; uri обязателен только для local-file; не является системным разрешением | AudioSession |
 | SourceSession | id уникальный для каждого открытия; kind; state idle/requesting/running/unavailable | AudioSession |
 | PcmFrame | sourceSessionId; timestampSeconds >= 0 — монотонное runtime-время первого sample; sampleRate 8000..192000 Гц; samples FloatArray 1..16384, mono, [-1,1], конечный | AudioSession published language |
@@ -627,3 +627,37 @@ freshness, confidence/BPM/период и сохранность формы. П�
 собирается и выдаётся с явным статусом FT-36 «не проверено»; этот сценарий и
 соответствующая задача не отмечаются выполненными. Успех на эмуляторе не
 объявляется исправлением захвата Яндекс Музыки на Honor.
+
+## 16. Полная синхронизация движения (0.2.1)
+
+FR-26 добавляет необязательный boolean `SceneSettings.fullSync`: по умолчанию
+false, работает вместе с musicSync. Native Compose и browser показывают
+«Полная синхронизация». Выбор сохраняется со всеми формами; Reset его не меняет.
+Wire protocol v1/session v2 расширены необязательным полем; старые снимки без
+поля читаются с false, Kotlin не выводит false обратно в JSON. String/null/числа
+отклоняются до применения; MotionSignal и source/bridge UUID прежние.
+
+`MusicMotionResponse.advance(deltaSeconds,signal,enabled)` принимает delta >=0
+(конечный, секунды), валидированный MotionSignal и флаг musicSync && fullSync.
+Возвращает приращение времени временной анимации (секунды), хранит только
+текущий множитель скорости. INVALID_INPUT при некорректном delta, до мутации.
+Без IO, знания источника, геометрии или изменения музыкальной phase.
+
+При synced, confidence >=0,65, energy >0,01 и BPM целевой множитель равен
+`2π/0,12 * BPM/(60*8) * (1+0,75*intensity)`; иначе 1. В renderer угловая
+скорость вокруг Y = 0,12 × speed × множитель рад/с: один оборот на восемь долей
+при speed=1 (на шестнадцать при default speed=0,5), атаки ускоряют до 75%.
+Intensity — spectral flux: реагирует на барабанные и другие атаки, не является
+классификатором инструментов. Уменьшение BPM уменьшает скорость; уверенная оценка
+темпа всё ещё требует истории DSP. До неё сохраняется автономное движение.
+
+Сглаживание множителя: exponential τ=0,15 с для ускорения/0,8 с для замедления,
+изменение <=20/с. Интеграция trapezoid, dt=min(delta,0,1 с), затем ×settings.speed.
+Время не устанавливается заново при переключении режима, источника или BPM.
+Pause не интегрирует время; отложенные данные одного источника отбрасываются
+до расчёта скорости. При false начальное поведение полностью прежнее; после
+выключения активного fullSync скорость плавно возвращается к 1.
+
+`SculptureScene.animationState()`/`window.musicOrbs.animationState()` — скалярная
+диагностика rate (безразмерный множитель) и elapsedSeconds (время анимации), без
+мутации и IO. Не сериализуется в сессию, не содержит аудио. Renderer API прежний.

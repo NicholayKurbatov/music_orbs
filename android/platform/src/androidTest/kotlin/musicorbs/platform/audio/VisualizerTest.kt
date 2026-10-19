@@ -179,6 +179,78 @@ class VisualizerTest {
         }
     }
 
+    @Test fun fullSyncFollowsRealAudioTempoAndPersistsNativeSetting() = runBlocking {
+        val saved = P7SessionPreserver(context)
+        val manager = context.getSystemService(AudioManager::class.java)
+        val volume = manager.getStreamVolume(AudioManager.STREAM_MUSIC)
+        val scenario = ActivityScenario.launch(MainActivity::class.java)
+        val probe = P7MainUiProbe(scenario)
+        var track: AudioTrack? = null
+        var baseline: JsonObject? = null
+        try {
+            probe.ready(); probe.closePanelIfOpen()
+            baseline = probe.snapshot("full-sync-baseline")
+            probe.click("Настройки")
+            var clicked = false
+            repeat(9) {
+                if (!clicked) {
+                    val control = probe.device.findObject(By.desc("Полная синхронизация"))
+                    if (control != null && control.visibleBounds.height() > 5) {
+                        control.click(); clicked = true; delay(400)
+                    } else {
+                        probe.device.swipe((probe.device.displayWidth * .75).toInt(), (probe.device.displayHeight * .78).toInt(),
+                            (probe.device.displayWidth * .75).toInt(), (probe.device.displayHeight * .32).toInt(), 20)
+                        delay(200)
+                    }
+                }
+            }
+            check(clicked) { "Full sync native switch missing" }
+            probe.closePanelIfOpen()
+            assertTrue(probe.snapshot().getValue("settings").jsonObject.getValue("fullSync").jsonPrimitive.boolean)
+            withTimeout(5000) {
+                while (Json.parseToJsonElement(java.io.File(context.filesDir, "session.json").readText()).jsonObject
+                    .getValue("settings").jsonObject["fullSync"]?.jsonPrimitive?.booleanOrNull != true) delay(100)
+            }
+            scenario.recreate(); probe.ready(); probe.closePanelIfOpen()
+            assertTrue(probe.snapshot().getValue("settings").jsonObject.getValue("fullSync").jsonPrimitive.boolean)
+            manager.setStreamVolume(AudioManager.STREAM_MUSIC, manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0)
+            track = p8RhythmicTrack(150)
+            probe.click("Настройки"); probe.click("Visualizer GLOBAL · общий микс", scroll = true); probe.closePanelIfOpen()
+            awaitTempo(probe, 150)
+            suspend fun rates(): List<Double> {
+                val values = mutableListOf<Double>()
+                repeat(25) { values += probe.evaluate("window.musicOrbs.animationState()").jsonObject.getValue("rate").jsonPrimitive.double; delay(100) }
+                return values
+            }
+            delay(1000)
+            val fast = rates()
+            assertTrue("Real drum attacks must accelerate beyond tempo-only rotation", fast.max() > 2 * PI / .12 * 150 / 480 * 1.02)
+            track.stop(); track.release(); track = null
+            delay(4000)
+            track = p8RhythmicTrack(90)
+            awaitTempo(probe, 90); delay(1500)
+            val slow = rates()
+            assertTrue("Slower audio must slow the rendered object", fast.average() > slow.average() * 1.2)
+            val stateBeforeOff = probe.evaluate("window.musicOrbs.animationState()").jsonObject
+            changeSync(probe, false)
+            delay(7000)
+            val afterOff = probe.evaluate("window.musicOrbs.animationState()").jsonObject
+            assertEquals(1.0, afterOff.getValue("rate").jsonPrimitive.double, .02)
+            assertTrue(afterOff.getValue("elapsedSeconds").jsonPrimitive.double > stateBeforeOff.getValue("elapsedSeconds").jsonPrimitive.double)
+            assertEquals(baseline.getValue("shapes"), probe.snapshot().getValue("shapes"))
+            p7Evidence("full-sync-real-audio", "fastBpm" to 150, "slowBpm" to 90,
+                "fastRateMean" to fast.average(), "fastRateMax" to fast.max(), "slowRateMean" to slow.average(),
+                "syncOffRate" to afterOff.getValue("rate").jsonPrimitive.double,
+                "nativeSettingRestored" to true, "shapesPreserved" to true)
+        } finally {
+            try {
+                track?.let { runCatching { it.stop() }; it.release() }
+                manager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, 0)
+                baseline?.let { probe.restoreScene(it) }
+            } finally { try { scenario.close() } finally { probe.close(); saved.restore() } }
+        }
+    }
+
     private suspend fun awaitTempo(probe: P7MainUiProbe, bpm: Int): JsonObject {
         var last: JsonObject? = null
         val found = withTimeoutOrNull(45000) {

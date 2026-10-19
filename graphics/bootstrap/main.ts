@@ -48,6 +48,8 @@ try {
     element<HTMLInputElement>('speed').value = String(settings.speed); element<HTMLInputElement>('amplitude').value = String(settings.amplitude);
     element<HTMLInputElement>('touch').value = String(settings.touchSensitivity); element<HTMLSelectElement>('quality').value = settings.quality;
     element<HTMLSelectElement>('fps').value = String(settings.targetFps); element<HTMLInputElement>('sync').checked = settings.musicSync;
+    element<HTMLInputElement>('full-sync').checked = settings.fullSync === true;
+    element<HTMLInputElement>('full-sync').disabled = !settings.musicSync;
   };
   const save = () => {
     if (native) { window.dispatchEvent(new Event('music-orbs-dirty')); return; }
@@ -93,6 +95,7 @@ try {
   element<HTMLSelectElement>('quality').addEventListener('change', event => { void update({ quality: (event.target as HTMLSelectElement).value as SceneSettings['quality'] }); });
   element<HTMLSelectElement>('fps').addEventListener('change', event => { void update({ targetFps: Number((event.target as HTMLSelectElement).value) as 30 | 60 }); });
   element<HTMLInputElement>('sync').addEventListener('change', event => { void update({ musicSync: (event.target as HTMLInputElement).checked }); });
+  element<HTMLInputElement>('full-sync').addEventListener('change', event => { void update({ fullSync: (event.target as HTMLInputElement).checked }); });
   element<HTMLInputElement>('test-motion').addEventListener('change', event => { synthetic.enabled = (event.target as HTMLInputElement).checked; });
   element<HTMLInputElement>('bpm').addEventListener('input', event => { synthetic.bpm = Number((event.target as HTMLInputElement).value); });
   element('source').addEventListener('click', () => synthetic.switchSource());
@@ -130,6 +133,7 @@ try {
     command, snapshot,
     motion(signal: MotionSignal) { external = true; visual.accept(signal); },
     visualState() { return visual.advance(0); },
+    animationState() { return app.animationState(); },
     profiling: {
       start(options: { intervalThresholdMs?: number } = {}) {
         if (!(window as Window & { __musicOrbsDiagnosticsEnabled?: boolean }).__musicOrbsDiagnosticsEnabled) throw new Error('INVALID_INPUT: profiling disabled');

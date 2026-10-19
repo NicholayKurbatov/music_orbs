@@ -16,6 +16,8 @@
     <label>Плотность<select id="quality"><option value="low">Низкая · 4 000</option><option value="medium" selected>Средняя · 10 000</option><option value="high">Высокая · 20 000</option></select></label>
     <label>Частота кадров<select id="fps"><option value="60">60 FPS</option><option value="30">30 FPS</option></select></label>
     <label class="check"><input id="sync" type="checkbox" checked>Music Sync</label>
+    <label class="check"><input id="full-sync" type="checkbox">Полная синхронизация</label>
+    <p>Темп управляет вращением, удары добавляют ускорение.</p>
     <div id="synthetic"><h2>Тестовое движение</h2><label class="check"><input id="test-motion" type="checkbox">Искусственный ритм</label><label>BPM<input id="bpm" type="range" min="60" max="180" step="1" value="90"></label><button id="source">Сменить тестовый источник</button></div>
     <div class="actions"><button id="pause">Пауза</button><button id="reset">Reset формы</button></div>
   </aside>

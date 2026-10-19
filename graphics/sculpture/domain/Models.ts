@@ -23,6 +23,7 @@ export interface SceneSettings {
   readonly amplitude: number;
   readonly touchSensitivity: number;
   readonly musicSync: boolean;
+  readonly fullSync?: boolean;
   readonly quality: 'low' | 'medium' | 'high';
   readonly targetFps: 30 | 60;
 }

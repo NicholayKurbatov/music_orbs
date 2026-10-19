@@ -53,6 +53,7 @@ export function validateSettings(value: unknown): asserts value is SceneSettings
   requireValid(inRange(value.amplitude, 0, ProfileLimits.maxAmplitude));
   requireValid(inRange(value.touchSensitivity, 0, ProfileLimits.maxTouchSensitivity));
   requireValid(typeof value.musicSync === 'boolean');
+  requireValid(value.fullSync === undefined || typeof value.fullSync === 'boolean');
   requireValid(typeof value.quality === 'string' && ['low', 'medium', 'high'].includes(value.quality));
   requireValid(value.targetFps === 30 || value.targetFps === 60);
 }

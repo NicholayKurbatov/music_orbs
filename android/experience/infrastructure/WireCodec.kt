@@ -44,12 +44,17 @@ object WireCodec {
     fun settings(value: JsonObject): SceneSettings {
         val sync = value.getValue("musicSync") as JsonPrimitive
         require(!sync.isString) { "INVALID_INPUT" }
-        return SceneSettings(mapped(shapes, value.str("shapeId")), mapped(materials, value.str("materialId")), value.str("colorHex"), value.num("speed"), value.num("amplitude"), value.num("touchSensitivity"), sync.boolean, mapped(qualities, value.str("quality")), value.int("targetFps"), mapped(palettes, value.str("paletteId")), value.getValue("paletteStops").jsonArray.map { it.jsonObject.let { stop -> PaletteStop(stop.num("offset"), stop.str("colorHex")) } }).also { ProfileLimits.validate(it) }
+        val fullSync = value["fullSync"]?.let { element ->
+            require(element is JsonPrimitive && !element.isString && element.booleanOrNull != null) { "INVALID_INPUT" }
+            element.boolean
+        } ?: false
+        return SceneSettings(mapped(shapes, value.str("shapeId")), mapped(materials, value.str("materialId")), value.str("colorHex"), value.num("speed"), value.num("amplitude"), value.num("touchSensitivity"), sync.boolean, mapped(qualities, value.str("quality")), value.int("targetFps"), mapped(palettes, value.str("paletteId")), value.getValue("paletteStops").jsonArray.map { it.jsonObject.let { stop -> PaletteStop(stop.num("offset"), stop.str("colorHex")) } }, fullSync).also { ProfileLimits.validate(it) }
     }
     fun settings(value: SceneSettings): JsonObject {
         ProfileLimits.validate(value)
         return buildJsonObject {
             put("shapeId", shapes.getValue(value.shapeId)); put("materialId", materials.getValue(value.materialId)); put("colorHex", value.colorHex)
+            if (value.fullSync) put("fullSync", true)
             put("speed", value.speed); put("amplitude", value.amplitude); put("touchSensitivity", value.touchSensitivity); put("musicSync", value.musicSync); put("quality", qualities.getValue(value.quality)); put("targetFps", value.targetFps)
             put("paletteId", palettes.getValue(value.paletteId)); put("paletteStops", buildJsonArray { value.paletteStops.forEach { stop -> add(buildJsonObject { put("offset", stop.offset); put("colorHex", stop.colorHex) }) } })
         }

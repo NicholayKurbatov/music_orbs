@@ -78,6 +78,10 @@
         "musicSync": {
           "type": "boolean"
         },
+        "fullSync": {
+          "type": "boolean",
+          "default": false
+        },
         "quality": {
           "type": "string",
           "enum": [

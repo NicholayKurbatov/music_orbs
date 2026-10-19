@@ -8,5 +8,5 @@ data class ControlPoint(val center: Vec3, val delta: Vec3, val radius: Double)
 data class ShapeSnapshot(val shapeId: ShapeId, val seed: Int, val generatorVersion: Int, val revision: Long, val controls: List<ControlPoint>)
 enum class PaletteId { WHITE, PINK, LILAC, SPECTRUM, CUSTOM }
 data class PaletteStop(val offset: Double, val colorHex: String)
-data class SceneSettings(val shapeId: ShapeId, val materialId: MaterialId, val colorHex: String, val speed: Double, val amplitude: Double, val touchSensitivity: Double, val musicSync: Boolean, val quality: Quality, val targetFps: Int, val paletteId: PaletteId = PaletteId.CUSTOM, val paletteStops: List<PaletteStop> = listOf(PaletteStop(0.0, colorHex), PaletteStop(1.0, colorHex)))
+data class SceneSettings(val shapeId: ShapeId, val materialId: MaterialId, val colorHex: String, val speed: Double, val amplitude: Double, val touchSensitivity: Double, val musicSync: Boolean, val quality: Quality, val targetFps: Int, val paletteId: PaletteId = PaletteId.CUSTOM, val paletteStops: List<PaletteStop> = listOf(PaletteStop(0.0, colorHex), PaletteStop(1.0, colorHex)), val fullSync: Boolean = false)
 data class SessionSnapshot(val schemaVersion: Int, val revision: Long, val settings: SceneSettings, val shapes: List<ShapeSnapshot>)

@@ -1,4 +1,5 @@
 import { validateMotionSignal, type MotionSignal } from '../../motion/domain/MotionSignal';
+import { MusicMotionResponse } from '../../motion/domain/MusicMotionResponse';
 import type { BaseGeometry, DeformationSnapshot, SceneSettings, SceneSnapshot, ShapeId, Stroke, Vec3 } from '../domain/Models';
 import { LocalDeformationField } from '../domain/LocalDeformationField';
 import type { ShapeFactory } from '../domain/Policies';
@@ -14,6 +15,7 @@ export class SculptureScene implements SceneApplication {
   private bases = new Map<string, BaseGeometry>();
   private paused = false;
   private elapsed = 0;
+  private readonly musicResponse = new MusicMotionResponse();
   private pointer: number | null = null;
   private lastMotion: MotionSignal | null = null;
   constructor(private readonly factory: ShapeFactory, private readonly renderer: RendererPort) {
@@ -62,7 +64,7 @@ export class SculptureScene implements SceneApplication {
     // Авторитетная смена sourceSessionId выполняется bridge; старые значения времени одной сессии игнорируются.
     if (this.lastMotion?.sourceSessionId === signal.sourceSessionId && this.lastMotion.timestampSeconds > signal.timestampSeconds) signal = this.lastMotion;
     this.lastMotion = signal;
-    this.elapsed += Math.min(deltaSeconds, ProfileLimits.maxDeltaSeconds) * this.settings.speed;
+    this.elapsed += this.musicResponse.advance(deltaSeconds, signal, this.settings.musicSync && this.settings.fullSync === true) * this.settings.speed;
     const deformation = this.fields.get(this.settings.shapeId)!.snapshot();
     const key = `${deformation.shapeId}:${deformation.seed}:${this.settings.quality}`;
     let base = this.bases.get(key);
@@ -70,6 +72,7 @@ export class SculptureScene implements SceneApplication {
     this.renderer.present({ base, deformation, settings: this.settings, motion: signal, elapsedSeconds: this.elapsed });
   }
   private snapshot(): SceneSnapshot { return { settings: clone(this.settings), shapes: [...this.fields.values()].map(f => f.snapshot()) }; }
+  animationState(): { rate: number; elapsedSeconds: number } { return { rate: this.musicResponse.read(), elapsedSeconds: this.elapsed }; }
   private finishGesture(): void {
     if (this.pointer === null) return;
     this.fields.get(this.settings.shapeId)!.apply({ pointerId: this.pointer, phase: 'cancel', center: [0, 0, 0], delta: [0, 0, 0], radius: 0.4 });

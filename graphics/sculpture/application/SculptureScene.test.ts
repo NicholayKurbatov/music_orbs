@@ -8,6 +8,29 @@ import { SyntheticMotion } from '../../bootstrap/SyntheticMotion';
 class FakeRenderer implements RendererPort { frames: RenderFrame[] = []; present(f: RenderFrame) { this.frames.push(f); } resize() {} dispose() {} }
 const create = () => { const renderer = new FakeRenderer(); return { renderer, app: new SculptureScene(new ProceduralShapeFactory(), renderer) }; };
 const gesture = (app: SculptureScene) => { app.gesture({ pointerId: 1, phase: 'begin', center: [0, 0, 1], delta: [0.05, 0, 0], radius: 0.5 }); app.gesture({ pointerId: 1, phase: 'end', center: [0, 0, 1], delta: [0, 0, 0], radius: 0.5 }); };
+
+test('FT-38: full sync changes rendered motion, keeps sculpture and survives snapshot restore', async () => {
+  const { app, renderer } = create(); gesture(app);
+  const baseline = (await app.handle({ type: 'snapshot' })).snapshot!;
+  const source = new SyntheticMotion(); source.enabled = true;
+  await app.handle({ type: 'configure', settings: { ...baseline.settings, fullSync: true } });
+  for (let i = 0; i < 180; i++) app.frame(1 / 60, source.advance(1 / 60));
+  const elapsed = renderer.frames.at(-1)!.elapsedSeconds;
+  assert.ok(elapsed > 3 * baseline.settings.speed * 3);
+  const saved = (await app.handle({ type: 'snapshot' })).snapshot!;
+  assert.equal(saved.settings.fullSync, true); assert.deepEqual(saved.shapes, baseline.shapes);
+  const restored = create(); await restored.app.handle({ type: 'restore', snapshot: saved });
+  assert.deepEqual((await restored.app.handle({ type: 'snapshot' })).snapshot, saved);
+  await app.handle({ type: 'pause' }); app.frame(999, source.advance(0.1));
+  assert.equal(app.animationState().elapsedSeconds, elapsed);
+  await app.handle({ type: 'resume' });
+  await app.handle({ type: 'configure', settings: { ...saved.settings, musicSync: false } });
+  const atSwitch = app.animationState().elapsedSeconds;
+  app.frame(0, source.advance(0)); assert.equal(app.animationState().elapsedSeconds, atSwitch);
+  for (let i = 0; i < 600; i++) app.frame(1 / 60, source.advance(1 / 60));
+  assert.ok(Math.abs(app.animationState().rate - 1) < 0.001);
+  assert.deepEqual((await app.handle({ type: 'snapshot' })).snapshot!.shapes, baseline.shapes);
+});
 test('FT-07/10/22: отдельные поля, seed, смена quality, reset только активной', async () => {
   const { app, renderer } = create(); gesture(app);
   const original = (await app.handle({ type: 'snapshot' })).snapshot!;

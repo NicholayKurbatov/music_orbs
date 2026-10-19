@@ -8,6 +8,16 @@ import musicorbs.experience.infrastructure.WireCodec
 import musicorbs.experience.domain.ProfileLimits
 
 class WireCodecTest {
+    @Test fun fullSyncIsOptionalStrictAndPreservedAcrossSaveAndBridge() {
+        val old = ProfileLimits.DEFAULT_SETTINGS
+        assertFalse(WireCodec.settings(WireCodec.settings(old)).fullSync)
+        assertFalse(WireCodec.settings(old).containsKey("fullSync"))
+        val enabled = old.copy(fullSync = true)
+        assertEquals(enabled, WireCodec.settings(WireCodec.settings(enabled)))
+        for (invalid in listOf(JsonNull, JsonPrimitive("true"), JsonPrimitive(1))) {
+            assertFails { WireCodec.settings(JsonObject(WireCodec.settings(old) + ("fullSync" to invalid))) }
+        }
+    }
     @Test fun deeplyNestedArraysAreRejectedWithoutCrashing() {
         val raw = "{\"padding\":" + "[".repeat(16000) + "0" + "]".repeat(16000) + "}"
         assertTrue(raw.toByteArray().size < 262144)
