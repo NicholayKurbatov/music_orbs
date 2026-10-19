@@ -426,8 +426,16 @@ MusicOrbs/
 |   |       |   |-- native-session.json
 |   |       |   |-- report.json
 |   |       |   \-- state.json
+|   |       |-- full-sync-native-attempt1/
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
 |   |       |-- full-sync-native/
-|   |       |   \-- instrumentation.txt
+|   |       |   |-- instrumentation.txt
+|   |       |   \-- report.json
+|   |       |-- full-sync-release/
+|   |       |   |-- README.md
+|   |       |   |-- browser.json
+|   |       |   \-- report.json
 |   |       |-- full-sync-update/
 |   |       |   \-- report.json
 |   |       |-- g2-2026-10-17T19-29-03-309Z/

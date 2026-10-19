@@ -1,0 +1,53 @@
+{
+  "performedAt": "2026-10-19T06:51:29.380Z",
+  "versionName": "0.2.1-dev",
+  "versionCode": 3,
+  "applicationId": "musicorbs.app",
+  "artifact": "build/releases/MusicOrbs-0.2.1-dev.apk",
+  "sha256": "7f240554fb4608d1445c824fab6d99e01a8ea2ee378fc02ed84edb55541277a2",
+  "certificateSha256": "63fbfd23fb8e887ad731cffe86171d3ea289c7e08a578deda1812de81d27a3d9",
+  "device": "Android Emulator API 35; Honor 200 Pro не проверен",
+  "checks": {
+    "jvm": {
+      "tests": 77,
+      "failures": 0
+    },
+    "typeScript": {
+      "tests": 89,
+      "failures": 0
+    },
+    "native": {
+      "tests": 1,
+      "failures": 0
+    },
+    "graphicsBuild": "pass",
+    "androidBuild": "pass",
+    "testApkBuild": "pass",
+    "lint": {
+      "errors": 0,
+      "warnings": 10
+    },
+    "browser": "pass",
+    "strictTypeScript": "pass"
+  },
+  "fullSync": {
+    "stage": "full-sync-real-audio",
+    "fastBpm": 150,
+    "slowBpm": 90,
+    "fastRateMean": 20.471944385761947,
+    "fastRateMax": 26.359185230290247,
+    "slowRateMean": 11.703132707800814,
+    "syncOffRate": 1.0001041887349844,
+    "nativeSettingRestored": true,
+    "shapesPreserved": true
+  },
+  "update": "../full-sync-update/report.json",
+  "native": "../full-sync-native/report.json",
+  "attempt": "../full-sync-native-attempt1/report.json",
+  "limits": [
+    "Honor 200 Pro/Яндекс Музыка не проверены; P8 9.8 остаётся открыт.",
+    "Intensity — spectral flux, а не классификатор барабанов; реагируют и другие атаки.",
+    "Подтверждение нового BPM требует истории; без уверенного темпа возвращается автономная скорость.",
+    "Прежний AVD кадровый бюджет остаётся FAIL; длительный профиль не повторялся."
+  ]
+}

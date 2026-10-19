@@ -1,0 +1,188 @@
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+musicorbs.platform.audio.VisualizerTest:
+INSTRUMENTATION_STATUS: test=fullSyncFollowsRealAudioTempoAndPersistsNativeSetting
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"5bb76f86-a0d6-4d6f-9c5a-699334bb245c"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"5bb76f86-a0d6-4d6f-9c5a-699334bb245c","elapsedMs":1833,"jsElapsedMs":8.100000001490116,"responseId":"5bb76f86-a0d6-4d6f-9c5a-699334bb245c","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-restore-ready","matchedOriginalSession":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"full-sync-baseline","probeId":"33c5ded2-57f9-4813-9539-3f955d379304"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"full-sync-baseline","probeId":"33c5ded2-57f9-4813-9539-3f955d379304","elapsedMs":978,"jsElapsedMs":0.5,"responseId":"33c5ded2-57f9-4813-9539-3f955d379304","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-native-click","label":"Настройки","left":772,"top":219,"width":198,"height":55}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"snapshot","probeId":"44a844d1-df61-427c-9a75-fd9298b023a2"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"snapshot","probeId":"44a844d1-df61-427c-9a75-fd9298b023a2","elapsedMs":650,"jsElapsedMs":0.10000000149011612,"responseId":"44a844d1-df61-427c-9a75-fd9298b023a2","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"94607944-86c4-4338-b85b-88dd2dea221c"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"94607944-86c4-4338-b85b-88dd2dea221c","elapsedMs":926,"jsElapsedMs":23.600000001490116,"responseId":"94607944-86c4-4338-b85b-88dd2dea221c","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"f91e5c42-7809-420d-938a-7e3bb4767313"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"f91e5c42-7809-420d-938a-7e3bb4767313","elapsedMs":953,"jsElapsedMs":0.20000000298023224,"responseId":"f91e5c42-7809-420d-938a-7e3bb4767313","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"2ccec777-5e47-4c3c-9849-8b85b6d943e4"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"2ccec777-5e47-4c3c-9849-8b85b6d943e4","elapsedMs":818,"jsElapsedMs":8.299999997019768,"responseId":"2ccec777-5e47-4c3c-9849-8b85b6d943e4","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"cd3e2bd2-688d-401e-9641-209942159052"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"cd3e2bd2-688d-401e-9641-209942159052","elapsedMs":859,"jsElapsedMs":0.09999999403953552,"responseId":"cd3e2bd2-688d-401e-9641-209942159052","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"3939e3c0-2183-48ba-a62e-a4a49c2c7bf8"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"3939e3c0-2183-48ba-a62e-a4a49c2c7bf8","elapsedMs":1167,"jsElapsedMs":0.6000000014901161,"responseId":"3939e3c0-2183-48ba-a62e-a4a49c2c7bf8","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"ca58a092-1a2c-40cc-82b4-7cede752e426"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"ca58a092-1a2c-40cc-82b4-7cede752e426","elapsedMs":541,"jsElapsedMs":0.20000000298023224,"responseId":"ca58a092-1a2c-40cc-82b4-7cede752e426","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"fdd4438c-8d5f-4d35-ad27-6db60742e873"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"fdd4438c-8d5f-4d35-ad27-6db60742e873","elapsedMs":594,"jsElapsedMs":0.10000000149011612,"responseId":"fdd4438c-8d5f-4d35-ad27-6db60742e873","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"f63ac011-d0fb-437b-aafc-36e8239ad0d4"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"f63ac011-d0fb-437b-aafc-36e8239ad0d4","elapsedMs":611,"jsElapsedMs":0.09999999403953552,"responseId":"f63ac011-d0fb-437b-aafc-36e8239ad0d4","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"bbff99d0-3070-491a-8bed-01f18fc4ebca"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"bbff99d0-3070-491a-8bed-01f18fc4ebca","elapsedMs":691,"jsElapsedMs":0.29999999701976776,"responseId":"bbff99d0-3070-491a-8bed-01f18fc4ebca","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"1c7b752e-3ff7-4c0a-91a9-7d79b51162de"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"1c7b752e-3ff7-4c0a-91a9-7d79b51162de","elapsedMs":537,"jsElapsedMs":0.09999999403953552,"responseId":"1c7b752e-3ff7-4c0a-91a9-7d79b51162de","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"0129ba7b-cb3b-42e0-b026-64b2dcee5873"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"0129ba7b-cb3b-42e0-b026-64b2dcee5873","elapsedMs":600,"jsElapsedMs":0.20000000298023224,"responseId":"0129ba7b-cb3b-42e0-b026-64b2dcee5873","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"372b7307-9e9a-4d2b-ab3e-256bc49b5d86"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"372b7307-9e9a-4d2b-ab3e-256bc49b5d86","elapsedMs":542,"jsElapsedMs":0.3999999985098839,"responseId":"372b7307-9e9a-4d2b-ab3e-256bc49b5d86","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"c70f7a39-6460-4a4f-81ea-0a6048e3832b"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"native-restore-ready","probeId":"c70f7a39-6460-4a4f-81ea-0a6048e3832b","elapsedMs":582,"jsElapsedMs":0.20000000298023224,"responseId":"c70f7a39-6460-4a4f-81ea-0a6048e3832b","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"native-restore-ready","probeId":"05ff9ae1-507d-422a-95e4-37cb810392f1"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-error","label":"native-restore-ready","probeId":"05ff9ae1-507d-422a-95e4-37cb810392f1","elapsedMs":212,"responseId":null,"hasValue":false,"jsError":null,"error":"TimeoutCancellationException: Timed out waiting for 15000 ms"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-start","label":"restore-scene-check","probeId":"615a4510-d381-4e5f-aa13-5130f585b848"}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: stream=P7_AUDIO_EVIDENCE {"stage":"main-snapshot-finish","label":"restore-scene-check","probeId":"615a4510-d381-4e5f-aa13-5130f585b848","elapsedMs":808,"jsElapsedMs":0.10000000149011612,"responseId":"615a4510-d381-4e5f-aa13-5130f585b848","hasValue":true}
+
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_STATUS: class=musicorbs.platform.audio.VisualizerTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalStateException: Native restore did not match valid original session within 15000 ms
+	at musicorbs.platform.audio.P7MainUiProbe.ready(P7MainUiProbe.kt:104)
+	at musicorbs.platform.audio.P7MainUiProbe$ready$1.invokeSuspend(Unknown Source:14)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.fullSyncFollowsRealAudioTempoAndPersistsNativeSetting(VisualizerTest.kt:182)
+
+INSTRUMENTATION_STATUS: stream=
+Error in fullSyncFollowsRealAudioTempoAndPersistsNativeSetting(musicorbs.platform.audio.VisualizerTest):
+java.lang.IllegalStateException: Native restore did not match valid original session within 15000 ms
+	at musicorbs.platform.audio.P7MainUiProbe.ready(P7MainUiProbe.kt:104)
+	at musicorbs.platform.audio.P7MainUiProbe$ready$1.invokeSuspend(Unknown Source:14)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.fullSyncFollowsRealAudioTempoAndPersistsNativeSetting(VisualizerTest.kt:182)
+
+INSTRUMENTATION_STATUS: test=fullSyncFollowsRealAudioTempoAndPersistsNativeSetting
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 78.792
+There was 1 failure:
+1) fullSyncFollowsRealAudioTempoAndPersistsNativeSetting(musicorbs.platform.audio.VisualizerTest)
+java.lang.IllegalStateException: Native restore did not match valid original session within 15000 ms
+	at musicorbs.platform.audio.P7MainUiProbe.ready(P7MainUiProbe.kt:104)
+	at musicorbs.platform.audio.P7MainUiProbe$ready$1.invokeSuspend(Unknown Source:14)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:33)
+	at kotlinx.coroutines.internal.ScopeCoroutine.afterResume(Scopes.kt:35)
+	at kotlinx.coroutines.AbstractCoroutine.resumeWith(AbstractCoroutine.kt:101)
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:46)
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:98)
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:263)
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:94)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:70)
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source:1)
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source:1)
+	at musicorbs.platform.audio.VisualizerTest.fullSyncFollowsRealAudioTempoAndPersistsNativeSetting(VisualizerTest.kt:182)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

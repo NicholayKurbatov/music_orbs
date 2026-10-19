@@ -1,0 +1,203 @@
+{
+  "startedAt": "2026-10-19T06:48:35.652Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.VisualizerTest#fullSyncFollowsRealAudioTempoAndPersistsNativeSetting",
+  "result": "pass",
+  "apkSha256": "7f240554fb4608d1445c824fab6d99e01a8ea2ee378fc02ed84edb55541277a2",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 1,
+  "evidence": [
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "2e7572d4-94ed-4515-8c41-7698a992845c"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "2e7572d4-94ed-4515-8c41-7698a992845c",
+      "elapsedMs": 696,
+      "jsElapsedMs": 0.19999999552965164,
+      "responseId": "2e7572d4-94ed-4515-8c41-7698a992845c",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-restore-ready",
+      "matchedOriginalSession": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "full-sync-baseline",
+      "probeId": "f8ed0311-a573-4f8e-af37-360a66b9a8c6"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "full-sync-baseline",
+      "probeId": "f8ed0311-a573-4f8e-af37-360a66b9a8c6",
+      "elapsedMs": 527,
+      "jsElapsedMs": 4.199999995529652,
+      "responseId": "f8ed0311-a573-4f8e-af37-360a66b9a8c6",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "c27dd9a5-8313-46c3-a7b8-7d9ac1c7c985"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "c27dd9a5-8313-46c3-a7b8-7d9ac1c7c985",
+      "elapsedMs": 539,
+      "jsElapsedMs": 0.3999999985098839,
+      "responseId": "c27dd9a5-8313-46c3-a7b8-7d9ac1c7c985",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "00e03de8-fa06-453c-9265-4db09c56930f"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "00e03de8-fa06-453c-9265-4db09c56930f",
+      "elapsedMs": 479,
+      "jsElapsedMs": 3.0999999940395355,
+      "responseId": "00e03de8-fa06-453c-9265-4db09c56930f",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-restore-ready",
+      "matchedOriginalSession": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "9c0e68b9-bb84-4f06-96ca-39b901ecf09b"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "9c0e68b9-bb84-4f06-96ca-39b901ecf09b",
+      "elapsedMs": 477,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "9c0e68b9-bb84-4f06-96ca-39b901ecf09b",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Visualizer GLOBAL · общий микс",
+      "left": 252,
+      "top": 1976,
+      "width": 577,
+      "height": 55
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 150,
+      "bpm": 150.33998636215867,
+      "period": 13.371555574529749,
+      "energy": 0.2150237090702791,
+      "sourceId": "21a74769-8f19-4a13-a983-2bc00a9bb5ab"
+    },
+    {
+      "stage": "visualizer-main-tempo",
+      "expectedBpm": 90,
+      "bpm": 89.74606729639594,
+      "period": 21.3172485387849,
+      "energy": 0.16481568253224457,
+      "sourceId": "21a74769-8f19-4a13-a983-2bc00a9bb5ab"
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "visualizer-sync-confirmed",
+      "probeId": "1c839963-f5cd-4130-9b20-6eb972efd1ce"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "visualizer-sync-confirmed",
+      "probeId": "1c839963-f5cd-4130-9b20-6eb972efd1ce",
+      "elapsedMs": 645,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "1c839963-f5cd-4130-9b20-6eb972efd1ce",
+      "hasValue": true
+    },
+    {
+      "stage": "visualizer-native-sync",
+      "musicSync": false,
+      "confirmedSettings": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "8f366a6d-51b7-4115-b343-aa339540d8a6"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "8f366a6d-51b7-4115-b343-aa339540d8a6",
+      "elapsedMs": 659,
+      "jsElapsedMs": 0.19999999552965164,
+      "responseId": "8f366a6d-51b7-4115-b343-aa339540d8a6",
+      "hasValue": true
+    },
+    {
+      "stage": "full-sync-real-audio",
+      "fastBpm": 150,
+      "slowBpm": 90,
+      "fastRateMean": 20.471944385761947,
+      "fastRateMax": 26.359185230290247,
+      "slowRateMean": 11.703132707800814,
+      "syncOffRate": 1.0001041887349844,
+      "nativeSettingRestored": true,
+      "shapesPreserved": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "restore-scene-check",
+      "probeId": "592aed5f-e89a-453c-9435-6a0733298d91"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "restore-scene-check",
+      "probeId": "592aed5f-e89a-453c-9435-6a0733298d91",
+      "elapsedMs": 2879,
+      "jsElapsedMs": 0.29999999701976776,
+      "responseId": "592aed5f-e89a-453c-9435-6a0733298d91",
+      "hasValue": true
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-19T06:51:04.810Z"
+}

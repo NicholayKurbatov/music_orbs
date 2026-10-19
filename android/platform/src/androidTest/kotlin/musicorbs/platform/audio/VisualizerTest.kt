@@ -184,7 +184,7 @@ class VisualizerTest {
         val manager = context.getSystemService(AudioManager::class.java)
         val volume = manager.getStreamVolume(AudioManager.STREAM_MUSIC)
         val scenario = ActivityScenario.launch(MainActivity::class.java)
-        val probe = P7MainUiProbe(scenario)
+        var probe = P7MainUiProbe(scenario)
         var track: AudioTrack? = null
         var baseline: JsonObject? = null
         try {
@@ -211,7 +211,10 @@ class VisualizerTest {
                 while (Json.parseToJsonElement(java.io.File(context.filesDir, "session.json").readText()).jsonObject
                     .getValue("settings").jsonObject["fullSync"]?.jsonPrimitive?.booleanOrNull != true) delay(100)
             }
-            scenario.recreate(); probe.ready(); probe.closePanelIfOpen()
+            scenario.recreate()
+            // Новый probe сверяет restore с новым сохранением, а не кешем до настройки.
+            probe.close(); probe = P7MainUiProbe(scenario)
+            probe.ready(); probe.closePanelIfOpen()
             assertTrue(probe.snapshot().getValue("settings").jsonObject.getValue("fullSync").jsonPrimitive.boolean)
             manager.setStreamVolume(AudioManager.STREAM_MUSIC, manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC), 0)
             track = p8RhythmicTrack(150)

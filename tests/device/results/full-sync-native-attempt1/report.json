@@ -1,0 +1,284 @@
+{
+  "startedAt": "2026-10-19T06:46:28.083Z",
+  "serial": "emulator-5554",
+  "classes": "musicorbs.platform.audio.VisualizerTest#fullSyncFollowsRealAudioTempoAndPersistsNativeSetting",
+  "result": "fail",
+  "apkSha256": "7f240554fb4608d1445c824fab6d99e01a8ea2ee378fc02ed84edb55541277a2",
+  "sessionSha256Before": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "initialRecordAudioGranted": true,
+  "limits": [
+    "Android Emulator API 35; Honor 200 Pro/Яндекс Музыка не проверены.",
+    "Только scalar metrics; waveform/FFT/PCM не записываются."
+  ],
+  "tests": 1,
+  "evidence": [
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "5bb76f86-a0d6-4d6f-9c5a-699334bb245c"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "5bb76f86-a0d6-4d6f-9c5a-699334bb245c",
+      "elapsedMs": 1833,
+      "jsElapsedMs": 8.100000001490116,
+      "responseId": "5bb76f86-a0d6-4d6f-9c5a-699334bb245c",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-restore-ready",
+      "matchedOriginalSession": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "full-sync-baseline",
+      "probeId": "33c5ded2-57f9-4813-9539-3f955d379304"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "full-sync-baseline",
+      "probeId": "33c5ded2-57f9-4813-9539-3f955d379304",
+      "elapsedMs": 978,
+      "jsElapsedMs": 0.5,
+      "responseId": "33c5ded2-57f9-4813-9539-3f955d379304",
+      "hasValue": true
+    },
+    {
+      "stage": "main-native-click",
+      "label": "Настройки",
+      "left": 772,
+      "top": 219,
+      "width": 198,
+      "height": 55
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "snapshot",
+      "probeId": "44a844d1-df61-427c-9a75-fd9298b023a2"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "snapshot",
+      "probeId": "44a844d1-df61-427c-9a75-fd9298b023a2",
+      "elapsedMs": 650,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "44a844d1-df61-427c-9a75-fd9298b023a2",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "94607944-86c4-4338-b85b-88dd2dea221c"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "94607944-86c4-4338-b85b-88dd2dea221c",
+      "elapsedMs": 926,
+      "jsElapsedMs": 23.600000001490116,
+      "responseId": "94607944-86c4-4338-b85b-88dd2dea221c",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "f91e5c42-7809-420d-938a-7e3bb4767313"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "f91e5c42-7809-420d-938a-7e3bb4767313",
+      "elapsedMs": 953,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "f91e5c42-7809-420d-938a-7e3bb4767313",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "2ccec777-5e47-4c3c-9849-8b85b6d943e4"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "2ccec777-5e47-4c3c-9849-8b85b6d943e4",
+      "elapsedMs": 818,
+      "jsElapsedMs": 8.299999997019768,
+      "responseId": "2ccec777-5e47-4c3c-9849-8b85b6d943e4",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "cd3e2bd2-688d-401e-9641-209942159052"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "cd3e2bd2-688d-401e-9641-209942159052",
+      "elapsedMs": 859,
+      "jsElapsedMs": 0.09999999403953552,
+      "responseId": "cd3e2bd2-688d-401e-9641-209942159052",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "3939e3c0-2183-48ba-a62e-a4a49c2c7bf8"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "3939e3c0-2183-48ba-a62e-a4a49c2c7bf8",
+      "elapsedMs": 1167,
+      "jsElapsedMs": 0.6000000014901161,
+      "responseId": "3939e3c0-2183-48ba-a62e-a4a49c2c7bf8",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "ca58a092-1a2c-40cc-82b4-7cede752e426"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "ca58a092-1a2c-40cc-82b4-7cede752e426",
+      "elapsedMs": 541,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "ca58a092-1a2c-40cc-82b4-7cede752e426",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "fdd4438c-8d5f-4d35-ad27-6db60742e873"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "fdd4438c-8d5f-4d35-ad27-6db60742e873",
+      "elapsedMs": 594,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "fdd4438c-8d5f-4d35-ad27-6db60742e873",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "f63ac011-d0fb-437b-aafc-36e8239ad0d4"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "f63ac011-d0fb-437b-aafc-36e8239ad0d4",
+      "elapsedMs": 611,
+      "jsElapsedMs": 0.09999999403953552,
+      "responseId": "f63ac011-d0fb-437b-aafc-36e8239ad0d4",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "bbff99d0-3070-491a-8bed-01f18fc4ebca"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "bbff99d0-3070-491a-8bed-01f18fc4ebca",
+      "elapsedMs": 691,
+      "jsElapsedMs": 0.29999999701976776,
+      "responseId": "bbff99d0-3070-491a-8bed-01f18fc4ebca",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "1c7b752e-3ff7-4c0a-91a9-7d79b51162de"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "1c7b752e-3ff7-4c0a-91a9-7d79b51162de",
+      "elapsedMs": 537,
+      "jsElapsedMs": 0.09999999403953552,
+      "responseId": "1c7b752e-3ff7-4c0a-91a9-7d79b51162de",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "0129ba7b-cb3b-42e0-b026-64b2dcee5873"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "0129ba7b-cb3b-42e0-b026-64b2dcee5873",
+      "elapsedMs": 600,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "0129ba7b-cb3b-42e0-b026-64b2dcee5873",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "372b7307-9e9a-4d2b-ab3e-256bc49b5d86"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "372b7307-9e9a-4d2b-ab3e-256bc49b5d86",
+      "elapsedMs": 542,
+      "jsElapsedMs": 0.3999999985098839,
+      "responseId": "372b7307-9e9a-4d2b-ab3e-256bc49b5d86",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "c70f7a39-6460-4a4f-81ea-0a6048e3832b"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "native-restore-ready",
+      "probeId": "c70f7a39-6460-4a4f-81ea-0a6048e3832b",
+      "elapsedMs": 582,
+      "jsElapsedMs": 0.20000000298023224,
+      "responseId": "c70f7a39-6460-4a4f-81ea-0a6048e3832b",
+      "hasValue": true
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "native-restore-ready",
+      "probeId": "05ff9ae1-507d-422a-95e4-37cb810392f1"
+    },
+    {
+      "stage": "main-snapshot-error",
+      "label": "native-restore-ready",
+      "probeId": "05ff9ae1-507d-422a-95e4-37cb810392f1",
+      "elapsedMs": 212,
+      "responseId": null,
+      "hasValue": false,
+      "jsError": null,
+      "error": "TimeoutCancellationException: Timed out waiting for 15000 ms"
+    },
+    {
+      "stage": "main-snapshot-start",
+      "label": "restore-scene-check",
+      "probeId": "615a4510-d381-4e5f-aa13-5130f585b848"
+    },
+    {
+      "stage": "main-snapshot-finish",
+      "label": "restore-scene-check",
+      "probeId": "615a4510-d381-4e5f-aa13-5130f585b848",
+      "elapsedMs": 808,
+      "jsElapsedMs": 0.10000000149011612,
+      "responseId": "615a4510-d381-4e5f-aa13-5130f585b848",
+      "hasValue": true
+    }
+  ],
+  "sessionPreservedByTests": true,
+  "sessionSha256After": "b186a9bcaefed532e47386e15f581bb3703ca77494db8e87f0f7d9dd2ae1589d",
+  "finishedAt": "2026-10-19T06:47:49.613Z"
+}

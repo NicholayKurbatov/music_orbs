@@ -378,3 +378,14 @@ E-V2/E-P8 — к новому9b59177…eae3e. D-L не превращается 
 | FT-37 | FR-25, FR-08, NFR-03 | Code1→2 с той же подписью/данными; прежние источники/сохранения/графика — PASS |
 
 Это функциональная поставка P8. Прежний кадровый бюджет эмулятора не выполнен; физический телефон и человеческая оценка плавности этим прогоном не подтверждаются.
+
+## Полная синхронизация, 0.2.1-dev
+
+| Сценарий | Результат | Доказательство |
+|---|---|---|
+| FT-38 / FR-26 | PASS на Android Emulator API 35 | [Реальный AudioTrack/Visualizer, 150 → 90 BPM, атаки, native настройка/recreate, Sync off, формы](../device/results/full-sync-native/report.json) |
+| FT-38 / NFR-02 | PASS unit | [Плавное ускорение и интеграция](../../graphics/motion/domain/MusicMotionResponse.test.ts), [rendered elapsed/settings/snapshot](../../graphics/sculpture/application/SculptureScene.test.ts) |
+| FR-08 / FR-25 | PASS update | [0.2.0 → 0.2.1 без очистки данных](../device/results/full-sync-update/report.json) |
+
+[Итог и ограничения](../device/results/full-sync-release/README.md).
+Honor/Яндекс не проверены; P8 9.8 открыт. Прежние бюджеты AVD не пересмотрены.

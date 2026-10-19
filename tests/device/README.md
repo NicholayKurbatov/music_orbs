@@ -218,3 +218,17 @@ atomic replace сохраняет подтверждённый snapshot, stale/e
 ## P8: Visualizer и обновление
 
 Команды нативных проверок P8 и сборки — в [README](../../README.md). Полный итог — в [поставке 0.2.0-dev](results/p8-release/README.md). `android-p8-instrumentation.mjs --class <классы> --output <каталог>` запускает настоящий instrument без UTP uninstall; проверяет SHA APK и сохранность session.json. `android-p8-permissions.mjs` проверяет системные deny/grant/revoke, MIC denial, отсутствие OPEN и пассивный broadcast в фоне. `android-p8-update.mjs --output <каталог>` проверяет именно рост code/подпись/байты при установке через install -r. Исходный APK, если он временно возвращается на выданный AVD для проверки, ставится через install -r -d с сохранением данных; затем финальный APK устанавливается поверх него. Телефонная FT-36 не выполняется эмуляторными runners.
+
+## Полная синхронизация 0.2.1-dev
+
+[Результаты и ограничения](results/full-sync-release/README.md). После сборки
+нового APK и test APK обновление и целевой native сценарий запускаются так:
+
+```powershell
+node scripts/android-p8-update.mjs --expected-version 0.2.1-dev --output tests/device/results/full-sync-update
+node scripts/android-p8-instrumentation.mjs --class 'musicorbs.platform.audio.VisualizerTest#fullSyncFollowsRealAudioTempoAndPersistsNativeSetting' --output tests/device/results/full-sync-native
+```
+
+Update runner требует установленную предыдущую версию с меньшим versionCode;
+обычная повторная установка текущей версии делается через adb install -r.
+Отчёт native содержит только скаляры; тест восстанавливает исходную сессию.
